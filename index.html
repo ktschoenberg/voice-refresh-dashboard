@@ -1430,7 +1430,7 @@ function ocBar(label, val, total, color, sub) {
   const fw = sub ? 600 : 700;
   const clr = sub ? 'var(--g500)' : 'var(--g800)';
   const cnt = sub ? val + ' stores' : String(val);
-  const fill = sub ? 'var(--g300)' : 'var(--g400)';
+  const fill = sub ? 'rgba(249,99,2,.35)' : 'var(--hd)';
   return `<div style="display:flex;align-items:center;gap:12px">
     <div style="font-size:${fs}px;color:${clr};min-width:220px">${label}</div>
     <div class="oc-bar-track" style="flex:1;height:${h}px;border-radius:3px;overflow:hidden"><div style="height:100%;border-radius:3px;background:${fill};width:${pct}%"></div></div>
