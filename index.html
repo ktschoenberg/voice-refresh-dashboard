@@ -261,8 +261,8 @@ tfoot td.grand{color:var(--hd);font-size:14px}
         <div id="prog-sgrid" class="sgrid"></div>
         <div id="prog-sgrid-more" style="font-size:11px;color:var(--g400);margin-bottom:9px"></div>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <span style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--g600)"><span style="display:inline-block;width:20px;height:12px;border-radius:2px;background:var(--green500)"></span>Complete</span>
-          <span style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--g600)"><span style="display:inline-block;width:20px;height:12px;border-radius:2px;background:var(--hd)"></span>Complete w/ exceptions</span>
+          <span style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--g600)"><span style="display:inline-block;width:20px;height:12px;border-radius:2px;background:var(--hd)"></span>Complete</span>
+          <span style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--g600)"><span style="display:inline-block;width:20px;height:12px;border-radius:2px;background:var(--green500)"></span>Complete w/ exceptions</span>
           <span style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--g600)"><span style="display:inline-block;width:20px;height:12px;border-radius:2px;background:var(--g200)"></span>Pending</span>
         </div>
       </div>
@@ -1048,7 +1048,7 @@ function buildStoreGrid() {
     d.className = 'store-cell';
     if (s.status === 'Complete') {
       const exc = s.mdf || s.vgrec || s.dhcp || s.fax;
-      d.style.background = exc ? 'var(--hd)' : 'var(--green500)';
+      d.style.background = exc ? 'var(--green500)' : 'var(--hd)';
     } else {
       d.style.background = 'var(--g200)';
     }
@@ -1108,8 +1108,8 @@ function renderOutcomes(wk) {
   const hasExc = d.vgrec + d.mdf + d.dhcp + d.fax > 0;
   document.getElementById('oc-content').innerHTML = `
     <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:${hasExc?14:0}px">
-      ${ocBar('Clean deployment',       d.clean,     d.total, 'var(--green500)')}
-      ${ocBar('Complete w/ exceptions', d.exception, d.total, 'var(--hd)')}
+      ${ocBar('Clean deployment',       d.clean,     d.total, 'var(--hd)')}
+      ${ocBar('Complete w/ exceptions', d.exception, d.total, 'var(--green500)')}
       ${ocBar('Open action required',   d.open,      d.total, 'var(--red500)')}
     </div>
     ${hasExc ? `<div style="border-top:1px solid var(--g150);padding-top:12px;display:flex;flex-direction:column;gap:8px">
