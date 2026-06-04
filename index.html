@@ -183,6 +183,20 @@ tfoot td.grand{color:var(--hd);font-size:14px}
 .rp-doc-insight-body{font-size:12.5px;color:var(--g600);line-height:1.55}
 .rp-2col{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .rp-wave-sep td{background:var(--g50);font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.06em;padding:5px 14px;border-bottom:1px solid var(--g200)}
+.rp-card{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);overflow:hidden;box-shadow:var(--sh-xs);display:flex;flex-direction:column}
+.rp-card-hd{padding:12px 14px 10px}
+.rp-card-num-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.rp-card-count{font-size:28px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.rp-card-wk{font-size:11.5px;color:var(--g500);margin-bottom:2px}
+.rp-card-hub{display:inline-block;font-size:11px;background:var(--g100);border:1px solid var(--g200);border-radius:var(--rfull);padding:2px 9px;color:var(--g600)}
+.rp-card-states{padding:8px 14px;display:flex;flex-wrap:wrap;gap:3px;border-top:1px solid var(--g150);border-bottom:1px solid var(--g150)}
+.rp-card-st{font-size:11px;background:var(--g50);border-radius:4px;padding:2px 6px;font-weight:600;color:var(--g700)}
+.rp-card-st span{color:var(--g400);font-weight:400}
+.rp-card-note{padding:9px 14px;font-size:12px;color:var(--g600);line-height:1.5;flex:1;border-top:none}
+.rp-ic{background:var(--white);border:1px solid var(--g200);border-radius:var(--r10);padding:12px 14px;box-shadow:var(--sh-xs);display:flex;gap:10px;align-items:flex-start}
+.rp-ic-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.rp-ic-title{font-size:12px;font-weight:700;color:var(--g900);margin-bottom:2px}
+.rp-ic-body{font-size:11.5px;color:var(--g600);line-height:1.5}
 
 /* ── Store grid & outcomes ─────────────────────────────── */
 .store-cell{width:28px;height:18px;border-radius:3px;flex-shrink:0}
@@ -845,6 +859,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
     </div>
     <div class="page-meta">Wks 9–45 &nbsp;·&nbsp; Feb 2027 est. completion</div>
   </div>
+  <!-- CARD VIEW REPLACES OLD CONTENT -->
 
   <!-- Summary bar -->
   <div class="rp-summary">
@@ -856,135 +871,169 @@ tfoot td.grand{color:var(--hd);font-size:14px}
 
   <!-- US Phases -->
   <div class="rp-slabel">US Phases &nbsp;·&nbsp; Recommended Sequence</div>
-  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:22px">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px">
 
-    <div class="rp-doc-phase">
-      <div class="rp-doc-phase-hd" style="background:#FFF4ED">
-        <div class="rp-phase-num" style="background:#F96302">1</div>
-        <div class="rp-doc-phase-name">Southeast</div>
-        <div class="rp-doc-phase-states">GA (85) &nbsp;·&nbsp; VA (51) &nbsp;·&nbsp; FL (40) &nbsp;·&nbsp; NC (40) &nbsp;·&nbsp; TN (36) &nbsp;·&nbsp; SC (24) &nbsp;·&nbsp; AL (22) &nbsp;·&nbsp; MS (14) &nbsp;·&nbsp; KY (12) &nbsp;·&nbsp; WV (6)</div>
-        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
-          <span class="rp-doc-phase-count" style="color:#F96302">330</span>
-          <span class="rp-doc-phase-wks">~7 wks &nbsp;·&nbsp; Wks 9–15</span>
-          <span class="rp-doc-phase-hub">Atlanta (ATL)</span>
+    <div class="rp-card" style="border-top:3px solid #F96302">
+      <div class="rp-card-hd">
+        <div class="rp-card-num-row">
+          <div style="display:flex;align-items:center;gap:7px">
+            <div class="rp-phase-num" style="background:#F96302">1</div>
+            <div style="font-size:13px;font-weight:700;color:var(--g900)">Southeast</div>
+          </div>
+          <div class="rp-card-count" style="color:#F96302">330</div>
         </div>
+        <div class="rp-card-wk">~7 wks &nbsp;·&nbsp; Wks 9–15</div>
+        <span class="rp-card-hub">Atlanta (ATL)</span>
       </div>
-      <div class="rp-doc-phase-body">Team already mobilized from Pilot + Wks 1–8. Continuing into the remaining 330 SE stores avoids full remobilization — estimated <strong>$40–60K savings</strong> vs. relocating and returning later. Do not redeploy until all 10 SE states are complete.</div>
+      <div class="rp-card-states">
+        <span class="rp-card-st">GA 85</span><span class="rp-card-st">VA 51</span><span class="rp-card-st">FL 40</span><span class="rp-card-st">NC 40</span><span class="rp-card-st">TN 36</span><span class="rp-card-st">SC 24</span><span class="rp-card-st">AL 22</span><span class="rp-card-st">MS 14</span><span class="rp-card-st">KY 12</span><span class="rp-card-st">WV 6</span>
+      </div>
+      <div class="rp-card-note">Team already mobilized — avoid remobilization. Estimated $40–60K savings by finishing all 10 SE states before relocating.</div>
     </div>
 
-    <div class="rp-doc-phase">
-      <div class="rp-doc-phase-hd" style="background:#EFF6FF">
-        <div class="rp-phase-num" style="background:#2563EB">2</div>
-        <div class="rp-doc-phase-name">Northeast</div>
-        <div class="rp-doc-phase-states">NY (102) &nbsp;·&nbsp; PA (71) &nbsp;·&nbsp; NJ (67) &nbsp;·&nbsp; MA (45) &nbsp;·&nbsp; MD (41) &nbsp;·&nbsp; CT (30) &nbsp;·&nbsp; NH (20) &nbsp;·&nbsp; DE (9) &nbsp;·&nbsp; ME (11) &nbsp;·&nbsp; RI (8) &nbsp;·&nbsp; VT (3) &nbsp;·&nbsp; DC (1)</div>
-        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
-          <span class="rp-doc-phase-count" style="color:#2563EB">408</span>
-          <span class="rp-doc-phase-wks">~7 wks &nbsp;·&nbsp; Wks 16–22</span>
-          <span class="rp-doc-phase-hub">New York (EWR)</span>
+    <div class="rp-card" style="border-top:3px solid #2563EB">
+      <div class="rp-card-hd">
+        <div class="rp-card-num-row">
+          <div style="display:flex;align-items:center;gap:7px">
+            <div class="rp-phase-num" style="background:#2563EB">2</div>
+            <div style="font-size:13px;font-weight:700;color:var(--g900)">Northeast</div>
+          </div>
+          <div class="rp-card-count" style="color:#2563EB">408</div>
         </div>
+        <div class="rp-card-wk">~7 wks &nbsp;·&nbsp; Wks 16–22</div>
+        <span class="rp-card-hub">New York (EWR)</span>
       </div>
-      <div class="rp-doc-phase-body">Largest single phase. NY/NJ/PA metro corridor has <strong>240 stores within ~150 miles</strong> — 60-store weeks achievable here, the highest throughput of any phase. Single staging warehouse at Newark covers the entire metro cluster before rotating to Boston and mid-Atlantic.</div>
+      <div class="rp-card-states">
+        <span class="rp-card-st">NY 102</span><span class="rp-card-st">PA 71</span><span class="rp-card-st">NJ 67</span><span class="rp-card-st">MA 45</span><span class="rp-card-st">MD 41</span><span class="rp-card-st">CT 30</span><span class="rp-card-st">NH 20</span><span class="rp-card-st">ME 11</span><span class="rp-card-st">DE 9</span><span class="rp-card-st">RI 8</span><span class="rp-card-st">VT 3</span><span class="rp-card-st">DC 1</span>
+      </div>
+      <div class="rp-card-note">Largest phase. NY/NJ/PA corridor = 240 stores within 150 miles — highest-throughput region; 60-store weeks achievable.</div>
     </div>
 
-    <div class="rp-doc-phase">
-      <div class="rp-doc-phase-hd" style="background:#F5F3FF">
-        <div class="rp-phase-num" style="background:#7C3AED">3</div>
-        <div class="rp-doc-phase-name">Midwest</div>
-        <div class="rp-doc-phase-states">IL (76) &nbsp;·&nbsp; MI (70) &nbsp;·&nbsp; OH (67) &nbsp;·&nbsp; MO (34) &nbsp;·&nbsp; MN (33) &nbsp;·&nbsp; WI (27) &nbsp;·&nbsp; IN (24) &nbsp;·&nbsp; KS (15) &nbsp;·&nbsp; IA (10) &nbsp;·&nbsp; NE (8) &nbsp;·&nbsp; ND (2) &nbsp;·&nbsp; SD (1)</div>
-        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
-          <span class="rp-doc-phase-count" style="color:#7C3AED">367</span>
-          <span class="rp-doc-phase-wks">~7 wks &nbsp;·&nbsp; Wks 23–29</span>
-          <span class="rp-doc-phase-hub">Chicago (ORD)</span>
+    <div class="rp-card" style="border-top:3px solid #7C3AED">
+      <div class="rp-card-hd">
+        <div class="rp-card-num-row">
+          <div style="display:flex;align-items:center;gap:7px">
+            <div class="rp-phase-num" style="background:#7C3AED">3</div>
+            <div style="font-size:13px;font-weight:700;color:var(--g900)">Midwest</div>
+          </div>
+          <div class="rp-card-count" style="color:#7C3AED">367</div>
         </div>
+        <div class="rp-card-wk">~7 wks &nbsp;·&nbsp; Wks 23–29</div>
+        <span class="rp-card-hub">Chicago (ORD)</span>
       </div>
-      <div class="rp-doc-phase-body">OH/MI/IL/IN form a dense contiguous cluster — bundle into 55-store weeks with ORD as the rotation hub. Engineers can drive between most Midwest stores. Combine sparse ND/SD/NE/KS/IA into 1–2 "Great Plains" fill weeks to avoid stranded travel days in low-density markets.</div>
+      <div class="rp-card-states">
+        <span class="rp-card-st">IL 76</span><span class="rp-card-st">MI 70</span><span class="rp-card-st">OH 67</span><span class="rp-card-st">MO 34</span><span class="rp-card-st">MN 33</span><span class="rp-card-st">WI 27</span><span class="rp-card-st">IN 24</span><span class="rp-card-st">KS 15</span><span class="rp-card-st">IA 10</span><span class="rp-card-st">NE 8</span><span class="rp-card-st">ND 2</span><span class="rp-card-st">SD 1</span>
+      </div>
+      <div class="rp-card-note">OH/MI/IL/IN dense cluster — 55-store weeks from ORD. Bundle sparse ND/SD/NE/KS/IA into 1–2 "Great Plains" fill weeks.</div>
     </div>
 
-    <div class="rp-doc-phase">
-      <div class="rp-doc-phase-hd" style="background:#FFFBEB">
-        <div class="rp-phase-num" style="background:#D97706">4</div>
-        <div class="rp-doc-phase-name">South Central</div>
-        <div class="rp-doc-phase-states">TX (186) &nbsp;·&nbsp; LA (26) &nbsp;·&nbsp; OK (16) &nbsp;·&nbsp; AR (14)</div>
-        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
-          <span class="rp-doc-phase-count" style="color:#D97706">242</span>
-          <span class="rp-doc-phase-wks">~5 wks &nbsp;·&nbsp; Wks 30–34</span>
-          <span class="rp-doc-phase-hub">Dallas (DFW)</span>
+    <div class="rp-card" style="border-top:3px solid #D97706">
+      <div class="rp-card-hd">
+        <div class="rp-card-num-row">
+          <div style="display:flex;align-items:center;gap:7px">
+            <div class="rp-phase-num" style="background:#D97706">4</div>
+            <div style="font-size:13px;font-weight:700;color:var(--g900)">South Central</div>
+          </div>
+          <div class="rp-card-count" style="color:#D97706">242</div>
         </div>
+        <div class="rp-card-wk">~5 wks &nbsp;·&nbsp; Wks 30–34</div>
+        <span class="rp-card-hub">Dallas (DFW)</span>
       </div>
-      <div class="rp-doc-phase-body">TX alone (186 stores) warrants its own dedicated mobilization team and DFW staging warehouse. Route Houston metro → DFW/Dallas cluster → San Antonio → Austin. OK/AR/LA are natural adjacents — fill spare capacity in TX weeks. Consider a second TX-only sub-team to compress this to 3 weeks.</div>
+      <div class="rp-card-states">
+        <span class="rp-card-st">TX 186</span><span class="rp-card-st">LA 26</span><span class="rp-card-st">OK 16</span><span class="rp-card-st">AR 14</span>
+      </div>
+      <div class="rp-card-note">TX (186) warrants dedicated DFW warehouse. Houston → DFW → San Antonio → Austin. Consider 2nd TX sub-team to compress to 3 weeks.</div>
     </div>
 
-    <div class="rp-doc-phase">
-      <div class="rp-doc-phase-hd" style="background:#ECFDF5">
-        <div class="rp-phase-num" style="background:#059669">5</div>
-        <div class="rp-doc-phase-name">Mountain / SW</div>
-        <div class="rp-doc-phase-states">AZ (60) &nbsp;·&nbsp; CO (46) &nbsp;·&nbsp; NV (20) &nbsp;·&nbsp; UT (24) &nbsp;·&nbsp; NM (13) &nbsp;·&nbsp; ID (13) &nbsp;·&nbsp; MT (6) &nbsp;·&nbsp; WY (5)</div>
-        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
-          <span class="rp-doc-phase-count" style="color:#059669">187</span>
-          <span class="rp-doc-phase-wks">~5 wks &nbsp;·&nbsp; Wks 35–39</span>
-          <span class="rp-doc-phase-hub">Phoenix (PHX)</span>
+    <div class="rp-card" style="border-top:3px solid #059669">
+      <div class="rp-card-hd">
+        <div class="rp-card-num-row">
+          <div style="display:flex;align-items:center;gap:7px">
+            <div class="rp-phase-num" style="background:#059669">5</div>
+            <div style="font-size:13px;font-weight:700;color:var(--g900)">Mountain / SW</div>
+          </div>
+          <div class="rp-card-count" style="color:#059669">187</div>
         </div>
+        <div class="rp-card-wk">~5 wks &nbsp;·&nbsp; Wks 35–39</div>
+        <span class="rp-card-hub">Phoenix (PHX)</span>
       </div>
-      <div class="rp-doc-phase-body">AZ (60) and CO (46) anchor this phase and can each fill a full week. Stage in PHX for AZ, then relocate to DEN for CO/UT/NV. Bundle MT/WY/ID/NM into a single "sparse mountain" week — these 4 states total just 37 stores and should not be assigned separate weeks.</div>
+      <div class="rp-card-states">
+        <span class="rp-card-st">AZ 60</span><span class="rp-card-st">CO 46</span><span class="rp-card-st">UT 24</span><span class="rp-card-st">NV 20</span><span class="rp-card-st">NM 13</span><span class="rp-card-st">ID 13</span><span class="rp-card-st">MT 6</span><span class="rp-card-st">WY 5</span>
+      </div>
+      <div class="rp-card-note">AZ and CO each anchor a full week. Bundle MT/WY/ID/NM into one sparse-mountain week — 37 stores total, no separate weeks.</div>
     </div>
 
-    <div class="rp-doc-phase">
-      <div class="rp-doc-phase-hd" style="background:#FEF2F2">
-        <div class="rp-phase-num" style="background:#DC2626">6</div>
-        <div class="rp-doc-phase-name">West Coast</div>
-        <div class="rp-doc-phase-states">CA (235) &nbsp;·&nbsp; WA (48) &nbsp;·&nbsp; OR (27) &nbsp;·&nbsp; HI (8) &nbsp;·&nbsp; AK (7)</div>
-        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
-          <span class="rp-doc-phase-count" style="color:#DC2626">325</span>
-          <span class="rp-doc-phase-wks">~6 wks &nbsp;·&nbsp; Wks 40–45</span>
-          <span class="rp-doc-phase-hub">Los Angeles (LAX)</span>
+    <div class="rp-card" style="border-top:3px solid #DC2626">
+      <div class="rp-card-hd">
+        <div class="rp-card-num-row">
+          <div style="display:flex;align-items:center;gap:7px">
+            <div class="rp-phase-num" style="background:#DC2626">6</div>
+            <div style="font-size:13px;font-weight:700;color:var(--g900)">West Coast</div>
+          </div>
+          <div class="rp-card-count" style="color:#DC2626">325</div>
         </div>
+        <div class="rp-card-wk">~6 wks &nbsp;·&nbsp; Wks 40–45</div>
+        <span class="rp-card-hub">Los Angeles (LAX)</span>
       </div>
-      <div class="rp-doc-phase-body">CA (235 stores) is a program within the program — plan <strong>4 dedicated CA-only weeks</strong>: SoCal LA basin → Inland Empire/San Diego → Central Valley/Bay Area → NorCal. Do not mix CA weeks with OR/WA. After CA, rotate north: WA (48) fills one full week from SEA, OR (27) fills half. HI and AK require dedicated air mobilization — coordinate as a single Pacific trip at end of phase.</div>
+      <div class="rp-card-states">
+        <span class="rp-card-st">CA 235</span><span class="rp-card-st">WA 48</span><span class="rp-card-st">OR 27</span><span class="rp-card-st">HI 8</span><span class="rp-card-st">AK 7</span>
+      </div>
+      <div class="rp-card-note">CA = 4 dedicated weeks (SoCal → IE/SD → Central Valley/Bay → NorCal). Do not mix with OR/WA. HI + AK: single Pacific air trip.</div>
     </div>
 
   </div>
 
   <!-- Special tracks -->
   <div class="rp-slabel">Parallel Tracks &nbsp;·&nbsp; Special Logistics Required</div>
-  <div class="rp-2col" style="margin-bottom:22px">
+  <div class="rp-2col" style="margin-bottom:20px">
 
-    <div class="rp-doc-phase">
-      <div class="rp-doc-phase-hd" style="background:var(--g100)">
-        <div class="rp-phase-num" style="background:#6B7280">7</div>
-        <div class="rp-doc-phase-name">Canada</div>
-        <div class="rp-doc-phase-states">ON (76) &nbsp;·&nbsp; AB (25) &nbsp;·&nbsp; BC (22) &nbsp;·&nbsp; QC (18) &nbsp;·&nbsp; MB (4) &nbsp;·&nbsp; NB (3) &nbsp;·&nbsp; NS (2) &nbsp;·&nbsp; SK (2)</div>
-        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
-          <span class="rp-doc-phase-count" style="color:#6B7280">154</span>
-          <span class="rp-doc-phase-hub">Toronto (YYZ)</span>
+    <div class="rp-card" style="border-top:3px solid #6B7280">
+      <div class="rp-card-hd">
+        <div class="rp-card-num-row">
+          <div style="display:flex;align-items:center;gap:7px">
+            <div class="rp-phase-num" style="background:#6B7280">7</div>
+            <div style="font-size:13px;font-weight:700;color:var(--g900)">Canada</div>
+          </div>
+          <div class="rp-card-count" style="color:#6B7280">154</div>
         </div>
+        <div class="rp-card-wk">Parallel track &nbsp;·&nbsp; starts Wk 20</div>
+        <span class="rp-card-hub">Toronto (YYZ)</span>
       </div>
-      <div class="rp-doc-phase-body"><strong>Start authorization paperwork immediately.</strong> ATA carnets, Cisco Canada work authorizations, and cross-border import processing take 4–6 weeks. Target parallel-track start at Wk 20 to overlap with the Midwest phase. ON (76 stores) alone is a 1.5-week block.</div>
+      <div class="rp-card-states">
+        <span class="rp-card-st">ON 76</span><span class="rp-card-st">AB 25</span><span class="rp-card-st">BC 22</span><span class="rp-card-st">QC 18</span><span class="rp-card-st">MB 4</span><span class="rp-card-st">NB 3</span><span class="rp-card-st">NS 2</span><span class="rp-card-st">SK 2</span>
+      </div>
+      <div class="rp-card-note">Start authorization paperwork now — ATA carnets + Cisco Canada work authorizations take 4–6 weeks. ON (76) alone = 1.5-week block.</div>
     </div>
 
-    <div class="rp-doc-phase">
-      <div class="rp-doc-phase-hd" style="background:#FAF5FF">
-        <div class="rp-phase-num" style="background:#9333EA">8</div>
-        <div class="rp-doc-phase-name">Territories</div>
-        <div class="rp-doc-phase-states">PR (10) &nbsp;·&nbsp; GU (2) &nbsp;·&nbsp; VI (2)</div>
-        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
-          <span class="rp-doc-phase-count" style="color:#9333EA">14</span>
-          <span class="rp-doc-phase-hub">San Juan (SJU)</span>
+    <div class="rp-card" style="border-top:3px solid #9333EA">
+      <div class="rp-card-hd">
+        <div class="rp-card-num-row">
+          <div style="display:flex;align-items:center;gap:7px">
+            <div class="rp-phase-num" style="background:#9333EA">8</div>
+            <div style="font-size:13px;font-weight:700;color:var(--g900)">Territories</div>
+          </div>
+          <div class="rp-card-count" style="color:#9333EA">14</div>
         </div>
+        <div class="rp-card-wk">Wks 46–47 &nbsp;·&nbsp; air logistics</div>
+        <span class="rp-card-hub">San Juan (SJU)</span>
       </div>
-      <div class="rp-doc-phase-body"><strong>Pre-ship all equipment 3 weeks in advance.</strong> PR (10) + USVI (2) share a single Atlantic mobilization out of SJU. Guam (2) requires Pacific routing — coordinate with the West Coast team's AK trip to share freight costs. Do not try to combine GU with the SJU mobilization.</div>
+      <div class="rp-card-states">
+        <span class="rp-card-st">PR 10</span><span class="rp-card-st">GU 2</span><span class="rp-card-st">VI 2</span>
+      </div>
+      <div class="rp-card-note">Pre-ship equipment 3 weeks ahead. PR + USVI share SJU Atlantic mobilization. Guam: Pacific routing — piggyback with AK freight.</div>
     </div>
 
   </div>
 
   <!-- Cost actions -->
   <div class="rp-slabel">Key Cost-Saving Actions</div>
-  <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:22px">
-    <div class="rp-doc-insight"><div class="rp-doc-insight-dot" style="background:#F96302"></div><div><div class="rp-doc-insight-title">Do not remobilize — finish Southeast first</div><div class="rp-doc-insight-body">The current field team is already in GA/FL. Redirecting them now and returning later for 330 SE stores would cost $40–60K in redeployment (flights, hotel, freight restaging). Complete all 10 SE states through Week 15 before moving north.</div></div></div>
-    <div class="rp-doc-insight"><div class="rp-doc-insight-dot" style="background:#2563EB"></div><div><div class="rp-doc-insight-title">Northeast corridor is the highest-efficiency phase in the program</div><div class="rp-doc-insight-body">NY/NJ/PA = 240 stores within 150 miles of Newark — 60-store weeks achievable here, vs. 50 everywhere else. Single staging warehouse at EWR covers the entire cluster. This is the one phase where adding a second parallel team has a strong ROI case.</div></div></div>
-    <div class="rp-doc-insight"><div class="rp-doc-insight-dot" style="background:#DC2626"></div><div><div class="rp-doc-insight-title">California is a program within the program — treat it that way</div><div class="rp-doc-insight-body">235 CA stores = 12% of the total remaining program. Lease a staging warehouse in Ontario, CA. Plan 4 pure CA weeks before rotating north. Do not mix CA with OR/WA — the geography penalty eliminates the efficiency gain of clustering.</div></div></div>
-    <div class="rp-doc-insight"><div class="rp-doc-insight-dot" style="background:#6B7280"></div><div><div class="rp-doc-insight-title">Start Canada authorization at Week 16 — not later</div><div class="rp-doc-insight-body">ATA carnet processing, Cisco Canada work authorizations, and cross-border equipment import typically take 4–6 weeks. Miss this window and Canada slips off the parallel track onto the critical path, adding 3–4 weeks to the total program timeline. Assign an owner to this action this week.</div></div></div>
-    <div class="rp-doc-insight"><div class="rp-doc-insight-dot" style="background:#D97706"></div><div><div class="rp-doc-insight-title">Consider a second TX-only sub-team to compress Phase 4</div><div class="rp-doc-insight-body">TX has 186 stores — at 50/week that is 4 sequential weeks. With two parallel sub-teams (DFW-north and Houston-south), TX completes in 2 weeks. Incremental mobilization cost is roughly one additional set of flights + hotel (~$8K) against saving 2 full weeks of program timeline.</div></div></div>
-    <div class="rp-doc-insight"><div class="rp-doc-insight-dot" style="background:#9333EA"></div><div><div class="rp-doc-insight-title">Bundle territory logistics into one coordinated trip</div><div class="rp-doc-insight-body">PR (10) and USVI (2) share an Atlantic air mobilization out of SJU. Guam (2) requires Pacific routing — schedule to overlap with the West Coast team's AK trip to share freight costs. Pre-ship all island equipment 3 weeks in advance with no same-week freight to island territories.</div></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px">
+    <div class="rp-ic"><div class="rp-ic-dot" style="background:#F96302"></div><div><div class="rp-ic-title">Do not remobilize — finish Southeast first</div><div class="rp-ic-body">Field team already in GA/FL. Returning later for 330 SE stores = $40–60K redeployment cost. Complete all 10 SE states through Week 15 before moving north.</div></div></div>
+    <div class="rp-ic"><div class="rp-ic-dot" style="background:#2563EB"></div><div><div class="rp-ic-title">Northeast corridor: highest-efficiency phase</div><div class="rp-ic-body">NY/NJ/PA = 240 stores within 150 miles of Newark. 60-store weeks achievable. The only phase where a second parallel team has strong ROI.</div></div></div>
+    <div class="rp-ic"><div class="rp-ic-dot" style="background:#DC2626"></div><div><div class="rp-ic-title">California is a program within the program</div><div class="rp-ic-body">235 CA stores = 12% of remaining program. Lease Ontario CA staging warehouse. Plan 4 pure CA weeks — do not mix with OR/WA.</div></div></div>
+    <div class="rp-ic"><div class="rp-ic-dot" style="background:#6B7280"></div><div><div class="rp-ic-title">Start Canada authorization at Week 16 — not later</div><div class="rp-ic-body">Miss the window and Canada shifts onto the critical path, adding 3–4 weeks. Assign an owner to ATA carnet processing this week.</div></div></div>
+    <div class="rp-ic"><div class="rp-ic-dot" style="background:#D97706"></div><div><div class="rp-ic-title">Consider a second TX-only sub-team</div><div class="rp-ic-body">TX at 50/wk = 4 weeks. Two sub-teams (DFW-north + Houston-south) compresses TX to 2 weeks. ~$8K incremental cost, 2 weeks saved.</div></div></div>
+    <div class="rp-ic"><div class="rp-ic-dot" style="background:#9333EA"></div><div><div class="rp-ic-title">Bundle territory logistics into one coordinated trip</div><div class="rp-ic-body">PR + USVI share SJU Atlantic mobilization. GU shares freight with WC team's AK trip. Pre-ship all island equipment 3 weeks ahead.</div></div></div>
   </div>
 
   <!-- Wave schedule -->
