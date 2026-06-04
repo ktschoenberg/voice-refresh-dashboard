@@ -106,11 +106,44 @@ tfoot td.grand{color:var(--hd);font-size:14px}
 .hint{font-size:11.5px;color:var(--g400);margin-top:8px}
 
 /* ── Store grid & outcomes ─────────────────────────────── */
-.store-cell{width:12px;height:8px;border-radius:1.5px;flex-shrink:0}
-.sgrid{display:flex;flex-wrap:wrap;gap:2px;margin:10px 0 5px}
+.store-cell{width:28px;height:18px;border-radius:3px;flex-shrink:0}
+.sgrid{display:flex;flex-wrap:wrap;gap:3px;margin:10px 0 5px}
 .outcome-pill{padding:3px 10px;border-radius:var(--rfull);border:1.5px solid var(--g200);background:var(--white);font-size:11.5px;font-weight:600;color:var(--g500);cursor:pointer;font-family:var(--font);transition:all .1s;white-space:nowrap}
 .outcome-pill:hover{border-color:var(--g400);color:var(--g700)}
 .outcome-pill.op-active{background:var(--g900);border-color:var(--g900);color:#fff}
+
+/* ── Drawer ──────────────────────────────────────────────── */
+.drawer{position:fixed;top:0;right:-500px;width:480px;height:100vh;background:var(--white);box-shadow:var(--sh-lg);z-index:400;display:flex;flex-direction:column;transition:right .28s cubic-bezier(.4,0,.2,1)}
+.drawer.open{right:0}
+.drawer-backdrop{position:fixed;inset:0;background:rgba(16,24,40,.35);z-index:300;opacity:0;pointer-events:none;transition:opacity .25s}
+.drawer-backdrop.open{opacity:1;pointer-events:all}
+.drawer-header{background:var(--g900);padding:20px 20px 16px;flex-shrink:0;display:flex;align-items:flex-start;justify-content:space-between}
+.drawer-store-id{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.02em}
+.drawer-store-name{font-size:13px;color:rgba(255,255,255,.65);margin-top:3px}
+.drawer-close{background:rgba(255,255,255,.1);border:none;border-radius:var(--r6);width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;margin-top:2px}
+.drawer-close svg{width:15px;height:15px;color:#fff}
+.drawer-body{flex:1;overflow-y:auto;padding:0}
+.dr-section{padding:14px 20px;border-bottom:1px solid var(--g150)}
+.dr-section:last-child{border-bottom:none}
+.dr-label{font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.dr-label svg{width:12px;height:12px}
+.dr-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px;gap:12px}
+.dr-key{font-size:12px;color:var(--g500);flex-shrink:0}
+.dr-val{font-size:12.5px;color:var(--g800);font-weight:500;text-align:right}
+.eq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
+.eq-box{background:var(--g100);border:1px solid var(--g200);border-radius:var(--r8);padding:10px 12px;text-align:center}
+.eq-box.accent{background:var(--hd-50);border-color:rgba(249,99,2,.3)}
+.eq-num{font-size:18px;font-weight:800;color:var(--g900);letter-spacing:-.03em}
+.eq-box.accent .eq-num{color:var(--hd)}
+.eq-lbl{font-size:10px;color:var(--g400);margin-top:1px}
+.chk-row{display:flex;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--g150)}
+.chk-row:last-child{border-bottom:none}
+.dr-note{background:var(--g100);border:1px solid var(--g200);border-radius:var(--r8);padding:10px 12px;font-size:12px;color:var(--g700);line-height:1.6;white-space:pre-wrap;max-height:220px;overflow-y:auto;margin-top:4px}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.page-footer{position:fixed;bottom:0;left:220px;right:0;height:36px;background:var(--white);border-top:1px solid var(--g200);display:flex;align-items:center;justify-content:flex-end;padding-right:28px;z-index:100}
+.page-footer span{font-size:11.5px;color:var(--g400);letter-spacing:.01em;font-style:italic}
+.page-footer strong{color:var(--g600);font-weight:600}
 </style>
 </head>
 <body>
@@ -228,9 +261,9 @@ tfoot td.grand{color:var(--hd);font-size:14px}
         <div id="prog-sgrid" class="sgrid"></div>
         <div id="prog-sgrid-more" style="font-size:11px;color:var(--g400);margin-bottom:9px"></div>
         <div style="display:flex;gap:18px;flex-wrap:wrap">
-          <span style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--g600)"><span class="store-cell" style="background:var(--green500)"></span>Complete</span>
-          <span style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--g600)"><span class="store-cell" style="background:var(--hd)"></span>Complete w/ exceptions</span>
-          <span style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--g600)"><span class="store-cell" style="background:var(--g200)"></span>Pending</span>
+          <span style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--g600)"><span style="display:inline-block;width:20px;height:12px;border-radius:2px;background:var(--green500)"></span>Complete</span>
+          <span style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--g600)"><span style="display:inline-block;width:20px;height:12px;border-radius:2px;background:var(--hd)"></span>Complete w/ exceptions</span>
+          <span style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--g600)"><span style="display:inline-block;width:20px;height:12px;border-radius:2px;background:var(--g200)"></span>Pending</span>
         </div>
       </div>
     </div>
