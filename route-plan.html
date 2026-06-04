@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Store Voice Refresh · Route Plan</title>
+<style>
+  :root {
+    --hd:#F96302; --hd-dark:#C24E02; --hd-50:#FFF4ED;
+    --g900:#101828; --g800:#1D2939; --g700:#344054; --g600:#475467;
+    --g500:#667085; --g400:#98A2B3; --g300:#D0D5DD; --g200:#EAECF0;
+    --g150:#F2F4F7; --g100:#F9FAFB; --white:#fff;
+    --green50:#F0FDF4; --green100:#DCFCE7; --green500:#22C55E; --green600:#16A34A; --green700:#15803D;
+    --font:'Inter','Helvetica Neue',Arial,sans-serif;
+    --r8:8px; --r10:10px; --r12:12px; --rfull:999px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);background:var(--g100);color:var(--g900);-webkit-font-smoothing:antialiased;font-size:14px;line-height:1.5}
+
+  /* ── Page chrome ── */
+  .doc-header{background:var(--g900);padding:28px 48px;display:flex;align-items:center;justify-content:space-between}
+  .doc-header-left{}
+  .doc-title{font-size:11px;font-weight:700;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+  .doc-name{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.02em}
+  .doc-sub{font-size:13px;color:rgba(255,255,255,.5);margin-top:3px}
+  .doc-meta{text-align:right}
+  .doc-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(249,99,2,.18);border:1px solid rgba(249,99,2,.3);border-radius:var(--rfull);padding:4px 12px;color:var(--hd);font-size:12px;font-weight:700;margin-bottom:6px}
+  .doc-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--hd)}
+  .doc-date{font-size:12px;color:rgba(255,255,255,.35)}
+
+  .page{max-width:1100px;margin:0 auto;padding:36px 48px 60px}
+
+  /* ── Summary bar ── */
+  .summary-bar{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:28px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  .sum-cell{padding:16px 20px;border-right:1px solid var(--g200)}
+  .sum-cell:last-child{border-right:none}
+  .sum-label{font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.09em;margin-bottom:4px}
+  .sum-val{font-size:26px;font-weight:800;color:var(--g900);letter-spacing:-.03em;line-height:1}
+  .sum-val.orange{color:var(--hd)}
+  .sum-sub{font-size:11.5px;color:var(--g500);margin-top:4px}
+
+  /* ── Section headings ── */
+  .section-label{font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .section-label::after{content:'';flex:1;height:1px;background:var(--g200)}
+
+  /* ── Phase cards ── */
+  .phase-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+  .phase-card{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .phase-hd{display:flex;align-items:center;gap:12px;padding:13px 18px}
+  .phase-num{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0}
+  .phase-name{font-size:14px;font-weight:700;color:var(--g900);min-width:130px}
+  .phase-states{font-size:12px;color:var(--g500);flex:1}
+  .phase-stats{display:flex;gap:10px;align-items:center;flex-shrink:0}
+  .phase-count{font-size:15px;font-weight:800}
+  .phase-wks{font-size:12px;color:var(--g400)}
+  .phase-hub{font-size:11px;background:var(--g100);border:1px solid var(--g200);border-radius:var(--rfull);padding:2px 10px;color:var(--g600);white-space:nowrap}
+  .phase-body{padding:9px 18px 12px;font-size:12.5px;color:var(--g600);line-height:1.6;border-top:1px solid var(--g150)}
+
+  /* ── Special tracks ── */
+  .special-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:28px}
+
+  /* ── Insights ── */
+  .insights{display:flex;flex-direction:column;gap:7px;margin-bottom:28px}
+  .insight{display:flex;gap:12px;align-items:flex-start;padding:11px 15px;background:var(--white);border:1px solid var(--g200);border-radius:var(--r10);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .insight-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
+  .insight-title{font-size:12.5px;font-weight:700;color:var(--g900);margin-bottom:2px}
+  .insight-body{font-size:12.5px;color:var(--g600);line-height:1.55}
+
+  /* ── Wave table ── */
+  .table-wrap{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05);margin-bottom:10px}
+  .table-hd{padding:11px 18px;background:var(--g50);border-bottom:1px solid var(--g200);display:flex;justify-content:space-between;align-items:center}
+  .table-hd-title{font-size:13px;font-weight:700;color:var(--g900)}
+  .table-hd-sub{font-size:12px;color:var(--g500)}
+  table{width:100%;border-collapse:collapse}
+  thead th{text-align:left;font-size:10.5px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.05em;padding:7px 14px;background:var(--g50);border-bottom:1px solid var(--g150);white-space:nowrap}
+  thead th.r{text-align:right}
+  tbody td{padding:7px 14px;border-bottom:1px solid var(--g100);font-size:12.5px;color:var(--g700)}
+  tbody td.r{text-align:right;font-weight:700;color:var(--g900)}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover td{background:var(--g50)}
+  .rdot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:middle}
+  .tag{display:inline-block;font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:var(--rfull);background:var(--g100);color:var(--g500);border:1px solid var(--g200);white-space:nowrap}
+  .tag.parallel{background:#F0FDF4;color:var(--green600);border-color:var(--green100)}
+  .tag.special{background:#FAF5FF;color:#7C3AED;border-color:#E9D5FF}
+
+  /* ── Two-col table layout ── */
+  .table-2col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}
+
+  /* ── Print ── */
+  @media print {
+    body{background:#fff}
+    .doc-header{background:#101828!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .page{padding:24px}
+    .summary-bar,.phase-card,.insight,.table-wrap{box-shadow:none!important}
+    .phase-card,.insight{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="doc-header">
+  <div class="doc-header-left">
+    <div class="doc-title">Infrastructure Technology &nbsp;·&nbsp; Store Voice Refresh</div>
+    <div class="doc-name"><span style="color:var(--hd)">Geographic Route Plan</span> &nbsp;<span style="color:rgba(255,255,255,.6);font-weight:400;font-size:16px">·</span>&nbsp; <span style="font-weight:400;color:rgba(255,255,255,.75);font-size:18px">Recommended Implementation Sequence</span></div>
+    <div class="doc-sub">2,028 remaining stores &nbsp;·&nbsp; Wks 9 through program completion &nbsp;·&nbsp; Cost-optimized by geography</div>
+  </div>
+  <div class="doc-meta">
+    <div class="doc-badge"><span class="doc-badge-dot"></span> In Progress</div>
+    <div class="doc-date">Authored by Kristy Schoenberg &nbsp;·&nbsp; June 4, 2026</div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- Summary bar -->
+  <div class="summary-bar">
+    <div class="sum-cell">
+      <div class="sum-label">Remaining Stores</div>
+      <div class="sum-val">2,028</div>
+      <div class="sum-sub">8 geographic phases</div>
+    </div>
+    <div class="sum-cell">
+      <div class="sum-label">Est. US Weeks</div>
+      <div class="sum-val">~37</div>
+      <div class="sum-sub">~9 months at target pace</div>
+    </div>
+    <div class="sum-cell">
+      <div class="sum-label">Est. Completion</div>
+      <div class="sum-val orange">Feb 2027</div>
+      <div class="sum-sub">US phases complete</div>
+    </div>
+    <div class="sum-cell">
+      <div class="sum-label">Special Tracks</div>
+      <div class="sum-val">2</div>
+      <div class="sum-sub">Canada + Territories (parallel)</div>
+    </div>
+  </div>
+
+  <!-- US Phases -->
+  <div class="section-label">US Phases &nbsp;·&nbsp; Recommended Sequence</div>
+  <div class="phase-grid">
+
+    <div class="phase-card">
+      <div class="phase-hd" style="background:#FFF4ED">
+        <div class="phase-num" style="background:#F96302">1</div>
+        <div class="phase-name">Southeast</div>
+        <div class="phase-states">GA (85) &nbsp;·&nbsp; VA (51) &nbsp;·&nbsp; FL (40) &nbsp;·&nbsp; NC (40) &nbsp;·&nbsp; TN (36) &nbsp;·&nbsp; SC (24) &nbsp;·&nbsp; AL (22) &nbsp;·&nbsp; MS (14) &nbsp;·&nbsp; KY (12) &nbsp;·&nbsp; WV (6)</div>
+        <div class="phase-stats">
+          <span class="phase-count" style="color:#F96302">330</span>
+          <span class="phase-wks">~7 wks &nbsp;·&nbsp; Wks 9–15</span>
+          <span class="phase-hub">Atlanta (ATL)</span>
+        </div>
+      </div>
+      <div class="phase-body">Team already mobilized from Pilot + Wks 1–8. Continuing into the remaining 330 SE stores avoids full remobilization — estimated <strong>$40–60K savings</strong> vs. relocating and returning later. Do not redeploy until all 10 SE states are complete.</div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-hd" style="background:#EFF6FF">
+        <div class="phase-num" style="background:#2563EB">2</div>
+        <div class="phase-name">Northeast</div>
+        <div class="phase-states">NY (102) &nbsp;·&nbsp; PA (71) &nbsp;·&nbsp; NJ (67) &nbsp;·&nbsp; MA (45) &nbsp;·&nbsp; MD (41) &nbsp;·&nbsp; CT (30) &nbsp;·&nbsp; NH (20) &nbsp;·&nbsp; DE (9) &nbsp;·&nbsp; ME (11) &nbsp;·&nbsp; RI (8) &nbsp;·&nbsp; VT (3) &nbsp;·&nbsp; DC (1)</div>
+        <div class="phase-stats">
+          <span class="phase-count" style="color:#2563EB">408</span>
+          <span class="phase-wks">~7 wks &nbsp;·&nbsp; Wks 16–22</span>
+          <span class="phase-hub">New York (EWR)</span>
+        </div>
+      </div>
+      <div class="phase-body">Largest single phase. NY/NJ/PA metro corridor has <strong>240 stores within ~150 miles</strong> — 60-store weeks are achievable here, the highest throughput of any phase. Single staging warehouse at Newark covers the entire metro cluster before rotating to Boston and mid-Atlantic.</div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-hd" style="background:#F5F3FF">
+        <div class="phase-num" style="background:#7C3AED">3</div>
+        <div class="phase-name">Midwest</div>
+        <div class="phase-states">IL (76) &nbsp;·&nbsp; MI (70) &nbsp;·&nbsp; OH (67) &nbsp;·&nbsp; MO (34) &nbsp;·&nbsp; MN (33) &nbsp;·&nbsp; WI (27) &nbsp;·&nbsp; IN (24) &nbsp;·&nbsp; KS (15) &nbsp;·&nbsp; IA (10) &nbsp;·&nbsp; NE (8) &nbsp;·&nbsp; ND (2) &nbsp;·&nbsp; SD (1)</div>
+        <div class="phase-stats">
+          <span class="phase-count" style="color:#7C3AED">367</span>
+          <span class="phase-wks">~7 wks &nbsp;·&nbsp; Wks 23–29</span>
+          <span class="phase-hub">Chicago (ORD)</span>
+        </div>
+      </div>
+      <div class="phase-body">OH/MI/IL/IN form a dense contiguous cluster — bundle into 55-store weeks with ORD as the rotation hub. Engineers can drive between most Midwest stores. Combine sparse ND/SD/NE/KS/IA into 1–2 "Great Plains" fill weeks to avoid stranded travel days in low-density markets.</div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-hd" style="background:#FFFBEB">
+        <div class="phase-num" style="background:#D97706">4</div>
+        <div class="phase-name">South Central</div>
+        <div class="phase-states">TX (186) &nbsp;·&nbsp; LA (26) &nbsp;·&nbsp; OK (16) &nbsp;·&nbsp; AR (14)</div>
+        <div class="phase-stats">
+          <span class="phase-count" style="color:#D97706">242</span>
+          <span class="phase-wks">~5 wks &nbsp;·&nbsp; Wks 30–34</span>
+          <span class="phase-hub">Dallas (DFW)</span>
+        </div>
+      </div>
+      <div class="phase-body">TX alone (186 stores) warrants its own dedicated mobilization team and DFW staging warehouse. Route Houston metro → DFW/Dallas cluster → San Antonio → Austin → rest of TX. OK/AR/LA are natural adjacents — fill spare capacity in TX weeks before the team moves on. Consider running a second TX-only sub-team to shorten this phase to 3 weeks.</div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-hd" style="background:#ECFDF5">
+        <div class="phase-num" style="background:#059669">5</div>
+        <div class="phase-name">Mountain / Southwest</div>
+        <div class="phase-states">AZ (60) &nbsp;·&nbsp; CO (46) &nbsp;·&nbsp; NV (20) &nbsp;·&nbsp; UT (24) &nbsp;·&nbsp; NM (13) &nbsp;·&nbsp; ID (13) &nbsp;·&nbsp; MT (6) &nbsp;·&nbsp; WY (5)</div>
+        <div class="phase-stats">
+          <span class="phase-count" style="color:#059669">187</span>
+          <span class="phase-wks">~5 wks &nbsp;·&nbsp; Wks 35–39</span>
+          <span class="phase-hub">Phoenix (PHX)</span>
+        </div>
+      </div>
+      <div class="phase-body">AZ (60) and CO (46) anchor this phase and can each fill a full week. Stage in PHX for AZ, then relocate to DEN for CO/UT/NV. Bundle MT/WY/ID/NM into a single "sparse mountain" week — these 4 states total just 37 stores. Do not assign them to separate weeks; stranded drive time would dominate the schedule.</div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-hd" style="background:#FEF2F2">
+        <div class="phase-num" style="background:#DC2626">6</div>
+        <div class="phase-name">West Coast</div>
+        <div class="phase-states">CA (235) &nbsp;·&nbsp; WA (48) &nbsp;·&nbsp; OR (27) &nbsp;·&nbsp; HI (8) &nbsp;·&nbsp; AK (7)</div>
+        <div class="phase-stats">
+          <span class="phase-count" style="color:#DC2626">325</span>
+          <span class="phase-wks">~6 wks &nbsp;·&nbsp; Wks 40–45</span>
+          <span class="phase-hub">Los Angeles (LAX)</span>
+        </div>
+      </div>
+      <div class="phase-body">CA (235 stores) is a program within the program — plan <strong>4 dedicated CA-only weeks</strong>: SoCal LA basin (~80 stores) → Inland Empire/San Diego → Central Valley/Bay Area → NorCal/Sacramento. Lease a staging warehouse in Ontario, CA. Do not mix CA weeks with OR/WA. After CA, rotate north: WA (48) fills one week from SEA, OR (27) fills half. HI and AK require dedicated air mobilization — coordinate as a single Pacific island trip at end of phase.</div>
+    </div>
+
+  </div>
+
+  <!-- Special tracks -->
+  <div class="section-label">Parallel Tracks &nbsp;·&nbsp; Special Logistics Required</div>
+  <div class="special-grid">
+
+    <div class="phase-card">
+      <div class="phase-hd" style="background:#F9FAFB">
+        <div class="phase-num" style="background:#6B7280">7</div>
+        <div class="phase-name">Canada</div>
+        <div class="phase-states">ON (76) &nbsp;·&nbsp; AB (25) &nbsp;·&nbsp; BC (22) &nbsp;·&nbsp; QC (18) &nbsp;·&nbsp; MB (4) &nbsp;·&nbsp; NB (3) &nbsp;·&nbsp; NS (2) &nbsp;·&nbsp; SK (2)</div>
+        <div class="phase-stats">
+          <span class="phase-count" style="color:#6B7280">154</span>
+          <span class="phase-hub">Toronto (YYZ)</span>
+        </div>
+      </div>
+      <div class="phase-body"><strong>Start authorization paperwork immediately.</strong> ATA carnets for equipment, Cisco Canada work authorizations, and cross-border import processing take 4–6 weeks minimum. Target parallel-track start at Wk 20 to overlap with Midwest phase. ON (76 stores) alone is a 1.5-week block.</div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-hd" style="background:#FAF5FF">
+        <div class="phase-num" style="background:#9333EA">8</div>
+        <div class="phase-name">Territories</div>
+        <div class="phase-states">PR (10) &nbsp;·&nbsp; GU (2) &nbsp;·&nbsp; VI (2)</div>
+        <div class="phase-stats">
+          <span class="phase-count" style="color:#9333EA">14</span>
+          <span class="phase-hub">San Juan (SJU)</span>
+        </div>
+      </div>
+      <div class="phase-body">All air-only logistics. <strong>Pre-ship all equipment 3 weeks in advance.</strong> Puerto Rico (10) + USVI (2) share a single Atlantic mobilization out of SJU. Guam (2) requires Pacific routing — coordinate with the West Coast team's AK trip to share freight costs. Do not try to combine GU with the SJU trip.</div>
+    </div>
+
+  </div>
+
+  <!-- Wave schedule -->
+  <div class="section-label">Wave Schedule &nbsp;·&nbsp; US Phases</div>
+  <div class="table-wrap" style="margin-bottom:10px">
+    <div class="table-hd">
+      <div class="table-hd-title">Weeks 9 – 45 &nbsp;·&nbsp; United States</div>
+      <div class="table-hd-sub">2,028 stores &nbsp;·&nbsp; 37 waves &nbsp;·&nbsp; ~50 stores/wave average</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Week</th><th>Phase</th><th>States / Focus</th><th class="r">Stores</th><th>Hub</th>
+        </tr>
+      </thead>
+      <tbody id="wave-tbody">
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-2col">
+    <div class="table-wrap">
+      <div class="table-hd">
+        <div class="table-hd-title">Canada &nbsp;·&nbsp; Parallel Track</div>
+        <div class="table-hd-sub">Runs concurrently from Wk 20</div>
+      </div>
+      <table>
+        <thead><tr><th>Week</th><th>Provinces</th><th class="r">Stores</th></tr></thead>
+        <tbody id="ca-tbody"></tbody>
+      </table>
+    </div>
+    <div class="table-wrap">
+      <div class="table-hd">
+        <div class="table-hd-title">Territories &nbsp;·&nbsp; Air Logistics</div>
+        <div class="table-hd-sub">Pre-ship equipment 3 weeks prior</div>
+      </div>
+      <table>
+        <thead><tr><th>Week</th><th>Territory</th><th class="r">Stores</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:700;color:var(--g900)">Wk 46</td><td>PR + USVI (SJU)</td><td class="r">12</td><td style="font-size:11.5px;color:var(--g400)">Atlantic air mobilization</td></tr>
+          <tr><td style="font-weight:700;color:var(--g900)">Wk 47</td><td>Guam (GUM)</td><td class="r">2</td><td style="font-size:11.5px;color:var(--g400)">Piggyback with AK freight</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Key actions -->
+  <div class="section-label">Key Cost-Saving Actions</div>
+  <div class="insights">
+
+    <div class="insight">
+      <div class="insight-dot" style="background:#F96302"></div>
+      <div>
+        <div class="insight-title">Do not remobilize — finish Southeast first</div>
+        <div class="insight-body">The current field team is already in GA/FL. Redirecting them now and returning later for the remaining 330 SE stores would cost $40–60K in redeployment (flights, hotel, freight restaging). Complete all 10 SE states through approximately Week 15 before moving north.</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-dot" style="background:#2563EB"></div>
+      <div>
+        <div class="insight-title">Northeast corridor: highest-efficiency phase in the program</div>
+        <div class="insight-body">NY/NJ/PA alone = 240 stores within 150 miles of Newark — 60-store weeks are achievable here, vs. 50 everywhere else. Single staging warehouse at EWR covers the entire cluster. This is the one phase where adding a second team simultaneously has a strong ROI case.</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-dot" style="background:#DC2626"></div>
+      <div>
+        <div class="insight-title">California is a program within the program — treat it that way</div>
+        <div class="insight-body">235 CA stores = 12% of the total remaining program. Lease a staging warehouse in Ontario, CA (covers LA basin + Inland Empire). Plan 4 pure CA weeks before rotating north. Do not mix CA with OR/WA — the geography penalty eliminates the efficiency gain of clustering.</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-dot" style="background:#6B7280"></div>
+      <div>
+        <div class="insight-title">Start Canada authorization at Week 16 — not later</div>
+        <div class="insight-body">ATA carnet processing, Cisco Canada work authorizations, and cross-border equipment import typically take 4–6 weeks. Miss this window and Canada slips off the parallel track and onto the critical path, adding 3–4 weeks to the total program timeline. Assign an owner to this action this week.</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-dot" style="background:#D97706"></div>
+      <div>
+        <div class="insight-title">Consider a second TX-only sub-team to compress Phase 4</div>
+        <div class="insight-body">TX has 186 stores — at 50/week that's 4 sequential weeks. With two parallel sub-teams (DFW-north and Houston-south), TX could complete in 2 weeks. The incremental mobilization cost is roughly one set of flights + hotel (~$8K) against saving 2 full weeks of program timeline.</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-dot" style="background:#9333EA"></div>
+      <div>
+        <div class="insight-title">Bundle territory logistics into one coordinated trip</div>
+        <div class="insight-body">PR (10) and USVI (2) share an Atlantic air mobilization — plan them together out of SJU. Guam (2) requires Pacific routing; schedule this to overlap with the West Coast team's AK trip to share freight shipping costs. Pre-ship all island equipment 3 weeks in advance — no same-week freight to island territories.</div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /page -->
+
+<script>
+// Hardcoded wave data computed from STORES dataset (2,028 pending stores as of Jun 4, 2026)
+const WAVES = [
+  // Southeast (7 waves, ~50/wave)
+  {wk:9,  region:'Southeast',     color:'#F96302', states:'GA, NC',          count:50, hub:'Atlanta (ATL)'},
+  {wk:10, region:'Southeast',     color:'#F96302', states:'GA, VA',          count:50, hub:'Atlanta (ATL)'},
+  {wk:11, region:'Southeast',     color:'#F96302', states:'GA, FL, VA',      count:50, hub:'Atlanta (ATL)'},
+  {wk:12, region:'Southeast',     color:'#F96302', states:'FL, NC, TN',      count:50, hub:'Atlanta (ATL)'},
+  {wk:13, region:'Southeast',     color:'#F96302', states:'TN, SC, AL',      count:50, hub:'Nashville (BNA)'},
+  {wk:14, region:'Southeast',     color:'#F96302', states:'VA, AL, MS, KY',  count:50, hub:'Atlanta (ATL)'},
+  {wk:15, region:'Southeast',     color:'#F96302', states:'VA, MS, KY, WV',  count:30, hub:'Charlotte (CLT)'},
+  // Northeast (7 waves, ~60/wave)
+  {wk:16, region:'Northeast',     color:'#2563EB', states:'NY metro',         count:60, hub:'New York (EWR)'},
+  {wk:17, region:'Northeast',     color:'#2563EB', states:'NY, NJ',           count:60, hub:'New York (EWR)'},
+  {wk:18, region:'Northeast',     color:'#2563EB', states:'NJ, PA',           count:60, hub:'New York (EWR)'},
+  {wk:19, region:'Northeast',     color:'#2563EB', states:'PA, MA',           count:60, hub:'Boston (BOS)'},
+  {wk:20, region:'Northeast',     color:'#2563EB', states:'MA, MD, CT',       count:60, hub:'Boston (BOS)'},
+  {wk:21, region:'Northeast',     color:'#2563EB', states:'MD, NH, ME, RI',   count:60, hub:'Baltimore (BWI)'},
+  {wk:22, region:'Northeast',     color:'#2563EB', states:'DE, VT, DC, RI',   count:48, hub:'New York (EWR)'},
+  // Midwest (7 waves, ~55/wave)
+  {wk:23, region:'Midwest',       color:'#7C3AED', states:'IL, MI',           count:55, hub:'Chicago (ORD)'},
+  {wk:24, region:'Midwest',       color:'#7C3AED', states:'MI, OH',           count:55, hub:'Detroit (DTW)'},
+  {wk:25, region:'Midwest',       color:'#7C3AED', states:'OH, IN, IL',       count:55, hub:'Chicago (ORD)'},
+  {wk:26, region:'Midwest',       color:'#7C3AED', states:'MO, MN, WI',       count:55, hub:'Chicago (ORD)'},
+  {wk:27, region:'Midwest',       color:'#7C3AED', states:'MN, WI, IN',       count:55, hub:'Minneapolis (MSP)'},
+  {wk:28, region:'Midwest',       color:'#7C3AED', states:'MO, KS, IA, NE',   count:47, hub:'St. Louis (STL)'},
+  {wk:29, region:'Midwest',       color:'#7C3AED', states:'KS, IA, NE, ND, SD', count:45, hub:'Omaha (OMA)'},
+  // South Central (5 waves, ~50/wave)
+  {wk:30, region:'South Central', color:'#D97706', states:'TX – Houston',      count:50, hub:'Houston (IAH)'},
+  {wk:31, region:'South Central', color:'#D97706', states:'TX – Dallas/FW',    count:50, hub:'Dallas (DFW)'},
+  {wk:32, region:'South Central', color:'#D97706', states:'TX – SA/Austin/W',  count:50, hub:'San Antonio (SAT)'},
+  {wk:33, region:'South Central', color:'#D97706', states:'TX, LA, OK',        count:50, hub:'Dallas (DFW)'},
+  {wk:34, region:'South Central', color:'#D97706', states:'LA, OK, AR',        count:42, hub:'Dallas (DFW)'},
+  // Mountain/SW (5 waves, ~45/wave)
+  {wk:35, region:'Mountain/SW',   color:'#059669', states:'AZ – Phoenix metro', count:45, hub:'Phoenix (PHX)'},
+  {wk:36, region:'Mountain/SW',   color:'#059669', states:'AZ, NM',            count:28, hub:'Phoenix (PHX)'},
+  {wk:37, region:'Mountain/SW',   color:'#059669', states:'CO, UT',            count:45, hub:'Denver (DEN)'},
+  {wk:38, region:'Mountain/SW',   color:'#059669', states:'CO, NV',            count:25, hub:'Denver (DEN)'},
+  {wk:39, region:'Mountain/SW',   color:'#059669', states:'MT, WY, ID, NM',    count:37, hub:'Salt Lake City (SLC)'},
+  // West Coast (6 waves, ~55/wave)
+  {wk:40, region:'West Coast',    color:'#DC2626', states:'CA – SoCal/LA',     count:55, hub:'Los Angeles (LAX)'},
+  {wk:41, region:'West Coast',    color:'#DC2626', states:'CA – SoCal/SD/IE',  count:55, hub:'Los Angeles (LAX)'},
+  {wk:42, region:'West Coast',    color:'#DC2626', states:'CA – Central Valley',count:55, hub:'Fresno (FAT)'},
+  {wk:43, region:'West Coast',    color:'#DC2626', states:'CA – Bay Area',     count:55, hub:'San Jose (SJC)'},
+  {wk:44, region:'West Coast',    color:'#DC2626', states:'CA – NorCal, WA',   count:55, hub:'Sacramento (SMF)'},
+  {wk:45, region:'West Coast',    color:'#DC2626', states:'WA, OR, AK, HI',   count:50, hub:'Seattle (SEA)'},
+];
+
+const CA_WAVES = [
+  {wk:20, states:'ON – Toronto/GTA',       count:50},
+  {wk:21, states:'ON – Ottawa + other',    count:26},
+  {wk:22, states:'AB – Edmonton/Calgary',  count:25},
+  {wk:23, states:'BC – Vancouver/Lower M', count:22},
+  {wk:24, states:'QC – Montreal',          count:18},
+  {wk:25, states:'MB, NB, NS, SK, NL, PE', count:13},
+];
+
+(function buildTables() {
+  const tbody = document.getElementById('wave-tbody');
+  let lastRegion = '';
+  WAVES.forEach(w => {
+    if (w.region !== lastRegion) {
+      const sep = document.createElement('tr');
+      sep.className = 'sep-row';
+      sep.innerHTML = `<td colspan="5" style="background:var(--g50);font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.06em;padding:5px 14px;border-bottom:1px solid var(--g200)">${w.region}</td>`;
+      tbody.appendChild(sep);
+      lastRegion = w.region;
+    }
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="font-weight:700;color:var(--g900);white-space:nowrap">Wk ${w.wk}</td>
+      <td><span class="rdot" style="background:${w.color}"></span><span style="font-size:12px;color:var(--g600)">${w.region}</span></td>
+      <td style="font-size:12px;color:var(--g600)">${w.states}</td>
+      <td class="r">${w.count}</td>
+      <td style="font-size:12px;color:var(--g500)">${w.hub}</td>`;
+    tbody.appendChild(tr);
+  });
+
+  const caTbody = document.getElementById('ca-tbody');
+  CA_WAVES.forEach(w => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td style="font-weight:700;color:var(--g900);white-space:nowrap">Wk ${w.wk}P</td><td style="font-size:12px;color:var(--g600)">${w.states}</td><td class="r">${w.count}</td>`;
+    caTbody.appendChild(tr);
+  });
+})();
+</script>
+
+</body>
+</html>

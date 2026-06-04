@@ -105,10 +105,91 @@ tfoot td.grand{color:var(--hd);font-size:14px}
 .divider{height:1px;background:var(--g200);margin:14px 0}
 .hint{font-size:11.5px;color:var(--g400);margin-top:8px}
 
+/* ── Status filter buttons ────────────────────────────── */
+.status-filter-row{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.sf-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:var(--rfull);border:1.5px solid var(--g200);background:var(--white);font-size:12px;font-weight:600;color:var(--g500);cursor:pointer;font-family:var(--font);transition:all .12s;white-space:nowrap}
+.sf-btn:hover{border-color:var(--g400);color:var(--g700)}
+.sf-count{font-size:11px;background:rgba(0,0,0,.07);border-radius:var(--rfull);padding:1px 7px;margin-left:1px}
+.sf-active-complete{background:var(--green50);border-color:var(--green200);color:var(--green700)}
+.sf-active-complete .sf-count{background:rgba(21,128,61,.12)}
+.sf-active-upcoming{background:var(--hd-50);border-color:rgba(249,99,2,.25);color:var(--hd-dark)}
+.sf-active-upcoming .sf-count{background:rgba(249,99,2,.12)}
+.sf-active-all{background:var(--g900);border-color:var(--g900);color:#fff}
+.sf-active-all .sf-count{background:rgba(255,255,255,.15)}
+
+/* ── Store Views page ──────────────────────────────────── */
+.sv-toggle{display:flex;gap:4px;background:var(--g150);border-radius:var(--r8);padding:3px;margin-bottom:16px;width:fit-content}
+.sv-tab{padding:5px 14px;border-radius:var(--r6);border:none;font-size:12.5px;font-weight:500;color:var(--g500);cursor:pointer;background:transparent;font-family:var(--font);transition:all .12s;white-space:nowrap}
+.sv-tab.sv-active{background:var(--white);color:var(--g900);font-weight:600;box-shadow:var(--sh-xs)}
+.wk-acc{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);overflow:hidden;margin-bottom:8px;box-shadow:var(--sh-xs)}
+.wk-acc-hd{display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;user-select:none}
+.wk-acc-hd:hover{background:var(--g50)}
+.wk-acc-chev{color:var(--g400);flex-shrink:0;transition:transform .15s}
+.wk-acc-hd.open .wk-acc-chev{transform:rotate(90deg)}
+.wk-acc-body{display:none;border-top:1px solid var(--g100)}
+.wk-acc-body.open{display:block}
+.wk-mini-table{width:100%;border-collapse:collapse}
+.wk-mini-table th{text-align:left;font-size:10.5px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.05em;padding:6px 12px;background:var(--g50);border-bottom:1px solid var(--g150)}
+.wk-mini-table td{padding:6px 12px;border-bottom:1px solid var(--g100);color:var(--g700);font-size:12.5px}
+.wk-mini-table tr:last-child td{border-bottom:none}
+.wk-mini-table tr:hover td{background:var(--g50);cursor:pointer}
+.state-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.state-card{background:var(--white);border:1px solid var(--g200);border-radius:var(--r10);padding:12px 14px;box-shadow:var(--sh-xs)}
+.state-abbr{font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.02em}
+.state-name{font-size:11px;color:var(--g400);margin-top:1px;margin-bottom:8px}
+.state-bar{height:4px;background:var(--g150);border-radius:var(--rfull);overflow:hidden;margin-bottom:6px}
+.state-bar-fill{height:100%;border-radius:var(--rfull);background:var(--hd)}
+.state-meta{font-size:11px;color:var(--g600);font-weight:500}
+.flag-group{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);overflow:hidden;box-shadow:var(--sh-xs);margin-bottom:10px}
+.flag-group-hd{padding:10px 16px;background:var(--g50);border-bottom:1px solid var(--g200);display:flex;align-items:center;gap:8px}
+.flag-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ── Route Planner ─────────────────────────────────────── */
+.rp-phase{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);overflow:hidden;box-shadow:var(--sh-xs)}
+.rp-phase-hd{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--g150)}
+.rp-phase-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0}
+.rp-wave-table{width:100%;border-collapse:collapse}
+.rp-wave-table th{text-align:left;font-size:10.5px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.05em;padding:7px 14px;background:var(--g50);border-bottom:1px solid var(--g150);white-space:nowrap}
+.rp-wave-table td{padding:7px 14px;border-bottom:1px solid var(--g100);font-size:12.5px;color:var(--g700)}
+.rp-wave-table tr:last-child td{border-bottom:none}
+.rp-wave-table .rp-wk-sep td{background:var(--g50);font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.06em;padding:5px 14px;border-bottom:1px solid var(--g200)}
+.rp-region-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;display:inline-block;margin-right:5px}
+.rp-insight{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-radius:var(--r8);background:var(--g50);border:1px solid var(--g150);margin-bottom:6px}
+.rp-insight:last-child{margin-bottom:0}
+.rp-insight-icon{width:28px;height:28px;border-radius:var(--r6);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.rp-state-pill{display:inline-flex;align-items:center;gap:3px;font-size:11px;background:var(--g100);border-radius:4px;padding:2px 7px;font-weight:600;color:var(--g700);margin:2px}
+.rp-state-count{color:var(--g400);font-weight:400}
+
+/* ── Route Planner document view ────────────────────────── */
+.rp-summary{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:22px;overflow:hidden;box-shadow:var(--sh-xs)}
+.rp-sum-cell{padding:15px 20px;border-right:1px solid var(--g200)}
+.rp-sum-cell:last-child{border-right:none}
+.rp-sum-label{font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.09em;margin-bottom:4px}
+.rp-sum-val{font-size:24px;font-weight:800;color:var(--g900);letter-spacing:-.03em;line-height:1}
+.rp-sum-sub{font-size:11.5px;color:var(--g500);margin-top:4px}
+.rp-slabel{font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.rp-slabel::after{content:'';flex:1;height:1px;background:var(--g200)}
+.rp-doc-phase{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);overflow:hidden;box-shadow:var(--sh-xs)}
+.rp-doc-phase-hd{display:flex;align-items:center;gap:12px;padding:13px 18px}
+.rp-doc-phase-name{font-size:14px;font-weight:700;color:var(--g900);min-width:128px}
+.rp-doc-phase-states{font-size:12px;color:var(--g500);flex:1;line-height:1.6}
+.rp-doc-phase-count{font-size:15px;font-weight:800}
+.rp-doc-phase-wks{font-size:12px;color:var(--g400);white-space:nowrap}
+.rp-doc-phase-hub{font-size:11px;background:var(--g100);border:1px solid var(--g200);border-radius:var(--rfull);padding:2px 10px;color:var(--g600);white-space:nowrap}
+.rp-doc-phase-body{padding:9px 18px 12px;font-size:12.5px;color:var(--g600);line-height:1.6;border-top:1px solid var(--g150)}
+.rp-doc-insight{display:flex;gap:12px;align-items:flex-start;padding:11px 15px;background:var(--white);border:1px solid var(--g200);border-radius:var(--r10);box-shadow:var(--sh-xs)}
+.rp-doc-insight-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.rp-doc-insight-title{font-size:12.5px;font-weight:700;color:var(--g900);margin-bottom:2px}
+.rp-doc-insight-body{font-size:12.5px;color:var(--g600);line-height:1.55}
+.rp-2col{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rp-wave-sep td{background:var(--g50);font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.06em;padding:5px 14px;border-bottom:1px solid var(--g200)}
+
 /* ── Store grid & outcomes ─────────────────────────────── */
 .store-cell{width:28px;height:18px;border-radius:3px;flex-shrink:0}
 .sgrid{display:flex;flex-wrap:wrap;gap:3px;margin:10px 0 5px}
 .outcome-pill{padding:3px 10px;border-radius:var(--rfull);border:1.5px solid var(--g200);background:var(--white);font-size:11.5px;font-weight:600;color:var(--g500);cursor:pointer;font-family:var(--font);transition:all .1s;white-space:nowrap}
+.oc-bar-track{background:var(--g150);transition:background .12s}
+.oc-bar-track:hover{background:var(--g200)}
 .outcome-pill:hover{border-color:var(--g400);color:var(--g700)}
 .outcome-pill.op-active{background:var(--g900);border-color:var(--g900);color:#fff}
 
@@ -150,7 +231,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
 
 <!-- ══ TOPBAR ══ -->
 <div class="topbar">
-  <span class="tb-name">Unified Communications <span style="font-weight:400;color:var(--g400)">(Infrastructure Technology)</span></span>
+  <span class="tb-name"><span style="color:var(--hd)">Unified Communications</span> <span style="font-weight:400;color:var(--g900);font-style:italic">(Infrastructure Technology)</span></span>
   <span class="tb-sep">|</span>
   <span class="tb-sub">Store Voice Refresh &nbsp;·&nbsp; Migration Tracker</span>
   <div class="tb-right">
@@ -180,12 +261,18 @@ tfoot td.grand{color:var(--hd);font-size:14px}
       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
       Open Items
     </button>
+    <button class="s-item" onclick="showTab('storeview',this)">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+      Store Views
+    </button>
+    <button class="s-item" onclick="showTab('routeplanner',this)">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+      Route Planner
+    </button>
   </div>
   <div class="s-footer">
     <strong>Store Voice Refresh</strong>
-    Wks 0–8 Complete<br>
-    178 of 2,210 stores done<br>
-    Last updated Apr 27, 2026
+    Last updated Jun 4, 2026
   </div>
 </nav>
 
@@ -504,8 +591,6 @@ tfoot td.grand{color:var(--hd);font-size:14px}
         </div>
       </div>
     </div>
-  </div>
-
   <!-- ── AI INSIGHTS ─────────────────────────────────────── -->
   <div style="margin-top:16px">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
@@ -551,6 +636,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
     </div>
   </div>
 
+</div>
 
 <!-- ══════════ STORE STATUS ══════════ -->
 <div id="sec-stores" class="section">
@@ -732,6 +818,213 @@ tfoot td.grand{color:var(--hd);font-size:14px}
 <span style="display:inline-flex;align-items:center;gap:4px;background:var(--green50);border:1px solid var(--green100);color:var(--green700);font-size:12px;font-weight:600;padding:3px 9px;border-radius:var(--rfull);cursor:pointer" onclick="openDrawer('ST0209')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px;height:11px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>ST0209 ✓</span>
 <span style="display:inline-flex;align-items:center;gap:4px;background:var(--green50);border:1px solid var(--green100);color:var(--green700);font-size:12px;font-weight:600;padding:3px 9px;border-radius:var(--rfull);cursor:pointer" onclick="openDrawer('ST6856')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px;height:11px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>ST6856 ✓</span></div>
   </div>
+</div>
+
+<!-- ══════════ STORE VIEWS ══════════ -->
+<div id="sec-storeview" class="section">
+  <div class="page-hd">
+    <div>
+      <div class="page-title">Store Views</div>
+      <div class="page-sub">Alternative ways to explore migration data across 2,210 stores</div>
+    </div>
+  </div>
+  <div class="sv-toggle">
+    <button class="sv-tab sv-active" onclick="svSwitch('timeline',this)">Week Timeline</button>
+    <button class="sv-tab" onclick="svSwitch('states',this)">By State</button>
+    <button class="sv-tab" onclick="svSwitch('flags',this)">Flag Review</button>
+  </div>
+  <div id="sv-content"></div>
+</div>
+
+<!-- ══════════ ROUTE PLANNER ══════════ -->
+<div id="sec-routeplanner" class="section">
+  <div class="page-hd">
+    <div>
+      <div class="page-title">Route Planner</div>
+      <div class="page-sub">Geographic implementation plan &nbsp;·&nbsp; 2,028 remaining stores &nbsp;·&nbsp; Cost-optimized by geography</div>
+    </div>
+    <div class="page-meta">Wks 9–45 &nbsp;·&nbsp; Feb 2027 est. completion</div>
+  </div>
+
+  <!-- Summary bar -->
+  <div class="rp-summary">
+    <div class="rp-sum-cell"><div class="rp-sum-label">Remaining Stores</div><div class="rp-sum-val">2,028</div><div class="rp-sum-sub">8 geographic phases</div></div>
+    <div class="rp-sum-cell"><div class="rp-sum-label">Est. US Weeks</div><div class="rp-sum-val">~37</div><div class="rp-sum-sub">~9 months at target pace</div></div>
+    <div class="rp-sum-cell"><div class="rp-sum-label">Est. Completion</div><div class="rp-sum-val" style="color:var(--hd)">Feb 2027</div><div class="rp-sum-sub">US phases complete</div></div>
+    <div class="rp-sum-cell"><div class="rp-sum-label">Parallel Tracks</div><div class="rp-sum-val">2</div><div class="rp-sum-sub">Canada + Territories (separate logistics)</div></div>
+  </div>
+
+  <!-- US Phases -->
+  <div class="rp-slabel">US Phases &nbsp;·&nbsp; Recommended Sequence</div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:22px">
+
+    <div class="rp-doc-phase">
+      <div class="rp-doc-phase-hd" style="background:#FFF4ED">
+        <div class="rp-phase-num" style="background:#F96302">1</div>
+        <div class="rp-doc-phase-name">Southeast</div>
+        <div class="rp-doc-phase-states">GA (85) &nbsp;·&nbsp; VA (51) &nbsp;·&nbsp; FL (40) &nbsp;·&nbsp; NC (40) &nbsp;·&nbsp; TN (36) &nbsp;·&nbsp; SC (24) &nbsp;·&nbsp; AL (22) &nbsp;·&nbsp; MS (14) &nbsp;·&nbsp; KY (12) &nbsp;·&nbsp; WV (6)</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
+          <span class="rp-doc-phase-count" style="color:#F96302">330</span>
+          <span class="rp-doc-phase-wks">~7 wks &nbsp;·&nbsp; Wks 9–15</span>
+          <span class="rp-doc-phase-hub">Atlanta (ATL)</span>
+        </div>
+      </div>
+      <div class="rp-doc-phase-body">Team already mobilized from Pilot + Wks 1–8. Continuing into the remaining 330 SE stores avoids full remobilization — estimated <strong>$40–60K savings</strong> vs. relocating and returning later. Do not redeploy until all 10 SE states are complete.</div>
+    </div>
+
+    <div class="rp-doc-phase">
+      <div class="rp-doc-phase-hd" style="background:#EFF6FF">
+        <div class="rp-phase-num" style="background:#2563EB">2</div>
+        <div class="rp-doc-phase-name">Northeast</div>
+        <div class="rp-doc-phase-states">NY (102) &nbsp;·&nbsp; PA (71) &nbsp;·&nbsp; NJ (67) &nbsp;·&nbsp; MA (45) &nbsp;·&nbsp; MD (41) &nbsp;·&nbsp; CT (30) &nbsp;·&nbsp; NH (20) &nbsp;·&nbsp; DE (9) &nbsp;·&nbsp; ME (11) &nbsp;·&nbsp; RI (8) &nbsp;·&nbsp; VT (3) &nbsp;·&nbsp; DC (1)</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
+          <span class="rp-doc-phase-count" style="color:#2563EB">408</span>
+          <span class="rp-doc-phase-wks">~7 wks &nbsp;·&nbsp; Wks 16–22</span>
+          <span class="rp-doc-phase-hub">New York (EWR)</span>
+        </div>
+      </div>
+      <div class="rp-doc-phase-body">Largest single phase. NY/NJ/PA metro corridor has <strong>240 stores within ~150 miles</strong> — 60-store weeks achievable here, the highest throughput of any phase. Single staging warehouse at Newark covers the entire metro cluster before rotating to Boston and mid-Atlantic.</div>
+    </div>
+
+    <div class="rp-doc-phase">
+      <div class="rp-doc-phase-hd" style="background:#F5F3FF">
+        <div class="rp-phase-num" style="background:#7C3AED">3</div>
+        <div class="rp-doc-phase-name">Midwest</div>
+        <div class="rp-doc-phase-states">IL (76) &nbsp;·&nbsp; MI (70) &nbsp;·&nbsp; OH (67) &nbsp;·&nbsp; MO (34) &nbsp;·&nbsp; MN (33) &nbsp;·&nbsp; WI (27) &nbsp;·&nbsp; IN (24) &nbsp;·&nbsp; KS (15) &nbsp;·&nbsp; IA (10) &nbsp;·&nbsp; NE (8) &nbsp;·&nbsp; ND (2) &nbsp;·&nbsp; SD (1)</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
+          <span class="rp-doc-phase-count" style="color:#7C3AED">367</span>
+          <span class="rp-doc-phase-wks">~7 wks &nbsp;·&nbsp; Wks 23–29</span>
+          <span class="rp-doc-phase-hub">Chicago (ORD)</span>
+        </div>
+      </div>
+      <div class="rp-doc-phase-body">OH/MI/IL/IN form a dense contiguous cluster — bundle into 55-store weeks with ORD as the rotation hub. Engineers can drive between most Midwest stores. Combine sparse ND/SD/NE/KS/IA into 1–2 "Great Plains" fill weeks to avoid stranded travel days in low-density markets.</div>
+    </div>
+
+    <div class="rp-doc-phase">
+      <div class="rp-doc-phase-hd" style="background:#FFFBEB">
+        <div class="rp-phase-num" style="background:#D97706">4</div>
+        <div class="rp-doc-phase-name">South Central</div>
+        <div class="rp-doc-phase-states">TX (186) &nbsp;·&nbsp; LA (26) &nbsp;·&nbsp; OK (16) &nbsp;·&nbsp; AR (14)</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
+          <span class="rp-doc-phase-count" style="color:#D97706">242</span>
+          <span class="rp-doc-phase-wks">~5 wks &nbsp;·&nbsp; Wks 30–34</span>
+          <span class="rp-doc-phase-hub">Dallas (DFW)</span>
+        </div>
+      </div>
+      <div class="rp-doc-phase-body">TX alone (186 stores) warrants its own dedicated mobilization team and DFW staging warehouse. Route Houston metro → DFW/Dallas cluster → San Antonio → Austin. OK/AR/LA are natural adjacents — fill spare capacity in TX weeks. Consider a second TX-only sub-team to compress this to 3 weeks.</div>
+    </div>
+
+    <div class="rp-doc-phase">
+      <div class="rp-doc-phase-hd" style="background:#ECFDF5">
+        <div class="rp-phase-num" style="background:#059669">5</div>
+        <div class="rp-doc-phase-name">Mountain / SW</div>
+        <div class="rp-doc-phase-states">AZ (60) &nbsp;·&nbsp; CO (46) &nbsp;·&nbsp; NV (20) &nbsp;·&nbsp; UT (24) &nbsp;·&nbsp; NM (13) &nbsp;·&nbsp; ID (13) &nbsp;·&nbsp; MT (6) &nbsp;·&nbsp; WY (5)</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
+          <span class="rp-doc-phase-count" style="color:#059669">187</span>
+          <span class="rp-doc-phase-wks">~5 wks &nbsp;·&nbsp; Wks 35–39</span>
+          <span class="rp-doc-phase-hub">Phoenix (PHX)</span>
+        </div>
+      </div>
+      <div class="rp-doc-phase-body">AZ (60) and CO (46) anchor this phase and can each fill a full week. Stage in PHX for AZ, then relocate to DEN for CO/UT/NV. Bundle MT/WY/ID/NM into a single "sparse mountain" week — these 4 states total just 37 stores and should not be assigned separate weeks.</div>
+    </div>
+
+    <div class="rp-doc-phase">
+      <div class="rp-doc-phase-hd" style="background:#FEF2F2">
+        <div class="rp-phase-num" style="background:#DC2626">6</div>
+        <div class="rp-doc-phase-name">West Coast</div>
+        <div class="rp-doc-phase-states">CA (235) &nbsp;·&nbsp; WA (48) &nbsp;·&nbsp; OR (27) &nbsp;·&nbsp; HI (8) &nbsp;·&nbsp; AK (7)</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
+          <span class="rp-doc-phase-count" style="color:#DC2626">325</span>
+          <span class="rp-doc-phase-wks">~6 wks &nbsp;·&nbsp; Wks 40–45</span>
+          <span class="rp-doc-phase-hub">Los Angeles (LAX)</span>
+        </div>
+      </div>
+      <div class="rp-doc-phase-body">CA (235 stores) is a program within the program — plan <strong>4 dedicated CA-only weeks</strong>: SoCal LA basin → Inland Empire/San Diego → Central Valley/Bay Area → NorCal. Do not mix CA weeks with OR/WA. After CA, rotate north: WA (48) fills one full week from SEA, OR (27) fills half. HI and AK require dedicated air mobilization — coordinate as a single Pacific trip at end of phase.</div>
+    </div>
+
+  </div>
+
+  <!-- Special tracks -->
+  <div class="rp-slabel">Parallel Tracks &nbsp;·&nbsp; Special Logistics Required</div>
+  <div class="rp-2col" style="margin-bottom:22px">
+
+    <div class="rp-doc-phase">
+      <div class="rp-doc-phase-hd" style="background:var(--g100)">
+        <div class="rp-phase-num" style="background:#6B7280">7</div>
+        <div class="rp-doc-phase-name">Canada</div>
+        <div class="rp-doc-phase-states">ON (76) &nbsp;·&nbsp; AB (25) &nbsp;·&nbsp; BC (22) &nbsp;·&nbsp; QC (18) &nbsp;·&nbsp; MB (4) &nbsp;·&nbsp; NB (3) &nbsp;·&nbsp; NS (2) &nbsp;·&nbsp; SK (2)</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
+          <span class="rp-doc-phase-count" style="color:#6B7280">154</span>
+          <span class="rp-doc-phase-hub">Toronto (YYZ)</span>
+        </div>
+      </div>
+      <div class="rp-doc-phase-body"><strong>Start authorization paperwork immediately.</strong> ATA carnets, Cisco Canada work authorizations, and cross-border import processing take 4–6 weeks. Target parallel-track start at Wk 20 to overlap with the Midwest phase. ON (76 stores) alone is a 1.5-week block.</div>
+    </div>
+
+    <div class="rp-doc-phase">
+      <div class="rp-doc-phase-hd" style="background:#FAF5FF">
+        <div class="rp-phase-num" style="background:#9333EA">8</div>
+        <div class="rp-doc-phase-name">Territories</div>
+        <div class="rp-doc-phase-states">PR (10) &nbsp;·&nbsp; GU (2) &nbsp;·&nbsp; VI (2)</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
+          <span class="rp-doc-phase-count" style="color:#9333EA">14</span>
+          <span class="rp-doc-phase-hub">San Juan (SJU)</span>
+        </div>
+      </div>
+      <div class="rp-doc-phase-body"><strong>Pre-ship all equipment 3 weeks in advance.</strong> PR (10) + USVI (2) share a single Atlantic mobilization out of SJU. Guam (2) requires Pacific routing — coordinate with the West Coast team's AK trip to share freight costs. Do not try to combine GU with the SJU mobilization.</div>
+    </div>
+
+  </div>
+
+  <!-- Cost actions -->
+  <div class="rp-slabel">Key Cost-Saving Actions</div>
+  <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:22px">
+    <div class="rp-doc-insight"><div class="rp-doc-insight-dot" style="background:#F96302"></div><div><div class="rp-doc-insight-title">Do not remobilize — finish Southeast first</div><div class="rp-doc-insight-body">The current field team is already in GA/FL. Redirecting them now and returning later for 330 SE stores would cost $40–60K in redeployment (flights, hotel, freight restaging). Complete all 10 SE states through Week 15 before moving north.</div></div></div>
+    <div class="rp-doc-insight"><div class="rp-doc-insight-dot" style="background:#2563EB"></div><div><div class="rp-doc-insight-title">Northeast corridor is the highest-efficiency phase in the program</div><div class="rp-doc-insight-body">NY/NJ/PA = 240 stores within 150 miles of Newark — 60-store weeks achievable here, vs. 50 everywhere else. Single staging warehouse at EWR covers the entire cluster. This is the one phase where adding a second parallel team has a strong ROI case.</div></div></div>
+    <div class="rp-doc-insight"><div class="rp-doc-insight-dot" style="background:#DC2626"></div><div><div class="rp-doc-insight-title">California is a program within the program — treat it that way</div><div class="rp-doc-insight-body">235 CA stores = 12% of the total remaining program. Lease a staging warehouse in Ontario, CA. Plan 4 pure CA weeks before rotating north. Do not mix CA with OR/WA — the geography penalty eliminates the efficiency gain of clustering.</div></div></div>
+    <div class="rp-doc-insight"><div class="rp-doc-insight-dot" style="background:#6B7280"></div><div><div class="rp-doc-insight-title">Start Canada authorization at Week 16 — not later</div><div class="rp-doc-insight-body">ATA carnet processing, Cisco Canada work authorizations, and cross-border equipment import typically take 4–6 weeks. Miss this window and Canada slips off the parallel track onto the critical path, adding 3–4 weeks to the total program timeline. Assign an owner to this action this week.</div></div></div>
+    <div class="rp-doc-insight"><div class="rp-doc-insight-dot" style="background:#D97706"></div><div><div class="rp-doc-insight-title">Consider a second TX-only sub-team to compress Phase 4</div><div class="rp-doc-insight-body">TX has 186 stores — at 50/week that is 4 sequential weeks. With two parallel sub-teams (DFW-north and Houston-south), TX completes in 2 weeks. Incremental mobilization cost is roughly one additional set of flights + hotel (~$8K) against saving 2 full weeks of program timeline.</div></div></div>
+    <div class="rp-doc-insight"><div class="rp-doc-insight-dot" style="background:#9333EA"></div><div><div class="rp-doc-insight-title">Bundle territory logistics into one coordinated trip</div><div class="rp-doc-insight-body">PR (10) and USVI (2) share an Atlantic air mobilization out of SJU. Guam (2) requires Pacific routing — schedule to overlap with the West Coast team's AK trip to share freight costs. Pre-ship all island equipment 3 weeks in advance with no same-week freight to island territories.</div></div></div>
+  </div>
+
+  <!-- Wave schedule -->
+  <div class="rp-slabel">Wave Schedule &nbsp;·&nbsp; US Phases</div>
+  <div class="table-wrap" style="margin-bottom:12px">
+    <div class="table-header" style="display:flex;justify-content:space-between;align-items:center">
+      <div class="card-title">Weeks 9–45 &nbsp;·&nbsp; United States</div>
+      <div class="card-sub">37 waves &nbsp;·&nbsp; ~50 stores/wave avg</div>
+    </div>
+    <table>
+      <thead><tr><th>Week</th><th>Phase</th><th>States / Focus</th><th style="text-align:right">Stores</th><th>Hub</th></tr></thead>
+      <tbody id="rp-wave-tbody"></tbody>
+    </table>
+  </div>
+  <div class="rp-2col">
+    <div class="table-wrap">
+      <div class="table-header" style="display:flex;justify-content:space-between;align-items:center">
+        <div class="card-title">Canada &nbsp;·&nbsp; Parallel Track</div>
+        <div class="card-sub">Runs from Wk 20 concurrently</div>
+      </div>
+      <table>
+        <thead><tr><th>Week</th><th>Provinces / Focus</th><th style="text-align:right">Stores</th></tr></thead>
+        <tbody id="rp-ca-tbody"></tbody>
+      </table>
+    </div>
+    <div class="table-wrap">
+      <div class="table-header" style="display:flex;justify-content:space-between;align-items:center">
+        <div class="card-title">Territories &nbsp;·&nbsp; Air Logistics</div>
+        <div class="card-sub">Pre-ship equipment 3 wks prior</div>
+      </div>
+      <table>
+        <thead><tr><th>Week</th><th>Territory</th><th style="text-align:right">Stores</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:700">Wk 46</td><td>PR + USVI (SJU)</td><td style="text-align:right;font-weight:700">12</td><td style="font-size:11.5px;color:var(--g400)">Atlantic air mobilization</td></tr>
+          <tr><td style="font-weight:700">Wk 47</td><td>Guam (GUM)</td><td style="text-align:right;font-weight:700">2</td><td style="font-size:11.5px;color:var(--g400)">Piggyback with AK freight</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 </div>
 
 </main>
@@ -1082,7 +1375,6 @@ OC_WEEKS.forEach(wk => {
 
 function ocBar(label, val, total, color, sub) {
   if (val <= 0) return '';
-  const pct = total > 0 ? (val / total * 100).toFixed(1) : 0;
   const h = sub ? 5 : 6;
   const fs = sub ? 12 : 12.5;
   const fw = sub ? 600 : 700;
@@ -1090,9 +1382,7 @@ function ocBar(label, val, total, color, sub) {
   const cnt = sub ? val + ' stores' : String(val);
   return `<div style="display:flex;align-items:center;gap:12px">
     <div style="font-size:${fs}px;color:${clr};min-width:220px">${label}</div>
-    <div style="flex:1;height:${h}px;background:var(--g100);border-radius:3px;overflow:hidden">
-      <div style="height:100%;border-radius:3px;background:${color};width:${pct}%"></div>
-    </div>
+    <div class="oc-bar-track" style="flex:1;height:${h}px;border-radius:3px"></div>
     <div style="font-size:${fs}px;font-weight:${fw};color:var(--g900);min-width:60px;text-align:right">${cnt}</div>
   </div>`;
 }
@@ -1136,6 +1426,438 @@ function initOutcomes() {
 
 buildStoreGrid();
 initOutcomes();
+
+// ── Store Views ──────────────────────────────────────────
+const SV_WK_LABELS = ['Pilot','Wk 1','Wk 2','Wk 3','Wk 4','Wk 5','Wk 6','Wk 7','Wk 8'];
+const SV_WK_KEYS   = {Pilot:'Pilot','Wk 1':'1','Wk 2':'2','Wk 3':'3','Wk 4':'4','Wk 5':'5','Wk 6':'6','Wk 7':'7','Wk 8':'8'};
+const SV_WK_DATES  = {Pilot:'2/23–2/27','Wk 1':'3/09–3/13','Wk 2':'3/16–3/20','Wk 3':'3/23–3/27','Wk 4':'3/30–4/03','Wk 5':'4/06–4/10','Wk 6':'4/13–4/17','Wk 7':'4/20–4/24','Wk 8':'4/27–5/01'};
+
+function svTimeline() {
+  return SV_WK_LABELS.map(wk => {
+    const key = SV_WK_KEYS[wk];
+    const stores   = STORES.filter(s => s.week === key);
+    const complete = stores.filter(s => s.status === 'Complete');
+    const flagged  = complete.filter(s => s.mdf || s.vgrec || s.dhcp || s.fax);
+    const clean    = complete.filter(s => !s.mdf && !s.vgrec && !s.dhcp && !s.fax);
+    const pending  = stores.filter(s => s.status !== 'Complete');
+    const pct = stores.length > 0 ? (complete.length / stores.length * 100).toFixed(0) : 0;
+    const rows = stores.map(s => {
+      const flags = [s.mdf && 'MDF', s.vgrec && 'VG Reconfig', s.dhcp && 'DHCP', s.fax && 'Fax'].filter(Boolean).join(', ');
+      const badge = s.status === 'Complete'
+        ? (flags ? `<span class="badge b-except"><span class="b-dot"></span>Complete · ${flags}</span>`
+                 : `<span class="badge b-clean"><span class="b-dot"></span>Complete</span>`)
+        : `<span class="badge b-pending"><span class="b-dot"></span>Pending</span>`;
+      return `<tr onclick="openDrawer('${s.store}')" style="cursor:pointer">
+        <td style="font-weight:700;color:var(--g900)">${s.store}</td>
+        <td>${s.name||''}, ${s.state||''}</td>
+        <td style="color:var(--g500)">${s.date||''}</td>
+        <td>${badge}</td>
+      </tr>`;
+    }).join('');
+    return `<div class="wk-acc">
+      <div class="wk-acc-hd" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+        <svg class="wk-acc-chev" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:14px;height:14px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <div style="min-width:72px;font-size:14px;font-weight:700;color:var(--g900)">${wk}</div>
+        <div style="font-size:12px;color:var(--g400);min-width:110px">${SV_WK_DATES[wk]}</div>
+        <div style="display:flex;gap:5px;align-items:center;flex:1;flex-wrap:wrap">
+          ${clean.length   ? `<span class="badge b-clean"><span class="b-dot"></span>${clean.length} clean</span>` : ''}
+          ${flagged.length ? `<span class="badge b-except"><span class="b-dot"></span>${flagged.length} flagged</span>` : ''}
+          ${pending.length ? `<span class="badge b-pending"><span class="b-dot"></span>${pending.length} pending</span>` : ''}
+        </div>
+        <div style="font-size:13px;font-weight:700;color:${parseInt(pct)===100?'var(--green600)':'var(--g600)'};min-width:44px;text-align:right">${pct}%</div>
+      </div>
+      <div class="wk-acc-body">
+        <table class="wk-mini-table">
+          <thead><tr><th>Store</th><th>Name / State</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function svStates() {
+  const STATE_NAMES = {GA:'Georgia',FL:'Florida',TX:'Texas',NC:'North Carolina',SC:'South Carolina',VA:'Virginia',TN:'Tennessee',AL:'Alabama',MS:'Mississippi',LA:'Louisiana',AR:'Arkansas',MO:'Missouri',KY:'Kentucky',WV:'West Virginia',OH:'Ohio',IN:'Indiana',IL:'Illinois',MI:'Michigan',WI:'Wisconsin',MN:'Minnesota',IA:'Iowa',OK:'Oklahoma',KS:'Kansas',NE:'Nebraska',SD:'South Dakota',ND:'North Dakota',MT:'Montana',WY:'Wyoming',CO:'Colorado',NM:'New Mexico',AZ:'Arizona',UT:'Utah',NV:'Nevada',ID:'Idaho',WA:'Washington',OR:'Oregon',CA:'California',AK:'Alaska',HI:'Hawaii',NY:'New York',PA:'Pennsylvania',NJ:'New Jersey',DE:'Delaware',MD:'Maryland',CT:'Connecticut',RI:'Rhode Island',MA:'Massachusetts',VT:'Vermont',NH:'New Hampshire',ME:'Maine'};
+  const map = {};
+  STORES.forEach(s => {
+    const st = s.state || '??';
+    if (!map[st]) map[st] = {abbr:st, total:0, complete:0};
+    map[st].total++;
+    if (s.status === 'Complete') map[st].complete++;
+  });
+  const states = Object.values(map).sort((a,b) => b.total - a.total);
+  const cards = states.map(s => {
+    const pct = s.total > 0 ? (s.complete / s.total * 100) : 0;
+    return `<div class="state-card">
+      <div class="state-abbr">${s.abbr}</div>
+      <div class="state-name">${STATE_NAMES[s.abbr] || s.abbr}</div>
+      <div class="state-bar"><div class="state-bar-fill" style="width:${pct}%"></div></div>
+      <div class="state-meta">${s.complete} / ${s.total} &nbsp;·&nbsp; ${pct.toFixed(0)}%</div>
+    </div>`;
+  }).join('');
+  return `<div style="font-size:12px;color:var(--g400);margin-bottom:12px">${states.length} states · bar shows % complete</div>
+  <div class="state-grid">${cards}</div>`;
+}
+
+function svFlags() {
+  const renderGroup = (title, dotColor, stores, desc) => {
+    if (!stores.length) return '';
+    const rows = stores.map(s => {
+      const flags = [s.mdf && 'MDF', s.vgrec && 'VG Reconfig', s.dhcp && 'DHCP✓', s.fax && 'Fax'].filter(Boolean).join(', ');
+      const note = (s.note || '').split('\n')[0].replace(/^[•·\-\s]+/,'').substring(0,80);
+      return `<tr onclick="openDrawer('${s.store}')" style="cursor:pointer">
+        <td style="font-weight:700;color:var(--g900)">${s.store}</td>
+        <td>${s.name||''}, ${s.state||''}</td>
+        <td style="color:var(--g500)">${s.week === 'Pilot' ? 'Pilot' : 'Wk ' + s.week}</td>
+        <td style="font-size:11.5px;font-weight:600;color:var(--g700)">${flags}</td>
+        <td style="font-size:11.5px;color:var(--g500);max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${note}</td>
+      </tr>`;
+    }).join('');
+    return `<div class="flag-group">
+      <div class="flag-group-hd">
+        <div class="flag-dot" style="background:${dotColor}"></div>
+        <div style="font-size:13px;font-weight:700;color:var(--g900)">${title}</div>
+        <span style="font-size:11.5px;font-weight:700;color:var(--g500);background:var(--g150);border-radius:var(--rfull);padding:1px 8px">${stores.length}</span>
+        <span style="font-size:12px;color:var(--g400);margin-left:4px">${desc}</span>
+      </div>
+      <table class="wk-mini-table">
+        <thead><tr><th>Store</th><th>Name / State</th><th>Week</th><th>Flags</th><th>Note</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+  };
+  const mdf   = STORES.filter(s => s.mdf);
+  const vgrec = STORES.filter(s => s.vgrec && !s.mdf);
+  const dhcp  = STORES.filter(s => s.dhcp && !s.mdf && !s.vgrec);
+  const fax   = STORES.filter(s => s.fax  && !s.mdf && !s.vgrec && !s.dhcp);
+  return renderGroup('MDF Access Required','var(--yellow500)',mdf,'Return visit needed — phones provisioned but not installed') +
+         renderGroup('VG Reconfig (110-block)','var(--g400)',vgrec,'Legacy VG left in place — physical swap deferred') +
+         renderGroup('DHCP Resolved','var(--green500)',dhcp,'IP pool exhaustion resolved on-site, no further action') +
+         renderGroup('Fax Issues Resolved','var(--blue500)',fax,'Fax routing corrected during migration window');
+}
+
+function svSwitch(view, btn) {
+  btn.closest('.sv-toggle').querySelectorAll('.sv-tab').forEach(b => b.classList.remove('sv-active'));
+  btn.classList.add('sv-active');
+  const el = document.getElementById('sv-content');
+  if (view === 'timeline') el.innerHTML = svTimeline();
+  else if (view === 'states') el.innerHTML = svStates();
+  else el.innerHTML = svFlags();
+}
+
+function initStoreViews() {
+  const el = document.getElementById('sv-content');
+  if (el) el.innerHTML = svTimeline();
+}
+initStoreViews();
+
+// ── Route Planner ────────────────────────────────────────
+const RP_REGIONS = [
+  { id:'se', name:'Southeast',     color:'#F96302', bg:'#FFF4ED', states:['GA','FL','NC','SC','VA','TN','AL','MS','KY','WV'], hub:'Atlanta (ATL)',       waveSize:50, priority:1,
+    reason:'Team already mobilized from Pilot + Wks 1–8. Continuing into the remaining 330 SE stores avoids full remobilization — estimated $40–60K savings vs. relocating and returning.' },
+  { id:'ne', name:'Northeast',     color:'#2563EB', bg:'#EFF6FF', states:['NY','NJ','PA','MA','MD','CT','NH','ME','RI','VT','DE','DC'], hub:'New York (JFK/EWR)', waveSize:60, priority:2,
+    reason:'NY/NJ/PA metro corridor has 240 stores within ~150 miles — 60-store weeks achievable here. Lowest per-store drive time of any phase. Single staging hub at Newark.' },
+  { id:'mw', name:'Midwest',       color:'#7C3AED', bg:'#F5F3FF', states:['OH','MI','IL','IN','WI','MN','MO','IA','KS','NE','ND','SD'], hub:'Chicago (ORD)',      waveSize:55, priority:3,
+    reason:'OH/MI/IL/IN form a dense contiguous cluster — bundle into 55-store weeks with ORD as the rotation hub. Combine sparse ND/SD/NE/KS into 1-2 "Great Plains" fill weeks.' },
+  { id:'sc', name:'South Central', color:'#D97706', bg:'#FFFBEB', states:['TX','OK','AR','LA'],                                         hub:'Dallas (DFW)',      waveSize:50, priority:4,
+    reason:'TX alone (186 stores) warrants its own mobilization team and DFW staging warehouse. OK/AR/LA are natural adjacents — fill spare capacity in TX weeks before moving on.' },
+  { id:'mt', name:'Mountain/SW',   color:'#059669', bg:'#ECFDF5', states:['AZ','CO','NV','UT','NM','ID','MT','WY'],                    hub:'Phoenix (PHX)',     waveSize:45, priority:5,
+    reason:'AZ (60) and CO (46) anchor this phase. Stage in PHX for AZ, then relocate to DEN for CO/UT/NV. Bundle MT/WY/ID/NM into a single "sparse mountain" week to avoid stranded travel days.' },
+  { id:'wc', name:'West Coast',    color:'#DC2626', bg:'#FEF2F2', states:['CA','WA','OR','HI','AK'],                                   hub:'Los Angeles (LAX)', waveSize:55, priority:6,
+    reason:'CA (235 stores) is a program within the program — 4-5 dedicated weeks with a LA warehouse. Route SoCal → Central Valley → Bay Area → NorCal, then pivot to WA/OR. HI and AK require separate air mobilization.' },
+  { id:'ca', name:'Canada',        color:'#6B7280', bg:'#F9FAFB', states:['ON','BC','AB','QC','MB','NB','NS','SK','NL','PE'],           hub:'Toronto (YYZ)',     waveSize:50, priority:7,
+    reason:'Cross-border ops require separate work authorizations, ATA carnets for equipment, and Cisco Canada coordination — typically 4–6 weeks of lead time. Start paperwork at Wk 16 to run Canada as a parallel track from Wk 20.' },
+  { id:'tr', name:'Territories',   color:'#9333EA', bg:'#FAF5FF', states:['PR','GU','VI'],                                             hub:'San Juan (SJU)',    waveSize:14, priority:8,
+    reason:'All air-only logistics. Pre-ship equipment 3 weeks in advance. Puerto Rico (10) and USVI (2) share an Atlantic mobilization out of SJU. Guam (2) requires Pacific routing — coordinate with the West Coast team at end of CA phase.' },
+];
+
+const RP_STATE_TO_REGION = {};
+RP_REGIONS.forEach(r => r.states.forEach(s => RP_STATE_TO_REGION[s] = r.id));
+
+function rpComputeData() {
+  const pending = STORES.filter(s => s.status !== 'Complete');
+  const byRegion = {};
+  RP_REGIONS.forEach(r => byRegion[r.id] = {});
+  const unassigned = [];
+
+  pending.forEach(s => {
+    const rid = RP_STATE_TO_REGION[s.state];
+    if (rid) {
+      if (!byRegion[rid][s.state]) byRegion[rid][s.state] = [];
+      byRegion[rid][s.state].push(s);
+    } else { unassigned.push(s); }
+  });
+
+  const regions = RP_REGIONS.map(r => {
+    const stateEntries = byRegion[r.id] || {};
+    const total = Object.values(stateEntries).reduce((n,a) => n + a.length, 0);
+    const statesPresent = Object.entries(stateEntries).sort((a,b) => b[1].length - a[1].length);
+    const weeks = Math.ceil(total / r.waveSize);
+    return { ...r, total, statesPresent, weeks };
+  }).filter(r => r.total > 0);
+
+  // Build sequential waves for US phases
+  const waves = [];
+  let wkNum = 9;
+  regions.filter(r => r.id !== 'ca' && r.id !== 'tr').forEach(region => {
+    const stores = (region.statesPresent || [])
+      .flatMap(([, ss]) => ss);
+    for (let i = 0; i < stores.length; i += region.waveSize) {
+      const batch = stores.slice(i, i + region.waveSize);
+      waves.push({ wk: wkNum++, region: region.id, regionName: region.name, color: region.color, bg: region.bg, count: batch.length, states: [...new Set(batch.map(s => s.state))], hub: region.hub });
+    }
+  });
+
+  // Canada: parallel track starting Wk 20
+  const caR = regions.find(r => r.id === 'ca');
+  if (caR) {
+    const stores = (caR.statesPresent || []).flatMap(([, ss]) => ss);
+    let caWk = 20;
+    for (let i = 0; i < stores.length; i += caR.waveSize) {
+      const batch = stores.slice(i, i + caR.waveSize);
+      waves.push({ wk: caWk++, region:'ca', regionName:'Canada', color: caR.color, bg: caR.bg, count: batch.length, states: [...new Set(batch.map(s => s.state))], hub: caR.hub, parallel: true });
+    }
+  }
+
+  // Territories: single wave at end
+  const trR = regions.find(r => r.id === 'tr');
+  if (trR) {
+    const stores = (trR.statesPresent || []).flatMap(([, ss]) => ss);
+    if (stores.length) waves.push({ wk: wkNum++, region:'tr', regionName:'Territories', color: trR.color, bg: trR.bg, count: stores.length, states: [...new Set(stores.map(s => s.state))], hub: trR.hub, special: true });
+  }
+
+  const usWeeks = regions.filter(r => r.id !== 'ca' && r.id !== 'tr').reduce((n, r) => n + r.weeks, 0);
+  return { regions, waves, pending: pending.length, unassigned, usWeeks };
+}
+
+function rpRenderRec(data) {
+  const mainRegions = data.regions.filter(r => r.id !== 'ca' && r.id !== 'tr');
+  const specialRegions = data.regions.filter(r => r.id === 'ca' || r.id === 'tr');
+
+  const kpis = `
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px">
+      <div class="kpi"><div class="kpi-label">Remaining Stores</div><div class="kpi-val" style="color:var(--g900)">${data.pending.toLocaleString()}</div><div class="kpi-sub">${data.regions.length} geographic phases</div></div>
+      <div class="kpi"><div class="kpi-label">Est. US Weeks</div><div class="kpi-val" style="color:var(--g900)">~${data.usWeeks}</div><div class="kpi-sub">~${Math.round(data.usWeeks/4)} months at target pace</div></div>
+      <div class="kpi accent"><div class="kpi-label">Largest Phase</div><div class="kpi-val">Northeast</div><div class="kpi-sub">NY/NJ/PA/MA · 408 stores</div><div class="kpi-delta delta-orange">~7 weeks</div></div>
+      <div class="kpi"><div class="kpi-label">Parallel Tracks</div><div class="kpi-val" style="color:var(--g900)">2</div><div class="kpi-sub">Canada + Territories require separate logistics</div></div>
+    </div>`;
+
+  const seq = mainRegions.map(r => {
+    const topStates = r.statesPresent.slice(0,5).map(([st,ss]) => `${st}&nbsp;(${ss.length})`).join(' &nbsp;·&nbsp; ');
+    const more = r.statesPresent.length > 5 ? ` <span style="color:var(--g400)">+${r.statesPresent.length-5} more</span>` : '';
+    return `<div class="rp-phase">
+      <div class="rp-phase-hd" style="background:${r.bg}">
+        <div class="rp-phase-num" style="background:${r.color}">${r.priority}</div>
+        <div style="font-size:13px;font-weight:700;color:var(--g900);min-width:130px">${r.name}</div>
+        <div style="font-size:12px;color:var(--g500);flex:1">${topStates}${more}</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
+          <span style="font-size:13px;font-weight:800;color:${r.color}">${r.total.toLocaleString()}</span>
+          <span style="font-size:11.5px;color:var(--g400)">~${r.weeks} wks</span>
+          <span style="font-size:11px;color:var(--g500);background:var(--white);border:1px solid var(--g200);border-radius:var(--rfull);padding:2px 9px;white-space:nowrap">${r.hub}</span>
+        </div>
+      </div>
+      <div style="padding:9px 16px 10px;font-size:12.5px;color:var(--g600);line-height:1.55">${r.reason}</div>
+    </div>`;
+  }).join('');
+
+  const special = specialRegions.map(r => {
+    const topStates = r.statesPresent.slice(0,4).map(([st,ss]) => `${st}&nbsp;(${ss.length})`).join(' &nbsp;·&nbsp; ');
+    return `<div class="rp-phase">
+      <div class="rp-phase-hd" style="background:${r.bg}">
+        <div class="rp-phase-num" style="background:${r.color}">${r.priority}</div>
+        <div style="font-size:13px;font-weight:700;color:var(--g900);min-width:130px">${r.name}</div>
+        <div style="font-size:12px;color:var(--g500);flex:1">${topStates}</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-shrink:0">
+          <span style="font-size:13px;font-weight:800;color:${r.color}">${r.total.toLocaleString()}</span>
+          <span style="font-size:11px;color:var(--g500);background:var(--white);border:1px solid var(--g200);border-radius:var(--rfull);padding:2px 9px;white-space:nowrap">${r.hub}</span>
+        </div>
+      </div>
+      <div style="padding:9px 16px 10px;font-size:12.5px;color:var(--g600);line-height:1.55">${r.reason}</div>
+    </div>`;
+  }).join('');
+
+  const insights = [
+    ['#F96302','Do not remobilize — finish Southeast first','The current team is already in GA/FL. Redirecting them now and returning later for the remaining 330 SE stores (GA 85, VA 51, NC 40, FL 40...) would cost $40–60K in redeployment. Complete SE through Wk 15 before moving north.'],
+    ['#2563EB','Northeast corridor is the highest-efficiency phase','NY/NJ/PA alone = 240 stores within 150 miles of Newark. At 60 stores/week this phase completes in 7 weeks — vs. 9+ if scattered. A single staging warehouse at EWR covers the entire metro cluster.'],
+    ['#DC2626','California is a program in itself','235 CA stores = 12% of the total program. Route SoCal (LA basin, ~80 stores) → Central Valley → Bay Area → NorCal. Lease a staging warehouse in Ontario, CA. Do not mix CA weeks with OR/WA — keep CA as pure weeks for maximum throughput.'],
+    ['#6B7280','Start Canada authorization at Week 16 — not later','ATA carnet processing, Cisco Canada work authorizations, and cross-border equipment import take 4–6 weeks minimum. Miss this window and Canada becomes the program\'s critical path. Target parallel-track start at Wk 20.'],
+    ['#9333EA','Bundle territory logistics into one coordinated trip','Puerto Rico (10) + USVI (2) share a single Atlantic air mobilization from SJU. Guam (2) requires Pacific routing — schedule this to overlap with the West Coast team\'s AK trip to share freight costs. Pre-ship all equipment 3 weeks early.'],
+  ].map(([color, title, body]) => `
+    <div class="rp-insight">
+      <div class="rp-insight-icon" style="background:${color}18">
+        <div style="width:9px;height:9px;border-radius:50%;background:${color}"></div>
+      </div>
+      <div style="flex:1">
+        <div style="font-size:12.5px;font-weight:700;color:var(--g900);margin-bottom:3px">${title}</div>
+        <div style="font-size:12.5px;color:var(--g600);line-height:1.55">${body}</div>
+      </div>
+    </div>`).join('');
+
+  return `${kpis}
+    <div style="font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.09em;margin-bottom:8px">US Phases · Recommended Sequence</div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:16px">${seq}</div>
+    <div style="font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.09em;margin-bottom:8px">Parallel Tracks · Special Logistics Required</div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:20px">${special}</div>
+    <div style="font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.09em;margin-bottom:8px">Key Cost-Saving Actions</div>
+    <div class="card"><div class="card-body" style="padding:12px 16px;display:flex;flex-direction:column;gap:6px">${insights}</div></div>`;
+}
+
+function rpRenderWaves(data) {
+  const usWaves = data.waves.filter(w => !w.parallel && !w.special).sort((a,b) => a.wk - b.wk);
+  const caWaves = data.waves.filter(w => w.parallel).sort((a,b) => a.wk - b.wk);
+  const trWaves = data.waves.filter(w => w.special);
+
+  const rowsFor = (wavelist) => wavelist.map(w =>
+    `<tr>
+      <td style="font-weight:700;color:var(--g900);white-space:nowrap">Wk ${w.wk}</td>
+      <td><span class="rp-region-dot" style="background:${w.color}"></span><span style="font-weight:600">${w.regionName}</span></td>
+      <td style="font-size:11.5px;color:var(--g600)">${w.states.join(', ')}</td>
+      <td style="text-align:right;font-weight:700;color:var(--g900)">${w.count}</td>
+      <td style="font-size:12px;color:var(--g500)">${w.hub}</td>
+    </tr>`).join('');
+
+  return `<div class="table-wrap" style="margin-bottom:14px">
+    <div class="table-header" style="padding:10px 16px;background:var(--g50);border-bottom:1px solid var(--g200)">
+      <div class="card-title">US Wave Schedule &nbsp;·&nbsp; Weeks 9–${usWaves[usWaves.length-1]?.wk||'?'}</div>
+      <div class="card-sub">${usWaves.reduce((n,w)=>n+w.count,0).toLocaleString()} stores &nbsp;·&nbsp; ${usWaves.length} waves</div>
+    </div>
+    <table class="rp-wave-table"><thead><tr><th>Week</th><th>Phase</th><th>States</th><th style="text-align:right">Stores</th><th>Hub</th></tr></thead>
+    <tbody>${rowsFor(usWaves)}</tbody></table>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div class="table-wrap">
+      <div class="table-header" style="padding:10px 16px;background:var(--g50);border-bottom:1px solid var(--g200)">
+        <div class="card-title">Canada &nbsp;·&nbsp; Parallel Track</div>
+        <div class="card-sub">Starts Wk 20 — run concurrently with US phases</div>
+      </div>
+      <table class="rp-wave-table"><thead><tr><th>Week</th><th>Phase</th><th>Provinces</th><th style="text-align:right">Stores</th><th>Hub</th></tr></thead>
+      <tbody>${rowsFor(caWaves)}</tbody></table>
+    </div>
+    <div class="table-wrap">
+      <div class="table-header" style="padding:10px 16px;background:var(--g50);border-bottom:1px solid var(--g200)">
+        <div class="card-title">Territories &nbsp;·&nbsp; Air Logistics</div>
+        <div class="card-sub">Pre-ship equipment 3 weeks in advance</div>
+      </div>
+      <table class="rp-wave-table"><thead><tr><th>Week</th><th>Phase</th><th>Territory</th><th style="text-align:right">Stores</th><th>Hub</th></tr></thead>
+      <tbody>${rowsFor(trWaves)}</tbody></table>
+    </div>
+  </div>`;
+}
+
+function rpRenderPhases(data) {
+  return `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px">` +
+    data.regions.map(r => {
+      const pills = r.statesPresent.map(([st,ss]) =>
+        `<span class="rp-state-pill">${st} <span class="rp-state-count">${ss.length}</span></span>`).join('');
+      const tag = r.id === 'ca' ? 'Parallel from Wk 20' : r.id === 'tr' ? 'Air-only logistics' : `~${r.weeks} waves of ${r.waveSize}`;
+      return `<div class="card" style="border-top:3px solid ${r.color}">
+        <div class="card-hd" style="background:${r.bg}">
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="rp-phase-num" style="background:${r.color}">${r.priority}</div>
+            <div class="card-title">${r.name}</div>
+          </div>
+          <div style="font-size:16px;font-weight:800;color:${r.color}">${r.total}</div>
+        </div>
+        <div class="card-body" style="padding:12px 16px">
+          <div style="display:flex;flex-wrap:wrap;margin-bottom:10px">${pills}</div>
+          <div style="font-size:11.5px;color:var(--g500);margin-bottom:3px">Hub: <strong style="color:var(--g700)">${r.hub}</strong></div>
+          <div style="font-size:11.5px;color:var(--g400)">${tag}</div>
+        </div>
+      </div>`;
+    }).join('') + `</div>`;
+}
+
+function rpSwitch(view, btn) {
+  btn.closest('.sv-toggle').querySelectorAll('.sv-tab').forEach(b => b.classList.remove('sv-active'));
+  btn.classList.add('sv-active');
+  const el = document.getElementById('rp-content');
+  const data = rpComputeData();
+  if (view === 'rec') el.innerHTML = rpRenderRec(data);
+  else if (view === 'waves') el.innerHTML = rpRenderWaves(data);
+  else el.innerHTML = rpRenderPhases(data);
+}
+
+// ── Route Planner wave table ──────────────────────────────
+(function buildRpTables() {
+  const WAVES = [
+    {wk:9,  r:'Southeast',    c:'#F96302', s:'GA, NC',             n:50, h:'Atlanta (ATL)'},
+    {wk:10, r:'Southeast',    c:'#F96302', s:'GA, VA',             n:50, h:'Atlanta (ATL)'},
+    {wk:11, r:'Southeast',    c:'#F96302', s:'GA, FL, VA',         n:50, h:'Atlanta (ATL)'},
+    {wk:12, r:'Southeast',    c:'#F96302', s:'FL, NC, TN',         n:50, h:'Atlanta (ATL)'},
+    {wk:13, r:'Southeast',    c:'#F96302', s:'TN, SC, AL',         n:50, h:'Nashville (BNA)'},
+    {wk:14, r:'Southeast',    c:'#F96302', s:'VA, AL, MS, KY',     n:50, h:'Atlanta (ATL)'},
+    {wk:15, r:'Southeast',    c:'#F96302', s:'VA, MS, KY, WV',     n:30, h:'Charlotte (CLT)'},
+    {wk:16, r:'Northeast',    c:'#2563EB', s:'NY – metro',         n:60, h:'New York (EWR)'},
+    {wk:17, r:'Northeast',    c:'#2563EB', s:'NY, NJ',             n:60, h:'New York (EWR)'},
+    {wk:18, r:'Northeast',    c:'#2563EB', s:'NJ, PA',             n:60, h:'New York (EWR)'},
+    {wk:19, r:'Northeast',    c:'#2563EB', s:'PA, MA',             n:60, h:'Boston (BOS)'},
+    {wk:20, r:'Northeast',    c:'#2563EB', s:'MA, MD, CT',         n:60, h:'Boston (BOS)'},
+    {wk:21, r:'Northeast',    c:'#2563EB', s:'MD, NH, ME, RI',     n:60, h:'Baltimore (BWI)'},
+    {wk:22, r:'Northeast',    c:'#2563EB', s:'DE, VT, DC, RI',     n:48, h:'New York (EWR)'},
+    {wk:23, r:'Midwest',      c:'#7C3AED', s:'IL, MI',             n:55, h:'Chicago (ORD)'},
+    {wk:24, r:'Midwest',      c:'#7C3AED', s:'MI, OH',             n:55, h:'Detroit (DTW)'},
+    {wk:25, r:'Midwest',      c:'#7C3AED', s:'OH, IN, IL',         n:55, h:'Chicago (ORD)'},
+    {wk:26, r:'Midwest',      c:'#7C3AED', s:'MO, MN, WI',         n:55, h:'Chicago (ORD)'},
+    {wk:27, r:'Midwest',      c:'#7C3AED', s:'MN, WI, IN',         n:55, h:'Minneapolis (MSP)'},
+    {wk:28, r:'Midwest',      c:'#7C3AED', s:'MO, KS, IA, NE',     n:47, h:'St. Louis (STL)'},
+    {wk:29, r:'Midwest',      c:'#7C3AED', s:'KS, IA, NE, ND, SD', n:45, h:'Omaha (OMA)'},
+    {wk:30, r:'South Central',c:'#D97706', s:'TX – Houston',       n:50, h:'Houston (IAH)'},
+    {wk:31, r:'South Central',c:'#D97706', s:'TX – Dallas/FW',     n:50, h:'Dallas (DFW)'},
+    {wk:32, r:'South Central',c:'#D97706', s:'TX – SA / Austin',   n:50, h:'San Antonio (SAT)'},
+    {wk:33, r:'South Central',c:'#D97706', s:'TX, LA, OK',         n:50, h:'Dallas (DFW)'},
+    {wk:34, r:'South Central',c:'#D97706', s:'LA, OK, AR',         n:42, h:'Dallas (DFW)'},
+    {wk:35, r:'Mountain/SW',  c:'#059669', s:'AZ – Phoenix metro', n:45, h:'Phoenix (PHX)'},
+    {wk:36, r:'Mountain/SW',  c:'#059669', s:'AZ, NM',             n:28, h:'Phoenix (PHX)'},
+    {wk:37, r:'Mountain/SW',  c:'#059669', s:'CO, UT',             n:45, h:'Denver (DEN)'},
+    {wk:38, r:'Mountain/SW',  c:'#059669', s:'CO, NV',             n:25, h:'Denver (DEN)'},
+    {wk:39, r:'Mountain/SW',  c:'#059669', s:'MT, WY, ID, NM',     n:37, h:'Salt Lake City (SLC)'},
+    {wk:40, r:'West Coast',   c:'#DC2626', s:'CA – SoCal / LA',    n:55, h:'Los Angeles (LAX)'},
+    {wk:41, r:'West Coast',   c:'#DC2626', s:'CA – SoCal / SD / IE',n:55, h:'Los Angeles (LAX)'},
+    {wk:42, r:'West Coast',   c:'#DC2626', s:'CA – Central Valley', n:55, h:'Fresno (FAT)'},
+    {wk:43, r:'West Coast',   c:'#DC2626', s:'CA – Bay Area',       n:55, h:'San Jose (SJC)'},
+    {wk:44, r:'West Coast',   c:'#DC2626', s:'CA – NorCal, WA',     n:55, h:'Sacramento (SMF)'},
+    {wk:45, r:'West Coast',   c:'#DC2626', s:'WA, OR, AK, HI',      n:50, h:'Seattle (SEA)'},
+  ];
+  const CA_WAVES = [
+    {wk:'20P', s:'ON – Toronto / GTA',        n:50},
+    {wk:'21P', s:'ON – Ottawa + other ON',     n:26},
+    {wk:'22P', s:'AB – Edmonton / Calgary',    n:25},
+    {wk:'23P', s:'BC – Vancouver / Lower Mainland', n:22},
+    {wk:'24P', s:'QC – Montreal',              n:18},
+    {wk:'25P', s:'MB, NB, NS, SK, NL, PE',     n:13},
+  ];
+
+  function populate(tbodyId, waves, cols) {
+    const tb = document.getElementById(tbodyId);
+    if (!tb) return;
+    let lastR = '';
+    waves.forEach(w => {
+      if (w.r && w.r !== lastR) {
+        const sep = document.createElement('tr');
+        sep.className = 'rp-wave-sep';
+        sep.innerHTML = `<td colspan="${cols}">${w.r}</td>`;
+        tb.appendChild(sep);
+        lastR = w.r;
+      }
+      const tr = document.createElement('tr');
+      if (cols === 5) {
+        tr.innerHTML = `<td style="font-weight:700;color:var(--g900);white-space:nowrap">Wk ${w.wk}</td>
+          <td><span style="width:8px;height:8px;border-radius:50%;background:${w.c};display:inline-block;margin-right:5px;vertical-align:middle"></span><span style="font-size:12px;color:var(--g600)">${w.r}</span></td>
+          <td style="font-size:12px;color:var(--g600)">${w.s}</td>
+          <td style="text-align:right;font-weight:700;color:var(--g900)">${w.n}</td>
+          <td style="font-size:12px;color:var(--g500)">${w.h}</td>`;
+      } else {
+        tr.innerHTML = `<td style="font-weight:700;color:var(--g900);white-space:nowrap">Wk ${w.wk}</td>
+          <td style="font-size:12px;color:var(--g600)">${w.s}</td>
+          <td style="text-align:right;font-weight:700;color:var(--g900)">${w.n}</td>`;
+      }
+      tb.appendChild(tr);
+    });
+  }
+
+  populate('rp-wave-tbody', WAVES, 5);
+  populate('rp-ca-tbody', CA_WAVES, 3);
+})();
 
 </script>
 </body>
