@@ -729,108 +729,44 @@ tfoot td.grand{color:var(--hd);font-size:14px}
 <div id="sec-issues" class="section">
   <div class="page-hd">
     <div><div class="page-title">Open Items &amp; Exceptions</div><div class="page-sub">Across Pilot + Weeks 1–8 &nbsp;·&nbsp; Sorted by priority</div></div>
-    <div class="page-meta">13 MDF installs pending &nbsp;·&nbsp; 20 VG reconfigs &nbsp;·&nbsp; 5 fax issues</div>
+    <div class="page-meta" id="oi-meta"></div>
   </div>
   <div class="kpi-grid" style="margin-bottom:20px">
-    <div class="kpi yellow" style="background:var(--yellow50)"><div class="kpi-label" style="color:var(--yellow700)">Phones in MDF</div><div class="kpi-val">13</div><div class="kpi-sub" style="color:var(--yellow700)">Stores with uninstalled phones</div><div class="kpi-delta delta-yellow">Return visit required</div></div>
-    <div class="kpi"><div class="kpi-label">VG Reconfigured</div><div class="kpi-val">20</div><div class="kpi-sub">110-block sites — legacy VG kept</div><div class="kpi-delta" style="background:var(--g150);color:var(--g600)">Monitor</div></div>
-    <div class="kpi green"><div class="kpi-label">DHCP Issues</div><div class="kpi-val">6</div><div class="kpi-sub">All resolved during migration</div><div class="kpi-delta delta-green">Closed</div></div>
-    <div class="kpi"><div class="kpi-label">Fax Issues</div><div class="kpi-val">5</div><div class="kpi-sub">Fax not working or not tested</div><div class="kpi-delta delta-yellow">Follow-up needed</div></div>
+    <div class="kpi yellow" style="background:var(--yellow50)"><div class="kpi-label" style="color:var(--yellow700)">Phones in MDF</div><div class="kpi-val" id="oi-kpi-mdf">—</div><div class="kpi-sub" style="color:var(--yellow700)">Stores with uninstalled phones</div><div class="kpi-delta delta-yellow">Return visit required</div></div>
+    <div class="kpi"><div class="kpi-label">VG Reconfigured</div><div class="kpi-val" id="oi-kpi-vg">—</div><div class="kpi-sub">110-block sites — legacy VG kept</div><div class="kpi-delta" style="background:var(--g150);color:var(--g600)">Monitor</div></div>
+    <div class="kpi green"><div class="kpi-label">DHCP Issues</div><div class="kpi-val" id="oi-kpi-dhcp">—</div><div class="kpi-sub">All resolved during migration</div><div class="kpi-delta delta-green">Closed</div></div>
+    <div class="kpi"><div class="kpi-label">Fax Issues</div><div class="kpi-val" id="oi-kpi-fax">—</div><div class="kpi-sub">Fax not working or not tested</div><div class="kpi-delta delta-yellow">Follow-up needed</div></div>
   </div>
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
     <div style="width:20px;height:20px;border-radius:50%;background:var(--yellow500);display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="color:#fff;font-size:11px;font-weight:800">1</span></div>
     <span style="font-size:12px;font-weight:700;color:var(--yellow700);text-transform:uppercase;letter-spacing:.06em">Phones Left in MDF &nbsp;·&nbsp; Return Visit Required</span>
-    <span style="font-size:11.5px;color:var(--g400)">13 stores &nbsp;·&nbsp; provisioned but not installed</span>
+    <span id="oi-mdf-hdr" style="font-size:11.5px;color:var(--g400)"></span>
   </div>
-  <div class="table-wrap mb16"><table><thead><tr><th>Store</th><th>Location</th><th>Note</th><th>Next Step</th></tr></thead><tbody><tr onclick="openDrawer('ST6890')" style="cursor:pointer"><td><button class="td-store" onclick="openDrawer('ST6890')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST6890</button></td><td style="font-size:12px;color:var(--g600)">Jacksonville W (Oakleaf), FL</td><td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">2.25.26 - VG320 found to be on 110 block.  Legacy VG was reconfigured to remain on site. Decision on path forward pending for remaining migrations. VG410 left in MDF for future installation.
-• 3 Phone…</td><td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td></tr>
-<tr onclick="openDrawer('ST6856')" style="cursor:pointer"><td><button class="td-store" onclick="openDrawer('ST6856')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST6856</button></td><td style="font-size:12px;color:var(--g600)">Coconut Grove, FL</td><td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• Outbound Faxes are not working during PreCheck. Per MOD site uses e-fax.
-• DHCP issue encountered when trying to register a phone. Phones unable to get IP address.
-• 110 to VG - Legacy VG to be reco…</td><td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td></tr>
-<tr onclick="openDrawer('ST0280')" style="cursor:pointer"><td><button class="td-store" onclick="openDrawer('ST0280')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST0280</button></td><td style="font-size:12px;color:var(--g600)">Naples, FL</td><td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• No labeling at 110 block - team unable to tone out lines - VG reconfigured
-• EXT 248 - SCO Corral phone configured and left in MDF for replacement. Cat cable too short to leave on desk.
-• EXT 413 - …</td><td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td></tr>
-<tr onclick="openDrawer('ST6330')" style="cursor:pointer"><td><button class="td-store" onclick="openDrawer('ST6330')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST6330</button></td><td style="font-size:12px;color:var(--g600)">W Palm Beach, FL</td><td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• No labeling at 110 block - team unable to tone out lines - VG reconfigured
-•EXT 465 - Manager Office phone configured and left in MDF</td><td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td></tr>
-<tr onclick="openDrawer('ST6339')" style="cursor:pointer"><td><button class="td-store" onclick="openDrawer('ST6339')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST6339</button></td><td style="font-size:12px;color:var(--g600)">W Kendall, FL</td><td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• No labeling at 110 block - team unable to tone out lines - VG reconfigured
-• EXT 484 - Hmr Interview Room 2 (AKA LPS Phone) Configured and left in MDF room</td><td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td></tr>
-<tr onclick="openDrawer('ST6356')" style="cursor:pointer"><td><button class="td-store" onclick="openDrawer('ST6356')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST6356</button></td><td style="font-size:12px;color:var(--g600)">Coconut Creek, FL</td><td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• 110 block access restricted
-• EXT 402 - LPS phone configured and left in MDF</td><td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td></tr>
-<tr onclick="openDrawer('ST6872')" style="cursor:pointer"><td><button class="td-store" onclick="openDrawer('ST6872')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST6872</button></td><td style="font-size:12px;color:var(--g600)">Hialeah Gardens, FL</td><td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• No labeling at 110 block - team unable to tone out lines - VG reconfigured
-• EXT 204 - Cash Register 4 phone configured and left in MDF</td><td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td></tr>
-<tr onclick="openDrawer('ST0206')" style="cursor:pointer"><td><button class="td-store" onclick="openDrawer('ST0206')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST0206</button></td><td style="font-size:12px;color:var(--g600)">West Dade, FL</td><td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• District office located within site and locked impacting VG replacement.
-• LPS replacement phone left in MDF due to access restrictions
-•These extensions are within the District Office and Phones le…</td><td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td></tr>
-<tr onclick="openDrawer('ST0208')" style="cursor:pointer"><td><button class="td-store" onclick="openDrawer('ST0208')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST0208</button></td><td style="font-size:12px;color:var(--g600)">Pompano Beach, FL</td><td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• No labeling at 110 block - team unable to tone out lines - VG reconfigured
-• EXT 402 - Unable to access LPS Office. Left Phone at MDF.</td><td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td></tr>
-<tr onclick="openDrawer('ST6348')" style="cursor:pointer"><td><button class="td-store" onclick="openDrawer('ST6348')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST6348</button></td><td style="font-size:12px;color:var(--g600)">South Naples, FL</td><td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• No labeling at 110 block - team unable to tone out lines - VG reconfigured
-• Site Managers Office Locked. Phone was left in MDF.</td><td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td></tr>
-<tr onclick="openDrawer('ST6353')" style="cursor:pointer"><td><button class="td-store" onclick="openDrawer('ST6353')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST6353</button></td><td style="font-size:12px;color:var(--g600)">Miramar, FL</td><td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• 110 block access restricted with a refrigerator. 
-• EXT 483 District Office Locked.  Phone configured and left in MDF</td><td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td></tr>
-<tr onclick="openDrawer('ST6379')" style="cursor:pointer"><td><button class="td-store" onclick="openDrawer('ST6379')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST6379</button></td><td style="font-size:12px;color:var(--g600)">Royal Palm, FL</td><td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• VG Replaced.  Troubleshooting issues with Paging and Faxing were resolved. 
-• LPS Room Locked New Phone set up and left in MDF. 
-• Log in/ Log Out wasn’t working on Hunt Group.  Firmware upgrade nee…</td><td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td></tr>
-<tr onclick="openDrawer('ST0204')" style="cursor:pointer"><td><button class="td-store" onclick="openDrawer('ST0204')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST0204</button></td><td style="font-size:12px;color:var(--g600)">Boca Raton, FL</td><td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• 110 blocks are barricaded/obstructed.
-• Assoc. Coord. at EXT. 077 and EXT. 412 Count Room not accessible during migration. Phones were registered and left in MDF
-• EXT. 228 (garden) phone could not …</td><td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td></tr></tbody></table></div>
+  <div class="table-wrap mb16"><table><thead><tr><th>Store</th><th>Location</th><th>Week</th><th>Note</th><th>Next Step</th></tr></thead><tbody id="oi-mdf-tbody"></tbody></table></div>
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
     <div style="width:20px;height:20px;border-radius:50%;background:var(--g500);display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="color:#fff;font-size:11px;font-weight:800">2</span></div>
     <span style="font-size:12px;font-weight:700;color:var(--g700);text-transform:uppercase;letter-spacing:.06em">VG Reconfigured &nbsp;·&nbsp; 110-Block Sites</span>
-    <span style="font-size:11.5px;color:var(--g400)">20 stores &nbsp;·&nbsp; legacy VG kept in place</span>
+    <span id="oi-vg-hdr" style="font-size:11.5px;color:var(--g400)"></span>
   </div>
   <div style="background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);padding:16px 20px;margin-bottom:20px;box-shadow:var(--sh-xs)">
-    <div style="font-size:13px;color:var(--g700);line-height:1.7;margin-bottom:10px">At <strong>20 stores</strong>, 110-block cabling prevented the VG410 from replacing the legacy VG. Legacy VG was reconfigured to connect to DI and left in place. These sites require a follow-up visit to complete the physical VG swap.</div>
-    <div id="vgReconfigList" style="display:flex;flex-wrap:wrap;gap:6px"><span class="chip chip-vg" onclick="openDrawer('ST6890')" style="cursor:pointer">ST6890</span>
-<span class="chip chip-vg" onclick="openDrawer('ST0210')" style="cursor:pointer">ST0210</span>
-<span class="chip chip-vg" onclick="openDrawer('ST6378')" style="cursor:pointer">ST6378</span>
-<span class="chip chip-vg" onclick="openDrawer('ST6871')" style="cursor:pointer">ST6871</span>
-<span class="chip chip-vg" onclick="openDrawer('ST0202')" style="cursor:pointer">ST0202</span>
-<span class="chip chip-vg" onclick="openDrawer('ST6306')" style="cursor:pointer">ST6306</span>
-<span class="chip chip-vg" onclick="openDrawer('ST6856')" style="cursor:pointer">ST6856</span>
-<span class="chip chip-vg" onclick="openDrawer('ST0277')" style="cursor:pointer">ST0277</span>
-<span class="chip chip-vg" onclick="openDrawer('ST0701')" style="cursor:pointer">ST0701</span>
-<span class="chip chip-vg" onclick="openDrawer('ST1105')" style="cursor:pointer">ST1105</span>
-<span class="chip chip-vg" onclick="openDrawer('ST0702')" style="cursor:pointer">ST0702</span>
-<span class="chip chip-vg" onclick="openDrawer('ST1130')" style="cursor:pointer">ST1130</span>
-<span class="chip chip-vg" onclick="openDrawer('ST0744')" style="cursor:pointer">ST0744</span>
-<span class="chip chip-vg" onclick="openDrawer('ST6372')" style="cursor:pointer">ST6372</span>
-<span class="chip chip-vg" onclick="openDrawer('ST0249')" style="cursor:pointer">ST0249</span>
-<span class="chip chip-vg" onclick="openDrawer('ST0285')" style="cursor:pointer">ST0285</span>
-<span class="chip chip-vg" onclick="openDrawer('ST6832')" style="cursor:pointer">ST6832</span>
-<span class="chip chip-vg" onclick="openDrawer('ST6312')" style="cursor:pointer">ST6312</span>
-<span class="chip chip-vg" onclick="openDrawer('ST0284')" style="cursor:pointer">ST0284</span>
-<span class="chip chip-vg" onclick="openDrawer('ST6322')" style="cursor:pointer">ST6322</span></div>
+    <div id="oi-vg-desc" style="font-size:13px;color:var(--g700);line-height:1.7;margin-bottom:10px"></div>
+    <div id="oi-vg-chips" style="display:flex;flex-wrap:wrap;gap:6px"></div>
   </div>
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
     <div style="width:20px;height:20px;border-radius:50%;background:var(--hd);display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="color:#fff;font-size:11px;font-weight:800">3</span></div>
     <span style="font-size:12px;font-weight:700;color:var(--hd-dark);text-transform:uppercase;letter-spacing:.06em">Fax Issues &nbsp;·&nbsp; Follow-Up Required</span>
-    <span style="font-size:11.5px;color:var(--g400)">5 stores</span>
+    <span id="oi-fax-hdr" style="font-size:11.5px;color:var(--g400)"></span>
   </div>
-  <div id="faxList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px"><div onclick="openDrawer('ST0430')" style="background:var(--white);border:1px solid var(--g200);border-left:3px solid var(--hd);border-radius:var(--r8);padding:12px 16px;box-shadow:var(--sh-xs);cursor:pointer"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><button class="td-store" onclick="openDrawer('ST0430')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST0430</button><span style="font-size:12.5px;font-weight:600;color:var(--g700)">Viera, FL</span><span style="font-size:11px;color:var(--g400);margin-left:auto">Wk Pilot · 02/26/26</span></div><div style="font-size:12px;color:var(--g600);line-height:1.5">2.24.26 - VG320 found to also be on 110 block, Derrick and Mike Cellino were able to move the fax that was configured on the second amphenol and repunch to consolidate to 1 ampheno…</div></div>
-<div onclick="openDrawer('ST6856')" style="background:var(--white);border:1px solid var(--g200);border-left:3px solid var(--hd);border-radius:var(--r8);padding:12px 16px;box-shadow:var(--sh-xs);cursor:pointer"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><button class="td-store" onclick="openDrawer('ST6856')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST6856</button><span style="font-size:12.5px;font-weight:600;color:var(--g700)">Coconut Grove, FL</span><span style="font-size:11px;color:var(--g400);margin-left:auto">Wk 1 · 03/11/26</span></div><div style="font-size:12px;color:var(--g600);line-height:1.5">• Outbound Faxes are not working during PreCheck. Per MOD site uses e-fax.
-• DHCP issue encountered when trying to register a phone. Phones unable to get IP address.
-• 110 to VG - …</div></div>
-<div onclick="openDrawer('ST0744')" style="background:var(--white);border:1px solid var(--g200);border-left:3px solid var(--hd);border-radius:var(--r8);padding:12px 16px;box-shadow:var(--sh-xs);cursor:pointer"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><button class="td-store" onclick="openDrawer('ST0744')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST0744</button><span style="font-size:12.5px;font-weight:600;color:var(--g700)">Morristown, TN</span><span style="font-size:11px;color:var(--g400);margin-left:auto">Wk 2 · 03/18/26</span></div><div style="font-size:12px;color:var(--g600);line-height:1.5">• 110 Block to VG - Legacy VG to be reconfigured
-• Cosmetic Issue with phone display to be investigated
-•Post migration Fax from Vault was not tested as area was closed</div></div>
-<div onclick="openDrawer('ST0251')" style="background:var(--white);border:1px solid var(--g200);border-left:3px solid var(--hd);border-radius:var(--r8);padding:12px 16px;box-shadow:var(--sh-xs);cursor:pointer"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><button class="td-store" onclick="openDrawer('ST0251')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST0251</button><span style="font-size:12.5px;font-weight:600;color:var(--g700)">N Miami Beach, FL</span><span style="font-size:11px;color:var(--g400);margin-left:auto">Wk 3 · 03/25/26</span></div><div style="font-size:12px;color:var(--g600);line-height:1.5">• 110 block with only 3 active analog devices on AMPH0 - 2 faxes and 1 analog
-•VG replaced</div></div>
-<div onclick="openDrawer('ST6379')" style="background:var(--white);border:1px solid var(--g200);border-left:3px solid var(--hd);border-radius:var(--r8);padding:12px 16px;box-shadow:var(--sh-xs);cursor:pointer"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><button class="td-store" onclick="openDrawer('ST6379')" style="background:none;border:none;font-family:inherit;cursor:pointer">ST6379</button><span style="font-size:12.5px;font-weight:600;color:var(--g700)">Royal Palm, FL</span><span style="font-size:11px;color:var(--g400);margin-left:auto">Wk 4 · 03/31/26</span></div><div style="font-size:12px;color:var(--g600);line-height:1.5">• VG Replaced.  Troubleshooting issues with Paging and Faxing were resolved. 
-• LPS Room Locked New Phone set up and left in MDF. 
-• Log in/ Log Out wasn’t working on Hunt Group.  …</div></div></div>
+  <div id="oi-fax-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px"></div>
+
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
     <div style="width:20px;height:20px;border-radius:50%;background:var(--green500);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg fill="none" stroke="#fff" viewBox="0 0 24 24" style="width:12px;height:12px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
     <span style="font-size:12px;font-weight:700;color:var(--green700);text-transform:uppercase;letter-spacing:.06em">Resolved During Window</span>
-    <span style="font-size:11.5px;color:var(--g400)">DHCP issues (6 stores) &nbsp;·&nbsp; all remediated on-site</span>
+    <span id="oi-dhcp-hdr" style="font-size:11.5px;color:var(--g400)"></span>
   </div>
   <div style="background:var(--green50);border:1px solid var(--green100);border-left:4px solid var(--green500);border-radius:var(--r12);padding:14px 18px;box-shadow:var(--sh-xs)">
-    <div style="font-size:13px;color:var(--g700);line-height:1.7;margin-bottom:8px"><strong>6 stores</strong> encountered DHCP IP pool exhaustion preventing phone registration. THD network team resolved all issues during the migration window. No further action required.</div>
-    <div id="dhcpList" style="display:flex;flex-wrap:wrap;gap:6px"><span style="display:inline-flex;align-items:center;gap:4px;background:var(--green50);border:1px solid var(--green100);color:var(--green700);font-size:12px;font-weight:600;padding:3px 9px;border-radius:var(--rfull);cursor:pointer" onclick="openDrawer('ST6980')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px;height:11px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>ST6980 ✓</span>
-<span style="display:inline-flex;align-items:center;gap:4px;background:var(--green50);border:1px solid var(--green100);color:var(--green700);font-size:12px;font-weight:600;padding:3px 9px;border-radius:var(--rfull);cursor:pointer" onclick="openDrawer('ST0210')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px;height:11px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>ST0210 ✓</span>
-<span style="display:inline-flex;align-items:center;gap:4px;background:var(--green50);border:1px solid var(--green100);color:var(--green700);font-size:12px;font-weight:600;padding:3px 9px;border-radius:var(--rfull);cursor:pointer" onclick="openDrawer('ST6871')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px;height:11px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>ST6871 ✓</span>
-<span style="display:inline-flex;align-items:center;gap:4px;background:var(--green50);border:1px solid var(--green100);color:var(--green700);font-size:12px;font-weight:600;padding:3px 9px;border-radius:var(--rfull);cursor:pointer" onclick="openDrawer('ST6306')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px;height:11px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>ST6306 ✓</span>
-<span style="display:inline-flex;align-items:center;gap:4px;background:var(--green50);border:1px solid var(--green100);color:var(--green700);font-size:12px;font-weight:600;padding:3px 9px;border-radius:var(--rfull);cursor:pointer" onclick="openDrawer('ST0209')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px;height:11px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>ST0209 ✓</span>
-<span style="display:inline-flex;align-items:center;gap:4px;background:var(--green50);border:1px solid var(--green100);color:var(--green700);font-size:12px;font-weight:600;padding:3px 9px;border-radius:var(--rfull);cursor:pointer" onclick="openDrawer('ST6856')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px;height:11px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>ST6856 ✓</span></div>
+    <div id="oi-dhcp-desc" style="font-size:13px;color:var(--g700);line-height:1.7;margin-bottom:8px"></div>
+    <div id="oi-dhcp-chips" style="display:flex;flex-wrap:wrap;gap:6px"></div>
   </div>
 </div>
 
@@ -1477,6 +1413,113 @@ function initOutcomes() {
 
 buildStoreGrid();
 initOutcomes();
+
+// ── Open Items (data-driven from STORES) ────────────────────────────────
+function buildOpenItems() {
+  const wkLabel = w => (w === 'Pilot' ? 'Pilot' : 'Wk ' + w);
+  const esc = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  const mdf  = STORES.filter(s => s.mdf);
+  const vg   = STORES.filter(s => s.vgrec);
+  const fax  = STORES.filter(s => s.fax);
+  const dhcp = STORES.filter(s => s.dhcp);
+
+  // Header meta
+  const meta = document.getElementById('oi-meta');
+  if (meta) meta.textContent = `${mdf.length} MDF installs pending · ${vg.length} VG reconfigs · ${fax.length} fax issues`;
+
+  // KPI values
+  ['mdf','vg','dhcp','fax'].forEach(k => {
+    const el = document.getElementById('oi-kpi-' + k);
+    if (el) el.textContent = {mdf:mdf.length,vg:vg.length,dhcp:dhcp.length,fax:fax.length}[k];
+  });
+
+  // Section sub-headers
+  const mdfHdr = document.getElementById('oi-mdf-hdr');
+  if (mdfHdr) mdfHdr.textContent = `${mdf.length} stores · provisioned but not installed`;
+  const vgHdr = document.getElementById('oi-vg-hdr');
+  if (vgHdr) vgHdr.textContent = `${vg.length} stores · legacy VG kept in place`;
+  const faxHdr = document.getElementById('oi-fax-hdr');
+  if (faxHdr) faxHdr.textContent = `${fax.length} stores`;
+  const dhcpHdr = document.getElementById('oi-dhcp-hdr');
+  if (dhcpHdr) dhcpHdr.textContent = `DHCP issues (${dhcp.length} stores) · all remediated on-site`;
+
+  // VG description
+  const vgDesc = document.getElementById('oi-vg-desc');
+  if (vgDesc) vgDesc.innerHTML = `At <strong>${vg.length} stores</strong>, 110-block cabling prevented the VG410 from replacing the legacy VG. Legacy VG was reconfigured to connect to DI and left in place. These sites require a follow-up visit to complete the physical VG swap.`;
+
+  // DHCP description
+  const dhcpDesc = document.getElementById('oi-dhcp-desc');
+  if (dhcpDesc) dhcpDesc.innerHTML = `<strong>${dhcp.length} stores</strong> encountered DHCP IP pool exhaustion preventing phone registration. THD network team resolved all issues during the migration window. No further action required.`;
+
+  // ── MDF table ──────────────────────────────────────────────
+  const mdfTbody = document.getElementById('oi-mdf-tbody');
+  if (mdfTbody) {
+    mdfTbody.innerHTML = '';
+    mdf.forEach(s => {
+      const tr = document.createElement('tr');
+      tr.style.cursor = 'pointer';
+      tr.onclick = () => openDrawer(s.store);
+      tr.innerHTML = `
+        <td><button class="td-store" onclick="openDrawer('${s.store}');event.stopPropagation()" style="background:none;border:none;font-family:inherit;cursor:pointer">${s.store}</button></td>
+        <td style="font-size:12px;color:var(--g600)">${esc(s.city)}, ${s.state}</td>
+        <td style="font-size:12px;color:var(--g500);white-space:nowrap">${wkLabel(s.week)}</td>
+        <td style="font-size:11.5px;color:var(--g500);max-width:340px;white-space:normal;line-height:1.45">${esc(s.note||'')}</td>
+        <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>`;
+      mdfTbody.appendChild(tr);
+    });
+  }
+
+  // ── VG chips ───────────────────────────────────────────────
+  const vgChips = document.getElementById('oi-vg-chips');
+  if (vgChips) {
+    vgChips.innerHTML = '';
+    vg.forEach(s => {
+      const span = document.createElement('span');
+      span.className = 'chip chip-vg';
+      span.style.cursor = 'pointer';
+      span.title = `${s.city}, ${s.state} · ${wkLabel(s.week)}`;
+      span.onclick = () => openDrawer(s.store);
+      span.textContent = s.store;
+      vgChips.appendChild(span);
+    });
+  }
+
+  // ── Fax cards ──────────────────────────────────────────────
+  const faxList = document.getElementById('oi-fax-list');
+  if (faxList) {
+    faxList.innerHTML = '';
+    fax.forEach(s => {
+      const div = document.createElement('div');
+      div.style.cssText = 'background:var(--white);border:1px solid var(--g200);border-left:3px solid var(--hd);border-radius:var(--r8);padding:12px 16px;box-shadow:var(--sh-xs);cursor:pointer';
+      div.onclick = () => openDrawer(s.store);
+      div.innerHTML = `
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <button class="td-store" onclick="openDrawer('${s.store}');event.stopPropagation()" style="background:none;border:none;font-family:inherit;cursor:pointer">${s.store}</button>
+          <span style="font-size:12.5px;font-weight:600;color:var(--g700)">${esc(s.city)}, ${s.state}</span>
+          <span style="font-size:11px;color:var(--g400);margin-left:auto">${wkLabel(s.week)}</span>
+        </div>
+        <div style="font-size:12px;color:var(--g600);line-height:1.55">${esc(s.note||'')}</div>`;
+      faxList.appendChild(div);
+    });
+  }
+
+  // ── DHCP chips ─────────────────────────────────────────────
+  const dhcpChips = document.getElementById('oi-dhcp-chips');
+  if (dhcpChips) {
+    dhcpChips.innerHTML = '';
+    const chkSvg = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:11px;height:11px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+    dhcp.forEach(s => {
+      const span = document.createElement('span');
+      span.style.cssText = 'display:inline-flex;align-items:center;gap:4px;background:var(--green50);border:1px solid var(--green100);color:var(--green700);font-size:12px;font-weight:600;padding:3px 9px;border-radius:var(--rfull);cursor:pointer';
+      span.title = `${s.city}, ${s.state} · ${wkLabel(s.week)}`;
+      span.onclick = () => openDrawer(s.store);
+      span.innerHTML = `${chkSvg}${s.store} ✓`;
+      dhcpChips.appendChild(span);
+    });
+  }
+}
+buildOpenItems();
 
 // ── Store Views ──────────────────────────────────────────
 const SV_WK_LABELS = ['Pilot','Wk 1','Wk 2','Wk 3','Wk 4','Wk 5','Wk 6','Wk 7','Wk 8'];
