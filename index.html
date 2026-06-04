@@ -8,144 +8,83 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ─── Design Tokens ─── */
 :root {
-  --g950:#0C111D; --g900:#101828; --g800:#1D2939; --g700:#344054;
-  --g600:#475467; --g500:#667085; --g400:#98A2B3; --g300:#D0D5DD;
-  --g200:#EAECF0; --g150:#F2F4F7; --g100:#F9FAFB; --white:#FFFFFF;
-  --green700:#027A48; --green600:#039855; --green500:#12B76A;
-  --green100:#D1FADF; --green50:#ECFDF3;
-  --yellow700:#B54708; --yellow600:#DC6803; --yellow500:#F79009;
-  --yellow100:#FEF0C7; --yellow50:#FFFAEB;
-  --red700:#B42318; --red600:#D92D20;
-  --red100:#FEE4E2; --red50:#FEF3F2;
-  --blue700:#175CD3; --blue600:#1570EF;
-  --blue100:#DBEAFE; --blue50:#EFF8FF;
-  --hd:#F96302; --hd-dark:#D95A00; --hd-50:#FFF4EE;
+  --g950:#0C111D;--g900:#101828;--g800:#1D2939;--g700:#344054;
+  --g600:#475467;--g500:#667085;--g400:#98A2B3;--g300:#D0D5DD;
+  --g200:#EAECF0;--g150:#F2F4F7;--g100:#F9FAFB;--white:#FFFFFF;
+  --green700:#027A48;--green600:#039855;--green500:#12B76A;--green100:#D1FADF;--green50:#ECFDF3;
+  --yellow700:#B54708;--yellow600:#DC6803;--yellow500:#F79009;--yellow100:#FEF0C7;--yellow50:#FFFAEB;
+  --red700:#B42318;--red600:#D92D20;--red100:#FEE4E2;--red50:#FEF3F2;
+  --blue700:#175CD3;--blue600:#1570EF;--blue100:#DBEAFE;--blue50:#EFF8FF;
+  --hd:#F96302;--hd-dark:#D95A00;--hd-50:#FFF4EE;
   --sh-xs:0 1px 2px rgba(16,24,40,.05);
   --sh-sm:0 1px 3px rgba(16,24,40,.10),0 1px 2px rgba(16,24,40,.06);
   --sh-md:0 4px 8px -2px rgba(16,24,40,.10),0 2px 4px -2px rgba(16,24,40,.06);
-  --r4:4px; --r6:6px; --r8:8px; --r12:12px; --rfull:9999px;
+  --r4:4px;--r6:6px;--r8:8px;--r12:12px;--rfull:9999px;
   --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font);background:var(--g100);color:var(--g900);
-  display:flex;flex-direction:column;height:100vh;overflow:hidden;
-  font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
-
-/* ══ TOPBAR ══ */
-.topbar{background:var(--white);border-bottom:1px solid var(--g200);height:56px;
-  display:flex;align-items:center;padding:0 24px;flex-shrink:0;box-shadow:var(--sh-xs);z-index:10}
-.tb-mark{width:30px;height:30px;background:var(--hd);border-radius:var(--r6);
-  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;
-  color:white;flex-shrink:0;margin-right:12px;letter-spacing:-.02em}
-.tb-name{font-size:14px;font-weight:700;color:var(--g900)}
-.tb-sep{color:var(--g300);margin:0 10px}
-.tb-sub{font-size:13px;color:var(--g500)}
+body{font-family:var(--font);background:var(--g100);color:var(--g900);display:flex;flex-direction:column;height:100vh;overflow:hidden;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.topbar{background:var(--white);border-bottom:1px solid var(--g200);height:56px;display:flex;align-items:center;padding:0 24px;flex-shrink:0;box-shadow:var(--sh-xs);z-index:10}
+.tb-mark{width:30px;height:30px;background:var(--hd);border-radius:var(--r6);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:white;flex-shrink:0;margin-right:12px;letter-spacing:-.02em}
+.tb-name{font-size:14px;font-weight:700;color:var(--g900)}.tb-sep{color:var(--g300);margin:0 10px}.tb-sub{font-size:13px;color:var(--g500)}
 .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
-.tb-pill{background:var(--g100);border:1px solid var(--g200);color:var(--g700);
-  font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:var(--rfull)}
-.live-pill{display:flex;align-items:center;gap:5px;background:var(--green50);
-  border:1px solid var(--green100);color:var(--green700);font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:var(--rfull)}
+.tb-pill{background:var(--g100);border:1px solid var(--g200);color:var(--g700);font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:var(--rfull)}
+.live-pill{display:flex;align-items:center;gap:5px;background:var(--green50);border:1px solid var(--green100);color:var(--green700);font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:var(--rfull)}
 .live-dot{width:6px;height:6px;background:var(--green500);border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-
-/* ══ LAYOUT ══ */
 .body-wrap{display:flex;flex:1;overflow:hidden}
-.sidebar{width:220px;flex-shrink:0;background:var(--g900);border-right:none;display:flex;flex-direction:column}
+.sidebar{width:220px;flex-shrink:0;background:var(--g900);display:flex;flex-direction:column}
 .s-nav{padding:10px 8px;flex:1}
-.s-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r6);cursor:pointer;
-  font-size:13.5px;font-weight:500;color:#fff;transition:all .12s;margin-bottom:2px;
-  border:none;background:none;width:100%;text-align:left;font-family:var(--font);border-left:2px solid transparent}
-.s-item:hover{background:rgba(255,255,255,.08);color:#fff}
-.s-item.active{background:rgba(255,255,255,.12);color:#fff;font-weight:600;border-left-color:var(--hd)}
-.s-item svg{width:16px;height:16px;flex-shrink:0;color:#fff;transition:color .12s}
-.s-item:hover svg,.s-item.active svg{color:#fff}
+.s-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r6);cursor:pointer;font-size:13.5px;font-weight:500;color:#fff;transition:all .12s;margin-bottom:2px;border:none;background:none;width:100%;text-align:left;font-family:var(--font);border-left:2px solid transparent}
+.s-item:hover{background:rgba(255,255,255,.08)}.s-item.active{background:rgba(255,255,255,.12);font-weight:600;border-left-color:var(--hd)}
+.s-item svg{width:16px;height:16px;flex-shrink:0;color:#fff}
 .s-footer{padding:12px 14px;border-top:1px solid rgba(255,255,255,.1);font-size:11px;color:#fff;line-height:1.7}
 .s-footer strong{color:#fff;display:block;font-size:11.5px;margin-bottom:1px}
-
-/* ══ MAIN ══ */
 .main{flex:1;overflow-y:auto;padding:22px 28px 56px}
 .section{display:none}.section.active{display:block}
 .page-hd{margin-bottom:18px;display:flex;align-items:flex-end;justify-content:space-between}
-.page-title{font-size:18px;font-weight:700;color:var(--g900)}
-.page-sub{font-size:12.5px;color:var(--g500);margin-top:2px}
-.page-meta{font-size:11.5px;color:var(--g400)}
-
-/* ══ KPI ══ */
+.page-title{font-size:18px;font-weight:700;color:var(--g900)}.page-sub{font-size:12.5px;color:var(--g500);margin-top:2px}.page-meta{font-size:11.5px;color:var(--g400)}
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
 .kpi-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
 .kpi{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);padding:16px 18px;box-shadow:var(--sh-xs)}
-.kpi.accent{border-left:3px solid var(--hd)}
-.kpi.green{border-left:3px solid var(--green500)}
-.kpi.yellow{border-left:3px solid var(--yellow500)}
-.kpi.red{border-left:3px solid var(--red600)}
+.kpi.accent{border-left:3px solid var(--hd)}.kpi.green{border-left:3px solid var(--green500)}.kpi.yellow{border-left:3px solid var(--yellow500)}.kpi.red{border-left:3px solid var(--red600)}
 .kpi-label{font-size:11px;font-weight:600;color:var(--g500);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
 .kpi-val{font-size:26px;font-weight:800;color:var(--g900);letter-spacing:-.04em;line-height:1;margin-bottom:4px}
-.kpi.accent .kpi-val{color:var(--hd)}
-.kpi.green .kpi-val{color:var(--green600)}
-.kpi.yellow .kpi-val{color:var(--yellow700)}
-.kpi.red .kpi-val{color:var(--red600)}
+.kpi.accent .kpi-val{color:var(--hd)}.kpi.green .kpi-val{color:var(--green600)}.kpi.yellow .kpi-val{color:var(--yellow700)}.kpi.red .kpi-val{color:var(--red600)}
 .kpi-sub{font-size:11.5px;color:var(--g400)}
-.kpi-delta{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;
-  padding:1.5px 7px;border-radius:var(--rfull);margin-top:5px}
-.delta-green{background:var(--green50);color:var(--green700)}
-.delta-yellow{background:var(--yellow50);color:var(--yellow700)}
-.delta-orange{background:var(--hd-50);color:var(--hd-dark)}
-
-/* ══ CARD ══ */
+.kpi-delta{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;padding:1.5px 7px;border-radius:var(--rfull);margin-top:5px}
+.delta-green{background:var(--green50);color:var(--green700)}.delta-yellow{background:var(--yellow50);color:var(--yellow700)}.delta-orange{background:var(--hd-50);color:var(--hd-dark)}
 .card{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);box-shadow:var(--sh-xs)}
 .card-hd{padding:14px 18px;border-bottom:1px solid var(--g200);display:flex;align-items:center;justify-content:space-between}
-.card-body{padding:18px 20px}
-.card-title{font-size:13.5px;font-weight:700;color:var(--g900)}
-.card-sub{font-size:12px;color:var(--g500);margin-top:1px}
-
-/* ══ GRIDS ══ */
+.card-body{padding:18px 20px}.card-title{font-size:13.5px;font-weight:700;color:var(--g900)}.card-sub{font-size:12px;color:var(--g500);margin-top:1px}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
 .grid-5-3{display:grid;grid-template-columns:5fr 3fr;gap:14px;margin-bottom:16px}
 .mb16{margin-bottom:16px}
-
-/* ══ PROGRESS ══ */
 .prog-wrap{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);padding:20px 22px;box-shadow:var(--sh-xs);margin-bottom:16px}
 .prog-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px}
-.prog-label{font-size:13.5px;font-weight:700;color:var(--g900)}
-.prog-meta{font-size:12px;color:var(--g400)}
-.prog-track{background:var(--g150);border-radius:var(--rfull);height:10px;margin-bottom:8px}
-.prog-fill{height:10px;border-radius:var(--rfull);background:var(--hd);transition:width .4s}
+.prog-track{background:var(--g150);border-radius:var(--rfull);height:10px;margin-bottom:8px;overflow:hidden;display:flex}
 .prog-leg{display:flex;gap:18px;font-size:11.5px;color:var(--g500)}
 .prog-leg-item{display:flex;align-items:center;gap:5px}
 .prog-dot{width:7px;height:7px;border-radius:50%}
-
-/* ══ WAVE GRID ══ */
-.wave-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(32px,1fr));gap:4px;margin-top:10px}
-.wave-cell{height:14px;border-radius:3px;background:var(--g150)}
-.wave-cell.done{background:var(--hd);opacity:.85}
-.wave-cell.done.issues{background:var(--yellow500);opacity:.85}
-.wave-cell.done.open{background:var(--red500);}
-
-/* ══ TABLE ══ */
 .table-wrap{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);overflow:hidden;box-shadow:var(--sh-xs)}
 .table-header{padding:14px 18px;border-bottom:1px solid var(--g200)}
 table{width:100%;border-collapse:collapse}
-thead th{text-align:left;font-size:11px;font-weight:600;color:var(--g400);text-transform:uppercase;
-  letter-spacing:.05em;padding:9px 14px;background:var(--g100);border-bottom:1px solid var(--g200);white-space:nowrap}
+thead th{text-align:left;font-size:11px;font-weight:600;color:var(--g400);text-transform:uppercase;letter-spacing:.05em;padding:9px 14px;background:var(--g100);border-bottom:1px solid var(--g200);white-space:nowrap}
 thead th.r{text-align:right}
-tbody td{padding:10px 14px;font-size:13px;color:var(--g700);border-bottom:1px solid var(--g150);vertical-align:middle}
+tbody td{padding:9px 14px;font-size:13px;color:var(--g700);border-bottom:1px solid var(--g150);vertical-align:middle}
 tbody tr:last-child td{border-bottom:none}
 tbody tr:hover td{background:var(--g100)}
 td.r{text-align:right}
-td.mono{font-family:'SF Mono','Fira Code',monospace;font-size:12px;color:var(--g600)}
+td.mono{font-family:'SF Mono','Fira Code',monospace;font-size:12px;color:var(--g500)}
 td.r.mono{text-align:right;font-family:'SF Mono','Fira Code',monospace;font-size:12.5px;color:var(--g800);font-weight:600}
 .td-store{font-weight:700;color:var(--g900);font-size:13px;letter-spacing:.01em}
-.td-note{color:var(--g500);font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-tfoot td{padding:10px 14px;background:var(--g100);border-top:2px solid var(--g200);
-  font-family:'SF Mono','Fira Code',monospace;font-weight:700;color:var(--g700);font-size:12.5px}
+.td-note{color:var(--g500);font-size:11.5px;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:help}
+tfoot td{padding:10px 14px;background:var(--g100);border-top:2px solid var(--g200);font-family:'SF Mono','Fira Code',monospace;font-weight:700;color:var(--g700);font-size:12.5px}
 tfoot td:first-child{font-family:var(--font);color:var(--g500);font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
 tfoot td.r{text-align:right}
 tfoot td.grand{color:var(--hd);font-size:14px}
-
-/* ══ BADGES ══ */
 .badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:var(--rfull);font-size:11px;font-weight:600;white-space:nowrap}
 .b-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
 .b-clean{background:var(--green50);color:var(--green700)}.b-clean .b-dot{background:var(--green500)}
@@ -153,29 +92,16 @@ tfoot td.grand{color:var(--hd);font-size:14px}
 .b-open{background:var(--red50);color:var(--red700)}.b-open .b-dot{background:var(--red600)}
 .b-pending{background:var(--g150);color:var(--g600)}.b-pending .b-dot{background:var(--g400)}
 .b-info{background:var(--blue50);color:var(--blue700)}.b-info .b-dot{background:var(--blue600)}
-
-/* ══ ISSUE CARDS ══ */
-.issue-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
-.issue-card{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);padding:16px 18px;box-shadow:var(--sh-xs)}
-.issue-card.is-open{border-left:3px solid var(--red600)}
-.issue-card.is-mdf{border-left:3px solid var(--yellow500)}
-.issue-card.is-resolved{border-left:3px solid var(--green500)}
-.issue-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.issue-store{font-size:13px;font-weight:700;color:var(--g900)}
-.issue-body{font-size:13px;color:var(--g700);line-height:1.6}
-.issue-meta{font-size:11.5px;color:var(--g400);margin-top:6px}
-
-/* ══ MINI BARS ══ */
-.mini-bar{margin-bottom:12px}.mini-bar:last-child{margin-bottom:0}
-.mini-bar-top{display:flex;justify-content:space-between;font-size:12.5px;color:var(--g700);margin-bottom:6px;font-weight:500}
+.mini-bar{margin-bottom:10px}.mini-bar:last-child{margin-bottom:0}
+.mini-bar-top{display:flex;justify-content:space-between;font-size:12.5px;color:var(--g700);margin-bottom:5px;font-weight:500}
 .mini-bar-count{font-weight:700;color:var(--g900);font-family:'SF Mono','Fira Code',monospace}
 .mini-bar-track{background:var(--g150);border-radius:var(--rfull);height:6px}
 .mini-bar-fill{border-radius:var(--rfull);height:6px}
-
-/* ══ MISC ══ */
-::-webkit-scrollbar{width:5px;height:5px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--g300);border-radius:3px}
+.seg-ctrl{display:flex;gap:3px;background:var(--g150);border-radius:8px;padding:3px;flex-wrap:wrap}
+.seg-btn{padding:4px 11px;border:none;border-radius:6px;font-size:11.5px;font-weight:500;cursor:pointer;background:transparent;color:var(--g500);transition:all .15s;white-space:nowrap;font-family:var(--font)}
+.seg-btn.active{background:var(--white);color:var(--g800);box-shadow:var(--sh-xs);font-weight:600}
+.wk-head td{background:var(--g150);font-size:11px;font-weight:700;color:var(--g600);text-transform:uppercase;letter-spacing:.04em;padding:6px 14px;border-bottom:1px solid var(--g200)}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--g300);border-radius:3px}
 .divider{height:1px;background:var(--g200);margin:14px 0}
 .hint{font-size:11.5px;color:var(--g400);margin-top:8px}
 </style>
@@ -188,8 +114,8 @@ tfoot td.grand{color:var(--hd);font-size:14px}
   <span class="tb-sep">|</span>
   <span class="tb-sub">Store Voice Refresh · Migration Tracker</span>
   <div class="tb-right">
-    <span class="tb-pill">Wave 1 · 20 Stores</span>
-    <span class="tb-pill">2,000 Store Program</span>
+    <span class="tb-pill">Wks 0–8 Complete</span>
+    <span class="tb-pill">2,210 Store Program</span>
     <span class="live-pill"><span class="live-dot"></span>In Progress</span>
   </div>
 </header>
@@ -216,756 +142,720 @@ tfoot td.grand{color:var(--hd);font-size:14px}
     </nav>
     <div class="s-footer">
       <strong>Store Voice Refresh</strong>
-      Wave 1 · Post-Migration<br>
-      20 of 2,000 stores complete
-      <div style="margin-top:6px;color:rgba(255,255,255,.5);font-size:11px">Last updated Jun 4, 2026</div>
+      Wks 0–8 Complete<br>
+      178 of 2,210 stores done
+      <div style="margin-top:6px;font-size:11px;color:rgba(255,255,255,.6)">Last updated Apr 27, 2026</div>
     </div>
   </aside>
 
   <main class="main">
 
-    <!-- ═══════════════════ OVERVIEW ═══════════════════ -->
-    <div id="sec-overview" class="section active">
-      <div class="page-hd">
+  <!-- ══════════════ OVERVIEW ══════════════ -->
+  <div id="sec-overview" class="section active">
+    <div class="page-hd">
+      <div>
+        <div class="page-title">Migration Overview</div>
+        <div class="page-sub">Store Voice Refresh · Pilot + Weeks 1–8 Complete</div>
+      </div>
+      <div class="page-meta">As of Week 8 (Apr 27, 2026) · Ahead of schedule</div>
+    </div>
+
+    <!-- ahead-of-schedule banner -->
+    <div style="display:flex;align-items:center;gap:10px;background:var(--green50);border:1px solid var(--green100);border-left:3px solid var(--green500);border-radius:var(--r8);padding:10px 16px;font-size:12.5px;color:var(--green700);margin-bottom:16px">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:15px;height:15px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+      <span><strong>Ahead of schedule:</strong> 178 stores complete vs. target of 154 at Week 8 — <strong>+24 stores (+15.6%)</strong> ahead of plan. Weeks 5–8 all exceeded targets.</span>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi accent">
+        <div class="kpi-label">Overall Progress</div>
+        <div class="kpi-val">8.1%</div>
+        <div class="kpi-sub">178 of 2,210 stores migrated</div>
+        <div class="kpi-delta delta-orange">Wks 0–8 of ~35 planned</div>
+      </div>
+      <div class="kpi green">
+        <div class="kpi-label">Phones Deployed</div>
+        <div class="kpi-val">6,433</div>
+        <div class="kpi-sub">+178 VG410 gateways</div>
+        <div class="kpi-delta delta-green">Across 178 stores</div>
+      </div>
+      <div class="kpi green">
+        <div class="kpi-label">vs. Schedule</div>
+        <div class="kpi-val">+24</div>
+        <div class="kpi-sub">178 actual vs. 154 target (Wk 8)</div>
+        <div class="kpi-delta delta-green">+15.6% ahead</div>
+      </div>
+      <div class="kpi yellow">
+        <div class="kpi-label">Phones in MDF</div>
+        <div class="kpi-val">13</div>
+        <div class="kpi-sub">Stores with phones not installed</div>
+        <div class="kpi-delta delta-yellow">Return visits needed</div>
+      </div>
+    </div>
+
+    <!-- Program progress bar -->
+    <div class="prog-wrap">
+      <div class="prog-hd">
         <div>
-          <div class="page-title">Migration Overview</div>
-          <div class="page-sub">Store Voice Refresh · Wave 1 Post-Migration Summary</div>
+          <div style="font-size:13.5px;font-weight:700;color:var(--g900)">Program-Wide Migration Progress</div>
+          <div style="font-size:12px;color:var(--g500);margin-top:2px">2,210 total stores · ~35 migration weeks planned</div>
         </div>
-        <div class="page-meta">Wave 1 complete · 1,980 stores remaining</div>
-      </div>
-
-      <div class="kpi-grid">
-        <div class="kpi accent">
-          <div class="kpi-label">Overall Progress</div>
-          <div class="kpi-val">1.0%</div>
-          <div class="kpi-sub">20 of 2,000 stores migrated</div>
-          <div class="kpi-delta delta-orange">Wave 1 complete</div>
-        </div>
-        <div class="kpi green">
-          <div class="kpi-label">Phones Deployed</div>
-          <div class="kpi-val">532</div>
-          <div class="kpi-sub">Across 20 Wave 1 stores</div>
-          <div class="kpi-delta delta-green">+ 20 voice gateways</div>
-        </div>
-        <div class="kpi yellow">
-          <div class="kpi-label">Phones in MDF</div>
-          <div class="kpi-val">9</div>
-          <div class="kpi-sub">7 stores · access or cable issues</div>
-          <div class="kpi-delta delta-yellow">Pending resolution</div>
-        </div>
-        <div class="kpi red">
-          <div class="kpi-label">Open Actions</div>
-          <div class="kpi-val">1</div>
-          <div class="kpi-sub">ST0136 · VOIP fax CMS follow-up</div>
-          <div class="kpi-delta" style="background:var(--red50);color:var(--red700)">Needs CMS ticket</div>
+        <div style="text-align:right">
+          <div style="font-size:22px;font-weight:800;color:var(--hd);letter-spacing:-.03em">178 <span style="font-size:15px;font-weight:500;color:var(--g400)">/ 2,210</span></div>
+          <div style="font-size:11.5px;color:var(--g400);margin-top:1px">stores complete</div>
         </div>
       </div>
+      <div class="prog-track">
+        <div style="height:10px;width:8.05%;background:var(--hd);border-radius:var(--rfull)"></div>
+      </div>
+      <div class="prog-leg">
+        <div class="prog-leg-item"><div class="prog-dot" style="background:var(--hd)"></div>Complete (178)</div>
+        <div class="prog-leg-item"><div class="prog-dot" style="background:var(--g200)"></div>Remaining (2,032)</div>
+      </div>
+    </div>
 
-      <!-- Overall progress bar -->
-      <div class="prog-wrap">
-        <div class="prog-hd">
+    <div class="grid-5-3">
+      <!-- Week-by-week actual vs target -->
+      <div class="card">
+        <div class="card-hd">
           <div>
-            <div class="prog-label">Program-Wide Migration Progress</div>
-            <div style="font-size:12px;color:var(--g500);margin-top:2px">2,000 total stores · Wave 1 of multiple waves</div>
+            <div class="card-title">Weekly Progression · Actual vs. Target</div>
+            <div class="card-sub">Cumulative stores completed each week</div>
           </div>
-          <div style="text-align:right">
-            <div style="font-size:22px;font-weight:800;color:var(--hd);letter-spacing:-.03em">20 <span style="font-size:15px;font-weight:500;color:var(--g400)">/ 2,000</span></div>
-            <div style="font-size:11.5px;color:var(--g400);margin-top:1px">stores complete</div>
+          <div style="display:flex;gap:12px;font-size:11.5px">
+            <span style="display:flex;align-items:center;gap:4px;color:var(--hd);font-weight:600"><span style="width:10px;height:3px;background:var(--hd);border-radius:2px;display:inline-block"></span>Actual</span>
+            <span style="display:flex;align-items:center;gap:4px;color:var(--g400)"><span style="width:10px;height:3px;background:var(--g300);border-radius:2px;display:inline-block"></span>Target</span>
           </div>
         </div>
-        <div class="prog-track">
-          <div class="prog-fill" style="width:1%"></div>
-        </div>
-        <div class="prog-leg">
-          <div class="prog-leg-item"><div class="prog-dot" style="background:var(--hd)"></div> Wave 1 complete (20)</div>
-          <div class="prog-leg-item"><div class="prog-dot" style="background:var(--g200)"></div> Remaining (1,980)</div>
-        </div>
-        <!-- Store grid visualization -->
-        <div style="margin-top:16px">
-          <div style="font-size:11px;font-weight:600;color:var(--g400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">Store-by-store · Each cell = 1 store</div>
-          <div class="wave-grid" id="waveGrid"></div>
-          <div class="hint">Orange = migrated · Yellow = migrated with exceptions · Gray = pending</div>
+        <div style="padding:0">
+          <table>
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th>Dates</th>
+                <th class="r">Stores</th>
+                <th class="r">Phones</th>
+                <th class="r">vs Target</th>
+                <th class="r">Cumul. Actual</th>
+                <th class="r">Cumul. Target</th>
+              </tr>
+            </thead>
+            <tbody><tr>
+      <td class="td-store">Pilot</td>
+      <td style="font-size:12px;color:var(--g500)">2/23–2/27</td>
+      <td class="r mono">4</td>
+      <td class="r mono">126</td>
+      <td class="r mono" style="color:var(--green600);font-weight:700">+0</td>
+      <td class="r mono">4</td>
+      <td class="r mono" style="color:var(--g400)">4</td>
+    </tr><tr>
+      <td class="td-store">Wk 1</td>
+      <td style="font-size:12px;color:var(--g500)">3/9–3/13</td>
+      <td class="r mono">8</td>
+      <td class="r mono">277</td>
+      <td class="r mono" style="color:var(--red600);font-weight:700">-2</td>
+      <td class="r mono">12</td>
+      <td class="r mono" style="color:var(--g400)">14</td>
+    </tr><tr>
+      <td class="td-store">Wk 2</td>
+      <td style="font-size:12px;color:var(--g500)">3/16–3/20</td>
+      <td class="r mono">5</td>
+      <td class="r mono">124</td>
+      <td class="r mono" style="color:var(--red600);font-weight:700">-7</td>
+      <td class="r mono">17</td>
+      <td class="r mono" style="color:var(--g400)">24</td>
+    </tr><tr>
+      <td class="td-store">Wk 3</td>
+      <td style="font-size:12px;color:var(--g500)">3/23–3/27</td>
+      <td class="r mono">10</td>
+      <td class="r mono">409</td>
+      <td class="r mono" style="color:var(--red600);font-weight:700">-7</td>
+      <td class="r mono">27</td>
+      <td class="r mono" style="color:var(--g400)">34</td>
+    </tr><tr>
+      <td class="td-store">Wk 4</td>
+      <td style="font-size:12px;color:var(--g500)">3/30–4/3</td>
+      <td class="r mono">20</td>
+      <td class="r mono">841</td>
+      <td class="r mono" style="color:var(--red600);font-weight:700">-7</td>
+      <td class="r mono">47</td>
+      <td class="r mono" style="color:var(--g400)">54</td>
+    </tr><tr>
+      <td class="td-store">Wk 5</td>
+      <td style="font-size:12px;color:var(--g500)">4/6–4/10</td>
+      <td class="r mono">34</td>
+      <td class="r mono">1,214</td>
+      <td class="r mono" style="color:var(--green600);font-weight:700">+7</td>
+      <td class="r mono">81</td>
+      <td class="r mono" style="color:var(--g400)">74</td>
+    </tr><tr>
+      <td class="td-store">Wk 6</td>
+      <td style="font-size:12px;color:var(--g500)">4/13–4/17</td>
+      <td class="r mono">27</td>
+      <td class="r mono">1,105</td>
+      <td class="r mono" style="color:var(--green600);font-weight:700">+14</td>
+      <td class="r mono">108</td>
+      <td class="r mono" style="color:var(--g400)">94</td>
+    </tr><tr>
+      <td class="td-store">Wk 7</td>
+      <td style="font-size:12px;color:var(--g500)">4/20–4/24</td>
+      <td class="r mono">32</td>
+      <td class="r mono">1,222</td>
+      <td class="r mono" style="color:var(--green600);font-weight:700">+16</td>
+      <td class="r mono">140</td>
+      <td class="r mono" style="color:var(--g400)">124</td>
+    </tr><tr>
+      <td class="td-store">Wk 8</td>
+      <td style="font-size:12px;color:var(--g500)">4/27–5/1</td>
+      <td class="r mono">38</td>
+      <td class="r mono">1,115</td>
+      <td class="r mono" style="color:var(--green600);font-weight:700">+24</td>
+      <td class="r mono">178</td>
+      <td class="r mono" style="color:var(--g400)">154</td>
+    </tr></tbody>
+            <tfoot>
+              <tr>
+                <td>Total</td><td></td>
+                <td class="r grand">178</td>
+                <td class="r grand">6,433</td>
+                <td class="r" style="color:var(--green600);font-weight:700">+24</td>
+                <td class="r grand">178</td>
+                <td class="r" style="color:var(--g400)">154</td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
 
-      <div class="grid-5-3">
-        <!-- Wave 1 breakdown -->
+      <!-- Right col: stores/wk bars + upcoming -->
+      <div style="display:flex;flex-direction:column;gap:14px">
         <div class="card">
-          <div class="card-hd">
-            <div>
-              <div class="card-title">Wave 1 · Store Outcomes</div>
-              <div class="card-sub">20 stores · all migration statuses completed</div>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="mini-bar">
-              <div class="mini-bar-top"><span>Clean deployment</span><span class="mini-bar-count">12</span></div>
-              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:60%;background:var(--green500)"></div></div>
-            </div>
-            <div class="mini-bar">
-              <div class="mini-bar-top"><span>Complete w/ exceptions</span><span class="mini-bar-count">7</span></div>
-              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:35%;background:var(--yellow500)"></div></div>
-            </div>
-            <div class="mini-bar">
-              <div class="mini-bar-top"><span>Open action required</span><span class="mini-bar-count">1</span></div>
-              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:5%;background:var(--red600)"></div></div>
-            </div>
-            <div class="divider"></div>
-            <div class="mini-bar">
-              <div class="mini-bar-top"><span>Access restriction (MDF)</span><span class="mini-bar-count">6 stores</span></div>
-              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:30%;background:var(--g400)"></div></div>
-            </div>
-            <div class="mini-bar">
-              <div class="mini-bar-top"><span>Technical / cable issue</span><span class="mini-bar-count">2 stores</span></div>
-              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:10%;background:var(--g400)"></div></div>
-            </div>
-            <div class="mini-bar">
-              <div class="mini-bar-top"><span>MOD escalation (resolved)</span><span class="mini-bar-count">1 store</span></div>
-              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:5%;background:var(--green400)"></div></div>
-            </div>
-          </div>
+          <div class="card-hd"><div class="card-title">Stores per Week</div></div>
+          <div class="card-body"><div class="mini-bar">
+      <div class="mini-bar-top"><span>Pilot <span style="color:var(--g400);font-size:11px">2/23–2/27</span></span><span class="mini-bar-count">4</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:11%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 1 <span style="color:var(--g400);font-size:11px">3/9–3/13</span></span><span class="mini-bar-count">8</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:21%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 2 <span style="color:var(--g400);font-size:11px">3/16–3/20</span></span><span class="mini-bar-count">5</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:13%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 3 <span style="color:var(--g400);font-size:11px">3/23–3/27</span></span><span class="mini-bar-count">10</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:26%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 4 <span style="color:var(--g400);font-size:11px">3/30–4/3</span></span><span class="mini-bar-count">20</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:53%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 5 <span style="color:var(--g400);font-size:11px">4/6–4/10</span></span><span class="mini-bar-count">34</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:89%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 6 <span style="color:var(--g400);font-size:11px">4/13–4/17</span></span><span class="mini-bar-count">27</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:71%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 7 <span style="color:var(--g400);font-size:11px">4/20–4/24</span></span><span class="mini-bar-count">32</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:84%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 8 <span style="color:var(--g400);font-size:11px">4/27–5/1</span></span><span class="mini-bar-count">38</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:100%;background:var(--hd)"></div></div>
+    </div></div>
         </div>
-
-        <!-- Equipment summary -->
         <div class="card">
-          <div class="card-hd">
-            <div class="card-title">Equipment Deployed</div>
-            <div class="card-sub">Wave 1 totals</div>
-          </div>
-          <div class="card-body">
-            <div style="display:flex;flex-direction:column;gap:12px">
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
-                <div>
-                  <div style="font-size:12px;font-weight:600;color:var(--g700)">VG410-24FXS/4FXO</div>
-                  <div style="font-size:11px;color:var(--g400)">Voice Gateway</div>
-                </div>
-                <div style="font-size:20px;font-weight:800;color:var(--hd);letter-spacing:-.03em">20</div>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
-                <div>
-                  <div style="font-size:12px;font-weight:600;color:var(--g700)">9851 IP Phone</div>
-                  <div style="font-size:11px;color:var(--g400)">Standard handset</div>
-                </div>
-                <div style="font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.03em">481</div>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
-                <div>
-                  <div style="font-size:12px;font-weight:600;color:var(--g700)">9861 W/KEM</div>
-                  <div style="font-size:11px;color:var(--g400)">Expansion module</div>
-                </div>
-                <div style="font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.03em">37</div>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
-                <div>
-                  <div style="font-size:12px;font-weight:600;color:var(--g700)">9841 IP Phone</div>
-                  <div style="font-size:11px;color:var(--g400)">Entry handset</div>
-                </div>
-                <div style="font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.03em">14</div>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
-                <div>
-                  <div style="font-size:12px;font-weight:600;color:var(--g700)">Wall Mounts</div>
-                  <div style="font-size:11px;color:var(--g400)">Mounting hardware</div>
-                </div>
-                <div style="font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.03em">24</div>
-              </div>
-              <div style="padding:10px 12px;background:var(--hd-50);border-radius:var(--r8);border:1px solid rgba(249,99,2,.2);display:flex;justify-content:space-between;align-items:center">
-                <div style="font-size:12px;font-weight:700;color:var(--hd-dark)">Total Handsets</div>
-                <div style="font-size:20px;font-weight:800;color:var(--hd);letter-spacing:-.03em">532</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Zebra + VG Recap -->
-      <div class="grid-3">
-        <div class="kpi green" style="border-left:3px solid var(--green500)">
-          <div class="kpi-label">Phone Replacement</div>
-          <div class="kpi-val" style="font-size:18px;color:var(--green600)">Successful</div>
-          <div class="kpi-sub">All 20 stores · new handsets active</div>
-        </div>
-        <div class="kpi green" style="border-left:3px solid var(--green500)">
-          <div class="kpi-label">Voice Gateway Replacement</div>
-          <div class="kpi-val" style="font-size:18px;color:var(--green600)">Successful</div>
-          <div class="kpi-sub">VG410 deployed · no reconfigs needed</div>
-        </div>
-        <div class="kpi green" style="border-left:3px solid var(--green500)">
-          <div class="kpi-label">Zebra Device Integration</div>
-          <div class="kpi-val" style="font-size:18px;color:var(--green600)">Complete</div>
-          <div class="kpi-sub">All devices successfully integrated</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════ STORE STATUS ═══════════════════ -->
-    <div id="sec-stores" class="section">
-      <div class="page-hd">
-        <div>
-          <div class="page-title">Store Status</div>
-          <div class="page-sub">Wave 1 · All 20 migrated stores</div>
-        </div>
-        <div class="page-meta">All sites: Migration Status = Completed</div>
-      </div>
-
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-        <div style="position:relative;flex:1;max-width:360px">
-          <svg style="position:absolute;left:13px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--g400);pointer-events:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-          <input id="storeSearch" type="text" placeholder="Search store number or notes…"
-            oninput="filterStores(this.value)"
-            style="width:100%;padding:8px 14px 8px 34px;border-radius:var(--rfull);border:1.5px solid var(--g200);background:var(--white);font-family:var(--font);font-size:13px;color:var(--g900);outline:none;box-shadow:var(--sh-xs);transition:border-color .15s"
-            onfocus="this.style.borderColor='var(--hd)'" onblur="this.style.borderColor='var(--g200)'">
-        </div>
-        <div id="storeCount" style="font-size:12px;color:var(--g400);white-space:nowrap">20 stores</div>
-      </div>
-
-      <div class="table-wrap">
-        <div class="table-header">
-          <div class="card-title">Wave 1 · Store-by-Store Detail</div>
-          <div class="card-sub" style="margin-top:2px">Phones in MDF = provisioned but not installed due to access or physical constraints</div>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Store</th>
-              <th>Outcome</th>
-              <th class="r">VG410</th>
-              <th class="r">9841</th>
-              <th class="r">9851</th>
-              <th class="r">9861 W/KEM</th>
-              <th class="r">Wall Mounts</th>
-              <th class="r">Total Phones</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody id="storesTbody">
-            <tr>
-              <td class="td-store">ST0105</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">17</td><td class="r mono">3</td><td class="r mono">0</td>
-              <td class="r mono">20</td>
-              <td class="td-note">Ext 402 (Loss Prevention) in MDF — access restriction</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0111</td>
-              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
-              <td class="r mono">1</td><td class="r mono">3</td><td class="r mono">29</td><td class="r mono">1</td><td class="r mono">3</td>
-              <td class="r mono">33</td>
-              <td class="td-note">All phones deployed</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0123</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">20</td><td class="r mono">2</td><td class="r mono">0</td>
-              <td class="r mono">22</td>
-              <td class="td-note">Ext 441 (Upstairs Office) in MDF — access restriction</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0128</td>
-              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">26</td><td class="r mono">2</td><td class="r mono">0</td>
-              <td class="r mono">28</td>
-              <td class="td-note">All phones deployed</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0134</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">33</td><td class="r mono">2</td><td class="r mono">1</td>
-              <td class="r mono">35</td>
-              <td class="td-note">Ext 405 in MDF — port security issue; legacy phone in place</td>
-            </tr>
-            <tr style="background:var(--red50)">
-              <td class="td-store" style="color:var(--red700)">ST0136</td>
-              <td><span class="badge b-open"><span class="b-dot"></span>Open Action</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">21</td><td class="r mono">2</td><td class="r mono">0</td>
-              <td class="r mono">23</td>
-              <td class="td-note" style="color:var(--red700);max-width:none">VOIP Fax not working — CMS follow-up needed · Ext 488 (Bookkeeping) in MDF</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0140</td>
-              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">16</td><td class="r mono">2</td><td class="r mono">0</td>
-              <td class="r mono">18</td>
-              <td class="td-note">All phones deployed</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0159</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">34</td><td class="r mono">2</td><td class="r mono">2</td>
-              <td class="r mono">36</td>
-              <td class="td-note">Ext 453 in MDF — short cable on poll mount; old phone left working</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0163</td>
-              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">21</td><td class="r mono">3</td><td class="r mono">0</td>
-              <td class="r mono">24</td>
-              <td class="td-note">All phones deployed</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0170</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">36</td><td class="r mono">1</td><td class="r mono">5</td>
-              <td class="r mono">37</td>
-              <td class="td-note">MOD objected to phone removal — escalated, resolved; phone upgraded</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0172</td>
-              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">19</td><td class="r mono">1</td><td class="r mono">0</td>
-              <td class="r mono">20</td>
-              <td class="td-note">All phones deployed</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST1748</td>
-              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">9</td><td class="r mono">2</td><td class="r mono">0</td>
-              <td class="r mono">11</td>
-              <td class="td-note">All phones deployed</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST1755</td>
-              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
-              <td class="r mono">1</td><td class="r mono">6</td><td class="r mono">25</td><td class="r mono">1</td><td class="r mono">0</td>
-              <td class="r mono">32</td>
-              <td class="td-note">All phones deployed</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST1777</td>
-              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">41</td><td class="r mono">2</td><td class="r mono">3</td>
-              <td class="r mono">43</td>
-              <td class="td-note">All phones deployed</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST1856</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
-              <td class="r mono">1</td><td class="r mono">5</td><td class="r mono">23</td><td class="r mono">2</td><td class="r mono">0</td>
-              <td class="r mono">30</td>
-              <td class="td-note">Ext 077, 399, 458 in MDF — access restrictions (3 phones)</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST6848</td>
-              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">20</td><td class="r mono">2</td><td class="r mono">0</td>
-              <td class="r mono">22</td>
-              <td class="td-note">All phones deployed</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST6940</td>
-              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">26</td><td class="r mono">2</td><td class="r mono">10</td>
-              <td class="r mono">28</td>
-              <td class="td-note">All phones deployed</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST6941</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">22</td><td class="r mono">1</td><td class="r mono">0</td>
-              <td class="r mono">23</td>
-              <td class="td-note">Ext 410 (LPS) in MDF — access restriction</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST6959</td>
-              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">23</td><td class="r mono">2</td><td class="r mono">0</td>
-              <td class="r mono">25</td>
-              <td class="td-note">All phones deployed</td>
-            </tr>
-            <tr>
-              <td class="td-store">ST8412</td>
-              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
-              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">20</td><td class="r mono">2</td><td class="r mono">0</td>
-              <td class="r mono">22</td>
-              <td class="td-note">All phones deployed</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>Wave 1 Totals</td>
-              <td></td>
-              <td class="r grand">20</td>
-              <td class="r grand">14</td>
-              <td class="r grand">481</td>
-              <td class="r grand">37</td>
-              <td class="r grand">24</td>
-              <td class="r grand">532</td>
-              <td></td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div>
-
-    <!-- ═══════════════════ EQUIPMENT ═══════════════════ -->
-    <div id="sec-equipment" class="section">
-      <div class="page-hd">
-        <div>
-          <div class="page-title">Equipment Summary</div>
-          <div class="page-sub">Wave 1 · Devices deployed across 20 stores</div>
-        </div>
-        <div class="page-meta">532 handsets + 20 voice gateways</div>
-      </div>
-
-      <div class="kpi-grid">
-        <div class="kpi accent">
-          <div class="kpi-label">9851 IP Phone</div>
-          <div class="kpi-val">481</div>
-          <div class="kpi-sub">Standard floor handset</div>
-          <div class="kpi-delta delta-orange">90.4% of handsets</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label">9861 W/KEM</div>
-          <div class="kpi-val">37</div>
-          <div class="kpi-sub">Expansion key module</div>
-          <div class="kpi-delta delta-green">6.9% of handsets</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label">9841 IP Phone</div>
-          <div class="kpi-val">14</div>
-          <div class="kpi-sub">Entry-level handset</div>
-          <div class="kpi-delta delta-green">2.6% of handsets</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label">VG410 Gateways</div>
-          <div class="kpi-val">20</div>
-          <div class="kpi-sub">1 per store · all active</div>
-          <div class="kpi-delta delta-green">100% deployed</div>
-        </div>
-      </div>
-
-      <div class="grid-5-3" style="margin-bottom:16px">
-        <div class="card">
-          <div class="card-hd">
-            <div class="card-title">Model Breakdown</div>
-            <div class="card-sub">Handset types by store</div>
-          </div>
+          <div class="card-hd"><div class="card-title">Upcoming</div><div class="card-sub" style="margin-top:0">Next 3 weeks</div></div>
           <div class="card-body" style="padding:0">
             <table>
-              <thead>
-                <tr>
-                  <th>Store</th>
-                  <th class="r">9841</th>
-                  <th class="r">9851</th>
-                  <th class="r">9861 W/KEM</th>
-                  <th class="r">Wall Mnt</th>
-                  <th class="r">Subtotal</th>
-                </tr>
-              </thead>
+              <thead><tr><th>Week</th><th>Dates</th><th class="r">Stores</th></tr></thead>
               <tbody>
-                <tr><td class="td-store">ST0105</td><td class="r mono">—</td><td class="r mono">17</td><td class="r mono">3</td><td class="r mono">—</td><td class="r mono">20</td></tr>
-                <tr><td class="td-store">ST0111</td><td class="r mono">3</td><td class="r mono">29</td><td class="r mono">1</td><td class="r mono">3</td><td class="r mono">33</td></tr>
-                <tr><td class="td-store">ST0123</td><td class="r mono">—</td><td class="r mono">20</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">22</td></tr>
-                <tr><td class="td-store">ST0128</td><td class="r mono">—</td><td class="r mono">26</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">28</td></tr>
-                <tr><td class="td-store">ST0134</td><td class="r mono">—</td><td class="r mono">33</td><td class="r mono">2</td><td class="r mono">1</td><td class="r mono">35</td></tr>
-                <tr><td class="td-store">ST0136</td><td class="r mono">—</td><td class="r mono">21</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">23</td></tr>
-                <tr><td class="td-store">ST0140</td><td class="r mono">—</td><td class="r mono">16</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">18</td></tr>
-                <tr><td class="td-store">ST0159</td><td class="r mono">—</td><td class="r mono">34</td><td class="r mono">2</td><td class="r mono">2</td><td class="r mono">36</td></tr>
-                <tr><td class="td-store">ST0163</td><td class="r mono">—</td><td class="r mono">21</td><td class="r mono">3</td><td class="r mono">—</td><td class="r mono">24</td></tr>
-                <tr><td class="td-store">ST0170</td><td class="r mono">—</td><td class="r mono">36</td><td class="r mono">1</td><td class="r mono">5</td><td class="r mono">37</td></tr>
-                <tr><td class="td-store">ST0172</td><td class="r mono">—</td><td class="r mono">19</td><td class="r mono">1</td><td class="r mono">—</td><td class="r mono">20</td></tr>
-                <tr><td class="td-store">ST1748</td><td class="r mono">—</td><td class="r mono">9</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">11</td></tr>
-                <tr><td class="td-store">ST1755</td><td class="r mono">6</td><td class="r mono">25</td><td class="r mono">1</td><td class="r mono">—</td><td class="r mono">32</td></tr>
-                <tr><td class="td-store">ST1777</td><td class="r mono">—</td><td class="r mono">41</td><td class="r mono">2</td><td class="r mono">3</td><td class="r mono">43</td></tr>
-                <tr><td class="td-store">ST1856</td><td class="r mono">5</td><td class="r mono">23</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">30</td></tr>
-                <tr><td class="td-store">ST6848</td><td class="r mono">—</td><td class="r mono">20</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">22</td></tr>
-                <tr><td class="td-store">ST6940</td><td class="r mono">—</td><td class="r mono">26</td><td class="r mono">2</td><td class="r mono">10</td><td class="r mono">28</td></tr>
-                <tr><td class="td-store">ST6941</td><td class="r mono">—</td><td class="r mono">22</td><td class="r mono">1</td><td class="r mono">—</td><td class="r mono">23</td></tr>
-                <tr><td class="td-store">ST6959</td><td class="r mono">—</td><td class="r mono">23</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">25</td></tr>
-                <tr><td class="td-store">ST8412</td><td class="r mono">—</td><td class="r mono">20</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">22</td></tr>
+                <tr><td class="td-store">Wk 9</td><td style="font-size:12px;color:var(--g500)">5/4–5/8</td><td class="r mono">71</td></tr>
+                <tr><td class="td-store">Wk 10</td><td style="font-size:12px;color:var(--g500)">5/11–5/15</td><td class="r mono">71</td></tr>
+                <tr><td class="td-store">Wk 11</td><td style="font-size:12px;color:var(--g500)">5/18–5/22</td><td class="r mono">70</td></tr>
               </tbody>
-              <tfoot>
-                <tr>
-                  <td>Totals</td>
-                  <td class="r grand">14</td>
-                  <td class="r grand">481</td>
-                  <td class="r grand">37</td>
-                  <td class="r grand">24</td>
-                  <td class="r grand">532</td>
-                </tr>
-              </tfoot>
             </table>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div class="card">
-            <div class="card-hd">
-              <div class="card-title">Store Size Range</div>
-              <div class="card-sub">Handset count per store</div>
+    <!-- Equipment + exception summary -->
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-hd"><div class="card-title">Equipment Deployed (Cumulative)</div></div>
+        <div class="card-body">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
+              <div><div style="font-size:12px;font-weight:600;color:var(--g700)">9851 IP Phone</div><div style="font-size:11px;color:var(--g400)">Standard handset · 85.7% of fleet</div></div>
+              <div style="font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.03em">5,515</div>
             </div>
-            <div class="card-body">
-              <div class="mini-bar">
-                <div class="mini-bar-top"><span>Largest · ST1777</span><span class="mini-bar-count">43</span></div>
-                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:100%;background:var(--hd)"></div></div>
-              </div>
-              <div class="mini-bar">
-                <div class="mini-bar-top"><span>ST0170</span><span class="mini-bar-count">37</span></div>
-                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:86%;background:var(--hd);opacity:.7"></div></div>
-              </div>
-              <div class="mini-bar">
-                <div class="mini-bar-top"><span>ST0159</span><span class="mini-bar-count">36</span></div>
-                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:84%;background:var(--hd);opacity:.7"></div></div>
-              </div>
-              <div class="mini-bar">
-                <div class="mini-bar-top"><span>ST0134</span><span class="mini-bar-count">35</span></div>
-                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:81%;background:var(--hd);opacity:.6"></div></div>
-              </div>
-              <div class="mini-bar">
-                <div class="mini-bar-top"><span>ST1855</span><span class="mini-bar-count">33</span></div>
-                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:77%;background:var(--hd);opacity:.6"></div></div>
-              </div>
-              <div class="divider"></div>
-              <div class="mini-bar">
-                <div class="mini-bar-top"><span>Smallest · ST1748</span><span class="mini-bar-count">11</span></div>
-                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:26%;background:var(--g400)"></div></div>
-              </div>
-              <div style="margin-top:10px;display:flex;justify-content:space-between;font-size:12px;color:var(--g500)">
-                <span>Avg per store</span>
-                <span style="font-weight:700;color:var(--g800);font-family:monospace">26.6</span>
-              </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
+              <div><div style="font-size:12px;font-weight:600;color:var(--g700)">9861 W/KEM</div><div style="font-size:11px;color:var(--g400)">Expansion module · 9.6%</div></div>
+              <div style="font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.03em">619</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
+              <div><div style="font-size:12px;font-weight:600;color:var(--g700)">9841 IP Phone</div><div style="font-size:11px;color:var(--g400)">Entry handset · 4.6%</div></div>
+              <div style="font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.03em">299</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
+              <div><div style="font-size:12px;font-weight:600;color:var(--g700)">VG410-24FXS/4FXO</div><div style="font-size:11px;color:var(--g400)">Voice gateway · 1 per store</div></div>
+              <div style="font-size:20px;font-weight:800;color:var(--hd);letter-spacing:-.03em">178</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--hd-50);border-radius:var(--r8);border:1px solid rgba(249,99,2,.2)">
+              <div style="font-size:12px;font-weight:700;color:var(--hd-dark)">Total Handsets</div>
+              <div style="font-size:20px;font-weight:800;color:var(--hd);letter-spacing:-.03em">6,433</div>
             </div>
           </div>
-
-          <div class="card">
-            <div class="card-hd">
-              <div class="card-title">Wall Mount Concentration</div>
-              <div class="card-sub">24 total · 3 stores account for 75%</div>
-            </div>
-            <div class="card-body">
-              <div class="mini-bar">
-                <div class="mini-bar-top"><span>ST6940</span><span class="mini-bar-count">10</span></div>
-                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:100%;background:var(--blue600)"></div></div>
-              </div>
-              <div class="mini-bar">
-                <div class="mini-bar-top"><span>ST0170</span><span class="mini-bar-count">5</span></div>
-                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:50%;background:var(--blue600);opacity:.7"></div></div>
-              </div>
-              <div class="mini-bar">
-                <div class="mini-bar-top"><span>ST0111 / ST1777 / ST0159</span><span class="mini-bar-count">3 each</span></div>
-                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:30%;background:var(--blue600);opacity:.5"></div></div>
-              </div>
-              <div class="mini-bar">
-                <div class="mini-bar-top"><span>ST0134</span><span class="mini-bar-count">1</span></div>
-                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:10%;background:var(--g300)"></div></div>
-              </div>
-            </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hd"><div class="card-title">Exception Summary</div><div class="card-sub">Across all 178 complete stores</div></div>
+        <div class="card-body">
+          <div class="mini-bar">
+            <div class="mini-bar-top"><span>VG Reconfigured (110 block)</span><span class="mini-bar-count">20</span></div>
+            <div class="mini-bar-track"><div class="mini-bar-fill" style="width:100%;background:var(--g400)"></div></div>
+          </div>
+          <div class="mini-bar">
+            <div class="mini-bar-top"><span>Phones left in MDF</span><span class="mini-bar-count">13</span></div>
+            <div class="mini-bar-track"><div class="mini-bar-fill" style="width:65%;background:var(--yellow500)"></div></div>
+          </div>
+          <div class="mini-bar">
+            <div class="mini-bar-top"><span>DHCP issues (resolved)</span><span class="mini-bar-count">6</span></div>
+            <div class="mini-bar-track"><div class="mini-bar-fill" style="width:30%;background:var(--green500)"></div></div>
+          </div>
+          <div class="mini-bar">
+            <div class="mini-bar-top"><span>Fax issues</span><span class="mini-bar-count">5</span></div>
+            <div class="mini-bar-track"><div class="mini-bar-fill" style="width:25%;background:var(--hd)"></div></div>
+          </div>
+          <div class="mini-bar">
+            <div class="mini-bar-top"><span>Call park issues</span><span class="mini-bar-count">2</span></div>
+            <div class="mini-bar-track"><div class="mini-bar-fill" style="width:10%;background:var(--g300)"></div></div>
+          </div>
+          <div class="divider"></div>
+          <div style="font-size:12px;color:var(--g500);line-height:1.7">
+            <strong style="color:var(--g700)">VG Reconfigured:</strong> 110-block cabling requiring legacy VG to remain in place rather than full replacement.<br>
+            <strong style="color:var(--g700)">MDF phones:</strong> Provisioned but awaiting return visit for install — locked rooms, cable length, access restrictions.
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- ═══════════════════ OPEN ITEMS ═══════════════════ -->
-    <div id="sec-issues" class="section">
-      <div class="page-hd">
-        <div>
-          <div class="page-title">Open Items &amp; Exceptions</div>
-          <div class="page-sub">Wave 1 · Sorted by priority — act on red first</div>
-        </div>
-        <div class="page-meta">1 open action · 7 pending · 1 resolved</div>
+  <!-- ══════════════ STORE STATUS ══════════════ -->
+  <div id="sec-stores" class="section">
+    <div class="page-hd">
+      <div>
+        <div class="page-title">Store Status</div>
+        <div class="page-sub">178 stores complete · Pilot + Weeks 1–8</div>
       </div>
+      <div class="page-meta">All sites: Migration Status = Completed</div>
+    </div>
 
-      <!-- Priority KPIs -->
-      <div class="kpi-grid" style="margin-bottom:20px">
-        <div class="kpi red" style="background:var(--red50)">
-          <div class="kpi-label" style="color:var(--red700)">Act Now</div>
-          <div class="kpi-val" style="font-size:36px">1</div>
-          <div class="kpi-sub" style="color:var(--red700);font-weight:600">VOIP fax · ST0136</div>
-          <div class="kpi-delta" style="background:var(--red100);color:var(--red700);margin-top:6px">CMS ticket required</div>
-        </div>
-        <div class="kpi yellow">
-          <div class="kpi-label">Phones in MDF</div>
-          <div class="kpi-val">9</div>
-          <div class="kpi-sub">Across 6 stores · not yet installed</div>
-          <div class="kpi-delta delta-yellow">Needs return visit</div>
-        </div>
-        <div class="kpi yellow">
-          <div class="kpi-label">Technical Blocks</div>
-          <div class="kpi-val">2</div>
-          <div class="kpi-sub">Port security · short cable</div>
-          <div class="kpi-delta delta-yellow">ST0134 · ST0159</div>
-        </div>
-        <div class="kpi green">
-          <div class="kpi-label">Resolved</div>
-          <div class="kpi-val">1</div>
-          <div class="kpi-sub">ST0170 · MOD escalation closed</div>
-          <div class="kpi-delta delta-green">No action needed</div>
-        </div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+      <div style="position:relative;flex:1;max-width:320px">
+        <svg style="position:absolute;left:13px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--g400);pointer-events:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input id="storeSearch" type="text" placeholder="Search store, city, state…"
+          oninput="renderStores()"
+          style="width:100%;padding:8px 14px 8px 34px;border-radius:var(--rfull);border:1.5px solid var(--g200);background:var(--white);font-family:var(--font);font-size:13px;color:var(--g900);outline:none;box-shadow:var(--sh-xs);transition:border-color .15s"
+          onfocus="this.style.borderColor='var(--hd)'" onblur="this.style.borderColor='var(--g200)'">
       </div>
+      <div class="seg-ctrl" id="wkFilter">
+        <button class="seg-btn active" onclick="setWk('all',this)">All</button>
+        <button class="seg-btn" onclick="setWk('Pilot',this)">Pilot</button>
+        <button class="seg-btn" onclick="setWk('1',this)">Wk 1</button>
+        <button class="seg-btn" onclick="setWk('2',this)">Wk 2</button>
+        <button class="seg-btn" onclick="setWk('3',this)">Wk 3</button>
+        <button class="seg-btn" onclick="setWk('4',this)">Wk 4</button>
+        <button class="seg-btn" onclick="setWk('5',this)">Wk 5</button>
+        <button class="seg-btn" onclick="setWk('6',this)">Wk 6</button>
+        <button class="seg-btn" onclick="setWk('7',this)">Wk 7</button>
+        <button class="seg-btn" onclick="setWk('8',this)">Wk 8</button>
+      </div>
+      <div id="storeCount" style="font-size:12px;color:var(--g400);white-space:nowrap">178 stores</div>
+    </div>
 
-      <!-- P1: Critical open action -->
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-        <div style="width:20px;height:20px;border-radius:50%;background:var(--red600);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-          <span style="color:#fff;font-size:11px;font-weight:800">1</span>
-        </div>
-        <span style="font-size:12px;font-weight:700;color:var(--red700);text-transform:uppercase;letter-spacing:.06em">Critical · Action Required Now</span>
-      </div>
-      <div style="background:var(--red50);border:1.5px solid var(--red100);border-left:4px solid var(--red600);border-radius:var(--r12);padding:18px 20px;margin-bottom:20px;box-shadow:var(--sh-sm)">
-        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px">
-          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-            <span style="font-size:15px;font-weight:800;color:var(--g900)">ST0136</span>
-            <span class="badge b-open"><span class="b-dot"></span>Open Action</span>
-            <span class="badge b-info"><span class="b-dot"></span>Technical</span>
-          </div>
-          <div style="font-size:11.5px;color:var(--red600);font-weight:600;white-space:nowrap;background:var(--red100);padding:3px 10px;border-radius:var(--rfull)">Owner: CMS Team</div>
-        </div>
-        <div style="font-size:14px;font-weight:600;color:var(--g900);margin-bottom:6px">VOIP Fax Not Working — Port 1/0/15 Pro Desk</div>
-        <div style="font-size:13px;color:var(--g700);line-height:1.65;margin-bottom:10px">
-          Fax on pro desk port 1/0/15 is not functioning post-migration. Onsite staff stated the fax is not used frequently.
-          CMS team must confirm: <strong>(a)</strong> remediate and restore fax, or <strong>(b)</strong> decommission the fax line before this item can be closed.
-        </div>
-        <div style="background:var(--red100);border-radius:var(--r8);padding:10px 14px;font-size:12.5px;color:var(--red700)">
-          <strong>Also at ST0136:</strong> Ext 488 (Bookkeeping) provisioned and left in MDF — access restriction. Schedule return visit once CMS work is complete.
-        </div>
-      </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Store</th><th>Name</th><th>St</th><th>Week</th><th>Date</th>
+            <th class="r">9841</th><th class="r">9851</th><th class="r">9861</th>
+            <th class="r">Total</th><th class="r">Walls</th><th>Flags</th><th>Notes</th>
+          </tr>
+        </thead>
+        <tbody id="storesTbody"></tbody>
+      </table>
+    </div>
+  </div>
 
-      <!-- P2: Pending return visits -->
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-        <div style="width:20px;height:20px;border-radius:50%;background:var(--yellow500);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-          <span style="color:#fff;font-size:11px;font-weight:800">2</span>
-        </div>
-        <span style="font-size:12px;font-weight:700;color:var(--yellow700);text-transform:uppercase;letter-spacing:.06em">Pending · Return Visits Required</span>
-        <span style="font-size:11.5px;color:var(--g400);margin-left:4px">9 phones sitting in MDFs</span>
+  <!-- ══════════════ EQUIPMENT ══════════════ -->
+  <div id="sec-equipment" class="section">
+    <div class="page-hd">
+      <div>
+        <div class="page-title">Equipment Summary</div>
+        <div class="page-sub">Cumulative · Pilot + Weeks 1–8 · 178 stores</div>
       </div>
-      <div class="table-wrap" style="margin-bottom:20px">
-        <table>
-          <thead>
-            <tr>
-              <th>Store</th>
-              <th>Extensions in MDF</th>
-              <th>Location / Reason</th>
-              <th class="r">Phones</th>
-              <th>Next Step</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="td-store">ST1856</td>
-              <td class="mono">077, 399, 458</td>
-              <td style="font-size:12.5px;color:var(--g700)">Multiple inaccessible areas</td>
-              <td class="r mono" style="color:var(--yellow700);font-weight:700">3</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0105</td>
-              <td class="mono">402</td>
-              <td style="font-size:12.5px;color:var(--g700)">Loss Prevention office — access restriction</td>
-              <td class="r mono">1</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>LP Coordination</span></td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0123</td>
-              <td class="mono">441</td>
-              <td style="font-size:12.5px;color:var(--g700)">Upstairs office — access restriction</td>
-              <td class="r mono">1</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
-            </tr>
-            <tr>
-              <td class="td-store">ST6941</td>
-              <td class="mono">410</td>
-              <td style="font-size:12.5px;color:var(--g700)">LPS office — access restriction</td>
-              <td class="r mono">1</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>LP Coordination</span></td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0134</td>
-              <td class="mono">405</td>
-              <td style="font-size:12.5px;color:var(--g700)">Port security issue — legacy phone in place</td>
-              <td class="r mono">1</td>
-              <td><span class="badge b-info"><span class="b-dot"></span>Network Review</span></td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0159</td>
-              <td class="mono">453</td>
-              <td style="font-size:12.5px;color:var(--g700)">Short cable on poll mount — old phone in place</td>
-              <td class="r mono">1</td>
-              <td><span class="badge b-info"><span class="b-dot"></span>Cable Remedy</span></td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>6 stores affected</td>
-              <td></td>
-              <td></td>
-              <td class="r grand">9</td>
-              <td style="font-size:11.5px;color:var(--g400)">phones in MDF</td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+      <div class="page-meta">6,433 handsets + 178 gateways + 1,424 wall mounts</div>
+    </div>
 
-      <!-- P3: Resolved -->
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-        <div style="width:20px;height:20px;border-radius:50%;background:var(--green500);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-          <svg fill="none" stroke="#fff" viewBox="0 0 24 24" style="width:12px;height:12px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-        </div>
-        <span style="font-size:12px;font-weight:700;color:var(--green700);text-transform:uppercase;letter-spacing:.06em">Resolved · No Action Needed</span>
+    <div class="kpi-grid">
+      <div class="kpi accent">
+        <div class="kpi-label">9851 IP Phone</div>
+        <div class="kpi-val">5,515</div>
+        <div class="kpi-sub">Standard floor handset</div>
+        <div class="kpi-delta delta-orange">85.7% of handsets</div>
       </div>
-      <div style="background:var(--green50);border:1px solid var(--green100);border-left:4px solid var(--green500);border-radius:var(--r12);padding:16px 20px;box-shadow:var(--sh-xs)">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <span style="font-size:14px;font-weight:700;color:var(--g900)">ST0170</span>
-          <span class="badge b-clean"><span class="b-dot"></span>Resolved</span>
-          <span class="badge b-info"><span class="b-dot"></span>MOD Escalation</span>
-        </div>
-        <div style="font-size:13px;color:var(--g700);line-height:1.6">
-          MOD <strong>Jaime Tolsa</strong> initially objected to Conquest removing the management office phone. Escalated — MOD was reminded that direction came from THD leadership. Phone was upgraded and installed. Migration complete.
-        </div>
-        <div style="margin-top:8px;font-size:12px;color:var(--green700);font-weight:500">All phones deployed · No further action required</div>
+      <div class="kpi">
+        <div class="kpi-label">9861 W/KEM</div>
+        <div class="kpi-val">619</div>
+        <div class="kpi-sub">Expansion key module</div>
+        <div class="kpi-delta delta-green">9.6% of handsets</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">9841 IP Phone</div>
+        <div class="kpi-val">299</div>
+        <div class="kpi-sub">Entry-level handset</div>
+        <div class="kpi-delta delta-green">4.6% of handsets</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Wall Mounts</div>
+        <div class="kpi-val">1,424</div>
+        <div class="kpi-sub">Across 178 stores</div>
+        <div class="kpi-delta delta-green">avg 8 per store</div>
       </div>
     </div>
+
+    <div class="table-wrap mb16">
+      <div class="table-header">
+        <div class="card-title">Equipment by Migration Week</div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Week</th><th>Dates</th><th class="r">Stores</th>
+            <th class="r">9841</th><th class="r">9851</th><th class="r">9861</th>
+            <th class="r">Handsets</th><th class="r">Walls</th>
+          </tr>
+        </thead>
+        <tbody id="eqTbody"></tbody>
+        <tfoot>
+          <tr>
+            <td>All Weeks</td><td></td>
+            <td class="r grand">178</td>
+            <td class="r grand">299</td>
+            <td class="r grand">5,515</td>
+            <td class="r grand">619</td>
+            <td class="r grand">6,433</td>
+            <td class="r grand">1,424</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════ OPEN ITEMS ══════════════ -->
+  <div id="sec-issues" class="section">
+    <div class="page-hd">
+      <div>
+        <div class="page-title">Open Items &amp; Exceptions</div>
+        <div class="page-sub">Across Pilot + Weeks 1–8 · Sorted by priority — act on red first</div>
+      </div>
+      <div class="page-meta">13 MDF installs pending · 20 VG reconfigs · 5 fax issues</div>
+    </div>
+
+    <div class="kpi-grid" style="margin-bottom:20px">
+      <div class="kpi yellow" style="background:var(--yellow50)">
+        <div class="kpi-label" style="color:var(--yellow700)">Phones in MDF</div>
+        <div class="kpi-val">13</div>
+        <div class="kpi-sub" style="color:var(--yellow700)">Stores with uninstalled phones</div>
+        <div class="kpi-delta delta-yellow">Return visit required</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">VG Reconfigured</div>
+        <div class="kpi-val">20</div>
+        <div class="kpi-sub">110-block sites — legacy VG kept</div>
+        <div class="kpi-delta" style="background:var(--g150);color:var(--g600)">Monitor</div>
+      </div>
+      <div class="kpi green">
+        <div class="kpi-label">DHCP Issues</div>
+        <div class="kpi-val">6</div>
+        <div class="kpi-sub">All resolved during migration</div>
+        <div class="kpi-delta delta-green">Closed</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Fax Issues</div>
+        <div class="kpi-val">5</div>
+        <div class="kpi-sub">Fax not working or not tested</div>
+        <div class="kpi-delta delta-yellow">Follow-up needed</div>
+      </div>
+    </div>
+
+    <!-- P1: MDF phones -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+      <div style="width:20px;height:20px;border-radius:50%;background:var(--yellow500);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <span style="color:#fff;font-size:11px;font-weight:800">1</span>
+      </div>
+      <span style="font-size:12px;font-weight:700;color:var(--yellow700);text-transform:uppercase;letter-spacing:.06em">Phones Left in MDF · Return Visit Required</span>
+      <span style="font-size:11.5px;color:var(--g400)">13 stores · provisioned but not installed</span>
+    </div>
+    <div class="table-wrap mb16">
+      <table>
+        <thead>
+          <tr><th>Store</th><th>Location</th><th>Note</th><th>Next Step</th></tr>
+        </thead>
+        <tbody><tr>
+      <td class="td-store">ST0206</td>
+      <td style="font-size:12px;color:var(--g600)">West Dade, FL</td>
+      <td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• District office located within site and locked impacting VG replacement.
+• LPS replacement phone left in MDF due to access restrictions
+•These extensions are within the District </td>
+      <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
+    </tr><tr>
+      <td class="td-store">ST6348</td>
+      <td style="font-size:12px;color:var(--g600)">South Naples, FL</td>
+      <td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• No labeling at 110 block - team unable to tone out lines - VG reconfigured
+• Site Managers Office Locked. Phone was left in MDF.</td>
+      <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
+    </tr><tr>
+      <td class="td-store">ST6379</td>
+      <td style="font-size:12px;color:var(--g600)">Royal Palm, FL</td>
+      <td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• VG Replaced.  Troubleshooting issues with Paging and Faxing were resolved. 
+• LPS Room Locked New Phone set up and left in MDF. 
+• Log in/ Log Out wasn’t working on Hunt Group.  </td>
+      <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
+    </tr><tr>
+      <td class="td-store">ST6353</td>
+      <td style="font-size:12px;color:var(--g600)">Miramar, FL</td>
+      <td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• 110 block access restricted with a refrigerator. 
+• EXT 483 District Office Locked.  Phone configured and left in MDF</td>
+      <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
+    </tr><tr>
+      <td class="td-store">ST6356</td>
+      <td style="font-size:12px;color:var(--g600)">Coconut Creek, FL</td>
+      <td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• 110 block access restricted
+• EXT 402 - LPS phone configured and left in MDF</td>
+      <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
+    </tr><tr>
+      <td class="td-store">ST0280</td>
+      <td style="font-size:12px;color:var(--g600)">Naples, FL</td>
+      <td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• No labeling at 110 block - team unable to tone out lines - VG reconfigured
+• EXT 248 - SCO Corral phone configured and left in MDF for replacement. Cat cable too short to leave o</td>
+      <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
+    </tr><tr>
+      <td class="td-store">ST6339</td>
+      <td style="font-size:12px;color:var(--g600)">W Kendall, FL</td>
+      <td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• No labeling at 110 block - team unable to tone out lines - VG reconfigured
+• EXT 484 - Hmr Interview Room 2 (AKA LPS Phone) Configured and left in MDF room</td>
+      <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
+    </tr><tr>
+      <td class="td-store">ST0204</td>
+      <td style="font-size:12px;color:var(--g600)">Boca Raton, FL</td>
+      <td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• 110 blocks are barricaded/obstructed.
+• Assoc. Coord. at EXT. 077 and EXT. 412 Count Room not accessible during migration. Phones were registered and left in MDF
+• EXT. 228 (gard</td>
+      <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
+    </tr><tr>
+      <td class="td-store">ST6856</td>
+      <td style="font-size:12px;color:var(--g600)">Coconut Grove, FL</td>
+      <td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• Outbound Faxes are not working during PreCheck. Per MOD site uses e-fax.
+• DHCP issue encountered when trying to register a phone. Phones unable to get IP address.
+• 110 to VG - </td>
+      <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
+    </tr><tr>
+      <td class="td-store">ST6330</td>
+      <td style="font-size:12px;color:var(--g600)">W Palm Beach, FL</td>
+      <td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• No labeling at 110 block - team unable to tone out lines - VG reconfigured
+•EXT 465 - Manager Office phone configured and left in MDF</td>
+      <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
+    </tr><tr>
+      <td class="td-store">ST6872</td>
+      <td style="font-size:12px;color:var(--g600)">Hialeah Gardens, FL</td>
+      <td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• No labeling at 110 block - team unable to tone out lines - VG reconfigured
+• EXT 204 - Cash Register 4 phone configured and left in MDF</td>
+      <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
+    </tr><tr>
+      <td class="td-store">ST0208</td>
+      <td style="font-size:12px;color:var(--g600)">Pompano Beach, FL</td>
+      <td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">• No labeling at 110 block - team unable to tone out lines - VG reconfigured
+• EXT 402 - Unable to access LPS Office. Left Phone at MDF.</td>
+      <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
+    </tr><tr>
+      <td class="td-store">ST6890</td>
+      <td style="font-size:12px;color:var(--g600)">Jacksonville W (Oakleaf), FL</td>
+      <td style="font-size:11.5px;color:var(--g500);max-width:360px;white-space:normal;line-height:1.4">2.25.26 - VG320 found to be on 110 block.  Legacy VG was reconfigured to remain on site. Decision on path forward pending for remaining migrations. VG410 left in MDF for future ins</td>
+      <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
+    </tr></tbody>
+      </table>
+    </div>
+
+    <!-- P2: VG Reconfig -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+      <div style="width:20px;height:20px;border-radius:50%;background:var(--g500);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <span style="color:#fff;font-size:11px;font-weight:800">2</span>
+      </div>
+      <span style="font-size:12px;font-weight:700;color:var(--g700);text-transform:uppercase;letter-spacing:.06em">VG Reconfigured · 110-Block Sites</span>
+      <span style="font-size:11.5px;color:var(--g400)">20 stores · legacy VG kept in place</span>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);padding:16px 20px;margin-bottom:20px;box-shadow:var(--sh-xs)">
+      <div style="font-size:13px;color:var(--g700);line-height:1.7;margin-bottom:10px">
+        At <strong>20 stores</strong>, the 110-block cabling configuration prevented the VG410 from being installed as a replacement. The legacy VG was reconfigured to connect to DI and left in place. These sites will require a follow-up visit to complete the physical VG swap.
+      </div>
+      <div id="vgReconfigList" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+
+    <!-- P3: Fax -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+      <div style="width:20px;height:20px;border-radius:50%;background:var(--hd);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <span style="color:#fff;font-size:11px;font-weight:800">3</span>
+      </div>
+      <span style="font-size:12px;font-weight:700;color:var(--hd-dark);text-transform:uppercase;letter-spacing:.06em">Fax Issues · Follow-Up Required</span>
+      <span style="font-size:11.5px;color:var(--g400)">5 stores</span>
+    </div>
+    <div id="faxList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px"></div>
+
+    <!-- P4: Resolved -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+      <div style="width:20px;height:20px;border-radius:50%;background:var(--green500);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg fill="none" stroke="#fff" viewBox="0 0 24 24" style="width:12px;height:12px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <span style="font-size:12px;font-weight:700;color:var(--green700);text-transform:uppercase;letter-spacing:.06em">Resolved During Window</span>
+      <span style="font-size:11.5px;color:var(--g400)">DHCP issues (6 stores) · all remediated on-site</span>
+    </div>
+    <div style="background:var(--green50);border:1px solid var(--green100);border-left:4px solid var(--green500);border-radius:var(--r12);padding:14px 18px;box-shadow:var(--sh-xs)">
+      <div style="font-size:13px;color:var(--g700);line-height:1.7;margin-bottom:8px">
+        <strong>6 stores</strong> encountered DHCP IP address pool exhaustion preventing phones from registering. THD network team was engaged and resolved all issues during the migration window. No further action required.
+      </div>
+      <div id="dhcpList" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+  </div>
 
   </main>
 </div>
 
 <script>
-function filterStores(val) {
-  const q = val.trim().toLowerCase();
-  const rows = document.querySelectorAll('#storesTbody tr');
-  let visible = 0;
-  rows.forEach(row => {
-    const match = row.textContent.toLowerCase().includes(q);
-    row.style.display = match ? '' : 'none';
-    if (match) visible++;
-  });
-  document.getElementById('storeCount').textContent = q ? `${visible} of 20 stores` : '20 stores';
-}
+const STORES = [{"store":"ST0110","name":"Lilburn","state":"GA","week":"Pilot","date":"02/23","p9841":4,"p9851":26,"p9861":3,"total":33,"walls":8,"note":"2.23.26 - VG320 Amphenol cables going directly to punchdown blocks. Unable to move things from patch panel 2 to patch panel 1 as expected. VG320 was reconfigured to remain on place until team is able to identify solution.\n\u2022 Call park functionality experienced Java errors with ret","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6980","name":"Dahlonega","state":"GA","week":"Pilot","date":"02/24","p9841":0,"p9851":19,"p9861":2,"total":21,"walls":8,"note":"2.26.26 - VG 320 replaced with VG420 as site found to have a patch panel as expected and planned for. \n\u2022  Phones at Trucking and Training room will not be replaced due to being wall mounted and no safe place to leave new phones installed.  8851 phones were added to DI.\n\u2022 Issues e","mdf":false,"vgrec":false,"dhcp":true,"fax":false},{"store":"ST6890","name":"Jacksonville W (Oakleaf)","state":"FL","week":"Pilot","date":"02/25","p9841":0,"p9851":20,"p9861":3,"total":23,"walls":8,"note":"2.25.26 - VG320 found to be on 110 block.  Legacy VG was reconfigured to remain on site. Decision on path forward pending for remaining migrations. VG410 left in MDF for future installation.\n\u2022 3 Phone provisioned and left in MDF room due to access constraints. MDO did not have ac","mdf":true,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST0430","name":"Viera","state":"FL","week":"Pilot","date":"02/26","p9841":0,"p9851":44,"p9861":5,"total":49,"walls":8,"note":"2.24.26 - VG320 found to also be on 110 block, Derrick and Mike Cellino were able to move the fax that was configured on the second amphenol and repunch to consolidate to 1 amphenols.\n\u2022 VG 320 was replaced successfully with VG420 as planned. \n\u2022 Post migration faxing issues experi","mdf":false,"vgrec":false,"dhcp":false,"fax":true},{"store":"ST0210","name":"Kendall","state":"FL","week":"1","date":"03/09","p9841":0,"p9851":23,"p9861":7,"total":30,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG reconfigured and kept in place\n\u2022 DHCP Issues when trying to register a phone. THD team worked to fix the issue that allowed phones to register","mdf":false,"vgrec":true,"dhcp":true,"fax":false},{"store":"ST6378","name":"E Hialeah","state":"FL","week":"1","date":"03/09","p9841":0,"p9851":40,"p9861":3,"total":43,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG reconfigured and kept in place","mdf":false,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST6871","name":"Titusville","state":"FL","week":"1","date":"03/09","p9841":0,"p9851":25,"p9861":3,"total":28,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG reconfigured and kept in place\n\u2022 DHCP Issues when trying to register a phone. THD team worked to fix the issue that allowed phones to register\n\u2022 PSTN calling issues identified and resolved by resetting trunk on SME and Leaf Clusters","mdf":false,"vgrec":true,"dhcp":true,"fax":false},{"store":"ST0202","name":"Hialeah","state":"FL","week":"1","date":"03/10","p9841":0,"p9851":24,"p9861":2,"total":26,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG reconfigured and kept in place","mdf":false,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST6306","name":"Dixie Hwy","state":"FL","week":"1","date":"03/10","p9841":0,"p9851":26,"p9861":2,"total":28,"walls":8,"note":"\u2022 DHCP issue encountered at this store.  Jerry Mistrot engaged and DHCP issues resolved\n\u2022 VG to 110 block. Legacy VG to be reconfigured to connect to DI.\n\u2022 Phone THD back splash Image not applying as phones register.","mdf":false,"vgrec":true,"dhcp":true,"fax":false},{"store":"ST0209","name":"Nw Dade","state":"FL","week":"1","date":"03/11","p9841":0,"p9851":38,"p9861":3,"total":41,"walls":8,"note":"\u2022 DHCP Issue encountered, phones not getting IP. Johnny Morgan engaged and issue was resolved.\n\u2022 Store has patch panels at this location.  Question around port matrix and physical cabling have been brought up to Cisco engineering team.","mdf":false,"vgrec":false,"dhcp":true,"fax":false},{"store":"ST6856","name":"Coconut Grove","state":"FL","week":"1","date":"03/11","p9841":0,"p9851":33,"p9861":3,"total":36,"walls":8,"note":"\u2022 Outbound Faxes are not working during PreCheck. Per MOD site uses e-fax.\n\u2022 DHCP issue encountered when trying to register a phone. Phones unable to get IP address.\n\u2022 110 to VG - Legacy VG to be reconfigured. VG420 to be left at MDF","mdf":true,"vgrec":true,"dhcp":true,"fax":true},{"store":"ST0277","name":"Miami (Calle Ocho)","state":"FL","week":"1","date":"03/12","p9841":0,"p9851":43,"p9861":2,"total":45,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG to be reconfigured\n\u2022 Call Park non fuctional at this store on-prem","mdf":false,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST0701","name":"Johnson City","state":"TN","week":"2","date":"03/16","p9841":0,"p9851":23,"p9861":2,"total":25,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG to be reconfigured","mdf":false,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST1105","name":"Anderson","state":"SC","week":"2","date":"03/16","p9841":0,"p9851":22,"p9861":4,"total":26,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG to be reconfigured","mdf":false,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST0702","name":"Kingsport","state":"TN","week":"2","date":"03/17","p9841":0,"p9851":22,"p9861":3,"total":25,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG to be reconfigured\n\u2022 International Calling issue at both stores - CMS alerted and working to find a solution","mdf":false,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST1130","name":"Seneca, Sc","state":"SC","week":"2","date":"03/17","p9841":0,"p9851":18,"p9861":2,"total":20,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG to be reconfigured\n\u2022 International Calling issue at both stores - CMS alerted and working to find a solution","mdf":false,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST0744","name":"Morristown","state":"TN","week":"2","date":"03/18","p9841":0,"p9851":21,"p9861":7,"total":28,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG to be reconfigured\n\u2022 Cosmetic Issue with phone display to be investigated\n\u2022Post migration Fax from Vault was not tested as area was closed","mdf":false,"vgrec":true,"dhcp":false,"fax":true},{"store":"ST6310","name":"North Hollywood/Stirling","state":"FL","week":"3","date":"03/23","p9841":0,"p9851":56,"p9861":2,"total":58,"walls":8,"note":"\u2022 110 block with 2 amphenol cables, all of the items on the second amphenol cable (FXS1) fave been decommed. \n\u2022 VG replaced","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6372","name":"E Fort Lauderdale","state":"FL","week":"3","date":"03/23","p9841":0,"p9851":36,"p9861":5,"total":41,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG to be reconfigured","mdf":false,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST0249","name":"Oakland Park","state":"FL","week":"3","date":"03/24","p9841":0,"p9851":46,"p9861":2,"total":48,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG to be reconfigured","mdf":false,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST0285","name":"Hollywood","state":"FL","week":"3","date":"03/24","p9841":0,"p9851":42,"p9861":2,"total":44,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG to be reconfigured","mdf":false,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST6832","name":"Del Rio","state":"TX","week":"3","date":"03/24","p9841":0,"p9851":17,"p9861":6,"total":23,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG to be reconfigured","mdf":false,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST0251","name":"N Miami Beach","state":"FL","week":"3","date":"03/25","p9841":0,"p9851":39,"p9861":3,"total":42,"walls":8,"note":"\u2022 110 block with only 3 active analog devices on AMPH0 - 2 faxes and 1 analog\n\u2022VG replaced","mdf":false,"vgrec":false,"dhcp":false,"fax":true},{"store":"ST6312","name":"North Lauderdale","state":"FL","week":"3","date":"03/25","p9841":7,"p9851":26,"p9861":4,"total":37,"walls":8,"note":"\u2022 110 Block behind shelves *blocked* to VG - Legacy VG to be reconfigured","mdf":false,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST0284","name":"Coral Springs","state":"FL","week":"3","date":"03/26","p9841":0,"p9851":42,"p9861":4,"total":46,"walls":8,"note":"\u2022 110 Block to VG - Legacy VG to be reconfigured","mdf":false,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST6322","name":"N Miami/Biscayne","state":"FL","week":"3","date":"03/26","p9841":8,"p9851":30,"p9861":2,"total":40,"walls":8,"note":"\u2022 110 Block behind shelves *blocked* to VG - Legacy VG to be reconfigured","mdf":false,"vgrec":true,"dhcp":false,"fax":false},{"store":"ST6571","name":"Granbury","state":"TX","week":"3","date":"03/26","p9841":0,"p9851":29,"p9861":1,"total":30,"walls":8,"note":"\u2022 VG Replaced successfully (110 Block Cross Connect)","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0280","name":"Naples","state":"FL","week":"4","date":"03/30","p9841":1,"p9851":35,"p9861":5,"total":41,"walls":8,"note":"\u2022 No labeling at 110 block - team unable to tone out lines - VG reconfigured\n\u2022 EXT 248 - SCO Corral phone configured and left in MDF for replacement. Cat cable too short to leave on desk.\n\u2022 EXT 413 - Expeditor phone configured and left in MDF for replacement","mdf":true,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6330","name":"W Palm Beach","state":"FL","week":"4","date":"03/30","p9841":0,"p9851":33,"p9861":3,"total":36,"walls":8,"note":"\u2022 No labeling at 110 block - team unable to tone out lines - VG reconfigured\n\u2022EXT 465 - Manager Office phone configured and left in MDF","mdf":true,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6339","name":"W Kendall","state":"FL","week":"4","date":"03/30","p9841":0,"p9851":31,"p9861":7,"total":38,"walls":8,"note":"\u2022 No labeling at 110 block - team unable to tone out lines - VG reconfigured\n\u2022 EXT 484 - Hmr Interview Room 2 (AKA LPS Phone) Configured and left in MDF room","mdf":true,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6356","name":"Coconut Creek","state":"FL","week":"4","date":"03/30","p9841":10,"p9851":28,"p9861":6,"total":44,"walls":8,"note":"\u2022 110 block access restricted\n\u2022 EXT 402 - LPS phone configured and left in MDF","mdf":true,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6872","name":"Hialeah Gardens","state":"FL","week":"4","date":"03/30","p9841":0,"p9851":34,"p9861":2,"total":36,"walls":8,"note":"\u2022 No labeling at 110 block - team unable to tone out lines - VG reconfigured\n\u2022 EXT 204 - Cash Register 4 phone configured and left in MDF","mdf":true,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0206","name":"West Dade","state":"FL","week":"4","date":"03/31","p9841":0,"p9851":50,"p9861":2,"total":52,"walls":8,"note":"\u2022 District office located within site and locked impacting VG replacement.\n\u2022 LPS replacement phone left in MDF due to access restrictions\n\u2022These extensions are within the District Office and Phones left in MDF. 438, 433, 406, 444, 435, 436, 402, and 412.","mdf":true,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0208","name":"Pompano Beach","state":"FL","week":"4","date":"03/31","p9841":0,"p9851":30,"p9861":4,"total":34,"walls":8,"note":"\u2022 No labeling at 110 block - team unable to tone out lines - VG reconfigured\n\u2022 EXT 402 - Unable to access LPS Office. Left Phone at MDF.","mdf":true,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6348","name":"South Naples","state":"FL","week":"4","date":"03/31","p9841":0,"p9851":43,"p9861":6,"total":49,"walls":8,"note":"\u2022 No labeling at 110 block - team unable to tone out lines - VG reconfigured\n\u2022\u00a0Site Managers Office Locked. Phone was left in MDF.","mdf":true,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6353","name":"Miramar","state":"FL","week":"4","date":"03/31","p9841":9,"p9851":33,"p9861":3,"total":45,"walls":8,"note":"\u2022 110 block access restricted with a refrigerator. \n\u2022 EXT 483 District Office Locked.  Phone configured and left in MDF","mdf":true,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6379","name":"Royal Palm","state":"FL","week":"4","date":"03/31","p9841":0,"p9851":42,"p9861":6,"total":48,"walls":8,"note":"\u2022 VG Replaced.  Troubleshooting issues with Paging and Faxing were resolved. \n\u2022 LPS Room Locked New Phone set up and left in MDF. \n\u2022 Log in/ Log Out wasn\u2019t working on Hunt Group.  Firmware upgrade needed. Will observe.","mdf":true,"vgrec":false,"dhcp":false,"fax":true},{"store":"ST0207","name":"Cutler Ridge","state":"FL","week":"4","date":"04/01","p9841":0,"p9851":34,"p9861":4,"total":38,"walls":8,"note":"\u2022 VG reconfigured","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0218","name":"Deerfield Beach","state":"FL","week":"4","date":"04/01","p9841":0,"p9851":24,"p9861":3,"total":27,"walls":8,"note":"\u2022 VG reconfigured","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST3331","name":"Sweetwater","state":"FL","week":"4","date":"04/01","p9841":0,"p9851":55,"p9861":3,"total":58,"walls":8,"note":"\u2022 VG replaced","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6325","name":"West Delray","state":"FL","week":"4","date":"04/01","p9841":0,"p9851":43,"p9861":2,"total":45,"walls":8,"note":"\u2022 VG reconfigured","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6852","name":"Pembroke Pines","state":"FL","week":"4","date":"04/01","p9841":0,"p9851":40,"p9861":5,"total":45,"walls":8,"note":"\u2022 VG reconfigured","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0204","name":"Boca Raton","state":"FL","week":"4","date":"04/02","p9841":0,"p9851":34,"p9861":3,"total":37,"walls":8,"note":"\u2022 110 blocks are barricaded/obstructed.\n\u2022 Assoc. Coord. at EXT. 077 and EXT. 412 Count Room not accessible during migration. Phones were registered and left in MDF\n\u2022 EXT. 228 (garden) phone could not be removed due to stripped screws; to avoid damage to housing, the 9851 remained","mdf":true,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6315","name":"East Delray Beach","state":"FL","week":"4","date":"04/02","p9841":12,"p9851":35,"p9861":3,"total":50,"walls":8,"note":"\u2022 Issues troubleshooting functional device(s) to blocks. Requires additional diagnostics and wire toning.\n\u2022 1 pole mount at SCO Corral","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6326","name":"W Griffin","state":"FL","week":"4","date":"04/02","p9841":9,"p9851":30,"p9861":3,"total":42,"walls":8,"note":"\u2022 VG reconfigured\n\u2022 110 blocks access restricted by refrigerator and other items blocking it's access\n\u2022 2 mounted in Garden center inside breadbox","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6343","name":"Flagler Ii","state":"FL","week":"4","date":"04/02","p9841":12,"p9851":30,"p9861":3,"total":45,"walls":8,"note":"\u2022 Issues troubleshooting functional device(s) to blocks. Requires additional diagnostics and wire toning. VG reconfigure","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6976","name":"Deerwood","state":"FL","week":"4","date":"04/02","p9841":0,"p9851":27,"p9861":4,"total":31,"walls":8,"note":"\u2022 VG Reconfigured\n\u2022 Issues troubleshooting functional device(s) to blocks. Requires additional diagnostics and wire toning.\n\u2022 1 pole mount at SCO Corral","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0253","name":"Ocala","state":"FL","week":"5","date":"04/07","p9841":0,"p9851":23,"p9861":5,"total":28,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0275","name":"Orange Park","state":"FL","week":"5","date":"04/07","p9841":0,"p9851":28,"p9861":2,"total":30,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0289","name":"Pinellas Park","state":"FL","week":"5","date":"04/07","p9841":2,"p9851":36,"p9861":3,"total":41,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST1324","name":"St Johns","state":"FL","week":"5","date":"04/07","p9841":0,"p9851":46,"p9861":4,"total":50,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST2219","name":"Garden City","state":"KS","week":"5","date":"04/07","p9841":0,"p9851":21,"p9861":4,"total":25,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST3858","name":"Rossford","state":"OH","week":"5","date":"04/07","p9841":0,"p9851":18,"p9861":4,"total":22,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6324","name":"S Lakeland","state":"FL","week":"5","date":"04/07","p9841":9,"p9851":28,"p9861":3,"total":40,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6327","name":"Gandy Blvd","state":"FL","week":"5","date":"04/07","p9841":0,"p9851":30,"p9861":3,"total":33,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6357","name":"Clearwater","state":"FL","week":"5","date":"04/07","p9841":0,"p9851":34,"p9861":3,"total":37,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST8545","name":"Sebastian","state":"FL","week":"5","date":"04/07","p9841":0,"p9851":21,"p9861":3,"total":24,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST8926","name":"Apopka","state":"FL","week":"5","date":"04/07","p9841":0,"p9851":25,"p9861":4,"total":29,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST8929","name":"Zephyrhills","state":"FL","week":"5","date":"04/07","p9841":2,"p9851":26,"p9861":3,"total":31,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0256","name":"Stadium","state":"FL","week":"5","date":"04/08","p9841":0,"p9851":38,"p9861":2,"total":40,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0257","name":"St Pete","state":"FL","week":"5","date":"04/08","p9841":5,"p9851":61,"p9861":2,"total":68,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0261","name":"W Colonial","state":"FL","week":"5","date":"04/08","p9841":8,"p9851":29,"p9861":2,"total":39,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST3801","name":"W Toledo","state":"OH","week":"5","date":"04/08","p9841":0,"p9851":22,"p9861":1,"total":23,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6311","name":"Bruce B Downs","state":"FL","week":"5","date":"04/08","p9841":7,"p9851":27,"p9861":2,"total":36,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6321","name":"Largo","state":"FL","week":"5","date":"04/08","p9841":11,"p9851":33,"p9861":1,"total":45,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6332","name":"Crystal River","state":"FL","week":"5","date":"04/08","p9841":8,"p9851":30,"p9861":9,"total":47,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6334","name":"St Augustine","state":"FL","week":"5","date":"04/08","p9841":0,"p9851":36,"p9861":2,"total":38,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6369","name":"Fleming Island","state":"FL","week":"5","date":"04/08","p9841":0,"p9851":31,"p9861":2,"total":33,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0213","name":"Vero Beach","state":"FL","week":"5","date":"04/08","p9841":9,"p9851":24,"p9861":5,"total":38,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0248","name":"Lakeland","state":"FL","week":"5","date":"04/08","p9841":8,"p9851":29,"p9861":4,"total":41,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0279","name":"Northgate","state":"FL","week":"5","date":"04/09","p9841":0,"p9851":48,"p9861":4,"total":52,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0281","name":"Spring Hill","state":"FL","week":"5","date":"04/09","p9841":0,"p9851":34,"p9861":2,"total":36,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0283","name":"Ft Pierce","state":"FL","week":"5","date":"04/09","p9841":0,"p9851":20,"p9861":4,"total":24,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST3807","name":"Westgate","state":"OH","week":"5","date":"04/09","p9841":0,"p9851":22,"p9861":3,"total":25,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6304","name":"Seminole","state":"FL","week":"5","date":"04/09","p9841":8,"p9851":30,"p9861":5,"total":43,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6363","name":"Palm Coast","state":"FL","week":"5","date":"04/09","p9841":0,"p9851":33,"p9861":3,"total":36,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6367","name":"Millenia","state":"FL","week":"5","date":"04/09","p9841":4,"p9851":29,"p9861":4,"total":37,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6371","name":"Winter Haven","state":"FL","week":"5","date":"04/09","p9841":0,"p9851":25,"p9861":1,"total":26,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6935","name":"Middleburg","state":"FL","week":"5","date":"04/09","p9841":0,"p9851":24,"p9861":3,"total":27,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6951","name":"Sun City","state":"FL","week":"5","date":"04/09","p9841":0,"p9851":42,"p9861":3,"total":45,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0243","name":"Brandon","state":"FL","week":"5","date":"04/09","p9841":0,"p9851":21,"p9861":4,"total":25,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0160","name":"Lagrange","state":"GA","week":"6","date":"04/13","p9841":0,"p9851":21,"p9861":2,"total":23,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0274","name":"Jupiter","state":"FL","week":"6","date":"04/13","p9841":0,"p9851":50,"p9861":4,"total":54,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST1855","name":"Englewood","state":"FL","week":"6","date":"04/13","p9841":0,"p9851":38,"p9861":3,"total":41,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6316","name":"Lake Worth Ii","state":"FL","week":"6","date":"04/13","p9841":0,"p9851":36,"p9861":7,"total":43,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6341","name":"Davie Ii","state":"FL","week":"6","date":"04/13","p9841":8,"p9851":29,"p9861":2,"total":39,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6355","name":"Florida City","state":"FL","week":"6","date":"04/13","p9841":0,"p9851":47,"p9861":2,"total":49,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST8444","name":"Ft Myers East","state":"FL","week":"6","date":"04/13","p9841":0,"p9851":45,"p9861":4,"total":49,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0148","name":"Newnan","state":"GA","week":"6","date":"04/14","p9841":0,"p9851":23,"p9861":2,"total":25,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0205","name":"Lake Worth","state":"FL","week":"6","date":"04/14","p9841":0,"p9851":40,"p9861":3,"total":43,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0222","name":"Davie","state":"FL","week":"6","date":"04/14","p9841":0,"p9851":28,"p9861":4,"total":32,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0276","name":"Fort Myers","state":"FL","week":"6","date":"04/14","p9841":0,"p9851":37,"p9861":3,"total":40,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0429","name":"Homestead","state":"FL","week":"6","date":"04/14","p9841":0,"p9851":44,"p9861":4,"total":48,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST3117","name":"Palm Beach Gardens","state":"FL","week":"6","date":"04/14","p9841":0,"p9851":48,"p9861":4,"total":52,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6950","name":"Punta Gorda","state":"FL","week":"6","date":"04/14","p9841":0,"p9851":25,"p9861":4,"total":29,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0164","name":"Peachtree City","state":"GA","week":"6","date":"04/15","p9841":9,"p9851":29,"p9861":3,"total":41,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0220","name":"Lake Park","state":"FL","week":"6","date":"04/15","p9841":7,"p9851":37,"p9861":4,"total":48,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0258","name":"Sunrise","state":"FL","week":"6","date":"04/15","p9841":0,"p9851":41,"p9861":4,"total":45,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0268","name":"Cape Coral","state":"FL","week":"6","date":"04/15","p9841":0,"p9851":34,"p9861":4,"total":38,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST3118","name":"Lantana","state":"FL","week":"6","date":"04/15","p9841":0,"p9851":44,"p9861":6,"total":50,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST3119","name":"Estero","state":"FL","week":"6","date":"04/16","p9841":0,"p9851":44,"p9861":6,"total":50,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6302","name":"Marathon","state":"FL","week":"6","date":"04/15","p9841":0,"p9851":26,"p9861":2,"total":28,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0224","name":"Boynton Beach","state":"FL","week":"6","date":"04/16","p9841":3,"p9851":30,"p9861":4,"total":37,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6313","name":"Key West","state":"FL","week":"6","date":"04/16","p9841":0,"p9851":29,"p9861":3,"total":32,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6320","name":"E Palm Beach Lakes","state":"FL","week":"6","date":"04/16","p9841":0,"p9851":39,"p9861":3,"total":42,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6329","name":"Sawgrass","state":"FL","week":"6","date":"04/16","p9841":0,"p9851":29,"p9861":4,"total":33,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6373","name":"Bonita Springs","state":"FL","week":"6","date":"04/15","p9841":9,"p9851":41,"p9861":2,"total":52,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6975","name":"South Cape Coral","state":"FL","week":"6","date":"04/16","p9841":0,"p9851":38,"p9861":4,"total":42,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0234","name":"Merritt Island","state":"FL","week":"7","date":"04/20","p9841":8,"p9851":34,"p9861":3,"total":45,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0244","name":"Bradenton","state":"FL","week":"7","date":"04/20","p9841":6,"p9851":40,"p9861":4,"total":50,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0264","name":"Lake Mary","state":"FL","week":"7","date":"04/20","p9841":9,"p9851":33,"p9861":3,"total":45,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0287","name":"Oviedo","state":"FL","week":"7","date":"04/20","p9841":11,"p9851":30,"p9861":3,"total":44,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST3322","name":"Pahrump","state":"NV","week":"7","date":"04/20","p9841":0,"p9851":26,"p9861":3,"total":29,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6314","name":"Stuart","state":"FL","week":"7","date":"04/20","p9841":7,"p9851":28,"p9861":3,"total":38,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6340","name":"Sebring","state":"FL","week":"7","date":"04/20","p9841":0,"p9851":27,"p9861":1,"total":28,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6350","name":"St Cloud West","state":"FL","week":"7","date":"04/20","p9841":0,"p9851":40,"p9861":1,"total":41,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6361","name":"Hillsborough","state":"FL","week":"7","date":"04/20","p9841":0,"p9851":27,"p9861":2,"total":29,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0221","name":"Jensen Beach","state":"FL","week":"7","date":"04/21","p9841":0,"p9851":24,"p9861":3,"total":27,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0247","name":"Palm Harbor","state":"FL","week":"7","date":"04/21","p9841":11,"p9851":32,"p9861":4,"total":47,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0262","name":"Casselberry","state":"FL","week":"7","date":"04/21","p9841":0,"p9851":24,"p9861":3,"total":27,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST1863","name":"Ne Bradenton","state":"FL","week":"7","date":"04/21","p9841":2,"p9851":46,"p9861":3,"total":51,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6328","name":"South Chase","state":"FL","week":"7","date":"04/21","p9841":0,"p9851":26,"p9861":5,"total":31,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6331","name":"Alafaya Trail","state":"FL","week":"7","date":"04/21","p9841":0,"p9851":27,"p9861":3,"total":30,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6381","name":"N Melbourne","state":"FL","week":"7","date":"04/21","p9841":9,"p9851":31,"p9861":7,"total":47,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0260","name":"Melbourne","state":"FL","week":"7","date":"04/22","p9841":0,"p9851":25,"p9861":2,"total":27,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0263","name":"Forest City","state":"FL","week":"7","date":"04/22","p9841":0,"p9851":32,"p9861":3,"total":35,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0265","name":"Kissimmee","state":"FL","week":"7","date":"04/22","p9841":8,"p9851":26,"p9861":6,"total":40,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0266","name":"E Colonial","state":"FL","week":"7","date":"04/22","p9841":0,"p9851":25,"p9861":3,"total":28,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0288","name":"Holiday","state":"FL","week":"7","date":"04/22","p9841":8,"p9851":34,"p9861":2,"total":44,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6319","name":"E Bradenton","state":"FL","week":"7","date":"04/22","p9841":0,"p9851":44,"p9861":4,"total":48,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6934","name":"Port St Lucie-South","state":"FL","week":"7","date":"04/22","p9841":0,"p9851":37,"p9861":4,"total":41,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST8528","name":"North Port","state":"FL","week":"7","date":"04/22","p9841":0,"p9851":28,"p9861":3,"total":31,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0255","name":"Sarasota","state":"FL","week":"7","date":"04/23","p9841":10,"p9851":36,"p9861":6,"total":52,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0273","name":"Venice","state":"FL","week":"7","date":"04/23","p9841":10,"p9851":27,"p9861":6,"total":43,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6336","name":"Palm Bay","state":"FL","week":"7","date":"04/23","p9841":0,"p9851":30,"p9861":2,"total":32,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6349","name":"Winter Park","state":"FL","week":"7","date":"04/23","p9841":9,"p9851":34,"p9861":4,"total":47,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6851","name":"Poinciana","state":"FL","week":"7","date":"04/23","p9841":0,"p9851":25,"p9861":6,"total":31,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6865","name":"East Port Richey","state":"FL","week":"7","date":"04/23","p9841":0,"p9851":43,"p9861":4,"total":47,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6869","name":"Orlando Se","state":"FL","week":"7","date":"04/23","p9841":2,"p9851":35,"p9861":2,"total":39,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST6878","name":"Okeechobee","state":"FL","week":"7","date":"04/23","p9841":0,"p9851":25,"p9861":3,"total":28,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0381","name":"West Shreveport","state":"LA","week":"8","date":"04/27","p9841":0,"p9851":19,"p9861":3,"total":22,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0802","name":"Foley","state":"AL","week":"8","date":"04/27","p9841":0,"p9851":22,"p9861":3,"total":25,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0806","name":"Prattville","state":"AL","week":"8","date":"04/27","p9841":0,"p9851":19,"p9861":4,"total":23,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0866","name":"Oxford,Al","state":"AL","week":"8","date":"04/27","p9841":0,"p9851":16,"p9861":4,"total":20,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST2301","name":"Hurstborne Road","state":"KY","week":"8","date":"04/27","p9841":0,"p9851":23,"p9861":4,"total":27,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7021","name":"Burlington","state":"ON","week":"8","date":"04/27","p9841":0,"p9851":29,"p9861":3,"total":32,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7038","name":"Brandon","state":"MB","week":"8","date":"04/27","p9841":0,"p9851":26,"p9861":3,"total":29,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7055","name":"Victoria (Saanich)","state":"BC","week":"8","date":"04/27","p9841":0,"p9851":27,"p9861":4,"total":31,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7080","name":"Gerrard Square","state":"ON","week":"8","date":"04/27","p9841":0,"p9851":24,"p9861":2,"total":26,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7117","name":"Edmonton","state":"AB","week":"8","date":"04/27","p9841":0,"p9851":31,"p9861":2,"total":33,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7135","name":"Aurora","state":"ON","week":"8","date":"04/27","p9841":0,"p9851":28,"p9861":4,"total":32,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7162","name":"Lebourgneuf","state":"QC","week":"8","date":"04/27","p9841":0,"p9851":30,"p9861":3,"total":33,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7167","name":"Orangeville","state":"ON","week":"8","date":"04/27","p9841":0,"p9851":22,"p9861":4,"total":26,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7224","name":"St Jean Sur Richelieu","state":"QC","week":"8","date":"04/27","p9841":0,"p9851":29,"p9861":3,"total":32,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7236","name":"Timmins","state":"ON","week":"8","date":"04/27","p9841":0,"p9851":26,"p9861":3,"total":29,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7240","name":"Bowmanville","state":"ON","week":"8","date":"04/27","p9841":0,"p9851":33,"p9861":2,"total":35,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7252","name":"West Bank","state":"BC","week":"8","date":"04/27","p9841":0,"p9851":25,"p9861":4,"total":29,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7257","name":"Dartmouth Crossings","state":"NS","week":"8","date":"04/27","p9841":0,"p9851":22,"p9861":4,"total":26,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7265","name":"Saskatoon South","state":"SK","week":"8","date":"04/27","p9841":0,"p9851":28,"p9861":5,"total":33,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0356","name":"Shreveport","state":"LA","week":"8","date":"04/28","p9841":0,"p9851":25,"p9861":4,"total":29,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0818","name":"Pell City","state":"AL","week":"8","date":"04/28","p9841":0,"p9851":19,"p9861":4,"total":23,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0863","name":"Daphne","state":"AL","week":"8","date":"04/28","p9841":0,"p9851":18,"p9861":3,"total":21,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST0883","name":"Montgomery","state":"AL","week":"8","date":"04/28","p9841":0,"p9851":18,"p9861":3,"total":21,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST2305","name":"Westport","state":"KY","week":"8","date":"04/28","p9841":0,"p9851":23,"p9861":3,"total":26,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7012","name":"Curity","state":"ON","week":"8","date":"04/28","p9841":0,"p9851":30,"p9861":4,"total":34,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7022","name":"Sudbury","state":"ON","week":"8","date":"04/28","p9841":0,"p9851":30,"p9861":6,"total":36,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7032","name":"Kelowna","state":"BC","week":"8","date":"04/28","p9841":0,"p9851":28,"p9861":7,"total":35,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7051","name":"Saskatoon","state":"SK","week":"8","date":"04/28","p9841":0,"p9851":24,"p9861":2,"total":26,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7074","name":"Victoria","state":"BC","week":"8","date":"04/28","p9841":0,"p9851":29,"p9861":5,"total":34,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7086","name":"Winnipeg Sw","state":"MB","week":"8","date":"04/28","p9841":0,"p9851":24,"p9861":5,"total":29,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7115","name":"Oakville Burloak","state":"ON","week":"8","date":"04/28","p9841":0,"p9851":29,"p9861":2,"total":31,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7123","name":"Oshawa","state":"ON","week":"8","date":"04/28","p9841":0,"p9851":27,"p9861":5,"total":32,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7126","name":"Halifax","state":"NS","week":"8","date":"04/28","p9841":0,"p9851":29,"p9861":4,"total":33,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7128","name":"St. Henri","state":"QC","week":"8","date":"04/28","p9841":0,"p9851":32,"p9861":5,"total":37,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7163","name":"Ste-Foy","state":"QC","week":"8","date":"04/28","p9841":0,"p9851":30,"p9861":3,"total":33,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7227","name":"Edmonton Westmount","state":"AB","week":"8","date":"04/28","p9841":0,"p9851":27,"p9861":2,"total":29,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7253","name":"Vaughan","state":"ON","week":"8","date":"04/28","p9841":0,"p9851":27,"p9861":4,"total":31,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false},{"store":"ST7269","name":"Bolton","state":"ON","week":"8","date":"04/28","p9841":0,"p9851":29,"p9861":3,"total":32,"walls":8,"note":"","mdf":false,"vgrec":false,"dhcp":false,"fax":false}];
+
+const WK_DATES = {Pilot:'2/23–2/27','1':'3/9–3/13','2':'3/16–3/20','3':'3/23–3/27','4':'3/30–4/3','5':'4/6–4/10','6':'4/13–4/17','7':'4/20–4/24','8':'4/27–5/1'};
+const WK_LABEL = {Pilot:'Pilot','1':'Wk 1','2':'Wk 2','3':'Wk 3','4':'Wk 4','5':'Wk 5','6':'Wk 6','7':'Wk 7','8':'Wk 8'};
+
+let activeWk = 'all';
 
 function switchTab(name) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.s-item').forEach(b => b.classList.remove('active'));
-  document.getElementById('sec-' + name).classList.add('active');
-  document.querySelectorAll('.s-item').forEach(b => {
-    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + name + "'")) {
-      b.classList.add('active');
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.s-item').forEach(b=>b.classList.remove('active'));
+  document.getElementById('sec-'+name).classList.add('active');
+  document.querySelectorAll('.s-item').forEach(b=>{
+    if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+name+"'"))b.classList.add('active');
+  });
+}
+
+function setWk(wk, btn) {
+  activeWk = wk;
+  document.querySelectorAll('#wkFilter .seg-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderStores();
+}
+
+function badgeFlags(s) {
+  const b = [];
+  if(s.mdf) b.push('<span class="badge b-except" style="font-size:10px;padding:1px 6px"><span class="b-dot"></span>MDF</span>');
+  if(s.vgrec) b.push('<span class="badge b-pending" style="font-size:10px;padding:1px 6px"><span class="b-dot"></span>VG Reconfig</span>');
+  if(s.fax) b.push('<span class="badge b-open" style="font-size:10px;padding:1px 6px"><span class="b-dot"></span>Fax</span>');
+  if(s.dhcp) b.push('<span class="badge b-clean" style="font-size:10px;padding:1px 6px"><span class="b-dot"></span>DHCP✓</span>');
+  return b.join(' ');
+}
+
+function renderStores() {
+  const q = (document.getElementById('storeSearch').value||'').trim().toLowerCase();
+  const tbody = document.getElementById('storesTbody');
+  let filtered = STORES.filter(s=>{
+    const wkMatch = activeWk==='all'||s.week===activeWk;
+    const qMatch = !q||(s.store+s.name+s.state+s.note+s.week).toLowerCase().includes(q);
+    return wkMatch&&qMatch;
+  });
+
+  // group by week
+  const byWk = {};
+  for(const s of filtered){(byWk[s.week]=byWk[s.week]||[]).push(s);}
+  const wkOrder = ['Pilot','1','2','3','4','5','6','7','8'];
+
+  let html='';
+  for(const wk of wkOrder){
+    const ss=byWk[wk];
+    if(!ss||!ss.length)continue;
+    if(activeWk==='all'){
+      html+=`<tr class="wk-head"><td colspan="12">${WK_LABEL[wk]||'Wk'+wk} &nbsp;·&nbsp; ${WK_DATES[wk]||''} &nbsp;·&nbsp; ${ss.length} stores</td></tr>`;
+    }
+    for(const s of ss){
+      const noteEl = s.note?`<span class="td-note" title="${s.note.replace(/"/g,'&quot;')}">${s.note.substring(0,60)}…</span>`:'<span style="color:var(--g300)">—</span>';
+      html+=`<tr>
+        <td class="td-store">${s.store}</td>
+        <td style="font-size:12.5px;color:var(--g700);max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${s.name}</td>
+        <td style="font-size:12px;color:var(--g500)">${s.state}</td>
+        <td><span style="font-size:11.5px;font-weight:600;color:var(--g600)">${WK_LABEL[s.week]||s.week}</span></td>
+        <td style="font-size:12px;color:var(--g500)">${s.date}</td>
+        <td class="r mono">${s.p9841||'—'}</td>
+        <td class="r mono">${s.p9851}</td>
+        <td class="r mono">${s.p9861||'—'}</td>
+        <td class="r mono" style="font-weight:700;color:var(--g900)">${s.total}</td>
+        <td class="r mono">${s.walls}</td>
+        <td>${badgeFlags(s)}</td>
+        <td>${noteEl}</td>
+      </tr>`;
+    }
+  }
+  tbody.innerHTML=html;
+  const cnt=filtered.length;
+  document.getElementById('storeCount').textContent=cnt===178?'178 stores':`${cnt} of 178 stores`;
+}
+
+function buildEquipmentTable() {
+  const wkOrder=['Pilot','1','2','3','4','5','6','7','8'];
+  const byWk={};
+  for(const s of STORES){(byWk[s.week]=byWk[s.week]||[]).push(s);}
+  let html='';
+  for(const wk of wkOrder){
+    const ss=byWk[wk]||[];
+    if(!ss.length)continue;
+    const p41=ss.reduce((a,s)=>a+s.p9841,0);
+    const p51=ss.reduce((a,s)=>a+s.p9851,0);
+    const p61=ss.reduce((a,s)=>a+s.p9861,0);
+    const tot=ss.reduce((a,s)=>a+s.total,0);
+    const wal=ss.reduce((a,s)=>a+s.walls,0);
+    html+=`<tr>
+      <td class="td-store">${WK_LABEL[wk]||wk}</td>
+      <td style="font-size:12px;color:var(--g500)">${WK_DATES[wk]||''}</td>
+      <td class="r mono">${ss.length}</td>
+      <td class="r mono">${p41||'—'}</td>
+      <td class="r mono">${p51.toLocaleString()}</td>
+      <td class="r mono">${p61||'—'}</td>
+      <td class="r mono" style="font-weight:700;color:var(--g900)">${tot.toLocaleString()}</td>
+      <td class="r mono">${wal}</td>
+    </tr>`;
+  }
+  document.getElementById('eqTbody').innerHTML=html;
+}
+
+function buildIssuesLists() {
+  const vgEl=document.getElementById('vgReconfigList');
+  const faxEl=document.getElementById('faxList');
+  const dhcpEl=document.getElementById('dhcpList');
+  STORES.forEach(s=>{
+    if(s.vgrec){
+      vgEl.innerHTML+=`<span style="background:var(--g150);color:var(--g700);font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:var(--rfull)">${s.store}</span>`;
+    }
+    if(s.fax){
+      faxEl.innerHTML+=`<div style="background:var(--white);border:1px solid var(--g200);border-left:3px solid var(--hd);border-radius:var(--r12);padding:12px 16px;box-shadow:var(--sh-xs)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:13px;font-weight:700;color:var(--g900)">${s.store}</span><span style="font-size:12px;color:var(--g500)">${s.name}, ${s.state}</span></div>
+        <div style="font-size:12.5px;color:var(--g700);line-height:1.5">${s.note.substring(0,250)}</div>
+      </div>`;
+    }
+    if(s.dhcp){
+      dhcpEl.innerHTML+=`<span class="badge b-clean"><span class="b-dot"></span>${s.store}</span>`;
     }
   });
 }
 
-// Build wave grid: 2000 cells, first 20 shown with color coding
-(function() {
-  const grid = document.getElementById('waveGrid');
-  const storeStates = [
-    'done','done','done','done','done',
-    'done issues','done','done issues','done','done issues',
-    'done','done','done','done','done issues',
-    'done','done','done issues','done','done'
-  ];
-  for (let i = 0; i < 200; i++) {
-    const cell = document.createElement('div');
-    cell.className = 'wave-cell';
-    if (i < 20) {
-      const state = storeStates[i] || 'done';
-      cell.className = 'wave-cell ' + state;
-      const storeNames = ['ST0105','ST0111','ST0123','ST0128','ST0134','ST0136','ST0140','ST0159','ST0163','ST0170','ST0172','ST1748','ST1755','ST1777','ST1856','ST6848','ST6940','ST6941','ST6959','ST8412'];
-      cell.title = storeNames[i] || '';
-    }
-    grid.appendChild(cell);
-  }
-  const ellipsis = document.createElement('div');
-  ellipsis.style.cssText = 'grid-column:1/-1;font-size:11px;color:var(--g400);margin-top:4px';
-  ellipsis.textContent = '... 1,800 more stores not shown';
-  grid.appendChild(ellipsis);
-})();
+renderStores();
+buildEquipmentTable();
+buildIssuesLists();
 </script>
 </body>
 </html>
