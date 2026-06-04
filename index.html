@@ -151,6 +151,23 @@ tr.row-rescheduled:hover td { background: #fde6b0; }
 .sf-btn.sf-active-upcoming{background:var(--hd-50);border-color:var(--hd);color:var(--hd-dark)}
 .sf-btn.sf-active-all{background:var(--g900);border-color:var(--g900);color:#fff}
 .sf-count{font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:var(--rfull);background:rgba(0,0,0,.08)}
+
+/* ── Command-center overview ────────────────────────── */
+.cmd-hero{background:var(--g900);border-radius:var(--r12);padding:28px 32px;margin-bottom:16px;display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:center}
+.cmd-arc-wrap{display:flex;flex-direction:column;align-items:center}
+.cmd-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.cmd-stat{border-left:2px solid rgba(255,255,255,.12);padding-left:14px}
+.cmd-stat-val{font-size:26px;font-weight:800;color:#fff;letter-spacing:-.04em;line-height:1}
+.cmd-stat-lbl{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
+.cmd-stat-delta{font-size:11px;font-weight:600;margin-top:5px}
+.cmd-wk9{background:rgba(249,99,2,.12);border:1px solid rgba(249,99,2,.28);border-radius:var(--r8);padding:13px 16px;display:flex;align-items:center;gap:14px}
+.cmd-row3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+.cmd-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.pill-green{display:inline-flex;align-items:center;gap:6px;background:var(--green50);border:1px solid var(--green200);border-radius:var(--rfull);padding:5px 13px;font-size:12px;font-weight:600;color:var(--green700)}
+.pill-amber{display:inline-flex;align-items:center;gap:6px;background:var(--yellow50);border:1px solid var(--yellow200);border-radius:var(--rfull);padding:5px 13px;font-size:12px;font-weight:600;color:var(--yellow700)}
+.pill-orange{display:inline-flex;align-items:center;gap:6px;background:var(--hd-50);border:1px solid rgba(249,99,2,.28);border-radius:var(--rfull);padding:5px 13px;font-size:12px;font-weight:600;color:var(--hd-dark)}
+.act-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.act-link{margin-top:7px;font-size:11px;font-weight:600;background:none;border:none;cursor:pointer;padding:0;display:inline-flex;align-items:center;gap:3px;font-family:var(--font)}
 </style>
 </head>
 <body>
@@ -201,219 +218,288 @@ tr.row-rescheduled:hover td { background: #fde6b0; }
 
 <!-- ══════════ OVERVIEW ══════════ -->
 <div id="sec-overview" class="section active">
-  <div class="page-hd">
-    <div><div class="page-title">Migration Overview</div><div class="page-sub">Store Voice Refresh &nbsp;·&nbsp; Pilot + Weeks 1–8 Complete &nbsp;·&nbsp; 2,032 stores remaining</div></div>
-    <div class="page-meta">As of Week 8 (Apr 27, 2026) &nbsp;·&nbsp; Ahead of schedule</div>
-  </div>
 
-  <!-- Ahead of schedule banner -->
-  <div style="display:flex;align-items:center;gap:10px;background:var(--green50);border:1px solid var(--green100);border-left:3px solid var(--green500);border-radius:var(--r8);padding:10px 16px;font-size:12.5px;color:var(--green700);margin-bottom:10px">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:15px;height:15px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-    <span><strong>Ahead of schedule:</strong> 178 stores complete vs. target of 154 at Week 8 — <strong>+24 stores (+15.6%)</strong> ahead of plan. Weeks 5–8 all exceeded targets.</span>
-  </div>
-
-  <!-- Next migration callout -->
-  <div style="display:flex;align-items:center;gap:12px;background:var(--hd-50);border:1px solid rgba(249,99,2,.25);border-left:3px solid var(--hd);border-radius:var(--r8);padding:10px 16px;font-size:12.5px;color:var(--hd-dark);margin-bottom:16px">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-    <span><strong>Next migration: Week 9</strong> &nbsp;·&nbsp; 5/04–5/08 &nbsp;·&nbsp; <strong>40 stores scheduled</strong> &nbsp;·&nbsp; 194 cumulative target</span>
-    <span style="margin-left:auto;background:var(--hd);color:#fff;font-size:11px;font-weight:700;padding:2px 9px;border-radius:var(--rfull)">Starting Soon</span>
-  </div>
-
-  <!-- KPIs -->
-  <div class="kpi-grid">
-    <div class="kpi accent"><div class="kpi-label">Overall Progress</div><div class="kpi-val">8.1%</div><div class="kpi-sub">178 of 2,210 stores migrated</div><div class="kpi-delta delta-orange">Wks 0–8 of ~35 planned</div></div>
-    <div class="kpi green"><div class="kpi-label">Phones Deployed</div><div class="kpi-val">6,433</div><div class="kpi-sub">+178 VG410 gateways</div><div class="kpi-delta delta-green">Across 178 stores</div></div>
-    <div class="kpi green"><div class="kpi-label">vs. Schedule</div><div class="kpi-val">+24</div><div class="kpi-sub">178 actual vs. 154 target (Wk 8)</div><div class="kpi-delta delta-green">+15.6% ahead</div></div>
-    <div class="kpi blue"><div class="kpi-label">Remaining</div><div class="kpi-val">2,032</div><div class="kpi-sub">Stores not yet migrated</div><div class="kpi-delta delta-blue">~34 weeks ahead</div></div>
-  </div>
-
-  <!-- Progress bar -->
-  <div class="prog-wrap">
-    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px">
-      <div><span style="font-size:14px;font-weight:700;color:var(--g900)">Program-Wide Migration Progress</span><span style="font-size:12px;color:var(--g500);margin-left:10px">2,210 total stores &nbsp;·&nbsp; ~35 migration weeks planned</span></div>
-      <div><span style="font-size:22px;font-weight:800;color:var(--hd);letter-spacing:-.04em">178</span><span style="font-size:14px;color:var(--g400);margin-left:3px">/ 2,210 stores complete</span></div>
+  <div class="page-hd" style="margin-bottom:20px">
+    <div>
+      <div class="page-title">Migration Overview</div>
+      <div class="page-sub">Store Voice Refresh &nbsp;·&nbsp; 2,210 stores &nbsp;·&nbsp; Feb – Dec 2026</div>
     </div>
-    <div class="prog-track"><div style="width:8.1%;height:100%;background:var(--hd);border-radius:var(--rfull)"></div></div>
-    <div class="prog-leg">
-      <div class="prog-leg-item"><div class="prog-dot" style="background:var(--hd)"></div>Complete (178)</div>
-      <div class="prog-leg-item"><div class="prog-dot" style="background:var(--g200)"></div>Remaining (2,032)</div>
-    </div>
+    <div class="page-meta">As of Week 8 (Apr 27) &nbsp;·&nbsp; <span style="color:var(--green500);font-weight:700">▲ Ahead of schedule</span></div>
   </div>
 
-  <!-- Program Timeline (replaces scrollable tiles) -->
-  <div class="card mb16">
-    <div class="card-hd" style="padding:14px 20px">
-      <div>
-        <div class="card-title">Program Timeline</div>
-        <div class="card-sub">2,210 stores · Feb 2026 – Dec 2026 · ~35 migration weeks</div>
-      </div>
-      <div style="font-size:11.5px;color:var(--g400)">178 of 2,210 complete &nbsp;·&nbsp; 8.1%</div>
-    </div>
-    <div class="card-body" style="padding:18px 24px">
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+  <!-- ── COMMAND CENTER HERO ─────────────────────────────── -->
+  <div class="cmd-hero">
 
-        <!-- Phase 1: Complete -->
-        <div style="border-radius:var(--r8);overflow:hidden">
-          <div style="background:var(--g800);padding:10px 14px 8px;display:flex;align-items:center;justify-content:space-between">
-            <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.9);text-transform:uppercase;letter-spacing:.06em">Pilot + Wks 1–8</div>
-            <div style="display:flex;align-items:center;gap:4px;background:var(--green700);border-radius:var(--rfull);padding:1.5px 8px">
-              <svg fill="none" stroke="#fff" viewBox="0 0 24 24" style="width:9px;height:9px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-              <span style="font-size:10px;font-weight:700;color:#fff">Done</span>
-            </div>
-          </div>
-          <div style="background:var(--g900);padding:10px 14px 12px">
-            <div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:-.04em;line-height:1">178</div>
-            <div style="font-size:10.5px;color:rgba(255,255,255,.5);margin-top:2px">stores migrated</div>
-            <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:6px">Feb 23 – May 1, 2026</div>
-            <div style="height:3px;background:var(--hd);border-radius:2px;margin-top:8px;width:100%"></div>
-          </div>
-        </div>
-
-        <!-- Phase 2: In Progress -->
-        <div style="border-radius:var(--r8);overflow:hidden;border:1.5px solid var(--hd)">
-          <div style="background:var(--hd);padding:10px 14px 8px;display:flex;align-items:center;justify-content:space-between">
-            <div style="font-size:11px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.06em">Wks 9–13</div>
-            <div style="background:rgba(255,255,255,.25);border-radius:var(--rfull);padding:1.5px 8px">
-              <span style="font-size:10px;font-weight:700;color:#fff">▲ Starting Now</span>
-            </div>
-          </div>
-          <div style="background:var(--hd-50);padding:10px 14px 12px">
-            <div style="font-size:22px;font-weight:800;color:var(--hd-dark);letter-spacing:-.04em;line-height:1">216</div>
-            <div style="font-size:10.5px;color:var(--hd-dark);margin-top:2px;opacity:.7">stores targeted</div>
-            <div style="font-size:10px;color:var(--hd-dark);margin-top:6px;opacity:.5">May 4 – Jun 5, 2026</div>
-            <div style="height:3px;background:rgba(249,99,2,.25);border-radius:2px;margin-top:8px;width:100%">
-              <div style="height:3px;background:var(--hd);border-radius:2px;width:0%"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Phase 3: Q3 -->
-        <div style="border-radius:var(--r8);overflow:hidden;border:1px solid var(--g200)">
-          <div style="background:var(--g150);padding:10px 14px 8px;display:flex;align-items:center;justify-content:space-between">
-            <div style="font-size:11px;font-weight:700;color:var(--g600);text-transform:uppercase;letter-spacing:.06em">Wks 14–26</div>
-            <div style="background:var(--blue50);border:1px solid var(--blue100);border-radius:var(--rfull);padding:1.5px 8px">
-              <span style="font-size:10px;font-weight:700;color:var(--blue700)">Upcoming</span>
-            </div>
-          </div>
-          <div style="background:var(--white);padding:10px 14px 12px">
-            <div style="font-size:22px;font-weight:800;color:var(--g700);letter-spacing:-.04em;line-height:1">980</div>
-            <div style="font-size:10.5px;color:var(--g400);margin-top:2px">stores targeted</div>
-            <div style="font-size:10px;color:var(--g300);margin-top:6px">Jun 8 – Sep 11, 2026</div>
-            <div style="height:3px;background:var(--g150);border-radius:2px;margin-top:8px;width:100%"></div>
-          </div>
-        </div>
-
-        <!-- Phase 4: Q4 -->
-        <div style="border-radius:var(--r8);overflow:hidden;border:1px solid var(--g200)">
-          <div style="background:var(--g150);padding:10px 14px 8px;display:flex;align-items:center;justify-content:space-between">
-            <div style="font-size:11px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em">Wks 27–39</div>
-            <div style="background:var(--g200);border-radius:var(--rfull);padding:1.5px 8px">
-              <span style="font-size:10px;font-weight:600;color:var(--g500)">Future</span>
-            </div>
-          </div>
-          <div style="background:var(--white);padding:10px 14px 12px">
-            <div style="font-size:22px;font-weight:800;color:var(--g400);letter-spacing:-.04em;line-height:1">836</div>
-            <div style="font-size:10.5px;color:var(--g300);margin-top:2px">stores targeted</div>
-            <div style="font-size:10px;color:var(--g200);margin-top:6px">Sep 14 – Dec 11, 2026</div>
-            <div style="height:3px;background:var(--g150);border-radius:2px;margin-top:8px;width:100%"></div>
-          </div>
-        </div>
-
+    <!-- Arc progress -->
+    <div class="cmd-arc-wrap">
+      <svg viewBox="0 0 160 160" width="160" height="160">
+        <!-- Background track -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#1D2939" stroke-width="18"/>
+        <!-- Progress arc: circumference=376.99, 8.1%=30.54 -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#F96302" stroke-width="18"
+                stroke-dasharray="30.54 346.45"
+                stroke-linecap="round"
+                transform="rotate(-90 80 80)"/>
+        <text x="80" y="74" text-anchor="middle" fill="#ffffff" font-size="30" font-weight="800"
+              font-family="Inter,sans-serif" letter-spacing="-1.5">8.1%</text>
+        <text x="80" y="93" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10.5"
+              font-family="Inter,sans-serif">178 of 2,210 stores</text>
+      </svg>
+      <div style="text-align:center;margin-top:4px">
+        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.45)">Wks 0–8 complete</div>
+        <div style="font-size:10.5px;color:rgba(255,255,255,.25);margin-top:2px">~27 weeks remaining</div>
       </div>
     </div>
+
+    <!-- Stats + Week 9 -->
+    <div>
+      <div class="cmd-stats">
+        <div class="cmd-stat">
+          <div class="cmd-stat-val">178</div>
+          <div class="cmd-stat-lbl">Stores complete</div>
+          <div class="cmd-stat-delta" style="color:#6CE9A6">+38 in Wk 8 alone</div>
+        </div>
+        <div class="cmd-stat">
+          <div class="cmd-stat-val" style="color:#6CE9A6">+24</div>
+          <div class="cmd-stat-lbl">vs. plan at Wk 8</div>
+          <div class="cmd-stat-delta" style="color:#6CE9A6">154 targeted · 178 done</div>
+        </div>
+        <div class="cmd-stat">
+          <div class="cmd-stat-val">6,433</div>
+          <div class="cmd-stat-lbl">Phones deployed</div>
+          <div class="cmd-stat-delta" style="color:rgba(255,255,255,.3)">avg. 36 / store</div>
+        </div>
+      </div>
+
+      <div class="cmd-wk9">
+        <div style="background:var(--hd);border-radius:var(--r6);padding:6px 14px;text-align:center;flex-shrink:0">
+          <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.75);letter-spacing:.08em;text-transform:uppercase">Next Up</div>
+          <div style="font-size:16px;font-weight:800;color:#fff;letter-spacing:-.02em">Wk 9</div>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px">
+            May 4–8, 2026 &nbsp;·&nbsp; <span style="color:rgba(249,99,2,1)">71 stores scheduled</span>
+            <span style="font-size:11px;color:rgba(255,255,255,.35);font-weight:400">&nbsp;(40 target)</span>
+          </div>
+          <div style="font-size:11.5px;color:rgba(255,255,255,.4)">~2,050 phones &nbsp;·&nbsp; Top regions: ON (21) &nbsp;·&nbsp; TN / MS / BC / QC / AB (8 each)</div>
+        </div>
+        <div style="background:rgba(249,99,2,.2);border:1px solid rgba(249,99,2,.4);border-radius:var(--rfull);padding:4px 11px;white-space:nowrap;flex-shrink:0">
+          <span style="font-size:11.5px;font-weight:700;color:rgba(255,165,0,.95)">⚠ 78% over plan</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- AI Insights -->
-  <div class="grid-2 mb16" style="margin-bottom:16px">
-    <!-- Strengths -->
+  <!-- ── 3-COLUMN ROW: Action · This Week · vs Plan ─────── -->
+  <div class="cmd-row3">
+
+    <!-- 1 · Action Required -->
     <div class="card">
-      <div class="card-hd" style="background:var(--green50);border-bottom-color:var(--green100)">
+      <div class="card-hd" style="padding:12px 18px">
         <div style="display:flex;align-items:center;gap:8px">
-          <div style="width:22px;height:22px;background:var(--green600);border-radius:var(--r6);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg fill="none" stroke="#fff" viewBox="0 0 24 24" style="width:13px;height:13px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-          </div>
-          <div><div class="card-title" style="color:var(--green700)">What's Going Well</div><div class="card-sub" style="color:var(--green600)">3 program strengths</div></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--red600);flex-shrink:0"></div>
+          <div class="card-title" style="font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--g500)">Action Required</div>
         </div>
       </div>
       <div class="card-body" style="padding:0">
-        <div style="padding:14px 18px;border-bottom:1px solid var(--g150)">
-          <div style="display:flex;gap:10px">
-            <div style="width:6px;border-radius:3px;background:var(--green500);flex-shrink:0;margin:2px 0"></div>
-            <div>
-              <div style="font-size:13px;font-weight:700;color:var(--g900);margin-bottom:3px">Consistently ahead of schedule</div>
-              <div style="font-size:12px;color:var(--g500);line-height:1.5">178 stores complete vs. 154 target at Week 8 — <strong style="color:var(--green700)">+24 stores (+15.6%)</strong>. Weeks 5–8 each exceeded targets, with Week 5 delivering +14 stores above plan. Momentum is accelerating.</div>
-            </div>
+
+        <div style="padding:14px 18px;border-bottom:1px solid var(--g100);display:flex;gap:11px;align-items:flex-start">
+          <div class="act-num" style="background:#FEF3F2;border:1.5px solid #FDA29B">
+            <span style="font-size:11px;font-weight:800;color:var(--red600)">1</span>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:700;color:var(--g900);margin-bottom:3px">13 stores need return visits</div>
+            <div style="font-size:12px;color:var(--g500);line-height:1.45">Phones provisioned but left in MDF — blocked access prevented install. Schedule return window now.</div>
+            <button class="act-link" style="color:var(--red600)"
+              onclick="showTab('issues', document.querySelector('.s-item[onclick*=issues]'))">View open items →</button>
           </div>
         </div>
-        <div style="padding:14px 18px;border-bottom:1px solid var(--g150)">
-          <div style="display:flex;gap:10px">
-            <div style="width:6px;border-radius:3px;background:var(--green500);flex-shrink:0;margin:2px 0"></div>
-            <div>
-              <div style="font-size:13px;font-weight:700;color:var(--g900);margin-bottom:3px">Zero unresolved network failures</div>
-              <div style="font-size:12px;color:var(--g500);line-height:1.5">All 6 DHCP IP pool exhaustion incidents were <strong style="color:var(--green700)">resolved on-site during migration windows</strong> — no post-migration tickets, no return visits required. THD network team response is same-window reliable.</div>
-            </div>
+
+        <div style="padding:14px 18px;border-bottom:1px solid var(--g100);display:flex;gap:11px;align-items:flex-start">
+          <div class="act-num" style="background:var(--yellow50);border:1.5px solid var(--yellow300)">
+            <span style="font-size:11px;font-weight:800;color:var(--yellow700)">2</span>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:700;color:var(--g900);margin-bottom:3px">20 sites still on legacy VG</div>
+            <div style="font-size:12px;color:var(--g500);line-height:1.45">110-block cabling blocked the VG410 swap — legacy left in place. Plan a separate mobilization wave.</div>
+            <button class="act-link" style="color:var(--yellow700)"
+              onclick="showTab('stores', document.querySelector('.s-item[onclick*=stores]'))">View affected stores →</button>
           </div>
         </div>
-        <div style="padding:14px 18px">
-          <div style="display:flex;gap:10px">
-            <div style="width:6px;border-radius:3px;background:var(--green500);flex-shrink:0;margin:2px 0"></div>
-            <div>
-              <div style="font-size:13px;font-weight:700;color:var(--g900);margin-bottom:3px">Strong equipment deployment velocity</div>
-              <div style="font-size:12px;color:var(--g500);line-height:1.5"><strong style="color:var(--green700)">6,433 handsets deployed</strong> across 178 stores (avg. 36/store). Week 5 alone deployed 1,214 phones — the program has proven it can execute at scale heading into the high-volume ramp.</div>
-            </div>
+
+        <div style="padding:14px 18px;display:flex;gap:11px;align-items:flex-start">
+          <div class="act-num" style="background:var(--hd-50);border:1.5px solid rgba(249,99,2,.35)">
+            <span style="font-size:11px;font-weight:800;color:var(--hd-dark)">3</span>
           </div>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:700;color:var(--g900);margin-bottom:3px">Confirm Wk 9 crew capacity</div>
+            <div style="font-size:12px;color:var(--g500);line-height:1.45">71 stores are scheduled vs. 40-store plan target. Verify Cisco/ME availability before May 4 kickoff.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2 · This Week -->
+    <div class="card">
+      <div class="card-hd" style="padding:12px 18px">
+        <div>
+          <div class="card-title" style="font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--g500)">This Week</div>
+          <div style="font-size:16px;font-weight:800;color:var(--g900);margin-top:2px">Week 9 &nbsp;·&nbsp; May 4–8</div>
+        </div>
+        <div style="background:var(--hd);border-radius:var(--rfull);padding:3px 11px">
+          <span style="font-size:11px;font-weight:700;color:#fff">Starting Soon</span>
+        </div>
+      </div>
+      <div class="card-body" style="padding:16px 18px">
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+          <div style="background:var(--g50);border-radius:var(--r8);padding:12px 14px">
+            <div style="font-size:26px;font-weight:800;color:var(--g900);letter-spacing:-.04em;line-height:1">71</div>
+            <div style="font-size:11px;color:var(--g500);margin-top:3px">stores scheduled</div>
+            <div style="font-size:10.5px;color:var(--hd-dark);margin-top:3px;font-weight:600">vs. 40 plan target</div>
+          </div>
+          <div style="background:var(--g50);border-radius:var(--r8);padding:12px 14px">
+            <div style="font-size:26px;font-weight:800;color:var(--g900);letter-spacing:-.04em;line-height:1">~2,050</div>
+            <div style="font-size:11px;color:var(--g500);margin-top:3px">phones to deploy</div>
+            <div style="font-size:10.5px;color:var(--g400);margin-top:3px">est. 29 / store</div>
+          </div>
+        </div>
+
+        <div style="font-size:10.5px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Top Regions</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <span style="background:var(--blue50);border:1px solid var(--blue100);border-radius:var(--rfull);padding:3px 10px;font-size:12px;font-weight:600;color:var(--blue700)">ON &nbsp;21</span>
+          <span style="background:var(--g100);border-radius:var(--rfull);padding:3px 10px;font-size:12px;font-weight:600;color:var(--g700)">TN &nbsp;8</span>
+          <span style="background:var(--g100);border-radius:var(--rfull);padding:3px 10px;font-size:12px;font-weight:600;color:var(--g700)">MS &nbsp;8</span>
+          <span style="background:var(--g100);border-radius:var(--rfull);padding:3px 10px;font-size:12px;font-weight:600;color:var(--g700)">BC &nbsp;8</span>
+          <span style="background:var(--g100);border-radius:var(--rfull);padding:3px 10px;font-size:12px;font-weight:600;color:var(--g700)">QC &nbsp;8</span>
+          <span style="background:var(--g100);border-radius:var(--rfull);padding:3px 10px;font-size:12px;font-weight:600;color:var(--g700)">AB &nbsp;8</span>
+        </div>
+
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--g150);font-size:11.5px;color:var(--g500);display:flex;align-items:center;gap:6px">
+          <svg fill="none" stroke="#F96302" viewBox="0 0 24 24" style="width:13px;height:13px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+          Verify crew capacity before May 4 kickoff
         </div>
       </div>
     </div>
 
-    <!-- Concerns -->
+    <!-- 3 · vs Plan sparkline -->
     <div class="card">
-      <div class="card-hd" style="background:var(--yellow50);border-bottom-color:var(--yellow100)">
-        <div style="display:flex;align-items:center;gap:8px">
-          <div style="width:22px;height:22px;background:var(--yellow600);border-radius:var(--r6);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg fill="none" stroke="#fff" viewBox="0 0 24 24" style="width:13px;height:13px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-          </div>
-          <div><div class="card-title" style="color:var(--yellow700)">Areas of Concern</div><div class="card-sub" style="color:var(--yellow600)">3 items to watch</div></div>
+      <div class="card-hd" style="padding:12px 18px">
+        <div>
+          <div class="card-title" style="font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--g500)">vs. Plan</div>
+          <div style="font-size:16px;font-weight:800;color:var(--g900);margin-top:2px">Actual vs. Target</div>
+        </div>
+        <div style="background:var(--green50);border:1px solid var(--green200);border-radius:var(--rfull);padding:3px 11px">
+          <span style="font-size:11px;font-weight:700;color:var(--green700)">+15.6% ahead</span>
         </div>
       </div>
-      <div class="card-body" style="padding:0">
-        <div style="padding:14px 18px;border-bottom:1px solid var(--g150)">
-          <div style="display:flex;gap:10px">
-            <div style="width:6px;border-radius:3px;background:var(--yellow500);flex-shrink:0;margin:2px 0"></div>
-            <div>
-              <div style="font-size:13px;font-weight:700;color:var(--g900);margin-bottom:3px">13 stores require return visits</div>
-              <div style="font-size:12px;color:var(--g500);line-height:1.5">Phones provisioned but left in MDF at <strong style="color:var(--yellow700)">13 stores</strong> due to locked rooms, blocked 110 blocks, or restricted access. Return visit scheduling is needed before these can be marked complete.</div>
-            </div>
+      <div class="card-body" style="padding:16px 18px">
+
+        <!-- Sparkline: Pilot+Wk1-8 actuals vs targets, weekly stores -->
+        <!-- Actuals: P=4 W1=8 W2=5 W3=10 W4=20 W5=34 W6=27 W7=32 W8=38 -->
+        <!-- Targets: P=4 W1=10 W2=10 W3=10 W4=20 W5=20 W6=20 W7=30 W8=30 -->
+        <!-- y = 74 - (val/40)*60  x spaced 27px from 10 to 226 -->
+        <svg viewBox="0 0 240 80" width="100%" height="80" style="display:block;margin-bottom:10px">
+          <!-- Fill area under actual line -->
+          <defs>
+            <linearGradient id="actGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F96302" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="#F96302" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <polygon points="10,68 37,62 64,67 91,59 118,44 145,23 172,34 199,26 226,17 226,74 10,74"
+                   fill="url(#actGrad)"/>
+          <!-- Target dashed -->
+          <polyline points="10,68 37,59 64,59 91,59 118,44 145,44 172,44 199,29 226,29"
+                    fill="none" stroke="#D0D5DD" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <!-- Actual line -->
+          <polyline points="10,68 37,62 64,67 91,59 118,44 145,23 172,34 199,26 226,17"
+                    fill="none" stroke="#F96302" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <!-- Dots on actual -->
+          <circle cx="10"  cy="68" r="3" fill="#F96302"/>
+          <circle cx="37"  cy="62" r="3" fill="#F96302"/>
+          <circle cx="64"  cy="67" r="3" fill="#F96302"/>
+          <circle cx="91"  cy="59" r="3" fill="#F96302"/>
+          <circle cx="118" cy="44" r="3" fill="#F96302"/>
+          <circle cx="145" cy="23" r="3" fill="#F96302"/>
+          <circle cx="172" cy="34" r="3" fill="#F96302"/>
+          <circle cx="199" cy="26" r="3" fill="#F96302"/>
+          <circle cx="226" cy="17" r="3.5" fill="#F96302" stroke="#fff" stroke-width="1.5"/>
+          <!-- Week labels -->
+          <text x="10"  y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">P</text>
+          <text x="37"  y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">1</text>
+          <text x="64"  y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">2</text>
+          <text x="91"  y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">3</text>
+          <text x="118" y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">4</text>
+          <text x="145" y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">5</text>
+          <text x="172" y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">6</text>
+          <text x="199" y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">7</text>
+          <text x="226" y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">8</text>
+        </svg>
+
+        <div style="display:flex;gap:16px;margin-bottom:14px">
+          <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--g500)">
+            <div style="width:16px;height:2.5px;background:var(--hd);border-radius:2px"></div>Actual
+          </div>
+          <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--g500)">
+            <div style="width:16px;height:2px;background:repeating-linear-gradient(90deg,var(--g300) 0,var(--g300) 4px,transparent 4px,transparent 7px)"></div>Target
           </div>
         </div>
-        <div style="padding:14px 18px;border-bottom:1px solid var(--g150)">
-          <div style="display:flex;gap:10px">
-            <div style="width:6px;border-radius:3px;background:var(--yellow500);flex-shrink:0;margin:2px 0"></div>
-            <div>
-              <div style="font-size:13px;font-weight:700;color:var(--g900);margin-bottom:3px">20 sites still running legacy VG hardware</div>
-              <div style="font-size:12px;color:var(--g500);line-height:1.5">110-block cabling at <strong style="color:var(--yellow700)">20 stores</strong> prevented the VG410 swap — legacy VG reconfigured and left in place. Physical swaps remain pending and will require a separate mobilization wave.</div>
-            </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div style="background:var(--green50);border-radius:var(--r6);padding:9px 12px">
+            <div style="font-size:18px;font-weight:800;color:var(--green700);letter-spacing:-.03em">6 / 9</div>
+            <div style="font-size:10.5px;color:var(--green600);margin-top:2px">weeks beat target</div>
+          </div>
+          <div style="background:var(--green50);border-radius:var(--r6);padding:9px 12px">
+            <div style="font-size:18px;font-weight:800;color:var(--green700);letter-spacing:-.03em">+24</div>
+            <div style="font-size:10.5px;color:var(--green600);margin-top:2px">stores ahead of plan</div>
           </div>
         </div>
-        <div style="padding:14px 18px">
-          <div style="display:flex;gap:10px">
-            <div style="width:6px;border-radius:3px;background:var(--hd);flex-shrink:0;margin:2px 0"></div>
-            <div>
-              <div style="font-size:13px;font-weight:700;color:var(--g900);margin-bottom:3px">Week 9 ramp is 78% over target</div>
-              <div style="font-size:12px;color:var(--g500);line-height:1.5"><strong style="color:var(--hd-dark)">71 stores scheduled</strong> vs. a 40-store target — the first high-volume week. Capacity for Cisco engineers, THD MEs, and freight coordination should be verified before May 4 kickoff.</div>
-            </div>
-          </div>
-        </div>
+
       </div>
+    </div>
+
+  </div>
+
+  <!-- ── INSIGHT PILLS ───────────────────────────────────── -->
+  <div class="cmd-pills">
+    <div class="pill-green">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:12px;height:12px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+      Ahead of schedule: +15.6%
+    </div>
+    <div class="pill-green">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:12px;height:12px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+      All 6 DHCP failures resolved on-site
+    </div>
+    <div class="pill-green">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:12px;height:12px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+      Avg. 36 phones / store deployed
+    </div>
+    <div class="pill-amber">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:12px;height:12px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+      13 MDF stores need return visits
+    </div>
+    <div class="pill-amber">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:12px;height:12px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+      20 sites still on legacy VG hardware
+    </div>
+    <div class="pill-orange">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:12px;height:12px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+      Wk 9: 71 scheduled vs. 40 target
     </div>
   </div>
 
-    <!-- Weekly table + stores bar -->
-  <div class="grid-5-3">
-    <div class="table-wrap">
-      <div class="table-header"><div class="card-title">Weekly Progression &nbsp;·&nbsp; Actual vs. Target</div><div class="card-sub" style="font-size:11.5px;color:var(--g400)">Past actuals shown &nbsp;·&nbsp; Future targets projected &nbsp;·&nbsp; ▲ = next migration week</div></div>
-      <table><thead><tr><th>Week</th><th>Dates</th><th class="r">Stores</th><th class="r">Target</th><th class="r">vs Target</th><th class="r">Cumul.</th><th class="r">Cum. Target</th></tr></thead>
-      <tbody><tr style=""><td><span style="color:var(--hd);font-weight:600">Pilot</span></td><td style="font-size:12px;color:var(--g400)">2/23-2/27</td><td class="r">4</td><td class="r" style="color:var(--g500)">4</td><td class="r"><span style="color:var(--green600);font-weight:600">0</span></td><td class="r" style="color:var(--g500)">4</td><td class="r" style="color:var(--g500)">4</td></tr>
+  <!-- ── WEEKLY TABLE ──────────────────────────────────── -->
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-title">Weekly Progression &nbsp;·&nbsp; Actual vs. Target</div>
+      <div class="card-sub" style="font-size:11.5px;color:var(--g400)">Past actuals shown &nbsp;·&nbsp; Future = targets &nbsp;·&nbsp; ▲ = next migration week</div>
+    </div>
+    <table><thead><tr><th>Week</th><th>Dates</th><th class="r">Stores</th><th class="r">Target</th><th class="r">vs Target</th><th class="r">Cumul.</th><th class="r">Cum. Target</th></tr></thead>
+    <tbody><tr style=""><td><span style="color:var(--hd);font-weight:600">Pilot</span></td><td style="font-size:12px;color:var(--g400)">2/23-2/27</td><td class="r">4</td><td class="r" style="color:var(--g500)">4</td><td class="r"><span style="color:var(--green600);font-weight:600">0</span></td><td class="r" style="color:var(--g500)">4</td><td class="r" style="color:var(--g500)">4</td></tr>
 <tr style=""><td><span style="color:var(--hd);font-weight:600">Wk 1</span></td><td style="font-size:12px;color:var(--g400)">3/09–3/13</td><td class="r">8</td><td class="r" style="color:var(--g500)">10</td><td class="r"><span style="color:var(--red600);font-weight:600">-2</span></td><td class="r" style="color:var(--g500)">12</td><td class="r" style="color:var(--g500)">14</td></tr>
 <tr style=""><td><span style="color:var(--hd);font-weight:600">Wk 2</span></td><td style="font-size:12px;color:var(--g400)">3/16–3/20</td><td class="r">5</td><td class="r" style="color:var(--g500)">10</td><td class="r"><span style="color:var(--red600);font-weight:600">-5</span></td><td class="r" style="color:var(--g500)">17</td><td class="r" style="color:var(--g500)">24</td></tr>
 <tr style=""><td><span style="color:var(--hd);font-weight:600">Wk 3</span></td><td style="font-size:12px;color:var(--g400)">3/23–3/27</td><td class="r">10</td><td class="r" style="color:var(--g500)">10</td><td class="r"><span style="color:var(--green600);font-weight:600">0</span></td><td class="r" style="color:var(--g500)">27</td><td class="r" style="color:var(--g500)">34</td></tr>
@@ -457,34 +543,10 @@ tr.row-rescheduled:hover td { background: #fde6b0; }
 <tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 43</span></td><td style="font-size:12px;color:var(--g400)"></td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td></tr>
 <tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 44</span></td><td style="font-size:12px;color:var(--g400)"></td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td></tr>
 <tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 45</span></td><td style="font-size:12px;color:var(--g400)"></td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td></tr></tbody></table>
-    </div>
-    <div class="card">
-      <div class="card-hd"><div class="card-title">Stores per Week</div></div>
-      <div class="card-body" style="padding:14px 16px">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g900);min-width:56px">Pilot</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">2/23-2/27</div><div style="width:18px;height:6px;background:var(--hd);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g900);min-width:20px;text-align:right">4</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g900);min-width:56px">Wk 1</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">3/09–3/13</div><div style="width:37px;height:6px;background:var(--hd);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g900);min-width:20px;text-align:right">8</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g900);min-width:56px">Wk 2</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">3/16–3/20</div><div style="width:23px;height:6px;background:var(--hd);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g900);min-width:20px;text-align:right">5</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g900);min-width:56px">Wk 3</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">3/23–3/27</div><div style="width:47px;height:6px;background:var(--hd);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g900);min-width:20px;text-align:right">10</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g900);min-width:56px">Wk 4</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">3/30–4/03</div><div style="width:94px;height:6px;background:var(--hd);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g900);min-width:20px;text-align:right">20</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g900);min-width:56px">Wk 5</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">4/06–4/10</div><div style="width:161px;height:6px;background:var(--hd);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g900);min-width:20px;text-align:right">34</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g900);min-width:56px">Wk 6</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">4/13–4/17</div><div style="width:127px;height:6px;background:var(--hd);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g900);min-width:20px;text-align:right">27</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g900);min-width:56px">Wk 7</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">4/20–4/24</div><div style="width:151px;height:6px;background:var(--hd);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g900);min-width:20px;text-align:right">32</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g900);min-width:56px">Wk 8</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">4/27–5/01</div><div style="width:180px;height:6px;background:var(--hd);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g900);min-width:20px;text-align:right">38</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--hd);min-width:56px">Wk 9</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">5/04–5/08</div><div style="width:189px;height:6px;background:var(--hd-50);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--hd);min-width:20px;text-align:right">40▲</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g400);min-width:56px">Wk 10</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">5/11–5/15</div><div style="width:189px;height:6px;background:var(--g200);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g400);min-width:20px;text-align:right">40</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g400);min-width:56px">Wk 11</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">5/18–5/22</div><div style="width:284px;height:6px;background:var(--g200);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g400);min-width:20px;text-align:right">60</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g400);min-width:56px">Wk 12</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">5/25–5/29</div><div style="width:284px;height:6px;background:var(--g200);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g400);min-width:20px;text-align:right">60</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g400);min-width:56px">Wk 13</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">6/01–6/05</div><div style="width:189px;height:6px;background:var(--g200);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g400);min-width:20px;text-align:right">40</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g400);min-width:56px">Wk 14</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">6/08–6/12</div><div style="width:284px;height:6px;background:var(--g200);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g400);min-width:20px;text-align:right">60</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g400);min-width:56px">Wk 15</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">6/15–6/19</div><div style="width:378px;height:6px;background:var(--g200);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g400);min-width:20px;text-align:right">80</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g400);min-width:56px">Wk 16</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">6/22–6/26</div><div style="width:378px;height:6px;background:var(--g200);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g400);min-width:20px;text-align:right">80</div></div>
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-size:12px;font-weight:600;color:var(--g400);min-width:56px">Wk 17</div><div style="font-size:10.5px;color:var(--g400);flex:1;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">6/29–07/03</div><div style="width:284px;height:6px;background:var(--g200);border-radius:3px;margin-right:8px;min-width:4px"></div><div style="font-size:12px;font-weight:700;color:var(--g400);min-width:20px;text-align:right">60</div></div>
-        <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--g150);font-size:11px;color:var(--g400)">▲ = next scheduled week &nbsp;·&nbsp; showing Wks 0–17</div>
-      </div>
-    </div>
   </div>
 
 </div>
+
 
 <!-- ══════════ STORE STATUS ══════════ -->
 <div id="sec-stores" class="section">
