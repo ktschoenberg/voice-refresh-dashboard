@@ -128,6 +128,18 @@ tfoot td.grand{color:var(--hd);font-size:14px}
 .wk-acc-hd.open .wk-acc-chev{transform:rotate(90deg)}
 .wk-acc-body{display:none;border-top:1px solid var(--g100)}
 .wk-acc-body.open{display:block}
+/* ── Week panel drawer ───────────────────────────────────── */
+#weekDrawer{width:580px;right:-600px}
+#weekDrawer.open{right:0}
+.wd-kpi{padding:10px 14px;border-right:1px solid var(--g150)}
+.wd-kpi:last-child{border-right:none}
+.wd-kpi-val{font-size:20px;font-weight:800;letter-spacing:-.03em;color:var(--g900);line-height:1}
+.wd-kpi-lbl{font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.07em;margin-top:2px}
+.wd-store-row{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--g100);cursor:pointer}
+.wd-store-row:hover{background:var(--g50)}
+.wd-store-num{font-size:12px;font-weight:700;color:var(--g900);min-width:60px}
+.wd-store-loc{font-size:12px;color:var(--g600);flex:1}
+.wd-store-date{font-size:11px;color:var(--g400);min-width:60px;text-align:right}
 /* ── Week card grid ──────────────────────────────────────── */
 .sv-wk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .wk-card{background:var(--white);border:1px solid var(--g200);border-radius:var(--r10);overflow:hidden;box-shadow:var(--sh-xs)}
@@ -1034,7 +1046,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
 </footer>
 
 <!-- ══ STORE DETAIL DRAWER ══ -->
-<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer()"></div>
+<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer();closeWeekPanel()"></div>
 <div class="drawer" id="storeDrawer">
   <div class="drawer-header">
     <div>
@@ -1046,6 +1058,21 @@ tfoot td.grand{color:var(--hd);font-size:14px}
     </button>
   </div>
   <div class="drawer-body" id="drawerBody"></div>
+</div>
+
+<!-- ══ WEEK PANEL DRAWER ══ -->
+<div class="drawer" id="weekDrawer">
+  <div class="drawer-header">
+    <div>
+      <div class="drawer-store-id" id="wd-label">Wk 9</div>
+      <div class="drawer-store-name" id="wd-sub">5/04–5/08 · 71 stores</div>
+    </div>
+    <button class="drawer-close" onclick="closeWeekPanel()">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div id="wd-kpis" style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--g150);flex-shrink:0"></div>
+  <div class="drawer-body" id="wd-body"></div>
 </div>
 
 <script>
@@ -1306,7 +1333,62 @@ function closeDrawer() {
   document.getElementById('drawerBackdrop').classList.remove('open');
   document.body.style.overflow='';
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+
+// ── Week Panel ───────────────────────────────────────────────────────────
+function openWeekPanel(key) {
+  const label  = key === 'Pilot' ? 'Pilot' : 'Wk ' + key;
+  const dates  = SV_WK_DATES_ALL[key] || '';
+  const stores = STORES.filter(s => s.week === key);
+  const compl  = stores.filter(s => s.status === 'Complete');
+  const flagged= compl.filter(s => s.mdf || s.vgrec || s.dhcp || s.fax);
+  const clean  = compl.filter(s => !s.mdf && !s.vgrec && !s.dhcp && !s.fax);
+  const pending= stores.filter(s => s.status !== 'Complete');
+  const phones = stores.reduce((t,s)=>(t + (s.total||0)), 0);
+  const pct    = stores.length ? Math.round(compl.length/stores.length*100) : 0;
+
+  document.getElementById('wd-label').textContent = label;
+  document.getElementById('wd-sub').textContent   = `${dates}  ·  ${stores.length} stores  ·  ${pct}% complete`;
+
+  // KPI strip
+  document.getElementById('wd-kpis').innerHTML = [
+    {val: stores.length, lbl: 'Total Stores'},
+    {val: compl.length,  lbl: 'Complete'},
+    {val: pending.length,lbl: 'Scheduled'},
+    {val: phones || '—', lbl: 'Phones'},
+  ].map(k => `<div class="wd-kpi"><div class="wd-kpi-val">${k.val}</div><div class="wd-kpi-lbl">${k.lbl}</div></div>`).join('');
+
+  // Store list
+  const sorted = [...compl, ...pending].sort((a,b) => (a.store||'').localeCompare(b.store||''));
+  document.getElementById('wd-body').innerHTML = sorted.map(s => {
+    const flags = [s.mdf&&'MDF',s.vgrec&&'VG',s.dhcp&&'DHCP',s.fax&&'Fax'].filter(Boolean).join('·');
+    let badge;
+    if (s.status === 'Complete') {
+      badge = flags
+        ? `<span class="badge b-except"><span class="b-dot"></span>Complete · ${flags}</span>`
+        : `<span class="badge b-clean"><span class="b-dot"></span>Clean</span>`;
+    } else {
+      badge = `<span class="badge b-pending"><span class="b-dot"></span>Scheduled</span>`;
+    }
+    return `<div class="wd-store-row" onclick="closeWeekPanel();setTimeout(()=>openDrawer('${s.store}'),220)">
+      <div class="wd-store-num">${s.store}</div>
+      <div class="wd-store-loc">${s.name||s.city||''}, ${s.state||''}</div>
+      <div class="wd-store-date">${s.date||''}</div>
+      ${badge}
+    </div>`;
+  }).join('');
+
+  document.getElementById('weekDrawer').classList.add('open');
+  document.getElementById('drawerBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeWeekPanel() {
+  document.getElementById('weekDrawer').classList.remove('open');
+  document.getElementById('drawerBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeWeekPanel();}});
 
 // ── INIT ──────────────────────────────────────────────────────────────
 buildWkFilter();
@@ -1581,8 +1663,8 @@ function svTimeline() {
         <td style="color:var(--g500)">${s.date||''}</td>
         <td>${badge}</td></tr>`;
     }).join('');
-    return `<div class="wk-card">
-      <div class="wk-card-hd" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+    return `<div class="wk-card" onclick="openWeekPanel('${key}')" style="cursor:pointer">
+      <div class="wk-card-hd">
         <div class="wk-card-top">
           <span class="wk-card-label">${label}</span>
           <span class="wk-card-pct" style="color:${pctColor}">${pct}%</span>
@@ -1594,12 +1676,6 @@ function svTimeline() {
           ${flagged.length ? `<span class="badge b-except"><span class="b-dot"></span>${flagged.length} flagged</span>` : ''}
           ${pending.length ? `<span class="badge b-pending"><span class="b-dot"></span>${pending.length} scheduled</span>` : ''}
         </div>
-      </div>
-      <div class="wk-card-body">
-        <table class="wk-mini-table">
-          <thead><tr><th>Store</th><th>Name / State</th><th>Date</th><th>Status</th></tr></thead>
-          <tbody>${rows}</tbody>
-        </table>
       </div>
     </div>`;
   }).join('');
