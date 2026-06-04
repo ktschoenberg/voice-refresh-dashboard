@@ -642,7 +642,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
           <ul style="margin:0;padding-left:15px;font-size:12.5px;color:var(--g600);line-height:1.75;display:flex;flex-direction:column;gap:6px">
             <li>Phones provisioned but left in MDF at <strong style="color:var(--yellow700)">13 stores</strong> due to locked rooms, blocked 110 blocks, or restricted access. Return visit scheduling is needed before these can be marked complete.</li>
             <li>110-block cabling at <strong style="color:var(--yellow700)">20 stores</strong> prevented the VG410 swap — legacy VG reconfigured and left in place. Physical swaps remain pending and will require a separate mobilization wave.</li>
-            <li><strong style="color:var(--hd-dark)">71 stores scheduled for Week 9</strong> vs. a 40-store target — the first high-volume week. Capacity for Cisco engineers, THD MEs, and freight coordination should be verified before May 4 kickoff.</li>
+            <li><strong style="color:var(--hd-dark)">71 stores scheduled for Week 9</strong> vs. a 40-store target — the first high-volume week. Capacity for Cisco engineers, THD MEs, and freight coordination should be verified before Week 9 kickoff.</li>
           </ul>
         </div>
       </div>
@@ -1424,14 +1424,16 @@ OC_WEEKS.forEach(wk => {
 
 function ocBar(label, val, total, color, sub) {
   if (val <= 0) return '';
+  const pct = total > 0 ? (val / total * 100).toFixed(1) : 0;
   const h = sub ? 5 : 6;
   const fs = sub ? 12 : 12.5;
   const fw = sub ? 600 : 700;
   const clr = sub ? 'var(--g500)' : 'var(--g800)';
   const cnt = sub ? val + ' stores' : String(val);
+  const fill = sub ? 'var(--g300)' : 'var(--g400)';
   return `<div style="display:flex;align-items:center;gap:12px">
     <div style="font-size:${fs}px;color:${clr};min-width:220px">${label}</div>
-    <div class="oc-bar-track" style="flex:1;height:${h}px;border-radius:3px"></div>
+    <div class="oc-bar-track" style="flex:1;height:${h}px;border-radius:3px;overflow:hidden"><div style="height:100%;border-radius:3px;background:${fill};width:${pct}%"></div></div>
     <div style="font-size:${fs}px;font-weight:${fw};color:var(--g900);min-width:60px;text-align:right">${cnt}</div>
   </div>`;
 }
