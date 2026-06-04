@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
+:root {
   --g950:#0C111D;--g900:#101828;--g800:#1D2939;--g700:#344054;
   --g600:#475467;--g500:#667085;--g400:#98A2B3;--g300:#D0D5DD;
   --g200:#EAECF0;--g150:#F2F4F7;--g100:#F9FAFB;--white:#FFFFFF;
@@ -20,13 +20,12 @@
   --sh-xs:0 1px 2px rgba(16,24,40,.05);
   --sh-sm:0 1px 3px rgba(16,24,40,.10),0 1px 2px rgba(16,24,40,.06);
   --sh-md:0 4px 8px -2px rgba(16,24,40,.10),0 2px 4px -2px rgba(16,24,40,.06);
-  --sh-lg:0 12px 16px -4px rgba(16,24,40,.08),0 4px 6px -2px rgba(16,24,40,.03);
   --r4:4px;--r6:6px;--r8:8px;--r12:12px;--rfull:9999px;
   --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font);background:var(--g100);color:var(--g900);display:flex;flex-direction:column;height:100vh;overflow:hidden;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
-.topbar{background:var(--white);border-bottom:1px solid var(--g200);height:56px;display:flex;align-items:center;padding:0 24px;flex-shrink:0;box-shadow:var(--sh-xs);z-index:200}
+.topbar{background:var(--white);border-bottom:1px solid var(--g200);height:56px;display:flex;align-items:center;padding:0 24px;flex-shrink:0;box-shadow:var(--sh-xs);z-index:10}
 .tb-mark{width:30px;height:30px;background:var(--hd);border-radius:var(--r6);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:white;flex-shrink:0;margin-right:12px;letter-spacing:-.02em}
 .tb-name{font-size:14px;font-weight:700;color:var(--g900)}.tb-sep{color:var(--g300);margin:0 10px}.tb-sub{font-size:13px;color:var(--g500)}
 .tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
@@ -42,31 +41,30 @@ body{font-family:var(--font);background:var(--g100);color:var(--g900);display:fl
 .s-item svg{width:16px;height:16px;flex-shrink:0;color:#fff}
 .s-footer{padding:12px 14px;border-top:1px solid rgba(255,255,255,.1);font-size:11px;color:#fff;line-height:1.7}
 .s-footer strong{color:#fff;display:block;font-size:11.5px;margin-bottom:1px}
-.main{flex:1;overflow-y:auto;padding:22px 28px 80px}
+.main{flex:1;overflow-y:auto;padding:22px 28px 56px}
 .section{display:none}.section.active{display:block}
 .page-hd{margin-bottom:18px;display:flex;align-items:flex-end;justify-content:space-between}
 .page-title{font-size:18px;font-weight:700;color:var(--g900)}.page-sub{font-size:12.5px;color:var(--g500);margin-top:2px}.page-meta{font-size:11.5px;color:var(--g400)}
-.page-footer{position:fixed;bottom:0;left:220px;right:0;height:36px;background:var(--white);border-top:1px solid var(--g200);display:flex;align-items:center;justify-content:flex-end;padding-right:28px;z-index:100}
-.page-footer span{font-size:11.5px;color:var(--g400);letter-spacing:.01em;font-style:italic}
-.page-footer strong{color:var(--g600);font-weight:600}
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+.kpi-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
 .kpi{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);padding:16px 18px;box-shadow:var(--sh-xs)}
-.kpi.accent{border-left:3px solid var(--hd)}.kpi.green{border-left:3px solid var(--green500)}.kpi.yellow{border-left:3px solid var(--yellow500)}.kpi.red{border-left:3px solid var(--red600)}.kpi.blue{border-left:3px solid var(--blue600)}
+.kpi.accent{border-left:3px solid var(--hd)}.kpi.green{border-left:3px solid var(--green500)}.kpi.yellow{border-left:3px solid var(--yellow500)}.kpi.red{border-left:3px solid var(--red600)}
 .kpi-label{font-size:11px;font-weight:600;color:var(--g500);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
 .kpi-val{font-size:26px;font-weight:800;color:var(--g900);letter-spacing:-.04em;line-height:1;margin-bottom:4px}
-.kpi.accent .kpi-val{color:var(--hd)}.kpi.green .kpi-val{color:var(--green600)}.kpi.yellow .kpi-val{color:var(--yellow700)}.kpi.blue .kpi-val{color:var(--blue600)}
+.kpi.accent .kpi-val{color:var(--hd)}.kpi.green .kpi-val{color:var(--green600)}.kpi.yellow .kpi-val{color:var(--yellow700)}.kpi.red .kpi-val{color:var(--red600)}
 .kpi-sub{font-size:11.5px;color:var(--g400)}
 .kpi-delta{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;padding:1.5px 7px;border-radius:var(--rfull);margin-top:5px}
-.delta-green{background:var(--green50);color:var(--green700)}.delta-yellow{background:var(--yellow50);color:var(--yellow700)}.delta-orange{background:var(--hd-50);color:var(--hd-dark)}.delta-blue{background:var(--blue50);color:var(--blue700)}
+.delta-green{background:var(--green50);color:var(--green700)}.delta-yellow{background:var(--yellow50);color:var(--yellow700)}.delta-orange{background:var(--hd-50);color:var(--hd-dark)}
 .card{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);box-shadow:var(--sh-xs)}
 .card-hd{padding:14px 18px;border-bottom:1px solid var(--g200);display:flex;align-items:center;justify-content:space-between}
 .card-body{padding:18px 20px}.card-title{font-size:13.5px;font-weight:700;color:var(--g900)}.card-sub{font-size:12px;color:var(--g500);margin-top:1px}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
 .grid-5-3{display:grid;grid-template-columns:5fr 3fr;gap:14px;margin-bottom:16px}
 .mb16{margin-bottom:16px}
-.divider{height:1px;background:var(--g200);margin:14px 0}
 .prog-wrap{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);padding:20px 22px;box-shadow:var(--sh-xs);margin-bottom:16px}
-.prog-track{background:var(--g150);border-radius:var(--rfull);height:10px;margin-bottom:8px;overflow:hidden}
+.prog-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px}
+.prog-track{background:var(--g150);border-radius:var(--rfull);height:10px;margin-bottom:8px;overflow:hidden;display:flex}
 .prog-leg{display:flex;gap:18px;font-size:11.5px;color:var(--g500)}
 .prog-leg-item{display:flex;align-items:center;gap:5px}
 .prog-dot{width:7px;height:7px;border-radius:50%}
@@ -81,93 +79,31 @@ tbody tr:hover td{background:var(--g100)}
 td.r{text-align:right}
 td.mono{font-family:'SF Mono','Fira Code',monospace;font-size:12px;color:var(--g500)}
 td.r.mono{text-align:right;font-family:'SF Mono','Fira Code',monospace;font-size:12.5px;color:var(--g800);font-weight:600}
-.td-store{font-weight:700;color:var(--hd);font-size:13px;letter-spacing:.01em;cursor:pointer;text-decoration:none}
-.td-store:hover{text-decoration:underline}
-.wk-head td{background:var(--g150);font-size:11.5px;font-weight:700;color:var(--g600);padding:6px 14px;letter-spacing:.03em;text-transform:uppercase}
-.badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:2px 8px;border-radius:var(--rfull)}
-.b-complete{background:var(--green50);color:var(--green700);border:1px solid var(--green100)}
-.b-scheduled{background:var(--blue50);color:var(--blue700);border:1px solid var(--blue100)}
-.b-rescheduled{background:var(--yellow50);color:var(--yellow700);border:1px solid var(--yellow100)}
-.b-except{background:var(--yellow50);color:var(--yellow700);border:1px solid var(--yellow100)}
-.b-dot{width:5px;height:5px;border-radius:50%;background:currentColor}
-.flag{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:600;padding:1.5px 6px;border-radius:var(--rfull);margin:1px 1px}
-.flag-mdf{background:var(--yellow50);color:var(--yellow700)}
-.flag-vg{background:var(--g150);color:var(--g600)}
-.flag-fax{background:var(--hd-50);color:var(--hd-dark)}
-.flag-dhcp{background:var(--green50);color:var(--green700)}
-.seg-ctrl{display:flex;gap:0;background:var(--g150);border-radius:var(--rfull);padding:3px;border:1px solid var(--g200)}
-.seg-btn{background:none;border:none;padding:4px 12px;border-radius:var(--rfull);font-size:12px;font-weight:500;color:var(--g600);cursor:pointer;font-family:var(--font);transition:all .12s;white-space:nowrap}
-.seg-btn.active{background:var(--white);color:var(--g900);font-weight:700;box-shadow:var(--sh-xs)}
-.seg-btn.upcoming-btn.active{background:var(--hd);color:#fff}
-.grand{font-weight:700;color:var(--g900)}
-tfoot td{padding:9px 14px;font-size:13px;border-top:2px solid var(--g200);background:var(--g100)}
-.chip{display:inline-flex;align-items:center;background:var(--g150);border:1px solid var(--g200);border-radius:var(--rfull);padding:3px 9px;font-size:11.5px;font-weight:600;color:var(--g700)}
-.chip-vg{background:var(--g150);color:var(--g700)}
-
-/* ── DRAWER ── */
-.drawer{position:fixed;top:0;right:-500px;width:480px;height:100vh;background:var(--white);box-shadow:var(--sh-lg);z-index:400;display:flex;flex-direction:column;transition:right .28s cubic-bezier(.4,0,.2,1)}
-.drawer.open{right:0}
-.drawer-backdrop{position:fixed;inset:0;background:rgba(16,24,40,.35);z-index:300;opacity:0;pointer-events:none;transition:opacity .25s}
-.drawer-backdrop.open{opacity:1;pointer-events:all}
-.drawer-header{background:var(--g900);padding:20px 20px 16px;flex-shrink:0;display:flex;align-items:flex-start;justify-content:space-between}
-.drawer-store-id{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.02em}
-.drawer-store-name{font-size:13px;color:rgba(255,255,255,.65);margin-top:3px}
-.drawer-close{background:rgba(255,255,255,.1);border:none;border-radius:var(--r6);width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;margin-top:2px}
-.drawer-close svg{width:15px;height:15px;color:#fff}
-.drawer-body{flex:1;overflow-y:auto;padding:0}
-.dr-section{padding:14px 20px;border-bottom:1px solid var(--g150)}
-.dr-section:last-child{border-bottom:none}
-.dr-label{font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.dr-label svg{width:12px;height:12px}
-.dr-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px;gap:12px}
-.dr-key{font-size:12px;color:var(--g500);flex-shrink:0}
-.dr-val{font-size:12.5px;color:var(--g800);font-weight:500;text-align:right}
-.eq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
-.eq-box{background:var(--g100);border:1px solid var(--g200);border-radius:var(--r8);padding:10px 12px;text-align:center}
-.eq-box.accent{background:var(--hd-50);border-color:rgba(249,99,2,.3)}
-.eq-num{font-size:18px;font-weight:800;color:var(--g900);letter-spacing:-.03em}
-.eq-box.accent .eq-num{color:var(--hd)}
-.eq-lbl{font-size:10px;color:var(--g400);margin-top:1px}
-.chk-row{display:flex;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--g150)}
-.chk-row:last-child{border-bottom:none}
-.dr-note{background:var(--g100);border:1px solid var(--g200);border-radius:var(--r8);padding:10px 12px;font-size:12px;color:var(--g700);line-height:1.6;white-space:pre-wrap;max-height:220px;overflow-y:auto;margin-top:4px}
-
-/* ── STORE STATUS ROW STATES ── */
-tr.row-upcoming td { background: #F0F7FF; }
-tr.row-rescheduled td { background: var(--yellow50); }
-tr.row-upcoming:hover td { background: #dbeeff; }
-tr.row-rescheduled:hover td { background: #fde6b0; }
-
-/* ── ROADMAP SCROLL ── */
-.roadmap-scroll{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:thin;scrollbar-color:var(--g200) transparent}
-.roadmap-scroll::-webkit-scrollbar{height:4px}
-.roadmap-scroll::-webkit-scrollbar-thumb{background:var(--g200);border-radius:4px}
-
-/* ── STATUS FILTER ROW ── */
-.status-filter-row{display:flex;align-items:center;gap:6px;margin-bottom:8px}
-.sf-btn{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:var(--rfull);border:1.5px solid var(--g200);background:var(--white);font-size:12px;font-weight:600;color:var(--g600);cursor:pointer;font-family:var(--font);transition:all .12s}
-.sf-btn:hover{border-color:var(--g400);color:var(--g900)}
-.sf-btn.sf-active-complete{background:var(--green50);border-color:var(--green500);color:var(--green700)}
-.sf-btn.sf-active-upcoming{background:var(--hd-50);border-color:var(--hd);color:var(--hd-dark)}
-.sf-btn.sf-active-all{background:var(--g900);border-color:var(--g900);color:#fff}
-.sf-count{font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:var(--rfull);background:rgba(0,0,0,.08)}
-
-/* ── Command-center overview ────────────────────────── */
-.cmd-hero{background:var(--g900);border-radius:var(--r12);padding:22px 28px;margin-bottom:12px;display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:center}
-.cmd-arc-wrap{display:flex;flex-direction:column;align-items:center}
-.cmd-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
-.cmd-stat{border-left:2px solid rgba(255,255,255,.12);padding-left:14px}
-.cmd-stat-val{font-size:26px;font-weight:800;color:#fff;letter-spacing:-.04em;line-height:1}
-.cmd-stat-lbl{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
-.cmd-stat-delta{font-size:11px;font-weight:600;margin-top:5px}
-.cmd-wk9{background:rgba(249,99,2,.12);border:1px solid rgba(249,99,2,.28);border-radius:var(--r8);padding:13px 16px;display:flex;align-items:center;gap:14px}
-.cmd-row3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:12px}
-.cmd-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.pill-green{display:inline-flex;align-items:center;gap:6px;background:var(--green50);border:1px solid var(--green200);border-radius:var(--rfull);padding:5px 13px;font-size:12px;font-weight:600;color:var(--green700)}
-.pill-amber{display:inline-flex;align-items:center;gap:6px;background:var(--yellow50);border:1px solid var(--yellow200);border-radius:var(--rfull);padding:5px 13px;font-size:12px;font-weight:600;color:var(--yellow700)}
-.pill-orange{display:inline-flex;align-items:center;gap:6px;background:var(--hd-50);border:1px solid rgba(249,99,2,.28);border-radius:var(--rfull);padding:5px 13px;font-size:12px;font-weight:600;color:var(--hd-dark)}
-.act-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.act-link{margin-top:7px;font-size:11px;font-weight:600;background:none;border:none;cursor:pointer;padding:0;display:inline-flex;align-items:center;gap:3px;font-family:var(--font)}
+.td-store{font-weight:700;color:var(--g900);font-size:13px;letter-spacing:.01em}
+.td-note{color:var(--g500);font-size:11.5px;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:help}
+tfoot td{padding:10px 14px;background:var(--g100);border-top:2px solid var(--g200);font-family:'SF Mono','Fira Code',monospace;font-weight:700;color:var(--g700);font-size:12.5px}
+tfoot td:first-child{font-family:var(--font);color:var(--g500);font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+tfoot td.r{text-align:right}
+tfoot td.grand{color:var(--hd);font-size:14px}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:var(--rfull);font-size:11px;font-weight:600;white-space:nowrap}
+.b-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.b-clean{background:var(--green50);color:var(--green700)}.b-clean .b-dot{background:var(--green500)}
+.b-except{background:var(--yellow50);color:var(--yellow700)}.b-except .b-dot{background:var(--yellow500)}
+.b-open{background:var(--red50);color:var(--red700)}.b-open .b-dot{background:var(--red600)}
+.b-pending{background:var(--g150);color:var(--g600)}.b-pending .b-dot{background:var(--g400)}
+.b-info{background:var(--blue50);color:var(--blue700)}.b-info .b-dot{background:var(--blue600)}
+.mini-bar{margin-bottom:10px}.mini-bar:last-child{margin-bottom:0}
+.mini-bar-top{display:flex;justify-content:space-between;font-size:12.5px;color:var(--g700);margin-bottom:5px;font-weight:500}
+.mini-bar-count{font-weight:700;color:var(--g900);font-family:'SF Mono','Fira Code',monospace}
+.mini-bar-track{background:var(--g150);border-radius:var(--rfull);height:6px}
+.mini-bar-fill{border-radius:var(--rfull);height:6px}
+.seg-ctrl{display:flex;gap:3px;background:var(--g150);border-radius:8px;padding:3px;flex-wrap:wrap}
+.seg-btn{padding:4px 11px;border:none;border-radius:6px;font-size:11.5px;font-weight:500;cursor:pointer;background:transparent;color:var(--g500);transition:all .15s;white-space:nowrap;font-family:var(--font)}
+.seg-btn.active{background:var(--white);color:var(--g800);box-shadow:var(--sh-xs);font-weight:600}
+.wk-head td{background:var(--g150);font-size:11px;font-weight:700;color:var(--g600);text-transform:uppercase;letter-spacing:.04em;padding:6px 14px;border-bottom:1px solid var(--g200)}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--g300);border-radius:3px}
+.divider{height:1px;background:var(--g200);margin:14px 0}
+.hint{font-size:11.5px;color:var(--g400);margin-top:8px}
 </style>
 </head>
 <body>
@@ -218,350 +154,295 @@ tr.row-rescheduled:hover td { background: #fde6b0; }
 
 <!-- ══════════ OVERVIEW ══════════ -->
 <div id="sec-overview" class="section active">
-
-  <div class="page-hd" style="margin-bottom:12px">
-    <div>
-      <div class="page-title">Migration Overview</div>
-      <div class="page-sub">Store Voice Refresh &nbsp;·&nbsp; 2,210 stores &nbsp;·&nbsp; Feb – Dec 2026</div>
+    <div class="page-hd">
+      <div>
+        <div class="page-title">Migration Overview</div>
+        <div class="page-sub">Store Voice Refresh · Pilot + Weeks 1–8 Complete</div>
+      </div>
+      <div class="page-meta">As of Week 8 (Apr 27, 2026) · Ahead of schedule</div>
     </div>
-    <div class="page-meta">As of Week 8 (Apr 27) &nbsp;·&nbsp; <span style="color:var(--green500);font-weight:700">▲ Ahead of schedule</span></div>
-  </div>
 
-
-  <!-- ── STATUS BANNERS (side-by-side) ──────────────────── -->
-  <div style="display:flex;gap:10px;margin-bottom:12px">
-    <div style="flex:1;display:flex;align-items:center;gap:10px;background:var(--green50);border:1px solid var(--green100);border-left:3px solid var(--green500);border-radius:var(--r8);padding:9px 14px;font-size:12.5px;color:var(--green700)">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:14px;height:14px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+    <!-- ahead-of-schedule banner -->
+    <div style="display:flex;align-items:center;gap:10px;background:var(--green50);border:1px solid var(--green100);border-left:3px solid var(--green500);border-radius:var(--r8);padding:10px 16px;font-size:12.5px;color:var(--green700);margin-bottom:16px">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:15px;height:15px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
       <span><strong>Ahead of schedule:</strong> 178 stores complete vs. target of 154 at Week 8 — <strong>+24 stores (+15.6%)</strong> ahead of plan. Weeks 5–8 all exceeded targets.</span>
     </div>
-    <div style="flex:1;display:flex;align-items:center;gap:10px;background:var(--hd-50);border:1px solid rgba(249,99,2,.22);border-left:3px solid var(--hd);border-radius:var(--r8);padding:9px 14px;font-size:12.5px;color:var(--hd-dark)">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:15px;height:15px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-      <span><strong>Next migration: Week 9</strong> &nbsp;·&nbsp; 5/04–5/08 &nbsp;·&nbsp; <strong>71 stores scheduled</strong> &nbsp;·&nbsp; 194 cumulative target</span>
-      <span style="margin-left:auto;background:var(--hd);color:#fff;font-size:11px;font-weight:700;padding:2px 9px;border-radius:var(--rfull);white-space:nowrap;flex-shrink:0">Starting Soon</span>
-    </div>
-  </div>
 
-  <!-- ── COMMAND CENTER HERO ─────────────────────────────── -->
-  <div class="cmd-hero">
-
-    <!-- Arc progress -->
-    <div class="cmd-arc-wrap">
-      <svg viewBox="0 0 160 160" width="160" height="160">
-        <!-- Background track -->
-        <circle cx="80" cy="80" r="60" fill="none" stroke="#1D2939" stroke-width="18"/>
-        <!-- Progress arc: circumference=376.99, 8.1%=30.54 -->
-        <circle cx="80" cy="80" r="60" fill="none" stroke="#F96302" stroke-width="18"
-                stroke-dasharray="30.54 346.45"
-                stroke-linecap="round"
-                transform="rotate(-90 80 80)"/>
-        <text x="80" y="74" text-anchor="middle" fill="#ffffff" font-size="30" font-weight="800"
-              font-family="Inter,sans-serif" letter-spacing="-1.5">8.1%</text>
-        <text x="80" y="93" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10.5"
-              font-family="Inter,sans-serif">178 of 2,210 stores</text>
-      </svg>
-      <div style="text-align:center;margin-top:4px">
-        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.45)">Wks 0–8 complete</div>
-        <div style="font-size:10.5px;color:rgba(255,255,255,.25);margin-top:2px">~27 weeks remaining</div>
+    <div class="kpi-grid">
+      <div class="kpi accent">
+        <div class="kpi-label">Overall Progress</div>
+        <div class="kpi-val">8.1%</div>
+        <div class="kpi-sub">178 of 2,210 stores migrated</div>
+        <div class="kpi-delta delta-orange">Wks 0–8 of ~35 planned</div>
+      </div>
+      <div class="kpi green">
+        <div class="kpi-label">Phones Deployed</div>
+        <div class="kpi-val">6,433</div>
+        <div class="kpi-sub">+178 VG410 gateways</div>
+        <div class="kpi-delta delta-green">Across 178 stores</div>
+      </div>
+      <div class="kpi green">
+        <div class="kpi-label">vs. Schedule</div>
+        <div class="kpi-val">+24</div>
+        <div class="kpi-sub">178 actual vs. 154 target (Wk 8)</div>
+        <div class="kpi-delta delta-green">+15.6% ahead</div>
+      </div>
+      <div class="kpi yellow">
+        <div class="kpi-label">Phones in MDF</div>
+        <div class="kpi-val">13</div>
+        <div class="kpi-sub">Stores with phones not installed</div>
+        <div class="kpi-delta delta-yellow">Return visits needed</div>
       </div>
     </div>
 
-    <!-- Stats + Week 9 -->
-    <div>
-      <div class="cmd-stats">
-        <div class="cmd-stat">
-          <div class="cmd-stat-val">178</div>
-          <div class="cmd-stat-lbl">Stores complete</div>
-          <div class="cmd-stat-delta" style="color:#6CE9A6">+38 in Wk 8 alone</div>
-        </div>
-        <div class="cmd-stat">
-          <div class="cmd-stat-val" style="color:#6CE9A6">+24</div>
-          <div class="cmd-stat-lbl">vs. plan at Wk 8</div>
-          <div class="cmd-stat-delta" style="color:#6CE9A6">154 targeted · 178 done</div>
-        </div>
-        <div class="cmd-stat">
-          <div class="cmd-stat-val">6,433</div>
-          <div class="cmd-stat-lbl">Phones deployed</div>
-          <div class="cmd-stat-delta" style="color:rgba(255,255,255,.3)">avg. 36 / store</div>
-        </div>
-      </div>
-
-      <div class="cmd-wk9">
-        <div style="background:var(--hd);border-radius:var(--r6);padding:6px 14px;text-align:center;flex-shrink:0">
-          <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.75);letter-spacing:.08em;text-transform:uppercase">Next Up</div>
-          <div style="font-size:16px;font-weight:800;color:#fff;letter-spacing:-.02em">Wk 9</div>
-        </div>
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px">
-            May 4–8, 2026 &nbsp;·&nbsp; <span style="color:rgba(249,99,2,1)">71 stores scheduled</span>
-            <span style="font-size:11px;color:rgba(255,255,255,.35);font-weight:400">&nbsp;(40 target)</span>
-          </div>
-          <div style="font-size:11.5px;color:rgba(255,255,255,.4)">~2,050 phones &nbsp;·&nbsp; Top regions: ON (21) &nbsp;·&nbsp; TN / MS / BC / QC / AB (8 each)</div>
-        </div>
-        <div style="background:rgba(249,99,2,.2);border:1px solid rgba(249,99,2,.4);border-radius:var(--rfull);padding:4px 11px;white-space:nowrap;flex-shrink:0">
-          <span style="font-size:11.5px;font-weight:700;color:rgba(255,165,0,.95)">⚠ 78% over plan</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ── 3-COLUMN ROW: Action · This Week · vs Plan ─────── -->
-  <div class="cmd-row3">
-
-    <!-- 1 · Action Required -->
-    <div class="card">
-      <div class="card-hd" style="padding:12px 18px">
-        <div style="display:flex;align-items:center;gap:8px">
-          <div style="width:8px;height:8px;border-radius:50%;background:var(--red600);flex-shrink:0"></div>
-          <div class="card-title" style="font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--g500)">Action Required</div>
-        </div>
-      </div>
-      <div class="card-body" style="padding:0">
-
-        <div style="padding:14px 18px;border-bottom:1px solid var(--g100);display:flex;gap:11px;align-items:flex-start">
-          <div class="act-num" style="background:#FEF3F2;border:1.5px solid #FDA29B">
-            <span style="font-size:11px;font-weight:800;color:var(--red600)">1</span>
-          </div>
-          <div style="flex:1">
-            <div style="font-size:13px;font-weight:700;color:var(--g900);margin-bottom:3px">13 stores need return visits</div>
-            <div style="font-size:12px;color:var(--g500);line-height:1.45">Phones provisioned but left in MDF — blocked access prevented install. Schedule return window now.</div>
-            <button class="act-link" style="color:var(--red600)"
-              onclick="showTab('issues', document.querySelector('.s-item[onclick*=issues]'))">View open items →</button>
-          </div>
-        </div>
-
-        <div style="padding:14px 18px;border-bottom:1px solid var(--g100);display:flex;gap:11px;align-items:flex-start">
-          <div class="act-num" style="background:var(--yellow50);border:1.5px solid var(--yellow300)">
-            <span style="font-size:11px;font-weight:800;color:var(--yellow700)">2</span>
-          </div>
-          <div style="flex:1">
-            <div style="font-size:13px;font-weight:700;color:var(--g900);margin-bottom:3px">20 sites still on legacy VG</div>
-            <div style="font-size:12px;color:var(--g500);line-height:1.45">110-block cabling blocked the VG410 swap — legacy left in place. Plan a separate mobilization wave.</div>
-            <button class="act-link" style="color:var(--yellow700)"
-              onclick="showTab('stores', document.querySelector('.s-item[onclick*=stores]'))">View affected stores →</button>
-          </div>
-        </div>
-
-        <div style="padding:14px 18px;display:flex;gap:11px;align-items:flex-start">
-          <div class="act-num" style="background:var(--hd-50);border:1.5px solid rgba(249,99,2,.35)">
-            <span style="font-size:11px;font-weight:800;color:var(--hd-dark)">3</span>
-          </div>
-          <div style="flex:1">
-            <div style="font-size:13px;font-weight:700;color:var(--g900);margin-bottom:3px">Confirm Wk 9 crew capacity</div>
-            <div style="font-size:12px;color:var(--g500);line-height:1.45">71 stores are scheduled vs. 40-store plan target. Verify Cisco/ME availability before May 4 kickoff.</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 2 · This Week -->
-    <div class="card">
-      <div class="card-hd" style="padding:12px 18px">
+    <!-- Program progress bar -->
+    <div class="prog-wrap">
+      <div class="prog-hd">
         <div>
-          <div class="card-title" style="font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--g500)">This Week</div>
-          <div style="font-size:16px;font-weight:800;color:var(--g900);margin-top:2px">Week 9 &nbsp;·&nbsp; May 4–8</div>
+          <div style="font-size:13.5px;font-weight:700;color:var(--g900)">Program-Wide Migration Progress</div>
+          <div style="font-size:12px;color:var(--g500);margin-top:2px">2,210 total stores · ~35 migration weeks planned</div>
         </div>
-        <div style="background:var(--hd);border-radius:var(--rfull);padding:3px 11px">
-          <span style="font-size:11px;font-weight:700;color:#fff">Starting Soon</span>
+        <div style="text-align:right">
+          <div style="font-size:22px;font-weight:800;color:var(--hd);letter-spacing:-.03em">178 <span style="font-size:15px;font-weight:500;color:var(--g400)">/ 2,210</span></div>
+          <div style="font-size:11.5px;color:var(--g400);margin-top:1px">stores complete</div>
         </div>
       </div>
-      <div class="card-body" style="padding:16px 18px">
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
-          <div style="background:var(--g50);border-radius:var(--r8);padding:12px 14px">
-            <div style="font-size:26px;font-weight:800;color:var(--g900);letter-spacing:-.04em;line-height:1">71</div>
-            <div style="font-size:11px;color:var(--g500);margin-top:3px">stores scheduled</div>
-            <div style="font-size:10.5px;color:var(--hd-dark);margin-top:3px;font-weight:600">vs. 40 plan target</div>
-          </div>
-          <div style="background:var(--g50);border-radius:var(--r8);padding:12px 14px">
-            <div style="font-size:26px;font-weight:800;color:var(--g900);letter-spacing:-.04em;line-height:1">~2,050</div>
-            <div style="font-size:11px;color:var(--g500);margin-top:3px">phones to deploy</div>
-            <div style="font-size:10.5px;color:var(--g400);margin-top:3px">est. 29 / store</div>
-          </div>
-        </div>
-
-        <div style="font-size:10.5px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Top Regions</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px">
-          <span style="background:var(--blue50);border:1px solid var(--blue100);border-radius:var(--rfull);padding:3px 10px;font-size:12px;font-weight:600;color:var(--blue700)">ON &nbsp;21</span>
-          <span style="background:var(--g100);border-radius:var(--rfull);padding:3px 10px;font-size:12px;font-weight:600;color:var(--g700)">TN &nbsp;8</span>
-          <span style="background:var(--g100);border-radius:var(--rfull);padding:3px 10px;font-size:12px;font-weight:600;color:var(--g700)">MS &nbsp;8</span>
-          <span style="background:var(--g100);border-radius:var(--rfull);padding:3px 10px;font-size:12px;font-weight:600;color:var(--g700)">BC &nbsp;8</span>
-          <span style="background:var(--g100);border-radius:var(--rfull);padding:3px 10px;font-size:12px;font-weight:600;color:var(--g700)">QC &nbsp;8</span>
-          <span style="background:var(--g100);border-radius:var(--rfull);padding:3px 10px;font-size:12px;font-weight:600;color:var(--g700)">AB &nbsp;8</span>
-        </div>
-
-        <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--g150);font-size:11.5px;color:var(--g500);display:flex;align-items:center;gap:6px">
-          <svg fill="none" stroke="#F96302" viewBox="0 0 24 24" style="width:13px;height:13px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-          Verify crew capacity before May 4 kickoff
-        </div>
+      <div class="prog-track">
+        <div style="height:10px;width:8.05%;background:var(--hd);border-radius:var(--rfull)"></div>
+      </div>
+      <div class="prog-leg">
+        <div class="prog-leg-item"><div class="prog-dot" style="background:var(--hd)"></div>Complete (178)</div>
+        <div class="prog-leg-item"><div class="prog-dot" style="background:var(--g200)"></div>Remaining (2,032)</div>
       </div>
     </div>
 
-    <!-- 3 · vs Plan sparkline -->
-    <div class="card">
-      <div class="card-hd" style="padding:12px 18px">
-        <div>
-          <div class="card-title" style="font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--g500)">vs. Plan</div>
-          <div style="font-size:16px;font-weight:800;color:var(--g900);margin-top:2px">Actual vs. Target</div>
+    <div class="grid-5-3">
+      <!-- Week-by-week actual vs target -->
+      <div class="card">
+        <div class="card-hd">
+          <div>
+            <div class="card-title">Weekly Progression · Actual vs. Target</div>
+            <div class="card-sub">Cumulative stores completed each week</div>
+          </div>
+          <div style="display:flex;gap:12px;font-size:11.5px">
+            <span style="display:flex;align-items:center;gap:4px;color:var(--hd);font-weight:600"><span style="width:10px;height:3px;background:var(--hd);border-radius:2px;display:inline-block"></span>Actual</span>
+            <span style="display:flex;align-items:center;gap:4px;color:var(--g400)"><span style="width:10px;height:3px;background:var(--g300);border-radius:2px;display:inline-block"></span>Target</span>
+          </div>
         </div>
-        <div style="background:var(--green50);border:1px solid var(--green200);border-radius:var(--rfull);padding:3px 11px">
-          <span style="font-size:11px;font-weight:700;color:var(--green700)">+15.6% ahead</span>
+        <div style="padding:0">
+          <table>
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th>Dates</th>
+                <th class="r">Stores</th>
+                <th class="r">Phones</th>
+                <th class="r">vs Target</th>
+                <th class="r">Cumul. Actual</th>
+                <th class="r">Cumul. Target</th>
+              </tr>
+            </thead>
+            <tbody><tr>
+      <td class="td-store">Pilot</td>
+      <td style="font-size:12px;color:var(--g500)">2/23–2/27</td>
+      <td class="r mono">4</td>
+      <td class="r mono">126</td>
+      <td class="r mono" style="color:var(--green600);font-weight:700">+0</td>
+      <td class="r mono">4</td>
+      <td class="r mono" style="color:var(--g400)">4</td>
+    </tr><tr>
+      <td class="td-store">Wk 1</td>
+      <td style="font-size:12px;color:var(--g500)">3/9–3/13</td>
+      <td class="r mono">8</td>
+      <td class="r mono">277</td>
+      <td class="r mono" style="color:var(--red600);font-weight:700">-2</td>
+      <td class="r mono">12</td>
+      <td class="r mono" style="color:var(--g400)">14</td>
+    </tr><tr>
+      <td class="td-store">Wk 2</td>
+      <td style="font-size:12px;color:var(--g500)">3/16–3/20</td>
+      <td class="r mono">5</td>
+      <td class="r mono">124</td>
+      <td class="r mono" style="color:var(--red600);font-weight:700">-7</td>
+      <td class="r mono">17</td>
+      <td class="r mono" style="color:var(--g400)">24</td>
+    </tr><tr>
+      <td class="td-store">Wk 3</td>
+      <td style="font-size:12px;color:var(--g500)">3/23–3/27</td>
+      <td class="r mono">10</td>
+      <td class="r mono">409</td>
+      <td class="r mono" style="color:var(--red600);font-weight:700">-7</td>
+      <td class="r mono">27</td>
+      <td class="r mono" style="color:var(--g400)">34</td>
+    </tr><tr>
+      <td class="td-store">Wk 4</td>
+      <td style="font-size:12px;color:var(--g500)">3/30–4/3</td>
+      <td class="r mono">20</td>
+      <td class="r mono">841</td>
+      <td class="r mono" style="color:var(--red600);font-weight:700">-7</td>
+      <td class="r mono">47</td>
+      <td class="r mono" style="color:var(--g400)">54</td>
+    </tr><tr>
+      <td class="td-store">Wk 5</td>
+      <td style="font-size:12px;color:var(--g500)">4/6–4/10</td>
+      <td class="r mono">34</td>
+      <td class="r mono">1,214</td>
+      <td class="r mono" style="color:var(--green600);font-weight:700">+7</td>
+      <td class="r mono">81</td>
+      <td class="r mono" style="color:var(--g400)">74</td>
+    </tr><tr>
+      <td class="td-store">Wk 6</td>
+      <td style="font-size:12px;color:var(--g500)">4/13–4/17</td>
+      <td class="r mono">27</td>
+      <td class="r mono">1,105</td>
+      <td class="r mono" style="color:var(--green600);font-weight:700">+14</td>
+      <td class="r mono">108</td>
+      <td class="r mono" style="color:var(--g400)">94</td>
+    </tr><tr>
+      <td class="td-store">Wk 7</td>
+      <td style="font-size:12px;color:var(--g500)">4/20–4/24</td>
+      <td class="r mono">32</td>
+      <td class="r mono">1,222</td>
+      <td class="r mono" style="color:var(--green600);font-weight:700">+16</td>
+      <td class="r mono">140</td>
+      <td class="r mono" style="color:var(--g400)">124</td>
+    </tr><tr>
+      <td class="td-store">Wk 8</td>
+      <td style="font-size:12px;color:var(--g500)">4/27–5/1</td>
+      <td class="r mono">38</td>
+      <td class="r mono">1,115</td>
+      <td class="r mono" style="color:var(--green600);font-weight:700">+24</td>
+      <td class="r mono">178</td>
+      <td class="r mono" style="color:var(--g400)">154</td>
+    </tr></tbody>
+            <tfoot>
+              <tr>
+                <td>Total</td><td></td>
+                <td class="r grand">178</td>
+                <td class="r grand">6,433</td>
+                <td class="r" style="color:var(--green600);font-weight:700">+24</td>
+                <td class="r grand">178</td>
+                <td class="r" style="color:var(--g400)">154</td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
-      <div class="card-body" style="padding:16px 18px">
 
-        <!-- Sparkline: Pilot+Wk1-8 actuals vs targets, weekly stores -->
-        <!-- Actuals: P=4 W1=8 W2=5 W3=10 W4=20 W5=34 W6=27 W7=32 W8=38 -->
-        <!-- Targets: P=4 W1=10 W2=10 W3=10 W4=20 W5=20 W6=20 W7=30 W8=30 -->
-        <!-- y = 74 - (val/40)*60  x spaced 27px from 10 to 226 -->
-        <svg viewBox="0 0 240 80" width="100%" height="80" style="display:block;margin-bottom:10px">
-          <!-- Fill area under actual line -->
-          <defs>
-            <linearGradient id="actGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#F96302" stop-opacity="0.15"/>
-              <stop offset="100%" stop-color="#F96302" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <polygon points="10,68 37,62 64,67 91,59 118,44 145,23 172,34 199,26 226,17 226,74 10,74"
-                   fill="url(#actGrad)"/>
-          <!-- Target dashed -->
-          <polyline points="10,68 37,59 64,59 91,59 118,44 145,44 172,44 199,29 226,29"
-                    fill="none" stroke="#D0D5DD" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <!-- Actual line -->
-          <polyline points="10,68 37,62 64,67 91,59 118,44 145,23 172,34 199,26 226,17"
-                    fill="none" stroke="#F96302" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-          <!-- Dots on actual -->
-          <circle cx="10"  cy="68" r="3" fill="#F96302"/>
-          <circle cx="37"  cy="62" r="3" fill="#F96302"/>
-          <circle cx="64"  cy="67" r="3" fill="#F96302"/>
-          <circle cx="91"  cy="59" r="3" fill="#F96302"/>
-          <circle cx="118" cy="44" r="3" fill="#F96302"/>
-          <circle cx="145" cy="23" r="3" fill="#F96302"/>
-          <circle cx="172" cy="34" r="3" fill="#F96302"/>
-          <circle cx="199" cy="26" r="3" fill="#F96302"/>
-          <circle cx="226" cy="17" r="3.5" fill="#F96302" stroke="#fff" stroke-width="1.5"/>
-          <!-- Week labels -->
-          <text x="10"  y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">P</text>
-          <text x="37"  y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">1</text>
-          <text x="64"  y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">2</text>
-          <text x="91"  y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">3</text>
-          <text x="118" y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">4</text>
-          <text x="145" y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">5</text>
-          <text x="172" y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">6</text>
-          <text x="199" y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">7</text>
-          <text x="226" y="79" text-anchor="middle" fill="#98A2B3" font-size="8" font-family="Inter,sans-serif">8</text>
-        </svg>
-
-        <div style="display:flex;gap:16px;margin-bottom:14px">
-          <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--g500)">
-            <div style="width:16px;height:2.5px;background:var(--hd);border-radius:2px"></div>Actual
-          </div>
-          <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--g500)">
-            <div style="width:16px;height:2px;background:repeating-linear-gradient(90deg,var(--g300) 0,var(--g300) 4px,transparent 4px,transparent 7px)"></div>Target
+      <!-- Right col: stores/wk bars + upcoming -->
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="card">
+          <div class="card-hd"><div class="card-title">Stores per Week</div></div>
+          <div class="card-body"><div class="mini-bar">
+      <div class="mini-bar-top"><span>Pilot <span style="color:var(--g400);font-size:11px">2/23–2/27</span></span><span class="mini-bar-count">4</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:11%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 1 <span style="color:var(--g400);font-size:11px">3/9–3/13</span></span><span class="mini-bar-count">8</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:21%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 2 <span style="color:var(--g400);font-size:11px">3/16–3/20</span></span><span class="mini-bar-count">5</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:13%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 3 <span style="color:var(--g400);font-size:11px">3/23–3/27</span></span><span class="mini-bar-count">10</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:26%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 4 <span style="color:var(--g400);font-size:11px">3/30–4/3</span></span><span class="mini-bar-count">20</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:53%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 5 <span style="color:var(--g400);font-size:11px">4/6–4/10</span></span><span class="mini-bar-count">34</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:89%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 6 <span style="color:var(--g400);font-size:11px">4/13–4/17</span></span><span class="mini-bar-count">27</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:71%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 7 <span style="color:var(--g400);font-size:11px">4/20–4/24</span></span><span class="mini-bar-count">32</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:84%;background:var(--hd)"></div></div>
+    </div><div class="mini-bar">
+      <div class="mini-bar-top"><span>Wk 8 <span style="color:var(--g400);font-size:11px">4/27–5/1</span></span><span class="mini-bar-count">38</span></div>
+      <div class="mini-bar-track"><div class="mini-bar-fill" style="width:100%;background:var(--hd)"></div></div>
+    </div></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><div class="card-title">Upcoming</div><div class="card-sub" style="margin-top:0">Next 3 weeks</div></div>
+          <div class="card-body" style="padding:0">
+            <table>
+              <thead><tr><th>Week</th><th>Dates</th><th class="r">Stores</th></tr></thead>
+              <tbody>
+                <tr><td class="td-store">Wk 9</td><td style="font-size:12px;color:var(--g500)">5/4–5/8</td><td class="r mono">71</td></tr>
+                <tr><td class="td-store">Wk 10</td><td style="font-size:12px;color:var(--g500)">5/11–5/15</td><td class="r mono">71</td></tr>
+                <tr><td class="td-store">Wk 11</td><td style="font-size:12px;color:var(--g500)">5/18–5/22</td><td class="r mono">70</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-          <div style="background:var(--green50);border-radius:var(--r6);padding:9px 12px">
-            <div style="font-size:18px;font-weight:800;color:var(--green700);letter-spacing:-.03em">6 / 9</div>
-            <div style="font-size:10.5px;color:var(--green600);margin-top:2px">weeks beat target</div>
-          </div>
-          <div style="background:var(--green50);border-radius:var(--r6);padding:9px 12px">
-            <div style="font-size:18px;font-weight:800;color:var(--green700);letter-spacing:-.03em">+24</div>
-            <div style="font-size:10.5px;color:var(--green600);margin-top:2px">stores ahead of plan</div>
-          </div>
-        </div>
-
       </div>
     </div>
 
-  </div>
-
-  <!-- ── INSIGHT PILLS ───────────────────────────────────── -->
-  <div class="cmd-pills">
-    <div class="pill-green">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:12px;height:12px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-      Ahead of schedule: +15.6%
+    <!-- Equipment + exception summary -->
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-hd"><div class="card-title">Equipment Deployed (Cumulative)</div></div>
+        <div class="card-body">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
+              <div><div style="font-size:12px;font-weight:600;color:var(--g700)">9851 IP Phone</div><div style="font-size:11px;color:var(--g400)">Standard handset · 85.7% of fleet</div></div>
+              <div style="font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.03em">5,515</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
+              <div><div style="font-size:12px;font-weight:600;color:var(--g700)">9861 W/KEM</div><div style="font-size:11px;color:var(--g400)">Expansion module · 9.6%</div></div>
+              <div style="font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.03em">619</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
+              <div><div style="font-size:12px;font-weight:600;color:var(--g700)">9841 IP Phone</div><div style="font-size:11px;color:var(--g400)">Entry handset · 4.6%</div></div>
+              <div style="font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.03em">299</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
+              <div><div style="font-size:12px;font-weight:600;color:var(--g700)">VG410-24FXS/4FXO</div><div style="font-size:11px;color:var(--g400)">Voice gateway · 1 per store</div></div>
+              <div style="font-size:20px;font-weight:800;color:var(--hd);letter-spacing:-.03em">178</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--hd-50);border-radius:var(--r8);border:1px solid rgba(249,99,2,.2)">
+              <div style="font-size:12px;font-weight:700;color:var(--hd-dark)">Total Handsets</div>
+              <div style="font-size:20px;font-weight:800;color:var(--hd);letter-spacing:-.03em">6,433</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hd"><div class="card-title">Exception Summary</div><div class="card-sub">Across all 178 complete stores</div></div>
+        <div class="card-body">
+          <div class="mini-bar">
+            <div class="mini-bar-top"><span>VG Reconfigured (110 block)</span><span class="mini-bar-count">20</span></div>
+            <div class="mini-bar-track"><div class="mini-bar-fill" style="width:100%;background:var(--g400)"></div></div>
+          </div>
+          <div class="mini-bar">
+            <div class="mini-bar-top"><span>Phones left in MDF</span><span class="mini-bar-count">13</span></div>
+            <div class="mini-bar-track"><div class="mini-bar-fill" style="width:65%;background:var(--yellow500)"></div></div>
+          </div>
+          <div class="mini-bar">
+            <div class="mini-bar-top"><span>DHCP issues (resolved)</span><span class="mini-bar-count">6</span></div>
+            <div class="mini-bar-track"><div class="mini-bar-fill" style="width:30%;background:var(--green500)"></div></div>
+          </div>
+          <div class="mini-bar">
+            <div class="mini-bar-top"><span>Fax issues</span><span class="mini-bar-count">5</span></div>
+            <div class="mini-bar-track"><div class="mini-bar-fill" style="width:25%;background:var(--hd)"></div></div>
+          </div>
+          <div class="mini-bar">
+            <div class="mini-bar-top"><span>Call park issues</span><span class="mini-bar-count">2</span></div>
+            <div class="mini-bar-track"><div class="mini-bar-fill" style="width:10%;background:var(--g300)"></div></div>
+          </div>
+          <div class="divider"></div>
+          <div style="font-size:12px;color:var(--g500);line-height:1.7">
+            <strong style="color:var(--g700)">VG Reconfigured:</strong> 110-block cabling requiring legacy VG to remain in place rather than full replacement.<br>
+            <strong style="color:var(--g700)">MDF phones:</strong> Provisioned but awaiting return visit for install — locked rooms, cable length, access restrictions.
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="pill-green">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:12px;height:12px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-      All 6 DHCP failures resolved on-site
-    </div>
-    <div class="pill-green">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:12px;height:12px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-      Avg. 36 phones / store deployed
-    </div>
-    <div class="pill-amber">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:12px;height:12px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-      13 MDF stores need return visits
-    </div>
-    <div class="pill-amber">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:12px;height:12px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-      20 sites still on legacy VG hardware
-    </div>
-    <div class="pill-orange">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:12px;height:12px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-      Wk 9: 71 scheduled vs. 40 target
-    </div>
-  </div>
-
-  <!-- ── WEEKLY TABLE ──────────────────────────────────── -->
-  <div class="card">
-    <div class="card-hd">
-      <div class="card-title">Weekly Progression &nbsp;·&nbsp; Actual vs. Target</div>
-      <div class="card-sub" style="font-size:11.5px;color:var(--g400)">Past actuals shown &nbsp;·&nbsp; Future = targets &nbsp;·&nbsp; ▲ = next migration week</div>
-    </div>
-    <table><thead><tr><th>Week</th><th>Dates</th><th class="r">Stores</th><th class="r">Target</th><th class="r">vs Target</th><th class="r">Cumul.</th><th class="r">Cum. Target</th></tr></thead>
-    <tbody><tr style=""><td><span style="color:var(--hd);font-weight:600">Pilot</span></td><td style="font-size:12px;color:var(--g400)">2/23-2/27</td><td class="r">4</td><td class="r" style="color:var(--g500)">4</td><td class="r"><span style="color:var(--green600);font-weight:600">0</span></td><td class="r" style="color:var(--g500)">4</td><td class="r" style="color:var(--g500)">4</td></tr>
-<tr style=""><td><span style="color:var(--hd);font-weight:600">Wk 1</span></td><td style="font-size:12px;color:var(--g400)">3/09–3/13</td><td class="r">8</td><td class="r" style="color:var(--g500)">10</td><td class="r"><span style="color:var(--red600);font-weight:600">-2</span></td><td class="r" style="color:var(--g500)">12</td><td class="r" style="color:var(--g500)">14</td></tr>
-<tr style=""><td><span style="color:var(--hd);font-weight:600">Wk 2</span></td><td style="font-size:12px;color:var(--g400)">3/16–3/20</td><td class="r">5</td><td class="r" style="color:var(--g500)">10</td><td class="r"><span style="color:var(--red600);font-weight:600">-5</span></td><td class="r" style="color:var(--g500)">17</td><td class="r" style="color:var(--g500)">24</td></tr>
-<tr style=""><td><span style="color:var(--hd);font-weight:600">Wk 3</span></td><td style="font-size:12px;color:var(--g400)">3/23–3/27</td><td class="r">10</td><td class="r" style="color:var(--g500)">10</td><td class="r"><span style="color:var(--green600);font-weight:600">0</span></td><td class="r" style="color:var(--g500)">27</td><td class="r" style="color:var(--g500)">34</td></tr>
-<tr style=""><td><span style="color:var(--hd);font-weight:600">Wk 4</span></td><td style="font-size:12px;color:var(--g400)">3/30–4/03</td><td class="r">20</td><td class="r" style="color:var(--g500)">20</td><td class="r"><span style="color:var(--green600);font-weight:600">0</span></td><td class="r" style="color:var(--g500)">47</td><td class="r" style="color:var(--g500)">54</td></tr>
-<tr style=""><td><span style="color:var(--hd);font-weight:600">Wk 5</span></td><td style="font-size:12px;color:var(--g400)">4/06–4/10</td><td class="r">34</td><td class="r" style="color:var(--g500)">20</td><td class="r"><span style="color:var(--green600);font-weight:600">+14</span></td><td class="r" style="color:var(--g500)">81</td><td class="r" style="color:var(--g500)">74</td></tr>
-<tr style=""><td><span style="color:var(--hd);font-weight:600">Wk 6</span></td><td style="font-size:12px;color:var(--g400)">4/13–4/17</td><td class="r">27</td><td class="r" style="color:var(--g500)">20</td><td class="r"><span style="color:var(--green600);font-weight:600">+7</span></td><td class="r" style="color:var(--g500)">108</td><td class="r" style="color:var(--g500)">94</td></tr>
-<tr style=""><td><span style="color:var(--hd);font-weight:600">Wk 7</span></td><td style="font-size:12px;color:var(--g400)">4/20–4/24</td><td class="r">32</td><td class="r" style="color:var(--g500)">30</td><td class="r"><span style="color:var(--green600);font-weight:600">+2</span></td><td class="r" style="color:var(--g500)">140</td><td class="r" style="color:var(--g500)">124</td></tr>
-<tr style=""><td><span style="color:var(--hd);font-weight:600">Wk 8</span></td><td style="font-size:12px;color:var(--g400)">4/27–5/01</td><td class="r">38</td><td class="r" style="color:var(--g500)">30</td><td class="r"><span style="color:var(--green600);font-weight:600">+8</span></td><td class="r" style="color:var(--g500)">178</td><td class="r" style="color:var(--g500)">154</td></tr>
-<tr style="background:var(--hd-50)"><td><span style="color:var(--hd);font-weight:700">Wk 9  ▲ Next</span></td><td style="font-size:12px;color:var(--g400)">5/04–5/08</td><td class="r"><span style="color:var(--g400)">–</span></td><td class="r" style="color:var(--g500)">40</td><td class="r"><span style="color:var(--g400)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g400)">–</span></td><td class="r" style="color:var(--g500)">194</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 10</span></td><td style="font-size:12px;color:var(--g400)">5/11–5/15</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">40</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">234</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 11</span></td><td style="font-size:12px;color:var(--g400)">5/18–5/22</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">60</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">294</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 12</span></td><td style="font-size:12px;color:var(--g400)">5/25–5/29</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">60</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">354</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 13</span></td><td style="font-size:12px;color:var(--g400)">6/01–6/05</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">40</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">394</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 14</span></td><td style="font-size:12px;color:var(--g400)">6/08–6/12</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">60</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">454</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 15</span></td><td style="font-size:12px;color:var(--g400)">6/15–6/19</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">534</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 16</span></td><td style="font-size:12px;color:var(--g400)">6/22–6/26</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">614</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 17</span></td><td style="font-size:12px;color:var(--g400)">6/29–07/03</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">60</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">674</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 18</span></td><td style="font-size:12px;color:var(--g400)">7/06–07/10</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">60</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">734</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 19</span></td><td style="font-size:12px;color:var(--g400)">7/13–7/17</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">814</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 20</span></td><td style="font-size:12px;color:var(--g400)">7/20–7/24</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">894</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 21</span></td><td style="font-size:12px;color:var(--g400)">7/27–7/31</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">974</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 22</span></td><td style="font-size:12px;color:var(--g400)">8/03–8/07</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">1054</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 23</span></td><td style="font-size:12px;color:var(--g400)">8/10–8/14</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">1134</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 24</span></td><td style="font-size:12px;color:var(--g400)">8/17–8/21</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">1214</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 25</span></td><td style="font-size:12px;color:var(--g400)">8/24–8/28</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">1294</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 26</span></td><td style="font-size:12px;color:var(--g400)">8/31–9/04</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">1374</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 27</span></td><td style="font-size:12px;color:var(--g400)">9/07–9/11</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">60</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">1434</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 28</span></td><td style="font-size:12px;color:var(--g400)">9/14–9/18</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">1514</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 29</span></td><td style="font-size:12px;color:var(--g400)">9/21–9/25</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">1594</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 30</span></td><td style="font-size:12px;color:var(--g400)">9/28–10/02</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">1674</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 33</span></td><td style="font-size:12px;color:var(--g400)">10/05–10/09</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">1754</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 34</span></td><td style="font-size:12px;color:var(--g400)">10/12–10/16</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">60</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">1814</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 35</span></td><td style="font-size:12px;color:var(--g400)">10/19–10/23</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">1894</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 36</span></td><td style="font-size:12px;color:var(--g400)">10/26–10/30</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">1974</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 37</span></td><td style="font-size:12px;color:var(--g400)">11/02–11/06</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">2054</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 38</span></td><td style="font-size:12px;color:var(--g400)">11/09–11/13</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">2134</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 39</span></td><td style="font-size:12px;color:var(--g400)">11/16–11/20</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">80</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">2214</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 40</span></td><td style="font-size:12px;color:var(--g400)">11/23–11/27</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 41</span></td><td style="font-size:12px;color:var(--g400)">11/30–12/04</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 42</span></td><td style="font-size:12px;color:var(--g400)">12/07–12/11</td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 43</span></td><td style="font-size:12px;color:var(--g400)"></td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 44</span></td><td style="font-size:12px;color:var(--g400)"></td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td></tr>
-<tr style="opacity:.5"><td><span style="color:var(--g400)">Wk 45</span></td><td style="font-size:12px;color:var(--g400)"></td><td class="r"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td><td class="r"><span style="color:var(--g200)">–</span></td><td class="r" style="color:var(--g500)"><span style="color:var(--g300)">–</span></td><td class="r" style="color:var(--g500)">—</td></tr></tbody></table>
   </div>
 
   <!-- ── AI INSIGHTS ─────────────────────────────────────── -->
-  <div style="margin-top:14px">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+  <div style="margin-top:16px">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
       <div style="display:flex;align-items:center;gap:6px;background:var(--g100);border-radius:var(--rfull);padding:3px 10px">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:12px;height:12px;color:var(--g500)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
         <span style="font-size:11px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.07em">AI Insights</span>
@@ -603,8 +484,6 @@ tr.row-rescheduled:hover td { background: #fde6b0; }
 
     </div>
   </div>
-
-</div>
 
 
 <!-- ══════════ STORE STATUS ══════════ -->
