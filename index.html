@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HD Infrastructure Technology · Store Voice Refresh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ─── Design Tokens ─── */
+:root {
+  --g950:#0C111D; --g900:#101828; --g800:#1D2939; --g700:#344054;
+  --g600:#475467; --g500:#667085; --g400:#98A2B3; --g300:#D0D5DD;
+  --g200:#EAECF0; --g150:#F2F4F7; --g100:#F9FAFB; --white:#FFFFFF;
+  --green700:#027A48; --green600:#039855; --green500:#12B76A;
+  --green100:#D1FADF; --green50:#ECFDF3;
+  --yellow700:#B54708; --yellow600:#DC6803; --yellow500:#F79009;
+  --yellow100:#FEF0C7; --yellow50:#FFFAEB;
+  --red700:#B42318; --red600:#D92D20;
+  --red100:#FEE4E2; --red50:#FEF3F2;
+  --blue700:#175CD3; --blue600:#1570EF;
+  --blue100:#DBEAFE; --blue50:#EFF8FF;
+  --hd:#F96302; --hd-dark:#D95A00; --hd-50:#FFF4EE;
+  --sh-xs:0 1px 2px rgba(16,24,40,.05);
+  --sh-sm:0 1px 3px rgba(16,24,40,.10),0 1px 2px rgba(16,24,40,.06);
+  --sh-md:0 4px 8px -2px rgba(16,24,40,.10),0 2px 4px -2px rgba(16,24,40,.06);
+  --r4:4px; --r6:6px; --r8:8px; --r12:12px; --rfull:9999px;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--g100);color:var(--g900);
+  display:flex;flex-direction:column;height:100vh;overflow:hidden;
+  font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+
+/* ══ TOPBAR ══ */
+.topbar{background:var(--white);border-bottom:1px solid var(--g200);height:56px;
+  display:flex;align-items:center;padding:0 24px;flex-shrink:0;box-shadow:var(--sh-xs);z-index:10}
+.tb-mark{width:30px;height:30px;background:var(--hd);border-radius:var(--r6);
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;
+  color:white;flex-shrink:0;margin-right:12px;letter-spacing:-.02em}
+.tb-name{font-size:14px;font-weight:700;color:var(--g900)}
+.tb-sep{color:var(--g300);margin:0 10px}
+.tb-sub{font-size:13px;color:var(--g500)}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.tb-pill{background:var(--g100);border:1px solid var(--g200);color:var(--g700);
+  font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:var(--rfull)}
+.live-pill{display:flex;align-items:center;gap:5px;background:var(--green50);
+  border:1px solid var(--green100);color:var(--green700);font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:var(--rfull)}
+.live-dot{width:6px;height:6px;background:var(--green500);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ══ LAYOUT ══ */
+.body-wrap{display:flex;flex:1;overflow:hidden}
+.sidebar{width:220px;flex-shrink:0;background:var(--g900);border-right:none;display:flex;flex-direction:column}
+.s-nav{padding:10px 8px;flex:1}
+.s-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r6);cursor:pointer;
+  font-size:13.5px;font-weight:500;color:#fff;transition:all .12s;margin-bottom:2px;
+  border:none;background:none;width:100%;text-align:left;font-family:var(--font);border-left:2px solid transparent}
+.s-item:hover{background:rgba(255,255,255,.08);color:#fff}
+.s-item.active{background:rgba(255,255,255,.12);color:#fff;font-weight:600;border-left-color:var(--hd)}
+.s-item svg{width:16px;height:16px;flex-shrink:0;color:rgba(255,255,255,.7);transition:color .12s}
+.s-item:hover svg,.s-item.active svg{color:#fff}
+.s-footer{padding:12px 14px;border-top:1px solid rgba(255,255,255,.1);font-size:11px;color:rgba(255,255,255,.7);line-height:1.7}
+.s-footer strong{color:#fff;display:block;font-size:11.5px;margin-bottom:1px}
+
+/* ══ MAIN ══ */
+.main{flex:1;overflow-y:auto;padding:22px 28px 56px}
+.section{display:none}.section.active{display:block}
+.page-hd{margin-bottom:18px;display:flex;align-items:flex-end;justify-content:space-between}
+.page-title{font-size:18px;font-weight:700;color:var(--g900)}
+.page-sub{font-size:12.5px;color:var(--g500);margin-top:2px}
+.page-meta{font-size:11.5px;color:var(--g400)}
+
+/* ══ KPI ══ */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+.kpi-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.kpi{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);padding:16px 18px;box-shadow:var(--sh-xs)}
+.kpi.accent{border-left:3px solid var(--hd)}
+.kpi.green{border-left:3px solid var(--green500)}
+.kpi.yellow{border-left:3px solid var(--yellow500)}
+.kpi.red{border-left:3px solid var(--red600)}
+.kpi-label{font-size:11px;font-weight:600;color:var(--g500);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.kpi-val{font-size:26px;font-weight:800;color:var(--g900);letter-spacing:-.04em;line-height:1;margin-bottom:4px}
+.kpi.accent .kpi-val{color:var(--hd)}
+.kpi.green .kpi-val{color:var(--green600)}
+.kpi.yellow .kpi-val{color:var(--yellow700)}
+.kpi.red .kpi-val{color:var(--red600)}
+.kpi-sub{font-size:11.5px;color:var(--g400)}
+.kpi-delta{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;
+  padding:1.5px 7px;border-radius:var(--rfull);margin-top:5px}
+.delta-green{background:var(--green50);color:var(--green700)}
+.delta-yellow{background:var(--yellow50);color:var(--yellow700)}
+.delta-orange{background:var(--hd-50);color:var(--hd-dark)}
+
+/* ══ CARD ══ */
+.card{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);box-shadow:var(--sh-xs)}
+.card-hd{padding:14px 18px;border-bottom:1px solid var(--g200);display:flex;align-items:center;justify-content:space-between}
+.card-body{padding:18px 20px}
+.card-title{font-size:13.5px;font-weight:700;color:var(--g900)}
+.card-sub{font-size:12px;color:var(--g500);margin-top:1px}
+
+/* ══ GRIDS ══ */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.grid-5-3{display:grid;grid-template-columns:5fr 3fr;gap:14px;margin-bottom:16px}
+.mb16{margin-bottom:16px}
+
+/* ══ PROGRESS ══ */
+.prog-wrap{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);padding:20px 22px;box-shadow:var(--sh-xs);margin-bottom:16px}
+.prog-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px}
+.prog-label{font-size:13.5px;font-weight:700;color:var(--g900)}
+.prog-meta{font-size:12px;color:var(--g400)}
+.prog-track{background:var(--g150);border-radius:var(--rfull);height:10px;margin-bottom:8px}
+.prog-fill{height:10px;border-radius:var(--rfull);background:var(--hd);transition:width .4s}
+.prog-leg{display:flex;gap:18px;font-size:11.5px;color:var(--g500)}
+.prog-leg-item{display:flex;align-items:center;gap:5px}
+.prog-dot{width:7px;height:7px;border-radius:50%}
+
+/* ══ WAVE GRID ══ */
+.wave-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(32px,1fr));gap:4px;margin-top:10px}
+.wave-cell{height:14px;border-radius:3px;background:var(--g150)}
+.wave-cell.done{background:var(--hd);opacity:.85}
+.wave-cell.done.issues{background:var(--yellow500);opacity:.85}
+.wave-cell.done.open{background:var(--red500);}
+
+/* ══ TABLE ══ */
+.table-wrap{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);overflow:hidden;box-shadow:var(--sh-xs)}
+.table-header{padding:14px 18px;border-bottom:1px solid var(--g200)}
+table{width:100%;border-collapse:collapse}
+thead th{text-align:left;font-size:11px;font-weight:600;color:var(--g400);text-transform:uppercase;
+  letter-spacing:.05em;padding:9px 14px;background:var(--g100);border-bottom:1px solid var(--g200);white-space:nowrap}
+thead th.r{text-align:right}
+tbody td{padding:10px 14px;font-size:13px;color:var(--g700);border-bottom:1px solid var(--g150);vertical-align:middle}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--g100)}
+td.r{text-align:right}
+td.mono{font-family:'SF Mono','Fira Code',monospace;font-size:12px;color:var(--g600)}
+td.r.mono{text-align:right;font-family:'SF Mono','Fira Code',monospace;font-size:12.5px;color:var(--g800);font-weight:600}
+.td-store{font-weight:700;color:var(--g900);font-size:13px;letter-spacing:.01em}
+.td-note{color:var(--g500);font-size:12px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+tfoot td{padding:10px 14px;background:var(--g100);border-top:2px solid var(--g200);
+  font-family:'SF Mono','Fira Code',monospace;font-weight:700;color:var(--g700);font-size:12.5px}
+tfoot td:first-child{font-family:var(--font);color:var(--g500);font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+tfoot td.r{text-align:right}
+tfoot td.grand{color:var(--hd);font-size:14px}
+
+/* ══ BADGES ══ */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:var(--rfull);font-size:11px;font-weight:600;white-space:nowrap}
+.b-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.b-clean{background:var(--green50);color:var(--green700)}.b-clean .b-dot{background:var(--green500)}
+.b-except{background:var(--yellow50);color:var(--yellow700)}.b-except .b-dot{background:var(--yellow500)}
+.b-open{background:var(--red50);color:var(--red700)}.b-open .b-dot{background:var(--red600)}
+.b-pending{background:var(--g150);color:var(--g600)}.b-pending .b-dot{background:var(--g400)}
+.b-info{background:var(--blue50);color:var(--blue700)}.b-info .b-dot{background:var(--blue600)}
+
+/* ══ ISSUE CARDS ══ */
+.issue-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.issue-card{background:var(--white);border:1px solid var(--g200);border-radius:var(--r12);padding:16px 18px;box-shadow:var(--sh-xs)}
+.issue-card.is-open{border-left:3px solid var(--red600)}
+.issue-card.is-mdf{border-left:3px solid var(--yellow500)}
+.issue-card.is-resolved{border-left:3px solid var(--green500)}
+.issue-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.issue-store{font-size:13px;font-weight:700;color:var(--g900)}
+.issue-body{font-size:13px;color:var(--g700);line-height:1.6}
+.issue-meta{font-size:11.5px;color:var(--g400);margin-top:6px}
+
+/* ══ MINI BARS ══ */
+.mini-bar{margin-bottom:12px}.mini-bar:last-child{margin-bottom:0}
+.mini-bar-top{display:flex;justify-content:space-between;font-size:12.5px;color:var(--g700);margin-bottom:6px;font-weight:500}
+.mini-bar-count{font-weight:700;color:var(--g900);font-family:'SF Mono','Fira Code',monospace}
+.mini-bar-track{background:var(--g150);border-radius:var(--rfull);height:6px}
+.mini-bar-fill{border-radius:var(--rfull);height:6px}
+
+/* ══ MISC ══ */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--g300);border-radius:3px}
+.divider{height:1px;background:var(--g200);margin:14px 0}
+.hint{font-size:11.5px;color:var(--g400);margin-top:8px}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="tb-mark">HD</div>
+  <span class="tb-name">Infrastructure Technology</span>
+  <span class="tb-sep">|</span>
+  <span class="tb-sub">Store Voice Refresh · Migration Tracker</span>
+  <div class="tb-right">
+    <span class="tb-pill">Wave 1 · 20 Stores</span>
+    <span class="tb-pill">2,000 Store Program</span>
+    <span class="live-pill"><span class="live-dot"></span>In Progress</span>
+  </div>
+</header>
+
+<div class="body-wrap">
+  <aside class="sidebar">
+    <nav class="s-nav">
+      <button class="s-item active" onclick="switchTab('overview')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        Overview
+      </button>
+      <button class="s-item" onclick="switchTab('stores')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 21h18M3 7v1a3 3 0 006 0V7m0 1a3 3 0 006 0V7m0 1a3 3 0 006 0V7M3 7l1-4h16l1 4M5 21V11.5"/></svg>
+        Store Status
+      </button>
+      <button class="s-item" onclick="switchTab('equipment')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        Equipment
+      </button>
+      <button class="s-item" onclick="switchTab('issues')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        Open Items
+      </button>
+    </nav>
+    <div class="s-footer">
+      <strong>Store Voice Refresh</strong>
+      Wave 1 · Post-Migration<br>
+      20 of 2,000 stores complete
+      <div style="margin-top:6px;color:rgba(255,255,255,.5);font-size:11px">Last updated Jun 4, 2026</div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- ═══════════════════ OVERVIEW ═══════════════════ -->
+    <div id="sec-overview" class="section active">
+      <div class="page-hd">
+        <div>
+          <div class="page-title">Migration Overview</div>
+          <div class="page-sub">Store Voice Refresh · Wave 1 Post-Migration Summary</div>
+        </div>
+        <div class="page-meta">Wave 1 complete · 1,980 stores remaining</div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi accent">
+          <div class="kpi-label">Overall Progress</div>
+          <div class="kpi-val">1.0%</div>
+          <div class="kpi-sub">20 of 2,000 stores migrated</div>
+          <div class="kpi-delta delta-orange">Wave 1 complete</div>
+        </div>
+        <div class="kpi green">
+          <div class="kpi-label">Phones Deployed</div>
+          <div class="kpi-val">532</div>
+          <div class="kpi-sub">Across 20 Wave 1 stores</div>
+          <div class="kpi-delta delta-green">+ 20 voice gateways</div>
+        </div>
+        <div class="kpi yellow">
+          <div class="kpi-label">Phones in MDF</div>
+          <div class="kpi-val">9</div>
+          <div class="kpi-sub">7 stores · access or cable issues</div>
+          <div class="kpi-delta delta-yellow">Pending resolution</div>
+        </div>
+        <div class="kpi red">
+          <div class="kpi-label">Open Actions</div>
+          <div class="kpi-val">1</div>
+          <div class="kpi-sub">ST0136 · VOIP fax CMS follow-up</div>
+          <div class="kpi-delta" style="background:var(--red50);color:var(--red700)">Needs CMS ticket</div>
+        </div>
+      </div>
+
+      <!-- Overall progress bar -->
+      <div class="prog-wrap">
+        <div class="prog-hd">
+          <div>
+            <div class="prog-label">Program-Wide Migration Progress</div>
+            <div style="font-size:12px;color:var(--g500);margin-top:2px">2,000 total stores · Wave 1 of multiple waves</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:22px;font-weight:800;color:var(--hd);letter-spacing:-.03em">20 <span style="font-size:15px;font-weight:500;color:var(--g400)">/ 2,000</span></div>
+            <div style="font-size:11.5px;color:var(--g400);margin-top:1px">stores complete</div>
+          </div>
+        </div>
+        <div class="prog-track">
+          <div class="prog-fill" style="width:1%"></div>
+        </div>
+        <div class="prog-leg">
+          <div class="prog-leg-item"><div class="prog-dot" style="background:var(--hd)"></div> Wave 1 complete (20)</div>
+          <div class="prog-leg-item"><div class="prog-dot" style="background:var(--g200)"></div> Remaining (1,980)</div>
+        </div>
+        <!-- Store grid visualization -->
+        <div style="margin-top:16px">
+          <div style="font-size:11px;font-weight:600;color:var(--g400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">Store-by-store · Each cell = 1 store</div>
+          <div class="wave-grid" id="waveGrid"></div>
+          <div class="hint">Orange = migrated · Yellow = migrated with exceptions · Gray = pending</div>
+        </div>
+      </div>
+
+      <div class="grid-5-3">
+        <!-- Wave 1 breakdown -->
+        <div class="card">
+          <div class="card-hd">
+            <div>
+              <div class="card-title">Wave 1 · Store Outcomes</div>
+              <div class="card-sub">20 stores · all migration statuses completed</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="mini-bar">
+              <div class="mini-bar-top"><span>Clean deployment</span><span class="mini-bar-count">12</span></div>
+              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:60%;background:var(--green500)"></div></div>
+            </div>
+            <div class="mini-bar">
+              <div class="mini-bar-top"><span>Complete w/ exceptions</span><span class="mini-bar-count">7</span></div>
+              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:35%;background:var(--yellow500)"></div></div>
+            </div>
+            <div class="mini-bar">
+              <div class="mini-bar-top"><span>Open action required</span><span class="mini-bar-count">1</span></div>
+              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:5%;background:var(--red600)"></div></div>
+            </div>
+            <div class="divider"></div>
+            <div class="mini-bar">
+              <div class="mini-bar-top"><span>Access restriction (MDF)</span><span class="mini-bar-count">6 stores</span></div>
+              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:30%;background:var(--g400)"></div></div>
+            </div>
+            <div class="mini-bar">
+              <div class="mini-bar-top"><span>Technical / cable issue</span><span class="mini-bar-count">2 stores</span></div>
+              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:10%;background:var(--g400)"></div></div>
+            </div>
+            <div class="mini-bar">
+              <div class="mini-bar-top"><span>MOD escalation (resolved)</span><span class="mini-bar-count">1 store</span></div>
+              <div class="mini-bar-track"><div class="mini-bar-fill" style="width:5%;background:var(--green400)"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Equipment summary -->
+        <div class="card">
+          <div class="card-hd">
+            <div class="card-title">Equipment Deployed</div>
+            <div class="card-sub">Wave 1 totals</div>
+          </div>
+          <div class="card-body">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--g700)">VG410-24FXS/4FXO</div>
+                  <div style="font-size:11px;color:var(--g400)">Voice Gateway</div>
+                </div>
+                <div style="font-size:20px;font-weight:800;color:var(--hd);letter-spacing:-.03em">20</div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--g700)">9851 IP Phone</div>
+                  <div style="font-size:11px;color:var(--g400)">Standard handset</div>
+                </div>
+                <div style="font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.03em">481</div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--g700)">9861 W/KEM</div>
+                  <div style="font-size:11px;color:var(--g400)">Expansion module</div>
+                </div>
+                <div style="font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.03em">37</div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--g700)">9841 IP Phone</div>
+                  <div style="font-size:11px;color:var(--g400)">Entry handset</div>
+                </div>
+                <div style="font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.03em">14</div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--g100);border-radius:var(--r8);border:1px solid var(--g200)">
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:var(--g700)">Wall Mounts</div>
+                  <div style="font-size:11px;color:var(--g400)">Mounting hardware</div>
+                </div>
+                <div style="font-size:20px;font-weight:800;color:var(--g900);letter-spacing:-.03em">24</div>
+              </div>
+              <div style="padding:10px 12px;background:var(--hd-50);border-radius:var(--r8);border:1px solid rgba(249,99,2,.2);display:flex;justify-content:space-between;align-items:center">
+                <div style="font-size:12px;font-weight:700;color:var(--hd-dark)">Total Handsets</div>
+                <div style="font-size:20px;font-weight:800;color:var(--hd);letter-spacing:-.03em">532</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zebra + VG Recap -->
+      <div class="grid-3">
+        <div class="kpi green" style="border-left:3px solid var(--green500)">
+          <div class="kpi-label">Phone Replacement</div>
+          <div class="kpi-val" style="font-size:18px;color:var(--green600)">Successful</div>
+          <div class="kpi-sub">All 20 stores · new handsets active</div>
+        </div>
+        <div class="kpi green" style="border-left:3px solid var(--green500)">
+          <div class="kpi-label">Voice Gateway Replacement</div>
+          <div class="kpi-val" style="font-size:18px;color:var(--green600)">Successful</div>
+          <div class="kpi-sub">VG410 deployed · no reconfigs needed</div>
+        </div>
+        <div class="kpi green" style="border-left:3px solid var(--green500)">
+          <div class="kpi-label">Zebra Device Integration</div>
+          <div class="kpi-val" style="font-size:18px;color:var(--green600)">Complete</div>
+          <div class="kpi-sub">All devices successfully integrated</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ STORE STATUS ═══════════════════ -->
+    <div id="sec-stores" class="section">
+      <div class="page-hd">
+        <div>
+          <div class="page-title">Store Status</div>
+          <div class="page-sub">Wave 1 · All 20 migrated stores</div>
+        </div>
+        <div class="page-meta">All sites: Migration Status = Completed</div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="table-header">
+          <div class="card-title">Wave 1 · Store-by-Store Detail</div>
+          <div class="card-sub" style="margin-top:2px">Phones in MDF = provisioned but not installed due to access or physical constraints</div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Store</th>
+              <th>Outcome</th>
+              <th class="r">VG410</th>
+              <th class="r">9841</th>
+              <th class="r">9851</th>
+              <th class="r">9861 W/KEM</th>
+              <th class="r">Wall Mounts</th>
+              <th class="r">Total Phones</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-store">ST0105</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">17</td><td class="r mono">3</td><td class="r mono">0</td>
+              <td class="r mono">20</td>
+              <td class="td-note">Ext 402 (Loss Prevention) in MDF — access restriction</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0111</td>
+              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
+              <td class="r mono">1</td><td class="r mono">3</td><td class="r mono">29</td><td class="r mono">1</td><td class="r mono">3</td>
+              <td class="r mono">33</td>
+              <td class="td-note">All phones deployed</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0123</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">20</td><td class="r mono">2</td><td class="r mono">0</td>
+              <td class="r mono">22</td>
+              <td class="td-note">Ext 441 (Upstairs Office) in MDF — access restriction</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0128</td>
+              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">26</td><td class="r mono">2</td><td class="r mono">0</td>
+              <td class="r mono">28</td>
+              <td class="td-note">All phones deployed</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0134</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">33</td><td class="r mono">2</td><td class="r mono">1</td>
+              <td class="r mono">35</td>
+              <td class="td-note">Ext 405 in MDF — port security issue; legacy phone in place</td>
+            </tr>
+            <tr style="background:var(--red50)">
+              <td class="td-store" style="color:var(--red700)">ST0136</td>
+              <td><span class="badge b-open"><span class="b-dot"></span>Open Action</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">21</td><td class="r mono">2</td><td class="r mono">0</td>
+              <td class="r mono">23</td>
+              <td class="td-note" style="color:var(--red700);max-width:none">VOIP Fax not working — CMS follow-up needed · Ext 488 (Bookkeeping) in MDF</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0140</td>
+              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">16</td><td class="r mono">2</td><td class="r mono">0</td>
+              <td class="r mono">18</td>
+              <td class="td-note">All phones deployed</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0159</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">34</td><td class="r mono">2</td><td class="r mono">2</td>
+              <td class="r mono">36</td>
+              <td class="td-note">Ext 453 in MDF — short cable on poll mount; old phone left working</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0163</td>
+              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">21</td><td class="r mono">3</td><td class="r mono">0</td>
+              <td class="r mono">24</td>
+              <td class="td-note">All phones deployed</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0170</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">36</td><td class="r mono">1</td><td class="r mono">5</td>
+              <td class="r mono">37</td>
+              <td class="td-note">MOD objected to phone removal — escalated, resolved; phone upgraded</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0172</td>
+              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">19</td><td class="r mono">1</td><td class="r mono">0</td>
+              <td class="r mono">20</td>
+              <td class="td-note">All phones deployed</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST1748</td>
+              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">9</td><td class="r mono">2</td><td class="r mono">0</td>
+              <td class="r mono">11</td>
+              <td class="td-note">All phones deployed</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST1755</td>
+              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
+              <td class="r mono">1</td><td class="r mono">6</td><td class="r mono">25</td><td class="r mono">1</td><td class="r mono">0</td>
+              <td class="r mono">32</td>
+              <td class="td-note">All phones deployed</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST1777</td>
+              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">41</td><td class="r mono">2</td><td class="r mono">3</td>
+              <td class="r mono">43</td>
+              <td class="td-note">All phones deployed</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST1856</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
+              <td class="r mono">1</td><td class="r mono">5</td><td class="r mono">23</td><td class="r mono">2</td><td class="r mono">0</td>
+              <td class="r mono">30</td>
+              <td class="td-note">Ext 077, 399, 458 in MDF — access restrictions (3 phones)</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST6848</td>
+              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">20</td><td class="r mono">2</td><td class="r mono">0</td>
+              <td class="r mono">22</td>
+              <td class="td-note">All phones deployed</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST6940</td>
+              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">26</td><td class="r mono">2</td><td class="r mono">10</td>
+              <td class="r mono">28</td>
+              <td class="td-note">All phones deployed</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST6941</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">22</td><td class="r mono">1</td><td class="r mono">0</td>
+              <td class="r mono">23</td>
+              <td class="td-note">Ext 410 (LPS) in MDF — access restriction</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST6959</td>
+              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">23</td><td class="r mono">2</td><td class="r mono">0</td>
+              <td class="r mono">25</td>
+              <td class="td-note">All phones deployed</td>
+            </tr>
+            <tr>
+              <td class="td-store">ST8412</td>
+              <td><span class="badge b-clean"><span class="b-dot"></span>Clean</span></td>
+              <td class="r mono">1</td><td class="r mono">0</td><td class="r mono">20</td><td class="r mono">2</td><td class="r mono">0</td>
+              <td class="r mono">22</td>
+              <td class="td-note">All phones deployed</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Wave 1 Totals</td>
+              <td></td>
+              <td class="r grand">20</td>
+              <td class="r grand">14</td>
+              <td class="r grand">481</td>
+              <td class="r grand">37</td>
+              <td class="r grand">24</td>
+              <td class="r grand">532</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ EQUIPMENT ═══════════════════ -->
+    <div id="sec-equipment" class="section">
+      <div class="page-hd">
+        <div>
+          <div class="page-title">Equipment Summary</div>
+          <div class="page-sub">Wave 1 · Devices deployed across 20 stores</div>
+        </div>
+        <div class="page-meta">532 handsets + 20 voice gateways</div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi accent">
+          <div class="kpi-label">9851 IP Phone</div>
+          <div class="kpi-val">481</div>
+          <div class="kpi-sub">Standard floor handset</div>
+          <div class="kpi-delta delta-orange">90.4% of handsets</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">9861 W/KEM</div>
+          <div class="kpi-val">37</div>
+          <div class="kpi-sub">Expansion key module</div>
+          <div class="kpi-delta delta-green">6.9% of handsets</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">9841 IP Phone</div>
+          <div class="kpi-val">14</div>
+          <div class="kpi-sub">Entry-level handset</div>
+          <div class="kpi-delta delta-green">2.6% of handsets</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">VG410 Gateways</div>
+          <div class="kpi-val">20</div>
+          <div class="kpi-sub">1 per store · all active</div>
+          <div class="kpi-delta delta-green">100% deployed</div>
+        </div>
+      </div>
+
+      <div class="grid-5-3" style="margin-bottom:16px">
+        <div class="card">
+          <div class="card-hd">
+            <div class="card-title">Model Breakdown</div>
+            <div class="card-sub">Handset types by store</div>
+          </div>
+          <div class="card-body" style="padding:0">
+            <table>
+              <thead>
+                <tr>
+                  <th>Store</th>
+                  <th class="r">9841</th>
+                  <th class="r">9851</th>
+                  <th class="r">9861 W/KEM</th>
+                  <th class="r">Wall Mnt</th>
+                  <th class="r">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="td-store">ST0105</td><td class="r mono">—</td><td class="r mono">17</td><td class="r mono">3</td><td class="r mono">—</td><td class="r mono">20</td></tr>
+                <tr><td class="td-store">ST0111</td><td class="r mono">3</td><td class="r mono">29</td><td class="r mono">1</td><td class="r mono">3</td><td class="r mono">33</td></tr>
+                <tr><td class="td-store">ST0123</td><td class="r mono">—</td><td class="r mono">20</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">22</td></tr>
+                <tr><td class="td-store">ST0128</td><td class="r mono">—</td><td class="r mono">26</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">28</td></tr>
+                <tr><td class="td-store">ST0134</td><td class="r mono">—</td><td class="r mono">33</td><td class="r mono">2</td><td class="r mono">1</td><td class="r mono">35</td></tr>
+                <tr><td class="td-store">ST0136</td><td class="r mono">—</td><td class="r mono">21</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">23</td></tr>
+                <tr><td class="td-store">ST0140</td><td class="r mono">—</td><td class="r mono">16</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">18</td></tr>
+                <tr><td class="td-store">ST0159</td><td class="r mono">—</td><td class="r mono">34</td><td class="r mono">2</td><td class="r mono">2</td><td class="r mono">36</td></tr>
+                <tr><td class="td-store">ST0163</td><td class="r mono">—</td><td class="r mono">21</td><td class="r mono">3</td><td class="r mono">—</td><td class="r mono">24</td></tr>
+                <tr><td class="td-store">ST0170</td><td class="r mono">—</td><td class="r mono">36</td><td class="r mono">1</td><td class="r mono">5</td><td class="r mono">37</td></tr>
+                <tr><td class="td-store">ST0172</td><td class="r mono">—</td><td class="r mono">19</td><td class="r mono">1</td><td class="r mono">—</td><td class="r mono">20</td></tr>
+                <tr><td class="td-store">ST1748</td><td class="r mono">—</td><td class="r mono">9</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">11</td></tr>
+                <tr><td class="td-store">ST1755</td><td class="r mono">6</td><td class="r mono">25</td><td class="r mono">1</td><td class="r mono">—</td><td class="r mono">32</td></tr>
+                <tr><td class="td-store">ST1777</td><td class="r mono">—</td><td class="r mono">41</td><td class="r mono">2</td><td class="r mono">3</td><td class="r mono">43</td></tr>
+                <tr><td class="td-store">ST1856</td><td class="r mono">5</td><td class="r mono">23</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">30</td></tr>
+                <tr><td class="td-store">ST6848</td><td class="r mono">—</td><td class="r mono">20</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">22</td></tr>
+                <tr><td class="td-store">ST6940</td><td class="r mono">—</td><td class="r mono">26</td><td class="r mono">2</td><td class="r mono">10</td><td class="r mono">28</td></tr>
+                <tr><td class="td-store">ST6941</td><td class="r mono">—</td><td class="r mono">22</td><td class="r mono">1</td><td class="r mono">—</td><td class="r mono">23</td></tr>
+                <tr><td class="td-store">ST6959</td><td class="r mono">—</td><td class="r mono">23</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">25</td></tr>
+                <tr><td class="td-store">ST8412</td><td class="r mono">—</td><td class="r mono">20</td><td class="r mono">2</td><td class="r mono">—</td><td class="r mono">22</td></tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>Totals</td>
+                  <td class="r grand">14</td>
+                  <td class="r grand">481</td>
+                  <td class="r grand">37</td>
+                  <td class="r grand">24</td>
+                  <td class="r grand">532</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="card">
+            <div class="card-hd">
+              <div class="card-title">Store Size Range</div>
+              <div class="card-sub">Handset count per store</div>
+            </div>
+            <div class="card-body">
+              <div class="mini-bar">
+                <div class="mini-bar-top"><span>Largest · ST1777</span><span class="mini-bar-count">43</span></div>
+                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:100%;background:var(--hd)"></div></div>
+              </div>
+              <div class="mini-bar">
+                <div class="mini-bar-top"><span>ST0170</span><span class="mini-bar-count">37</span></div>
+                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:86%;background:var(--hd);opacity:.7"></div></div>
+              </div>
+              <div class="mini-bar">
+                <div class="mini-bar-top"><span>ST0159</span><span class="mini-bar-count">36</span></div>
+                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:84%;background:var(--hd);opacity:.7"></div></div>
+              </div>
+              <div class="mini-bar">
+                <div class="mini-bar-top"><span>ST0134</span><span class="mini-bar-count">35</span></div>
+                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:81%;background:var(--hd);opacity:.6"></div></div>
+              </div>
+              <div class="mini-bar">
+                <div class="mini-bar-top"><span>ST1855</span><span class="mini-bar-count">33</span></div>
+                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:77%;background:var(--hd);opacity:.6"></div></div>
+              </div>
+              <div class="divider"></div>
+              <div class="mini-bar">
+                <div class="mini-bar-top"><span>Smallest · ST1748</span><span class="mini-bar-count">11</span></div>
+                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:26%;background:var(--g400)"></div></div>
+              </div>
+              <div style="margin-top:10px;display:flex;justify-content:space-between;font-size:12px;color:var(--g500)">
+                <span>Avg per store</span>
+                <span style="font-weight:700;color:var(--g800);font-family:monospace">26.6</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-hd">
+              <div class="card-title">Wall Mount Concentration</div>
+              <div class="card-sub">24 total · 3 stores account for 75%</div>
+            </div>
+            <div class="card-body">
+              <div class="mini-bar">
+                <div class="mini-bar-top"><span>ST6940</span><span class="mini-bar-count">10</span></div>
+                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:100%;background:var(--blue600)"></div></div>
+              </div>
+              <div class="mini-bar">
+                <div class="mini-bar-top"><span>ST0170</span><span class="mini-bar-count">5</span></div>
+                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:50%;background:var(--blue600);opacity:.7"></div></div>
+              </div>
+              <div class="mini-bar">
+                <div class="mini-bar-top"><span>ST0111 / ST1777 / ST0159</span><span class="mini-bar-count">3 each</span></div>
+                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:30%;background:var(--blue600);opacity:.5"></div></div>
+              </div>
+              <div class="mini-bar">
+                <div class="mini-bar-top"><span>ST0134</span><span class="mini-bar-count">1</span></div>
+                <div class="mini-bar-track"><div class="mini-bar-fill" style="width:10%;background:var(--g300)"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ OPEN ITEMS ═══════════════════ -->
+    <div id="sec-issues" class="section">
+      <div class="page-hd">
+        <div>
+          <div class="page-title">Open Items &amp; Exceptions</div>
+          <div class="page-sub">Wave 1 · Items requiring follow-up or future remediation</div>
+        </div>
+        <div class="page-meta">1 open action · 8 exceptions noted</div>
+      </div>
+
+      <!-- Open action banner -->
+      <div style="display:flex;align-items:center;gap:10px;background:var(--red50);border:1px solid var(--red100);
+        border-left:3px solid var(--red600);border-radius:var(--r8);padding:12px 16px;
+        font-size:13px;color:var(--red700);margin-bottom:16px">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <span><strong>1 open action:</strong> ST0136 — VOIP Fax on 1/0/15 pro desk not working. Onsite stated fax is rarely used. Requires CMS follow-up ticket before closing.</span>
+      </div>
+
+      <div style="font-size:12px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">Open Action Required</div>
+      <div class="issue-list">
+        <div class="issue-card is-open">
+          <div class="issue-top">
+            <span class="td-store">ST0136</span>
+            <span class="badge b-open"><span class="b-dot"></span>Open Action</span>
+            <span class="badge b-info"><span class="b-dot"></span>Technical</span>
+          </div>
+          <div class="issue-body">
+            <strong>VOIP Fax not working</strong> — Port 1/0/15 pro desk fax. Onsite stated fax is not used much. Requires follow-up with CMS to confirm if remediation is needed or if fax line can be decommissioned.
+            <br><br>Additionally: <strong>Ext 488</strong> (Bookkeeping) was provisioned and left in MDF due to access restrictions.
+          </div>
+          <div class="issue-meta">Action owner: CMS team · Priority: Medium · ST0136 migration otherwise complete</div>
+        </div>
+      </div>
+
+      <div style="font-size:12px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 10px">Access Restrictions · Phones Left in MDF</div>
+      <div style="font-size:12.5px;color:var(--g500);margin-bottom:12px">These phones were provisioned but could not be installed due to physical access limitations. Will need a return visit to complete installation.</div>
+      <div class="issue-list">
+        <div class="issue-card is-mdf">
+          <div class="issue-top">
+            <span class="td-store">ST1856</span>
+            <span class="badge b-except"><span class="b-dot"></span>Exception</span>
+            <span class="badge" style="background:var(--g150);color:var(--g600);font-size:11px;padding:2px 8px;border-radius:var(--rfull)">3 phones in MDF</span>
+          </div>
+          <div class="issue-body">Ext <strong>077</strong>, <strong>399</strong>, and <strong>458</strong> were provisioned and left in MDF due to access restrictions. Three locations within the store were inaccessible at time of migration.</div>
+          <div class="issue-meta">Return visit required to install 3 handsets · Access coordination needed</div>
+        </div>
+        <div class="issue-card is-mdf">
+          <div class="issue-top">
+            <span class="td-store">ST0105</span>
+            <span class="badge b-except"><span class="b-dot"></span>Exception</span>
+            <span class="badge" style="background:var(--g150);color:var(--g600);font-size:11px;padding:2px 8px;border-radius:var(--rfull)">1 phone in MDF</span>
+          </div>
+          <div class="issue-body"><strong>Ext 402</strong> (Loss Prevention office) was provisioned and left in MDF due to access restrictions. LP office was not accessible during the migration window.</div>
+          <div class="issue-meta">Return visit required · Loss Prevention access coordination needed</div>
+        </div>
+        <div class="issue-card is-mdf">
+          <div class="issue-top">
+            <span class="td-store">ST0123</span>
+            <span class="badge b-except"><span class="b-dot"></span>Exception</span>
+            <span class="badge" style="background:var(--g150);color:var(--g600);font-size:11px;padding:2px 8px;border-radius:var(--rfull)">1 phone in MDF</span>
+          </div>
+          <div class="issue-body"><strong>Ext 441</strong> (Upstairs Office) was provisioned and left in MDF due to access restrictions. Upstairs office area was inaccessible during migration.</div>
+          <div class="issue-meta">Return visit required · Upstairs office access needed</div>
+        </div>
+        <div class="issue-card is-mdf">
+          <div class="issue-top">
+            <span class="td-store">ST6941</span>
+            <span class="badge b-except"><span class="b-dot"></span>Exception</span>
+            <span class="badge" style="background:var(--g150);color:var(--g600);font-size:11px;padding:2px 8px;border-radius:var(--rfull)">1 phone in MDF</span>
+          </div>
+          <div class="issue-body"><strong>Ext 410</strong> (LPS — Loss Prevention Specialist) was provisioned and left in MDF due to access restrictions.</div>
+          <div class="issue-meta">Return visit required · LPS area access coordination needed</div>
+        </div>
+      </div>
+
+      <div style="font-size:12px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 10px">Technical / Physical Exceptions</div>
+      <div class="issue-list">
+        <div class="issue-card is-mdf">
+          <div class="issue-top">
+            <span class="td-store">ST0134</span>
+            <span class="badge b-except"><span class="b-dot"></span>Exception</span>
+            <span class="badge b-info"><span class="b-dot"></span>Port Security</span>
+          </div>
+          <div class="issue-body"><strong>Ext 405</strong> was provisioned and left in MDF due to a security issue with the port. Legacy phone was left in place and is currently working.</div>
+          <div class="issue-meta">Port security issue requires network team review before re-attempting installation</div>
+        </div>
+        <div class="issue-card is-mdf">
+          <div class="issue-top">
+            <span class="td-store">ST0159</span>
+            <span class="badge b-except"><span class="b-dot"></span>Exception</span>
+            <span class="badge b-info"><span class="b-dot"></span>Cable Length</span>
+          </div>
+          <div class="issue-body"><strong>Ext 453</strong> was provisioned and left in MDF due to a short cable on the poll mount location. The old phone was left in place and is currently working.</div>
+          <div class="issue-meta">Cable remediation required — install longer cable to poll mount before completing installation</div>
+        </div>
+      </div>
+
+      <div style="font-size:12px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 10px">Resolved</div>
+      <div class="issue-list">
+        <div class="issue-card is-resolved">
+          <div class="issue-top">
+            <span class="td-store">ST0170</span>
+            <span class="badge b-clean"><span class="b-dot"></span>Resolved</span>
+            <span class="badge b-info"><span class="b-dot"></span>MOD Escalation</span>
+          </div>
+          <div class="issue-body">MOD <strong>Jaime Tolsa</strong> was not in agreement with allowing Conquest to remove the phone in the management office. Phone was upgraded and MOD was reminded that the direction was coming from THD leadership. Migration completed successfully.</div>
+          <div class="issue-meta">No further action needed · Phone upgraded · MOD aligned</div>
+        </div>
+      </div>
+
+      <!-- Summary table -->
+      <div class="table-wrap" style="margin-top:8px">
+        <div class="table-header">
+          <div class="card-title">Exception Summary</div>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Store</th><th>Type</th><th>Detail</th><th>Phones Affected</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-store">ST0136</td>
+              <td><span class="badge b-open"><span class="b-dot"></span>Open Action</span></td>
+              <td style="font-size:12.5px;color:var(--g700)">VOIP Fax not working — CMS follow-up</td>
+              <td class="r mono">1 in MDF</td>
+              <td><span class="badge b-open"><span class="b-dot"></span>Action Needed</span></td>
+            </tr>
+            <tr>
+              <td class="td-store">ST1856</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Access</span></td>
+              <td style="font-size:12.5px;color:var(--g700)">Ext 077, 399, 458 — inaccessible areas</td>
+              <td class="r mono">3 in MDF</td>
+              <td><span class="badge b-pending"><span class="b-dot"></span>Return Visit</span></td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0105</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Access</span></td>
+              <td style="font-size:12.5px;color:var(--g700)">Ext 402 (LP) — access restriction</td>
+              <td class="r mono">1 in MDF</td>
+              <td><span class="badge b-pending"><span class="b-dot"></span>Return Visit</span></td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0134</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Technical</span></td>
+              <td style="font-size:12.5px;color:var(--g700)">Ext 405 — port security issue</td>
+              <td class="r mono">1 in MDF</td>
+              <td><span class="badge b-pending"><span class="b-dot"></span>Network Review</span></td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0159</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Technical</span></td>
+              <td style="font-size:12.5px;color:var(--g700)">Ext 453 — short cable on poll mount</td>
+              <td class="r mono">1 in MDF</td>
+              <td><span class="badge b-pending"><span class="b-dot"></span>Cable Needed</span></td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0123</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Access</span></td>
+              <td style="font-size:12.5px;color:var(--g700)">Ext 441 (Upstairs Office) — access restriction</td>
+              <td class="r mono">1 in MDF</td>
+              <td><span class="badge b-pending"><span class="b-dot"></span>Return Visit</span></td>
+            </tr>
+            <tr>
+              <td class="td-store">ST6941</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Access</span></td>
+              <td style="font-size:12.5px;color:var(--g700)">Ext 410 (LPS) — access restriction</td>
+              <td class="r mono">1 in MDF</td>
+              <td><span class="badge b-pending"><span class="b-dot"></span>Return Visit</span></td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0170</td>
+              <td><span class="badge b-clean"><span class="b-dot"></span>Resolved</span></td>
+              <td style="font-size:12.5px;color:var(--g700)">MOD escalation — Jaime Tolsa, phone upgraded</td>
+              <td class="r mono">0</td>
+              <td><span class="badge b-clean"><span class="b-dot"></span>Complete</span></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Total</td><td></td><td></td>
+              <td class="r" style="font-weight:700;color:var(--hd)">9 phones in MDF</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.s-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + name).classList.add('active');
+  document.querySelectorAll('.s-item').forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + name + "'")) {
+      b.classList.add('active');
+    }
+  });
+}
+
+// Build wave grid: 2000 cells, first 20 shown with color coding
+(function() {
+  const grid = document.getElementById('waveGrid');
+  const storeStates = [
+    'done','done','done','done','done',
+    'done issues','done','done issues','done','done issues',
+    'done','done','done','done','done issues',
+    'done','done','done issues','done','done'
+  ];
+  for (let i = 0; i < 200; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'wave-cell';
+    if (i < 20) {
+      const state = storeStates[i] || 'done';
+      cell.className = 'wave-cell ' + state;
+      const storeNames = ['ST0105','ST0111','ST0123','ST0128','ST0134','ST0136','ST0140','ST0159','ST0163','ST0170','ST0172','ST1748','ST1755','ST1777','ST1856','ST6848','ST6940','ST6941','ST6959','ST8412'];
+      cell.title = storeNames[i] || '';
+    }
+    grid.appendChild(cell);
+  }
+  const ellipsis = document.createElement('div');
+  ellipsis.style.cssText = 'grid-column:1/-1;font-size:11px;color:var(--g400);margin-top:4px';
+  ellipsis.textContent = '... 1,800 more stores not shown';
+  grid.appendChild(ellipsis);
+})();
+</script>
+</body>
+</html>
