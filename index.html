@@ -128,6 +128,30 @@ tfoot td.grand{color:var(--hd);font-size:14px}
 .wk-acc-hd.open .wk-acc-chev{transform:rotate(90deg)}
 .wk-acc-body{display:none;border-top:1px solid var(--g100)}
 .wk-acc-body.open{display:block}
+/* ── Phase panel drawer ──────────────────────────────────── */
+#phaseDrawer{width:620px;right:-640px}
+#phaseDrawer.open{right:0}
+.pd-section{padding:14px 18px;border-bottom:1px solid var(--g150)}
+.pd-section:last-child{border-bottom:none}
+.pd-section-label{font-size:10px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.09em;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.pd-state-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.pd-state-card{background:var(--g50);border:1px solid var(--g200);border-radius:var(--r8);padding:9px 11px}
+.pd-state-name{font-size:11px;font-weight:700;color:var(--g900);margin-bottom:4px}
+.pd-state-bar{height:4px;background:var(--g200);border-radius:2px;overflow:hidden;margin-bottom:4px}
+.pd-state-bar-fill{height:100%;border-radius:2px;background:var(--hd)}
+.pd-state-meta{font-size:10.5px;color:var(--g500)}
+.pd-log-row{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid var(--g100)}
+.pd-log-row:last-child{border-bottom:none}
+.pd-log-key{font-size:11.5px;color:var(--g500);min-width:130px;flex-shrink:0}
+.pd-log-val{font-size:12px;color:var(--g800);font-weight:500;line-height:1.45}
+.pd-chk{display:flex;align-items:flex-start;gap:8px;padding:5px 0;font-size:12px;color:var(--g700);line-height:1.45}
+.pd-chk-box{width:15px;height:15px;border-radius:3px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center}
+.pd-cost-banner{margin:14px 18px;padding:11px 14px;border-radius:var(--r8);border-left:3px solid}
+.pd-store-row{display:flex;align-items:center;gap:10px;padding:8px 18px;border-bottom:1px solid var(--g100);cursor:pointer;font-size:12px}
+.pd-store-row:hover{background:var(--g50)}
+.pd-store-num{font-weight:700;color:var(--g900);min-width:64px}
+.pd-store-loc{color:var(--g600);flex:1}
+.pd-store-phones{color:var(--g400);min-width:40px;text-align:right}
 /* ── Week panel drawer ───────────────────────────────────── */
 #weekDrawer{width:580px;right:-600px}
 #weekDrawer.open{right:0}
@@ -834,7 +858,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
   <div class="rp-slabel">US Phases &nbsp;·&nbsp; Recommended Sequence</div>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px">
 
-    <div class="rp-card" style="border-top:3px solid #F96302">
+    <div class="rp-card" style="border-top:3px solid #F96302;cursor:pointer" onclick="openPhasePanel(1)">
       <div class="rp-card-hd">
         <div class="rp-card-num-row">
           <div style="display:flex;align-items:center;gap:7px">
@@ -852,7 +876,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
       <div class="rp-card-note">Team already mobilized — avoid remobilization. Estimated $40–60K savings by finishing all 10 SE states before relocating.</div>
     </div>
 
-    <div class="rp-card" style="border-top:3px solid #2563EB">
+    <div class="rp-card" style="border-top:3px solid #2563EB;cursor:pointer" onclick="openPhasePanel(2)">
       <div class="rp-card-hd">
         <div class="rp-card-num-row">
           <div style="display:flex;align-items:center;gap:7px">
@@ -870,7 +894,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
       <div class="rp-card-note">Largest phase. NY/NJ/PA corridor = 240 stores within 150 miles — highest-throughput region; 60-store weeks achievable.</div>
     </div>
 
-    <div class="rp-card" style="border-top:3px solid #7C3AED">
+    <div class="rp-card" style="border-top:3px solid #7C3AED;cursor:pointer" onclick="openPhasePanel(3)">
       <div class="rp-card-hd">
         <div class="rp-card-num-row">
           <div style="display:flex;align-items:center;gap:7px">
@@ -888,7 +912,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
       <div class="rp-card-note">OH/MI/IL/IN dense cluster — 55-store weeks from ORD. Bundle sparse ND/SD/NE/KS/IA into 1–2 "Great Plains" fill weeks.</div>
     </div>
 
-    <div class="rp-card" style="border-top:3px solid #D97706">
+    <div class="rp-card" style="border-top:3px solid #D97706;cursor:pointer" onclick="openPhasePanel(4)">
       <div class="rp-card-hd">
         <div class="rp-card-num-row">
           <div style="display:flex;align-items:center;gap:7px">
@@ -906,7 +930,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
       <div class="rp-card-note">TX (186) warrants dedicated DFW warehouse. Houston → DFW → San Antonio → Austin. Consider 2nd TX sub-team to compress to 3 weeks.</div>
     </div>
 
-    <div class="rp-card" style="border-top:3px solid #059669">
+    <div class="rp-card" style="border-top:3px solid #059669;cursor:pointer" onclick="openPhasePanel(5)">
       <div class="rp-card-hd">
         <div class="rp-card-num-row">
           <div style="display:flex;align-items:center;gap:7px">
@@ -924,7 +948,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
       <div class="rp-card-note">AZ and CO each anchor a full week. Bundle MT/WY/ID/NM into one sparse-mountain week — 37 stores total, no separate weeks.</div>
     </div>
 
-    <div class="rp-card" style="border-top:3px solid #DC2626">
+    <div class="rp-card" style="border-top:3px solid #DC2626;cursor:pointer" onclick="openPhasePanel(6)">
       <div class="rp-card-hd">
         <div class="rp-card-num-row">
           <div style="display:flex;align-items:center;gap:7px">
@@ -948,7 +972,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
   <div class="rp-slabel">Parallel Tracks &nbsp;·&nbsp; Special Logistics Required</div>
   <div class="rp-2col" style="margin-bottom:20px">
 
-    <div class="rp-card" style="border-top:3px solid #6B7280">
+    <div class="rp-card" style="border-top:3px solid #6B7280;cursor:pointer" onclick="openPhasePanel(7)">
       <div class="rp-card-hd">
         <div class="rp-card-num-row">
           <div style="display:flex;align-items:center;gap:7px">
@@ -966,7 +990,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
       <div class="rp-card-note">Start authorization paperwork now — ATA carnets + Cisco Canada work authorizations take 4–6 weeks. ON (76) alone = 1.5-week block.</div>
     </div>
 
-    <div class="rp-card" style="border-top:3px solid #9333EA">
+    <div class="rp-card" style="border-top:3px solid #9333EA;cursor:pointer" onclick="openPhasePanel(8)">
       <div class="rp-card-hd">
         <div class="rp-card-num-row">
           <div style="display:flex;align-items:center;gap:7px">
@@ -1046,7 +1070,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
 </footer>
 
 <!-- ══ STORE DETAIL DRAWER ══ -->
-<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer();closeWeekPanel()"></div>
+<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer();closeWeekPanel();closePhasePanel()"></div>
 <div class="drawer" id="storeDrawer">
   <div class="drawer-header">
     <div>
@@ -1073,6 +1097,21 @@ tfoot td.grand{color:var(--hd);font-size:14px}
   </div>
   <div id="wd-kpis" style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--g150);flex-shrink:0"></div>
   <div class="drawer-body" id="wd-body"></div>
+</div>
+
+<!-- ══ PHASE PANEL DRAWER ══ -->
+<div class="drawer" id="phaseDrawer">
+  <div class="drawer-header" id="pd-header">
+    <div>
+      <div class="drawer-store-id" id="pd-label">Phase 1</div>
+      <div class="drawer-store-name" id="pd-sub">Southeast · Atlanta (ATL)</div>
+    </div>
+    <button class="drawer-close" onclick="closePhasePanel()">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div id="pd-kpis" style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--g200);flex-shrink:0"></div>
+  <div class="drawer-body" id="pd-body"></div>
 </div>
 
 <script>
@@ -1388,7 +1427,328 @@ function closeWeekPanel() {
   document.body.style.overflow = '';
 }
 
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeWeekPanel();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeWeekPanel();closePhasePanel();}});
+
+// ── Phase Panel ──────────────────────────────────────────────────────────
+const PHASE_DATA = {
+  1: {
+    name:'Southeast', color:'#F96302', bgColor:'#FFF4ED',
+    hub:'Atlanta (ATL)', window:'Wks 9–15', weeks:7, stores:330,
+    estStart:'May 2026', estEnd:'Jun 2026',
+    states:['GA','VA','FL','NC','TN','SC','AL','MS','KY','WV'],
+    staging:'Atlanta, GA — reuse existing ATL-area equipment and crew from Wks 1–8',
+    headcount:'2 Cisco engineers + 2 THD MEs per wave, 5-day windows',
+    freight:'Night freight; stage at ATL warehouse (already established)',
+    target:'~47 stores/week to finish in 7 weeks',
+    costNote:'Estimated $40–60K savings vs. demobilizing and returning later. Highest ROI phase to execute immediately.',
+    costColor:'var(--green600)', costBg:'var(--green50)', costBorder:'var(--green400)',
+    actions:[
+      {done:true,  text:'SE region state list finalized (10 states, 330 stores)'},
+      {done:true,  text:'ATL staging warehouse location confirmed'},
+      {done:false, text:'Confirm ATL warehouse lease renewal through Jun 2026'},
+      {done:false, text:'Schedule Wk 9 stores — 71 confirmed in pipeline'},
+      {done:false, text:'Coordinate night freight GA→FL corridor routing'},
+      {done:false, text:'Pre-brief field team: do NOT depart SE until all 10 states complete'},
+      {done:false, text:'Lock in hotel blocks for ATL crew housing Wks 9–15'},
+    ],
+    highlights:[
+      'Dense GA/FL cluster: 125 stores within 2-hour drive of ATL — extremely low drive-time between sites',
+      'WV (6) and MS (14): bundle into fill days on existing SE sweeps, no separate mobilization',
+      'KY (12): route through TN week — Knoxville/Nashville crew can cover Louisville/Lexington as a day trip',
+    ],
+  },
+  2: {
+    name:'Northeast', color:'#2563EB', bgColor:'#EFF6FF',
+    hub:'New York (EWR)', window:'Wks 16–22', weeks:7, stores:408,
+    estStart:'Jul 2026', estEnd:'Aug 2026',
+    states:['NY','PA','NJ','MA','MD','CT','NH','ME','DE','RI','VT','DC'],
+    staging:'Newark, NJ — lease warehouse near EWR for freight staging',
+    headcount:'3 Cisco engineers + 3 THD MEs recommended; NY/NJ density warrants +1 team',
+    freight:'Night freight out of EWR staging warehouse; NYC metro — confirm access windows',
+    target:'~58 stores/week (highest throughput phase in program)',
+    costNote:'NY/NJ/PA = 240 stores within 150 miles. Best ROI case for a second parallel team — would compress from 7 to 4 weeks.',
+    costColor:'#2563EB', costBg:'#EFF6FF', costBorder:'#93C5FD',
+    actions:[
+      {done:false, text:'Secure EWR-area staging warehouse (lease 8 weeks from Jul 2026)'},
+      {done:false, text:'Evaluate second parallel team for NY/NJ/PA cluster (ROI analysis)'},
+      {done:false, text:'Map NYC metro stores: confirm delivery windows and loading dock access'},
+      {done:false, text:'Schedule MA block (45 stores): BOS engineer crew rotation'},
+      {done:false, text:'Plan VT (3) + ME (11) + NH (20) sweep: bundle as "New England fill" week'},
+      {done:false, text:'Confirm DC (1) store coordination with Mid-Atlantic week'},
+    ],
+    highlights:[
+      'NY/NJ/PA = 240 stores in ~150-mile radius: achievable at 60 stores/week with proper staging',
+      'MA (45) fills one full week from BOS; rotate crew after PA/NJ sweep',
+      'VT (3) + ME (11): too sparse for own week — bundle into NH run or NE fill days',
+    ],
+  },
+  3: {
+    name:'Midwest', color:'#7C3AED', bgColor:'#F5F3FF',
+    hub:'Chicago (ORD)', window:'Wks 23–29', weeks:7, stores:367,
+    estStart:'Sep 2026', estEnd:'Oct 2026',
+    states:['IL','MI','OH','MO','MN','WI','IN','KS','IA','NE','ND','SD'],
+    staging:'Chicago, IL — ORD-area warehouse; relay point for OH/MI sub-crew',
+    headcount:'2 Cisco engineers + 2 THD MEs; consider OH/MI sub-team',
+    freight:'Night freight; relay through ORD for IL/WI/IN, Detroit relay for MI/OH',
+    target:'~52 stores/week',
+    costNote:'ND (2) + SD (1) + NE (8) + KS (15) + IA (10) = 36 stores: combine into 1 "Great Plains" week instead of 5 separate runs — saves ~$12K in lodging/transit.',
+    costColor:'#7C3AED', costBg:'#F5F3FF', costBorder:'#C4B5FD',
+    actions:[
+      {done:false, text:'Secure ORD-area staging warehouse'},
+      {done:false, text:'Plan "Great Plains" fill week: bundle ND/SD/NE/KS/IA into single sweep'},
+      {done:false, text:'Coordinate OH/MI sub-team out of Detroit (DET) for parallel coverage'},
+      {done:false, text:'MN (33): Minneapolis crew — confirm MOA and metro access windows'},
+      {done:false, text:'MO (34): split KC-area and STL-area into separate sub-weeks'},
+    ],
+    highlights:[
+      'IL/MI/OH/IN form a contiguous 237-store cluster — drive-between-sites viable for most',
+      'MN (33): Minneapolis is 6-hour drive from ORD — consider direct SEA flight for crew rotation',
+      'Sparse Plains states: ND has 2 stores, SD has 1 — never assign dedicated weeks to these',
+    ],
+  },
+  4: {
+    name:'South Central', color:'#D97706', bgColor:'#FFFBEB',
+    hub:'Dallas (DFW)', window:'Wks 30–34', weeks:5, stores:242,
+    estStart:'Nov 2026', estEnd:'Dec 2026',
+    states:['TX','LA','OK','AR'],
+    staging:'Dallas, TX — lease DFW-area warehouse; TX alone justifies dedicated facility',
+    headcount:'2 Cisco engineers + 2 THD MEs; second TX sub-team strongly recommended',
+    freight:'Night freight from DFW warehouse; Houston relay point for South TX',
+    target:'~48 stores/week; with 2 TX sub-teams: compresses to 3 weeks',
+    costNote:'Adding a second TX sub-team (DFW-north + Houston-south) saves ~2 weeks of program timeline at ~$8K incremental cost. Strong ROI.',
+    costColor:'#D97706', costBg:'#FFFBEB', costBorder:'#FCD34D',
+    actions:[
+      {done:false, text:'Secure DFW-area staging warehouse (Nov–Dec 2026)'},
+      {done:false, text:'Decide on second TX sub-team (DFW-north vs Houston-south split)'},
+      {done:false, text:'Route TX stores: Houston metro → DFW/Dallas → San Antonio → Austin'},
+      {done:false, text:'Bundle OK (16) + AR (14) as TX fill days — do not assign separate week'},
+      {done:false, text:'LA (26): New Orleans crew — confirm Thanksgiving window if Nov overlap'},
+    ],
+    highlights:[
+      'TX (186) = 77% of this phase — treat as its own program within the phase',
+      'Houston metro alone has ~60 stores: one full week if sub-team is added',
+      'OK/AR total 30 stores: fill into spare TX week capacity, no separate mobilization needed',
+    ],
+  },
+  5: {
+    name:'Mountain / SW', color:'#059669', bgColor:'#ECFDF5',
+    hub:'Phoenix (PHX)', window:'Wks 35–39', weeks:5, stores:187,
+    estStart:'Jan 2027', estEnd:'Feb 2027',
+    states:['AZ','CO','NV','UT','NM','ID','MT','WY'],
+    staging:'Phoenix, AZ — PHX warehouse for AZ weeks; Denver relay for CO/UT/NV',
+    headcount:'2 Cisco engineers + 2 THD MEs',
+    freight:'Night freight PHX for AZ; switch to DEN staging for CO/UT/NV rotation',
+    target:'~37 stores/week',
+    costNote:'MT (6) + WY (5) + ID (13) + NM (13) = 37 stores: one "Sparse Mountain" sweep week. Never assign separate weeks to any of these 4 states.',
+    costColor:'#059669', costBg:'#ECFDF5', costBorder:'#6EE7B7',
+    actions:[
+      {done:false, text:'Secure PHX-area staging warehouse (Jan 2027)'},
+      {done:false, text:'Plan DEN relay: CO (46) + UT (24) = 70 stores → 1.5 weeks from DEN'},
+      {done:false, text:'NV (20): split LAS-area (15) and Reno (5) into separate sub-days'},
+      {done:false, text:'Bundle MT/WY/ID/NM into single "Sparse Mountain" week out of BOI or SLC'},
+      {done:false, text:'Confirm crew availability crossing into Jan 2027 holiday buffer'},
+    ],
+    highlights:[
+      'AZ (60) fills 1.5 weeks alone — PHX is natural hub with strong freight infrastructure',
+      'CO (46) is the second anchor: DEN staging covers CO + UT + southern ID',
+      'NM (13) is most efficiently paired with AZ week — Albuquerque is 6-hour drive from PHX',
+    ],
+  },
+  6: {
+    name:'West Coast', color:'#DC2626', bgColor:'#FEF2F2',
+    hub:'Los Angeles (LAX)', window:'Wks 40–45', weeks:6, stores:325,
+    estStart:'Feb 2027', estEnd:'Mar 2027',
+    states:['CA','WA','OR','HI','AK'],
+    staging:'Ontario, CA — lease staging warehouse (CA scale requires dedicated facility)',
+    headcount:'2-3 Cisco engineers + 3 THD MEs; CA warrants largest headcount of any phase',
+    freight:'Night freight from Ontario CA warehouse; SEA relay for WA/OR; air pre-ship for HI/AK',
+    target:'~54 stores/week; 4 CA-only weeks + 1 PNW week + 1 HI/AK Pacific week',
+    costNote:'CA (235) = 12% of total program. Dedicated staging warehouse in Ontario CA pays for itself vs. routing freight through LAX per-week. Pre-ship HI/AK equipment 3 weeks ahead.',
+    costColor:'#DC2626', costBg:'#FEF2F2', costBorder:'#FCA5A5',
+    actions:[
+      {done:false, text:'Secure Ontario, CA staging warehouse (Feb–Apr 2027)'},
+      {done:false, text:'Plan 4 CA sub-regions: SoCal (LA basin) → IE/SD → Central Valley → NorCal/Bay'},
+      {done:false, text:'Do NOT mix CA weeks with OR/WA — geography penalty kills efficiency'},
+      {done:false, text:'Pre-ship HI equipment 3 weeks ahead of Pacific week'},
+      {done:false, text:'Coordinate AK freight: piggyback with Pacific trip, confirm Anchorage logistics'},
+      {done:false, text:'WA (48) = full week from SEA; OR (27) = half week; bundle remaining OR with WA'},
+    ],
+    highlights:[
+      'SoCal LA basin: 80+ stores within 50-mile radius — highest single-week throughput possible',
+      'NorCal / Bay Area: 50+ stores; Friday traffic is a real constraint — plan for Mon–Thu execution',
+      'HI + AK: fly crew and pre-ship equipment; do not attempt same-week freight to islands',
+    ],
+  },
+  7: {
+    name:'Canada', color:'#6B7280', bgColor:'var(--g100)',
+    hub:'Toronto (YYZ)', window:'Wks 20–27', weeks:8, stores:154,
+    estStart:'Aug 2026', estEnd:'Sep 2026',
+    states:['ON','AB','BC','QC','MB','NB','NS','SK'],
+    staging:'Toronto, ON — YYZ-area warehouse; Calgary relay for AB/BC/SK',
+    headcount:'2 Cisco Canada-authorized engineers + 2 THD MEs (Canadian work authorization required)',
+    freight:'Cross-border import via ATA carnet; stage in Toronto first, then Calgary relay',
+    target:'~19 stores/week (parallel track, does not affect US timeline)',
+    costNote:'Start authorization NOW. ATA carnet + Cisco Canada work auth = 4–6 week lead time. Miss Wk 16 and Canada shifts onto the critical path, adding 3–4 weeks to total program.',
+    costColor:'#6B7280', costBg:'var(--g100)', costBorder:'var(--g300)',
+    actions:[
+      {done:false, text:'URGENT: Initiate ATA carnet paperwork for equipment import into Canada'},
+      {done:false, text:'URGENT: Submit Cisco Canada work authorization for engineers (4–6 wk lead)'},
+      {done:false, text:'Confirm THD Canada ME contacts and availability for Wks 20–27'},
+      {done:false, text:'Secure YYZ-area staging warehouse'},
+      {done:false, text:'Plan Calgary relay: AB (25) + BC (22) + SK (2) = 49 stores from YYC'},
+      {done:false, text:'QC (18): confirm French-language documentation requirements'},
+      {done:false, text:'MB (4) + NB (3) + NS (2): bundle into ON tail weeks as day trips'},
+    ],
+    highlights:[
+      'ON (76) = 49% of Canada — almost 4 full weeks on its own; Toronto crew stays in-region',
+      'AB/BC: Calgary is the hub; can be run as parallel sub-crew overlapping ON weeks',
+      'QC (18): may require bilingual documentation and communication — verify HD Canada policy',
+    ],
+  },
+  8: {
+    name:'Territories', color:'#9333EA', bgColor:'#FAF5FF',
+    hub:'San Juan (SJU)', window:'Wks 46–47', weeks:2, stores:14,
+    estStart:'Mar 2027', estEnd:'Mar 2027',
+    states:['PR','GU','VI'],
+    staging:'Pre-ship to SJU 3 weeks ahead; Guam pre-ship via Pacific freight',
+    headcount:'1 Cisco engineer + 1 THD ME per territory; 2 separate mobilizations',
+    freight:'Atlantic air freight to SJU for PR+USVI; Pacific air freight for Guam (GUM)',
+    target:'PR (10) + USVI (2) in Wk 46; Guam (2) in Wk 47 via Pacific trip',
+    costNote:'Pre-ship ALL equipment 3 weeks before migration week — no same-week island freight. Bundle Guam with West Coast team\'s AK trip to share Pacific freight costs.',
+    costColor:'#9333EA', costBg:'#FAF5FF', costBorder:'#D8B4FE',
+    actions:[
+      {done:false, text:'Pre-ship PR + USVI equipment: arrive SJU by week of Feb 16, 2027'},
+      {done:false, text:'Pre-ship Guam equipment: coordinate with AK freight from Phase 6'},
+      {done:false, text:'Confirm SJU warehouse / receiving contact at PR stores'},
+      {done:false, text:'Verify GU store receiving dock can accept freight (not all island stores can)'},
+      {done:false, text:'Book Atlantic and Pacific crew flights for territory windows'},
+      {done:false, text:'Confirm USVI (VI) store access — verify US customs classification for equipment'},
+    ],
+    highlights:[
+      'PR (10) + USVI (2) share SJU Atlantic mobilization — treat as one trip',
+      'Guam (GUM): Pacific routing only; coordinate timing with the WC team\'s AK visit to share freight',
+      'Never attempt same-week island freight — lead time is too unreliable; always pre-ship',
+    ],
+  },
+};
+
+function openPhasePanel(num) {
+  const p = PHASE_DATA[num];
+  if (!p) return;
+
+  // Filter actual STORES for this phase
+  const phaseStores = STORES.filter(s => p.states.includes(s.state));
+  const complete    = phaseStores.filter(s => s.status === 'Complete');
+  const pending     = phaseStores.filter(s => s.status !== 'Complete');
+  const phones      = phaseStores.reduce((t,s) => t + (s.total||0), 0);
+  const pct         = phaseStores.length ? Math.round(complete.length / phaseStores.length * 100) : 0;
+
+  // Header
+  document.getElementById('pd-header').style.background = p.color;
+  document.getElementById('pd-label').textContent = `Phase ${num}  ·  ${p.name}`;
+  document.getElementById('pd-sub').textContent   = `Hub: ${p.hub}  ·  ${p.window}  ·  ${pct}% complete`;
+
+  // KPI strip
+  document.getElementById('pd-kpis').innerHTML = [
+    {val: phaseStores.length || p.stores, lbl:'Total Stores'},
+    {val: p.weeks + ' wks',               lbl:'Est. Duration'},
+    {val: complete.length,                lbl:'Complete'},
+    {val: phones > 0 ? phones.toLocaleString() : pending.length, lbl: phones > 0 ? 'Phones' : 'Scheduled'},
+  ].map(k => `<div class="wd-kpi"><div class="wd-kpi-val">${k.val}</div><div class="wd-kpi-lbl">${k.lbl}</div></div>`).join('');
+
+  // Build state breakdown from STORES
+  const stateMap = {};
+  phaseStores.forEach(s => {
+    if (!stateMap[s.state]) stateMap[s.state] = {total:0, done:0};
+    stateMap[s.state].total++;
+    if (s.status === 'Complete') stateMap[s.state].done++;
+  });
+  const stateCards = p.states.map(st => {
+    const d = stateMap[st] || {total:0, done:0};
+    if (!d.total) return '';
+    const pct = d.total ? Math.round(d.done/d.total*100) : 0;
+    return `<div class="pd-state-card">
+      <div class="pd-state-name">${st} &nbsp;<span style="font-weight:400;color:var(--g500)">${d.total} stores</span></div>
+      <div class="pd-state-bar"><div class="pd-state-bar-fill" style="width:${pct}%;background:${p.color}"></div></div>
+      <div class="pd-state-meta">${d.done} complete · ${pct}%</div>
+    </div>`;
+  }).join('');
+
+  // Logistics rows
+  const logRows = [
+    {key:'Staging Warehouse', val:p.staging},
+    {key:'Field Team',        val:p.headcount},
+    {key:'Freight',           val:p.freight},
+    {key:'Target Pace',       val:p.target},
+    {key:'Est. Window',       val:`${p.window} · ${p.estStart} – ${p.estEnd}`},
+  ].map(r => `<div class="pd-log-row"><div class="pd-log-key">${r.key}</div><div class="pd-log-val">${r.val}</div></div>`).join('');
+
+  // Action checklist
+  const chkItems = p.actions.map(a => {
+    const box = a.done
+      ? `<div class="pd-chk-box" style="background:var(--green500)"><svg fill="none" stroke="#fff" viewBox="0 0 24 24" style="width:10px;height:10px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>`
+      : `<div class="pd-chk-box" style="border:1.5px solid var(--g300)"></div>`;
+    return `<div class="pd-chk">${box}<span style="color:${a.done?'var(--g400)':'var(--g700)'};${a.done?'text-decoration:line-through':''}">${a.text}</span></div>`;
+  }).join('');
+
+  // Highlights
+  const highlights = p.highlights.map(h =>
+    `<div style="display:flex;gap:8px;font-size:12px;color:var(--g600);line-height:1.55;padding:4px 0;border-bottom:1px solid var(--g100)"><span style="color:${p.color};flex-shrink:0;margin-top:2px">▸</span>${h}</div>`
+  ).join('');
+
+  // Store list (top 60 to avoid giant lists, sorted by state then store)
+  const sortedStores = [...phaseStores].sort((a,b) => (a.state+a.store).localeCompare(b.state+b.store));
+  const storeRows = sortedStores.map(s => {
+    const flags = [s.mdf&&'MDF',s.vgrec&&'VG',s.dhcp&&'DHCP',s.fax&&'Fax'].filter(Boolean).join('·');
+    const badge = s.status==='Complete'
+      ? (flags ? `<span class="badge b-except"><span class="b-dot"></span>Done·${flags}</span>`
+               : `<span class="badge b-clean"><span class="b-dot"></span>Clean</span>`)
+      : `<span class="badge b-pending"><span class="b-dot"></span>Scheduled</span>`;
+    return `<div class="pd-store-row" onclick="closePhasePanel();setTimeout(()=>openDrawer('${s.store}'),220)">
+      <div class="pd-store-num">${s.store}</div>
+      <div class="pd-store-loc">${s.name||s.city||''}, ${s.state}</div>
+      <div class="pd-store-phones">${(s.total||0)}</div>
+      ${badge}
+    </div>`;
+  }).join('');
+
+  document.getElementById('pd-body').innerHTML = `
+    <div class="pd-cost-banner" style="background:${p.costBg};border-color:${p.costBorder}">
+      <div style="font-size:11px;font-weight:700;color:${p.costColor};text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Cost / Planning Note</div>
+      <div style="font-size:12.5px;color:var(--g700);line-height:1.55">${p.costNote}</div>
+    </div>
+    <div class="pd-section">
+      <div class="pd-section-label">State Breakdown</div>
+      <div class="pd-state-grid">${stateCards}</div>
+    </div>
+    <div class="pd-section">
+      <div class="pd-section-label">Logistics & Staging</div>
+      ${logRows}
+    </div>
+    <div class="pd-section">
+      <div class="pd-section-label">Phase Highlights</div>
+      ${highlights}
+    </div>
+    <div class="pd-section">
+      <div class="pd-section-label">Pre-Work Checklist · ${p.actions.filter(a=>!a.done).length} open items</div>
+      ${chkItems}
+    </div>
+    <div class="pd-section">
+      <div class="pd-section-label" style="margin-bottom:0">Stores · ${phaseStores.length} total</div>
+    </div>
+    ${storeRows}
+  `;
+
+  document.getElementById('phaseDrawer').classList.add('open');
+  document.getElementById('drawerBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePhasePanel() {
+  document.getElementById('phaseDrawer').classList.remove('open');
+  document.getElementById('drawerBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
 
 // ── INIT ──────────────────────────────────────────────────────────────
 buildWkFilter();
