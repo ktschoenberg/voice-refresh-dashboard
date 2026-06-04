@@ -59,9 +59,9 @@ body{font-family:var(--font);background:var(--g100);color:var(--g900);
   border:none;background:none;width:100%;text-align:left;font-family:var(--font);border-left:2px solid transparent}
 .s-item:hover{background:rgba(255,255,255,.08);color:#fff}
 .s-item.active{background:rgba(255,255,255,.12);color:#fff;font-weight:600;border-left-color:var(--hd)}
-.s-item svg{width:16px;height:16px;flex-shrink:0;color:rgba(255,255,255,.7);transition:color .12s}
+.s-item svg{width:16px;height:16px;flex-shrink:0;color:#fff;transition:color .12s}
 .s-item:hover svg,.s-item.active svg{color:#fff}
-.s-footer{padding:12px 14px;border-top:1px solid rgba(255,255,255,.1);font-size:11px;color:rgba(255,255,255,.7);line-height:1.7}
+.s-footer{padding:12px 14px;border-top:1px solid rgba(255,255,255,.1);font-size:11px;color:#fff;line-height:1.7}
 .s-footer strong{color:#fff;display:block;font-size:11.5px;margin-bottom:1px}
 
 /* ══ MAIN ══ */
@@ -760,186 +760,157 @@ tfoot td.grand{color:var(--hd);font-size:14px}
       <div class="page-hd">
         <div>
           <div class="page-title">Open Items &amp; Exceptions</div>
-          <div class="page-sub">Wave 1 · Items requiring follow-up or future remediation</div>
+          <div class="page-sub">Wave 1 · Sorted by priority — act on red first</div>
         </div>
-        <div class="page-meta">1 open action · 8 exceptions noted</div>
+        <div class="page-meta">1 open action · 7 pending · 1 resolved</div>
       </div>
 
-      <!-- Open action banner -->
-      <div style="display:flex;align-items:center;gap:10px;background:var(--red50);border:1px solid var(--red100);
-        border-left:3px solid var(--red600);border-radius:var(--r8);padding:12px 16px;
-        font-size:13px;color:var(--red700);margin-bottom:16px">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;flex-shrink:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-        <span><strong>1 open action:</strong> ST0136 — VOIP Fax on 1/0/15 pro desk not working. Onsite stated fax is rarely used. Requires CMS follow-up ticket before closing.</span>
+      <!-- Priority KPIs -->
+      <div class="kpi-grid" style="margin-bottom:20px">
+        <div class="kpi red" style="background:var(--red50)">
+          <div class="kpi-label" style="color:var(--red700)">Act Now</div>
+          <div class="kpi-val" style="font-size:36px">1</div>
+          <div class="kpi-sub" style="color:var(--red700);font-weight:600">VOIP fax · ST0136</div>
+          <div class="kpi-delta" style="background:var(--red100);color:var(--red700);margin-top:6px">CMS ticket required</div>
+        </div>
+        <div class="kpi yellow">
+          <div class="kpi-label">Phones in MDF</div>
+          <div class="kpi-val">9</div>
+          <div class="kpi-sub">Across 6 stores · not yet installed</div>
+          <div class="kpi-delta delta-yellow">Needs return visit</div>
+        </div>
+        <div class="kpi yellow">
+          <div class="kpi-label">Technical Blocks</div>
+          <div class="kpi-val">2</div>
+          <div class="kpi-sub">Port security · short cable</div>
+          <div class="kpi-delta delta-yellow">ST0134 · ST0159</div>
+        </div>
+        <div class="kpi green">
+          <div class="kpi-label">Resolved</div>
+          <div class="kpi-val">1</div>
+          <div class="kpi-sub">ST0170 · MOD escalation closed</div>
+          <div class="kpi-delta delta-green">No action needed</div>
+        </div>
       </div>
 
-      <div style="font-size:12px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">Open Action Required</div>
-      <div class="issue-list">
-        <div class="issue-card is-open">
-          <div class="issue-top">
-            <span class="td-store">ST0136</span>
+      <!-- P1: Critical open action -->
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <div style="width:20px;height:20px;border-radius:50%;background:var(--red600);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <span style="color:#fff;font-size:11px;font-weight:800">1</span>
+        </div>
+        <span style="font-size:12px;font-weight:700;color:var(--red700);text-transform:uppercase;letter-spacing:.06em">Critical · Action Required Now</span>
+      </div>
+      <div style="background:var(--red50);border:1.5px solid var(--red100);border-left:4px solid var(--red600);border-radius:var(--r12);padding:18px 20px;margin-bottom:20px;box-shadow:var(--sh-sm)">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <span style="font-size:15px;font-weight:800;color:var(--g900)">ST0136</span>
             <span class="badge b-open"><span class="b-dot"></span>Open Action</span>
             <span class="badge b-info"><span class="b-dot"></span>Technical</span>
           </div>
-          <div class="issue-body">
-            <strong>VOIP Fax not working</strong> — Port 1/0/15 pro desk fax. Onsite stated fax is not used much. Requires follow-up with CMS to confirm if remediation is needed or if fax line can be decommissioned.
-            <br><br>Additionally: <strong>Ext 488</strong> (Bookkeeping) was provisioned and left in MDF due to access restrictions.
-          </div>
-          <div class="issue-meta">Action owner: CMS team · Priority: Medium · ST0136 migration otherwise complete</div>
+          <div style="font-size:11.5px;color:var(--red600);font-weight:600;white-space:nowrap;background:var(--red100);padding:3px 10px;border-radius:var(--rfull)">Owner: CMS Team</div>
+        </div>
+        <div style="font-size:14px;font-weight:600;color:var(--g900);margin-bottom:6px">VOIP Fax Not Working — Port 1/0/15 Pro Desk</div>
+        <div style="font-size:13px;color:var(--g700);line-height:1.65;margin-bottom:10px">
+          Fax on pro desk port 1/0/15 is not functioning post-migration. Onsite staff stated the fax is not used frequently.
+          CMS team must confirm: <strong>(a)</strong> remediate and restore fax, or <strong>(b)</strong> decommission the fax line before this item can be closed.
+        </div>
+        <div style="background:var(--red100);border-radius:var(--r8);padding:10px 14px;font-size:12.5px;color:var(--red700)">
+          <strong>Also at ST0136:</strong> Ext 488 (Bookkeeping) provisioned and left in MDF — access restriction. Schedule return visit once CMS work is complete.
         </div>
       </div>
 
-      <div style="font-size:12px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 10px">Access Restrictions · Phones Left in MDF</div>
-      <div style="font-size:12.5px;color:var(--g500);margin-bottom:12px">These phones were provisioned but could not be installed due to physical access limitations. Will need a return visit to complete installation.</div>
-      <div class="issue-list">
-        <div class="issue-card is-mdf">
-          <div class="issue-top">
-            <span class="td-store">ST1856</span>
-            <span class="badge b-except"><span class="b-dot"></span>Exception</span>
-            <span class="badge" style="background:var(--g150);color:var(--g600);font-size:11px;padding:2px 8px;border-radius:var(--rfull)">3 phones in MDF</span>
-          </div>
-          <div class="issue-body">Ext <strong>077</strong>, <strong>399</strong>, and <strong>458</strong> were provisioned and left in MDF due to access restrictions. Three locations within the store were inaccessible at time of migration.</div>
-          <div class="issue-meta">Return visit required to install 3 handsets · Access coordination needed</div>
+      <!-- P2: Pending return visits -->
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <div style="width:20px;height:20px;border-radius:50%;background:var(--yellow500);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <span style="color:#fff;font-size:11px;font-weight:800">2</span>
         </div>
-        <div class="issue-card is-mdf">
-          <div class="issue-top">
-            <span class="td-store">ST0105</span>
-            <span class="badge b-except"><span class="b-dot"></span>Exception</span>
-            <span class="badge" style="background:var(--g150);color:var(--g600);font-size:11px;padding:2px 8px;border-radius:var(--rfull)">1 phone in MDF</span>
-          </div>
-          <div class="issue-body"><strong>Ext 402</strong> (Loss Prevention office) was provisioned and left in MDF due to access restrictions. LP office was not accessible during the migration window.</div>
-          <div class="issue-meta">Return visit required · Loss Prevention access coordination needed</div>
-        </div>
-        <div class="issue-card is-mdf">
-          <div class="issue-top">
-            <span class="td-store">ST0123</span>
-            <span class="badge b-except"><span class="b-dot"></span>Exception</span>
-            <span class="badge" style="background:var(--g150);color:var(--g600);font-size:11px;padding:2px 8px;border-radius:var(--rfull)">1 phone in MDF</span>
-          </div>
-          <div class="issue-body"><strong>Ext 441</strong> (Upstairs Office) was provisioned and left in MDF due to access restrictions. Upstairs office area was inaccessible during migration.</div>
-          <div class="issue-meta">Return visit required · Upstairs office access needed</div>
-        </div>
-        <div class="issue-card is-mdf">
-          <div class="issue-top">
-            <span class="td-store">ST6941</span>
-            <span class="badge b-except"><span class="b-dot"></span>Exception</span>
-            <span class="badge" style="background:var(--g150);color:var(--g600);font-size:11px;padding:2px 8px;border-radius:var(--rfull)">1 phone in MDF</span>
-          </div>
-          <div class="issue-body"><strong>Ext 410</strong> (LPS — Loss Prevention Specialist) was provisioned and left in MDF due to access restrictions.</div>
-          <div class="issue-meta">Return visit required · LPS area access coordination needed</div>
-        </div>
+        <span style="font-size:12px;font-weight:700;color:var(--yellow700);text-transform:uppercase;letter-spacing:.06em">Pending · Return Visits Required</span>
+        <span style="font-size:11.5px;color:var(--g400);margin-left:4px">9 phones sitting in MDFs</span>
       </div>
-
-      <div style="font-size:12px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 10px">Technical / Physical Exceptions</div>
-      <div class="issue-list">
-        <div class="issue-card is-mdf">
-          <div class="issue-top">
-            <span class="td-store">ST0134</span>
-            <span class="badge b-except"><span class="b-dot"></span>Exception</span>
-            <span class="badge b-info"><span class="b-dot"></span>Port Security</span>
-          </div>
-          <div class="issue-body"><strong>Ext 405</strong> was provisioned and left in MDF due to a security issue with the port. Legacy phone was left in place and is currently working.</div>
-          <div class="issue-meta">Port security issue requires network team review before re-attempting installation</div>
-        </div>
-        <div class="issue-card is-mdf">
-          <div class="issue-top">
-            <span class="td-store">ST0159</span>
-            <span class="badge b-except"><span class="b-dot"></span>Exception</span>
-            <span class="badge b-info"><span class="b-dot"></span>Cable Length</span>
-          </div>
-          <div class="issue-body"><strong>Ext 453</strong> was provisioned and left in MDF due to a short cable on the poll mount location. The old phone was left in place and is currently working.</div>
-          <div class="issue-meta">Cable remediation required — install longer cable to poll mount before completing installation</div>
-        </div>
-      </div>
-
-      <div style="font-size:12px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 10px">Resolved</div>
-      <div class="issue-list">
-        <div class="issue-card is-resolved">
-          <div class="issue-top">
-            <span class="td-store">ST0170</span>
-            <span class="badge b-clean"><span class="b-dot"></span>Resolved</span>
-            <span class="badge b-info"><span class="b-dot"></span>MOD Escalation</span>
-          </div>
-          <div class="issue-body">MOD <strong>Jaime Tolsa</strong> was not in agreement with allowing Conquest to remove the phone in the management office. Phone was upgraded and MOD was reminded that the direction was coming from THD leadership. Migration completed successfully.</div>
-          <div class="issue-meta">No further action needed · Phone upgraded · MOD aligned</div>
-        </div>
-      </div>
-
-      <!-- Summary table -->
-      <div class="table-wrap" style="margin-top:8px">
-        <div class="table-header">
-          <div class="card-title">Exception Summary</div>
-        </div>
+      <div class="table-wrap" style="margin-bottom:20px">
         <table>
           <thead>
-            <tr><th>Store</th><th>Type</th><th>Detail</th><th>Phones Affected</th><th>Status</th></tr>
+            <tr>
+              <th>Store</th>
+              <th>Extensions in MDF</th>
+              <th>Location / Reason</th>
+              <th class="r">Phones</th>
+              <th>Next Step</th>
+            </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="td-store">ST0136</td>
-              <td><span class="badge b-open"><span class="b-dot"></span>Open Action</span></td>
-              <td style="font-size:12.5px;color:var(--g700)">VOIP Fax not working — CMS follow-up</td>
-              <td class="r mono">1 in MDF</td>
-              <td><span class="badge b-open"><span class="b-dot"></span>Action Needed</span></td>
-            </tr>
-            <tr>
               <td class="td-store">ST1856</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Access</span></td>
-              <td style="font-size:12.5px;color:var(--g700)">Ext 077, 399, 458 — inaccessible areas</td>
-              <td class="r mono">3 in MDF</td>
-              <td><span class="badge b-pending"><span class="b-dot"></span>Return Visit</span></td>
+              <td class="mono">077, 399, 458</td>
+              <td style="font-size:12.5px;color:var(--g700)">Multiple inaccessible areas</td>
+              <td class="r mono" style="color:var(--yellow700);font-weight:700">3</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
             </tr>
             <tr>
               <td class="td-store">ST0105</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Access</span></td>
-              <td style="font-size:12.5px;color:var(--g700)">Ext 402 (LP) — access restriction</td>
-              <td class="r mono">1 in MDF</td>
-              <td><span class="badge b-pending"><span class="b-dot"></span>Return Visit</span></td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0134</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Technical</span></td>
-              <td style="font-size:12.5px;color:var(--g700)">Ext 405 — port security issue</td>
-              <td class="r mono">1 in MDF</td>
-              <td><span class="badge b-pending"><span class="b-dot"></span>Network Review</span></td>
-            </tr>
-            <tr>
-              <td class="td-store">ST0159</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Technical</span></td>
-              <td style="font-size:12.5px;color:var(--g700)">Ext 453 — short cable on poll mount</td>
-              <td class="r mono">1 in MDF</td>
-              <td><span class="badge b-pending"><span class="b-dot"></span>Cable Needed</span></td>
+              <td class="mono">402</td>
+              <td style="font-size:12.5px;color:var(--g700)">Loss Prevention office — access restriction</td>
+              <td class="r mono">1</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>LP Coordination</span></td>
             </tr>
             <tr>
               <td class="td-store">ST0123</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Access</span></td>
-              <td style="font-size:12.5px;color:var(--g700)">Ext 441 (Upstairs Office) — access restriction</td>
-              <td class="r mono">1 in MDF</td>
-              <td><span class="badge b-pending"><span class="b-dot"></span>Return Visit</span></td>
+              <td class="mono">441</td>
+              <td style="font-size:12.5px;color:var(--g700)">Upstairs office — access restriction</td>
+              <td class="r mono">1</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>Return Visit</span></td>
             </tr>
             <tr>
               <td class="td-store">ST6941</td>
-              <td><span class="badge b-except"><span class="b-dot"></span>Access</span></td>
-              <td style="font-size:12.5px;color:var(--g700)">Ext 410 (LPS) — access restriction</td>
-              <td class="r mono">1 in MDF</td>
-              <td><span class="badge b-pending"><span class="b-dot"></span>Return Visit</span></td>
+              <td class="mono">410</td>
+              <td style="font-size:12.5px;color:var(--g700)">LPS office — access restriction</td>
+              <td class="r mono">1</td>
+              <td><span class="badge b-except"><span class="b-dot"></span>LP Coordination</span></td>
             </tr>
             <tr>
-              <td class="td-store">ST0170</td>
-              <td><span class="badge b-clean"><span class="b-dot"></span>Resolved</span></td>
-              <td style="font-size:12.5px;color:var(--g700)">MOD escalation — Jaime Tolsa, phone upgraded</td>
-              <td class="r mono">0</td>
-              <td><span class="badge b-clean"><span class="b-dot"></span>Complete</span></td>
+              <td class="td-store">ST0134</td>
+              <td class="mono">405</td>
+              <td style="font-size:12.5px;color:var(--g700)">Port security issue — legacy phone in place</td>
+              <td class="r mono">1</td>
+              <td><span class="badge b-info"><span class="b-dot"></span>Network Review</span></td>
+            </tr>
+            <tr>
+              <td class="td-store">ST0159</td>
+              <td class="mono">453</td>
+              <td style="font-size:12.5px;color:var(--g700)">Short cable on poll mount — old phone in place</td>
+              <td class="r mono">1</td>
+              <td><span class="badge b-info"><span class="b-dot"></span>Cable Remedy</span></td>
             </tr>
           </tbody>
           <tfoot>
             <tr>
-              <td>Total</td><td></td><td></td>
-              <td class="r" style="font-weight:700;color:var(--hd)">9 phones in MDF</td>
+              <td>6 stores affected</td>
               <td></td>
+              <td></td>
+              <td class="r grand">9</td>
+              <td style="font-size:11.5px;color:var(--g400)">phones in MDF</td>
             </tr>
           </tfoot>
         </table>
+      </div>
+
+      <!-- P3: Resolved -->
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <div style="width:20px;height:20px;border-radius:50%;background:var(--green500);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg fill="none" stroke="#fff" viewBox="0 0 24 24" style="width:12px;height:12px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <span style="font-size:12px;font-weight:700;color:var(--green700);text-transform:uppercase;letter-spacing:.06em">Resolved · No Action Needed</span>
+      </div>
+      <div style="background:var(--green50);border:1px solid var(--green100);border-left:4px solid var(--green500);border-radius:var(--r12);padding:16px 20px;box-shadow:var(--sh-xs)">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+          <span style="font-size:14px;font-weight:700;color:var(--g900)">ST0170</span>
+          <span class="badge b-clean"><span class="b-dot"></span>Resolved</span>
+          <span class="badge b-info"><span class="b-dot"></span>MOD Escalation</span>
+        </div>
+        <div style="font-size:13px;color:var(--g700);line-height:1.6">
+          MOD <strong>Jaime Tolsa</strong> initially objected to Conquest removing the management office phone. Escalated — MOD was reminded that direction came from THD leadership. Phone was upgraded and installed. Migration complete.
+        </div>
+        <div style="margin-top:8px;font-size:12px;color:var(--green700);font-weight:500">All phones deployed · No further action required</div>
       </div>
     </div>
 
