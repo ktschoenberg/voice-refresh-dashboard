@@ -408,6 +408,17 @@ tfoot td.grand{color:var(--hd);font-size:14px}
         <div class="page-meta">All sites: Migration Status = Completed</div>
       </div>
 
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <div style="position:relative;flex:1;max-width:360px">
+          <svg style="position:absolute;left:13px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--g400);pointer-events:none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input id="storeSearch" type="text" placeholder="Search store number or notes…"
+            oninput="filterStores(this.value)"
+            style="width:100%;padding:8px 14px 8px 34px;border-radius:var(--rfull);border:1.5px solid var(--g200);background:var(--white);font-family:var(--font);font-size:13px;color:var(--g900);outline:none;box-shadow:var(--sh-xs);transition:border-color .15s"
+            onfocus="this.style.borderColor='var(--hd)'" onblur="this.style.borderColor='var(--g200)'">
+        </div>
+        <div id="storeCount" style="font-size:12px;color:var(--g400);white-space:nowrap">20 stores</div>
+      </div>
+
       <div class="table-wrap">
         <div class="table-header">
           <div class="card-title">Wave 1 · Store-by-Store Detail</div>
@@ -427,7 +438,7 @@ tfoot td.grand{color:var(--hd);font-size:14px}
               <th>Notes</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="storesTbody">
             <tr>
               <td class="td-store">ST0105</td>
               <td><span class="badge b-except"><span class="b-dot"></span>Exception</span></td>
@@ -936,6 +947,18 @@ tfoot td.grand{color:var(--hd);font-size:14px}
 </div>
 
 <script>
+function filterStores(val) {
+  const q = val.trim().toLowerCase();
+  const rows = document.querySelectorAll('#storesTbody tr');
+  let visible = 0;
+  rows.forEach(row => {
+    const match = row.textContent.toLowerCase().includes(q);
+    row.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+  document.getElementById('storeCount').textContent = q ? `${visible} of 20 stores` : '20 stores';
+}
+
 function switchTab(name) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.s-item').forEach(b => b.classList.remove('active'));
